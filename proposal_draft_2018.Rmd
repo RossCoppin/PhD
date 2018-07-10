@@ -1,0 +1,90 @@
+---
+title: "Kelp morphometric properties and the link to hydrodynamic modelling"
+author:
+- affiliation: University of the Western Cape
+  name: Ross Coppin, AJ Smit, Christo Rautenbach
+date: "2018"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+  word_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
+    highlight: zenburn
+    toc: no
+bibliography: mycollection2.bib   
+---
+
+\newpage
+## Background
+
+Marine ecosystems are maintained by a variety of complex interactions between abiotic and
+biotic variables such as temperature, wave exposure, pH, competition, and processes such as top-down and bottom-up control, predator-prey relationships and phenology [@Doney2012]. These abiotic and biotic variables, the interactions between them, and the various ecological processes, ultimately determine the community composition and ecological functioning of all ecosystems. Climate directly and indirectly affects the way in which abiotic and biotic variables interact, but is often compounded by other impacts such as habitat destruction, pollution, and over-fishing [@Blamey2015]. Temperature and wave exposure have been recognised as important variables with regards to climate-driven changes within the ocean. In order to persist and survive within variable and changing environments, organisms must either migrate, adapt, or die.
+
+Seaweeds are sessile organisms which are unable to migrate to new areas when local environmental conditions become unsuitable and therefore are forced to adapt to new conditions in order to avoid expiration. The main form of mortality for seaweeds is through mechanical dislodgment by wave action. Seaweeds, particularly brown seaweeds, are able to undergo rapid morphological adaptation to the hydrodynamic environment. This allows seaweeds to reduce mortality through mechanical dislodgement by inducing morphological changes which reduces overall drag. Seaweeds that are unable to avoid mechanical dislodgement either raft out to sea or wash up onto beaches, otherwise known as beach-cast. However, not all the beach-cast may have originated from a nearby kelp population and may have originated from other sites or regions of the coast through a combination of rafting and ocean currents. Therefore, because kelp morphology is specific to its local environment the morphological features may be able to indicate, within a certain amount of probability, what site or region it most likely originated from. In other words, beach-cast kelp may be used as proxy for investigating the flow of  coastal currents. Using kelp as a proxy for determining its original location will be calibrated by means of a hydrodynamic model which will be designed from already existing SWAN and Delf3D models. This combined approach will allow investigation into flow regimes around the west and south-west coasts of South Africa and the role they play in sub-tidal and beach ecology. For instance, micro-plastics are recognised as a threat to marine life, however very little is known about how micro-plastics may be transported along the coast.The coupling of kelp morphology and the ability to simulate hydrodynamic processes can greatly improve our understanding of transport pathways and likely locations of accumulation. 
+
+The increased use of plastic in society over the past half century has resulted in large amounts of plastic litter in both the marine and terrestrial environment. The problems associated with large plastic debris have received attention for many decades, whereas those connected to marine micro-plastics comparatively received very little attention. However, today it has become a prioritized area among political organizations, agencies and NGOs around the world. The micro-plastic debris present in the ocean are derived from marine and terrestrial sources, however there is little understanding of how microplastics may be distributed with ocean currents. Therefore, the coupling of kelp morphology and the ability to simulate hydrodynamic processes can greatly improve our understanding of transport pathways and likely locations of accumulation. This in turn may inform management decisions with regards to eliminating and managing marine pollution in South Africa. 
+
+## Rationale
+
+Seaweeds, browns in particular, are capable of adapting morphological characteristics to persist in changing and variable ocean environments. Changes in morphology have been shown to increase photosynthetic ability, enhance nutrient uptake, and reduce drag with regards to changes in temperature and wave exposure. Wave exposure has been shown to be an important driver of seaweed morphology, as the main mechanism of seaweed mortality is through the mechanism of dislodgment. Changing morphology, such as decreasing frond area or strengthening through stipe circumference increase/reduces drag and increases the probability of survival. However, locally adapted seaweed may still be dislodged in pulse disturbance events such as storms, and may raft far distances and wash up on beaches. An example would be *Ecklonia maxima* which is a conspicuous brown seaweed along the coastline and beaches around South Africa. Therefore, the beach-cast may not always originate from adjacent kelp populations but rather from other regions which the individual is adapted for. Therefore, the kelp morphology may act as a proxy for investigating coastal currents and changes thereof. The advances in ocean hydrodynamic modelling has made great progress and has been applied in a variety of ways. Therefore, this study will use advances in hydrodynamic modelling in combination with kelp morphological characteristics to investigate coastal currents. Once the model has been established it may be applied in other ways, such as investigating the transport of micorplastics along the South African coastline. The harms of microplastics to the marine environment has gained much traction in recent years, but research in South Africa is lacking. The coupling of kelp morphology and the ability to simulate hydrodynamic processes can greatly improve our understanding of transport pathways and likely locations of accumulation. This in turn may inform management decisions with regards to eliminating and managing marine pollution in South Africa.
+
+## Research problem
+
+Pollution is a huge environmental problem that affects both terrestrial and marine ecosystems. Pollution from land enters the sea where it could harm or kill marine organisms or is transported by ocean currents to other coastal areas. In these areas the pollution could re-enter the ocean or be blown by wind into terrestrail ecoystems where it could once again be ingested by oragnsims causing harm or even death. Pollution is therefore a major threat to the environment and marine organisms. In recent years the affect of microplastics on the ocean has gained much traction with scientists and politictions alike. Microplastics cosiste of tiny particles of plastic and other pollution and are thereofore are difficult to detect. 
+
+Currently there is no hydrodynamic model that is able to determine dispersion, source and accumulation of microplastics along the South African coastline. Given the significant deterimental affect microplastics play in the ocean, it is important that such a mechanism be developed that will aid in better management of marine pollution in South Africa. Furthermore, this project allows for a multidicisplinery approach to be taken by combining ecology and coastal oceanography.
+
+## Preliminary literature review
+
+Abiotic and biotic factors interact in complex ways which indirectly determine behavioral and ecophysiological responses in organisms. For example, when storms or strong currents form in sub-tidal habitats, sea urchins form aggregations in order to reduce overall drag to avoid being swept away by currents. Organisms that are motile my migrate into more environmentally suitable areas when conditions become unfavorable or food sources become depleted. In changing environments migration may also allow organisms to extend their distributions. For example, ocean warming off the coast of Western Australia has allowed tropical fish species to extend their distribution into areas that were previously characterised as temperate reefs. Sessile organisms are unable to migrate into more environmentally suitable areas and are forced to either adapt or suffer expiration. Sessile organisms may respond to changing environmental conditions through changes in physiology. For example, plants may produce heat shock proteins that help buffer the affect of temperature increases. Sessile organisms may also adapt their morphology,in order to persist in changing and harsh environments, such as seaweeds.
+
+Temperature and wave exposure have been shown to be important drivers of seaweed distribution, physiological functioning, ability to recover, population dynamics and morphology. Mechanical forces generated by the hydrodynamic environment, in the form of sudden strong ocean currents or storms, between 10- 20 m s-1 with accelerations of 400 m s-2 [@Friedland1995] are the biggest threat to kelp survival. Kelps are able to rapidly adapt their morphological characteristics to reduce drag and avoid dislodgment [@Blanchette1997]. For example a study by @Koehletal2008 showed that transplanted *Nereocystis luetkeana* plants from a wave sheltered site to a wave exposed site changed their morphology to flat blades and narrow laterals that are less prone to drag forces in 4-5 days. Another study by @FowlerWalker2006 tested for differences in morphology of *Ecklonia radiata* between wave-sheltered and wave-exposed sites and was a combination of *in situ* sampling and transplant of juvenile plants. The results showed that morphology differed between wave-sheltered and wave-exposed sites (thin thallus at sheltered sites and a narrow, thick thallus with a thick stipe at exposed sites), and was consistent with previous studies. Juveniles transplanted into wave exposed sites under went rapid morphological adaption, whilst the opposite was true for wave-sheltered sites which showed slower morphological adaption. 
+
+Kelp morphology may be distinct to a particular region with a specific hydrodynamic environment and has the ability to raft far distances using coastal currents, and may accumulate as beach-cast in areas far from its original location. Therefore, kelp morphology may be used as a proxy for determining its original location as well as aid in characterising coastal currents. However, this approach must be combined with advances in hydrodynamic modelling for a quantitative outcome. 
+
+Advances in numerical modelling has gained much traction in recent years and has been applied in a variety of ways with regards to ecological studies. For example, a study by @wang2009 used the Delft3D-Flow model to assess the hydraulic suitability of a stream as a spawing ground for the Chinese Sturgeon (*Acipenser sinensis*) in the Yangtze River. The authors calculated the horizontal mean vorticity which was used to assess the hydraulic environment of spawning ground. The flow field state was determined through model simulation and field-measured data used to validate the model. The results added to existing scientific database for spawning ground hydraulic environmental protection. Different numerical models can often be integrated to model across ecosystem levels. For example a study by @leon2003 used integrated physical (Delft3D hydrological model) and bio-chemical (Agricultural Non-point Source model) processes models to investigate the possible impact on the Lake Malawi water quality due to management actions performed at the watershed level.
+
+Since wave energy is an important driver in marine ecosystems, particularly kelp, the advances in hydrodynamic modelling offer a new opportunity for multifactoral and quantitative approach to research in marine ecosystems. The Delf3D and SWAN models have been used successfully in previous studies regarding brine plume discharge, impacts of storms, affects of climate change on the hydrological environment etc. The models have not been designed for shallow environments (<6m) and therefore may not be suitable to model coastal hydrological environments. However these models may be adjusted to suit coastal waters if they are combined with a new numerical model which can be calibrated to suit these needs.
+
+In recent years there has been growing attention on microplastics and the deterimental role they play in the enviornment, particulary the ocean. Microplastics are tiny plastic granuales used as scrubbers in cosmetics and air-blasting, and small plastic fragments that originate from larger pieces of plastic known as macroplastics. The potential harms of small pieces of plastic was highlighted in the 1970's and renewed interest has lead to research showing that microplastics in the ocean are widespread. The small size of microplastics makes them bio-available to biota in the food-web which may cause problems with an organisms physiological functioning. Furthermore, the relatively large surface area and composition of microplastics provides an environmeht that is able of adhering to organic pollutants. In other words microplastics also act as a vector for transport and assimilation of organic polluants. Therefore, microplastics may also aid in the assimilation of organic pollutans into all levels of the food web.
+
+Therefore, this study not only enables research into the ecological affects of the hydrological environment on an important habitat-forming organism, it also offers the opportunity to improve on current hydrological numerical models to suit coastal environments. This in turn will allow investigation into the flow and accumulation of microplastics which are regarded as a major threat to marine life. Furthermore, the calibrated model could be applicable to other ecological studies such as dispersal of benthic flora and fauna, climate change studies, forecasting etc. 
+
+## Aims of research
+
+The aim of the project is to investigate coastal flow regimes along the west coast and south-west coast of South Africa and the role this may play in transport of kelp beach-cast and microplastics. This aim will be met through the following objectives:
+
+A) Determine if the hydrodynamic environment is the main driver of kelp morphology and if this is specific to a location
+B) Simulate kelp rafting by means of a hydrodynamic modelling and calibrate this model with *in situ* beach-cast morphometric data.
+C) Use the calibrated hydrodynamic model to investigate dispersal of microplastics along the west coast and south-west coast of South Africa.
+
+## Research design and methodology
+
+A combined quantitative ecology and oceanography approach will be used for this study. Morphological characteristics and their relation to the hydrodynamic environment must first be established and the findings will form the basis for the proceeding research. Once the relationship has been established it will be used to calibrate future hydrodynamic models developed during the course of the study. Once the hydrodynamic model has been established and calibrated it will be used to investigate the flow of microplastics along the South African coastline.
+
+# Morphology
+
+Morphometrics collection Between October 2014 and April 2015, morphological measurements of *Laminaria pallida* and *Ecklonia maxima* were collected at 19 sites along the Western Cape coast of South Africa (Refer to morphology bar graphs). These varying morphometrics allowed measurements such as weight, length and thickness to be compared between sites. Because the macroalgae differ in construction, species-specific morphometrics were included. These sites span across the majority of the Western Cape coast, in varying thermal and wave energy regimes. Sites were chosen to represent an array of morphological differences seen within each *Ecklonia maxima* and *Laminaria*. Sites were also chosen to reflect locations that displayed variable wave and temperature regimes, to allow us to robustly test our hypothesis of environmental drivers influencing kelp morphology. St. Helena Bay and Betty’s Bay constituted the north western and south eastern boundary sites respectively. These sites are roughly 300km apart, and are confidently lie within separate marine provinces, as outlined above. Cape Peninsula provides an interesting topographical boundary that shelters the coast in False Bay. Sites were therefore chosen to represent an array of environments, from offshore reefs (Batsata Rock), to sheltered intertidal zones (Miller’s Point). West of Cape Point, a number of sites were chosen to highlight the presence of upwelling (Oudekraal, Kommetjie), as well as kelps growing in protected bays (Hout Bay).
+
+# Hydrodynamic model
+
+The hydrodynamic model for coastal flow will be developed using already existing models that have been developed. These models will consist of the SWAN and Delf3D models and the apporach is to use aspects of each model, that are related to coastal flow, from which further development will take place. Once the model has been developed it will be used to predict kelp morphology at random sites which will then be sampled. The *in situ* kelp morphology data collected at the predicted site will be used to calibrate the model. This process will be repeated until the model can predict coastal flow and kelp morphology within a certian degree of probability.
+
+# Microplastics
+
+The calibrated model developed in previous chapters will be used to determine flow, source and accumulatiom points along the South African coastline. Certian characteristcs of microplastics such as bouyancy, flow rate, fluid dynamics ect. Which characteristics are important for modeling dispersion of microplastics will be achieved by investigating the literature and  experimental simulations. Once the model has been established it will once again be calibrated through _in situ_ sampling.
+
+
+## Time-frame
+
+## References
+
+
+
+
+
+
+
