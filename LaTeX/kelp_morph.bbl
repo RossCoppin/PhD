@@ -1,0 +1,118 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\selectlanguage}[1]{\relax}
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+
+\bibitem[{Anderson et~al.(1997)Anderson, Carrick, Levitt, and
+  Share}]{anderson1997}
+Anderson, R., Carrick, P., Levitt, G., and Share, A. (1997).
+\newblock {Holdfasts of adult kelp \emph{Ecklonia maxima} provide refuges from
+  grazing for recruitment of juvenile kelps}.
+\newblock \emph{Marine Ecology Progress Series} , 265--273
+\bibAnnoteFile{anderson1997}
+
+\bibitem[{Bologna and Steneck(1993)}]{bologna1993}
+Bologna, P.~A. and Steneck, R.~S. (1993).
+\newblock {Kelp beds as habitat for American lobster \emph{Homarus
+  americanus}}.
+\newblock \emph{Marine Ecology Progress Series} , 127--134
+\bibAnnoteFile{bologna1993}
+
+\bibitem[{Bolton(2010)}]{bolton2010}
+Bolton, J.~J. (2010).
+\newblock {The biogeography of kelps (Laminariales, Phaeophyceae): a global
+  analysis with new insights from recent advances in molecular phylogenetics}.
+\newblock \emph{Helgoland Marine Research} 64, 263
+\bibAnnoteFile{bolton2010}
+
+\bibitem[{Dayton et~al.(1999)Dayton, Tegner, Edwards, and Riser}]{dayton1999}
+Dayton, P.~K., Tegner, M.~J., Edwards, P.~B., and Riser, K.~L. (1999).
+\newblock Temporal and spatial scales of kelp demography: the role of
+  oceanographic climate.
+\newblock \emph{Ecological Monographs} 69, 219--250
+\bibAnnoteFile{dayton1999}
+
+\bibitem[{Duggins et~al.(1989)Duggins, Simenstad, and Estes}]{duggins1989}
+Duggins, D., Simenstad, C., and Estes, J. (1989).
+\newblock Magnification of secondary production by kelp detritus in coastal
+  marine ecosystems.
+\newblock \emph{Science} 245, 170--173
+\bibAnnoteFile{duggins1989}
+
+\bibitem[{Dunton and Schell(1987)}]{dunton1987}
+Dunton, K. and Schell, D. (1987).
+\newblock {Dependence of consumers on macroalgal (\emph{Laminaria solidungula})
+  carbon in an arctic kelp community: $\delta$13C evidence}.
+\newblock \emph{Marine Biology} 93, 615--625
+\bibAnnoteFile{dunton1987}
+
+\bibitem[{Gaines and Roughgarden(1987)}]{gaines1987}
+Gaines, S.~D. and Roughgarden, J. (1987).
+\newblock Fish in offshore kelp forests affect recruitment to intertidal
+  barnacle populations.
+\newblock \emph{Science} 235, 479--481
+\bibAnnoteFile{gaines1987}
+
+\bibitem[{Graham et~al.(2007)Graham, Kinlan, Druehl, Garske, and
+  Banks}]{graham2007}
+Graham, M.~H., Kinlan, B.~P., Druehl, L.~D., Garske, L.~E., and Banks, S.
+  (2007).
+\newblock Deep-water kelp refugia as potential hotspots of tropical marine
+  diversity and productivity.
+\newblock \emph{Proceedings of the National Academy of Sciences} 104,
+  16576--16580
+\bibAnnoteFile{graham2007}
+
+\bibitem[{Levin(1994)}]{levin1994}
+Levin, P. (1994).
+\newblock Fine-scale temporal variation in recruitment of a temperate demersal
+  fish: the importance of settlement versus post-settlement loss.
+\newblock \emph{Oecologia} 97, 124--133
+\bibAnnoteFile{levin1994}
+
+\bibitem[{L{\"u}ning(1990)}]{luning1990}
+L{\"u}ning, K. (1990).
+\newblock \emph{Seaweeds: their environment, biogeography, and ecophysiology}
+  (John Wiley \& Sons)
+\bibAnnoteFile{luning1990}
+
+\bibitem[{Mann(1973)}]{mann1973}
+Mann, K.~H. (1973).
+\newblock Seaweeds: their productivity and strategy for growth.
+\newblock \emph{Science} 182, 975--981
+\bibAnnoteFile{mann1973}
+
+\bibitem[{Santelices(2007)}]{santelices2007}
+Santelices, B. (2007).
+\newblock The discovery of kelp forests in deep-water habitats of tropical
+  regions.
+\newblock \emph{Proceedings of the National Academy of Sciences} 104,
+  19163--19164
+\bibAnnoteFile{santelices2007}
+
+\bibitem[{Steneck et~al.(2002)Steneck, Graham, Bourque, Corbett, Erlandson,
+  Estes et~al.}]{steneck2002}
+Steneck, R.~S., Graham, M.~H., Bourque, B.~J., Corbett, D., Erlandson, J.~M.,
+  Estes, J.~A., et~al. (2002).
+\newblock Kelp forest ecosystems: biodiversity, stability, resilience and
+  future.
+\newblock \emph{Environmental Conservation} 29, 436--459
+\bibAnnoteFile{steneck2002}
+
+\bibitem[{Zimmerman and Robertson(1985)}]{zimmerman1985}
+Zimmerman, R.~C. and Robertson, D.~L. (1985).
+\newblock {Effects of El Ni{\~n}o on local hydrography and growth of the giant
+  kelp, \emph{Macrocystis pyrifera}, at Santa Catalina Island, California}.
+\newblock \emph{Limnology and Oceanography} 30, 1298--1302
+\bibAnnoteFile{zimmerman1985}
+
+\end{thebibliography}
