@@ -1,0 +1,162 @@
+\documentclass[utf8]{frontiersSCNS} % for Science, Engineering and Humanities
+\usepackage{url,hyperref,lineno,microtype,subcaption}
+\usepackage[onehalfspacing]{setspace}
+
+\linenumbers
+
+%%% BEGIN added by AJS
+\usepackage{xltxtra} % also loads 'fontspec'
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Minion Pro}
+\setsansfont[Scale=MatchLowercase]{Myriad Pro}
+\setmonofont[Scale=MatchLowercase]{Ubuntu Mono}
+% \setmathfont{Minion Math}
+
+\frenchspacing
+\usepackage{textgreek}
+\usepackage{ragged2e} % for '\RaggedRight' macro (allows hyphenation)
+\usepackage{booktabs} % nice tables without vertical lines
+\setlength\heavyrulewidth{0.1em}
+\setlength\lightrulewidth{0.0625em}
+\usepackage{siunitx}
+    \sisetup{%
+        detect-mode,
+        group-digits            = false,
+        input-symbols           = ( ) [ ] - + < > * §,
+        table-align-text-post   = false,
+        round-mode              = places,
+        round-precision         = 3
+        }
+
+        % SECTION, SUBSECETC.TITLES
+        \usepackage[compact]{titlesec}
+        \titleformat{\chapter}
+          {\normalfont\LARGE\sffamily\bfseries}
+          {\thechapter}
+          {1em}
+          {}
+        \titleformat{\section}
+          {\normalfont\LARGE\sffamily\bfseries}
+          {\thesection}
+          {1em}
+          {}
+        \titleformat{\subsection}
+          {\normalfont\Large\sffamily\bfseries}
+          {\thesubsection}
+          {1em}
+          {}
+        \titleformat{\subsubsection}
+          {\normalfont\large\sffamily\bfseries\slshape}
+          {\thesubsubsection}
+          {1em}
+          {}
+        % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+        \titlespacing*{\chapter}
+          {0pt}
+          {1.2ex plus 1ex minus .2ex}
+          {0.5ex plus .1ex minus .1ex}
+        \titlespacing*{\section}
+          {0pt}
+          {1.2ex plus 1ex minus .2ex}
+          {0.5ex plus .1ex minus .1ex}
+        \titlespacing*{\subsection}
+          {0pt}
+          {1.2ex plus 1ex minus .2ex}
+          {0.5ex plus .1ex minus .1ex}
+        \titlespacing*{\subsubsection}
+          {0pt}
+          {1.2ex plus 1ex minus .2ex}
+          {0.5ex plus .1ex minus .1ex}
+ %%% END added by AJS
+
+% Leave a blank line between paragraphs instead of using \\
+
+\def\keyFont{\fontsize{8}{11}\helveticabold }
+\def\firstAuthorLast{Smit {et~al.}} %use et al only if is more than 1 author
+\def\Authors{Albertus J. Smit\,$^{1,2,*}$, Ross C. Coppin\,$^{1}$, Robert W. Schlegel\,$^{1}$ and Christo Rautenbach\,$^{3}$}
+% Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
+% If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
+\def\Address{$^{1}$Department of Biodiversity and Conservation Biology, University of the Western Cape, Private Bag X17, Bellville 7535, South Africa \\
+$^{2}$South African Environmental Observation Network, Elwandle Coastal Node, Port Elizabeth, South Africa \\
+$^{3}$South African Weather Service, Marine Section, Cape Town, South Africa }
+% The Corresponding Author should be marked with an asterisk
+% Provide the exact contact address (this time including street name and city zip code) and email of the corresponding author
+\def\corrAuthor{Albertus J. Smit}
+
+\def\corrEmail{ajsmit@uwc.ac.za}
+
+\begin{document}
+\onecolumn
+\firstpage{1}
+
+\title[The shape of kelp]{The shape of kelp: environmental influences on kelp morphology}
+
+\author[\firstAuthorLast ]{\Authors} %This field will be automatically populated
+\address{} %This field will be automatically populated
+\correspondance{} %This field will be automatically populated
+
+\extraAuth{}% If there are more than 1 corresponding author, comment this line and uncomment the next one.
+%\extraAuth{corresponding Author2 \\ Laboratory X2, Institute X2, Department X2, Organization X2, Street X2, City X2 , State XX2 (only USA, Canada and Australia), Zip Code2, X2 Country X2, email2@uni2.edu}
+
+
+\maketitle
+
+
+
+\begin{abstract}
+
+%%% Leave the Abstract empty if your article does not require one, please see the Summary Table for full details.
+\section{}
+Two species of kelp, \emph{Ecklonia maxima} and \emph{Laminaria pallida}, dominate the nearshore environment around the South African Western Cape coast. These structure producing kelps provide habitat for various organisms, and are distributed across a region where the thermal and wave energy regimes vary significantly. Across this distribution, the morphology of each species displays a disparity in shape and size. The morphology of macroalgae is known to be influenced by wave exposure, however waves are made up of various constituents, such as wave height, wave direction and period. Not much is understood on specific wave parameters and their influence on macroalgal morphology. We therefore used existing thermal and wave energy data for 18 sites across the Western Cape coast, and investigated how individual abiotic parameters influence the morphology of each species. While temperature influences kelp distributions most strongly, localised variation in the morphology of kelps are driven by wave parameters. The biggest influences were found to be wave direction, significant wave height and wave period, which explain much of the total length, lamina thickness and stipe circumference of each species. Turbidity correlates with wave energy, where sedimentation of the water column through excessive wave movements reduces light penetration. The expansion of \emph{Laminaria pallida} lamina area was found in high turbidity environments. These sites also displayed decreased lamina thickness (which positively correlates with photosynthetic ability). \emph{Laminaria pallida} sporophytes in highly turbid environments, where the boundary diffuse layer is reduced and nutrient uptake is easier, are thought to rely on greater light-capturing surface area instead of photosynthetic ability. We can therefore see how specific wave parameters are able to influence the morphology of kelps, and confirms the idea of morphoplasticity in South African kelp species.
+
+\tiny
+ \keyFont{ \section{Keywords:} kelp, \emph{Ecklonia maxima}, \emph{Laminaria pallida}, morphometrics, wave energy, seawater temperature}
+\end{abstract}
+
+\section{Introduction}
+Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of \num{112} species in \num{33} genera \citep{bolton2010}, nevertheless form the basis of one of the most productive ecosystems globally \citep{mann1973}. Kelps generally have a dependence on cool, temperate and arctic seawater temperatures \citep{santelices2007,bolton2010}, and dominate the nearshore biomass in these regions within the rocky shallow coasts in both hemispheres \citep{steneck2002}. Outside of these latitudes, they are also found in cool, deep water towards the tropics \citep{graham2007}: this deeper tropical water, due to its water clarity, also allows for a minimum photon flux rate of \SI{50}{\micro\mol\per\meter\squared\per\second} and a nitrate concentration of \SI{>2}{\micro\mole\per\liter} \citep{luning1990,dayton1999,zimmerman1985}, the two other environmental variables that support kelp productivity.
+
+[Say something about the thermal range in these parts of the world---from Lüning and from a plot of geographical distribution of kelps; Graham et al., 2007 set a 23°C maximum monthly climatological temperature to constrain the upper thermal limit...]
+
+[Say something about their size range across the species...]
+
+Although kelps have a low taxonomic diversity, their size and complex morphology provide a heterogeneous habitat structure \citep{steneck2002} that accommodate a multitude other turf and sub-canopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates \citep{mann1973,dunton1987,duggins1989,steneck2002}, each depending on a wide suite of ecological services provided by the kelp habitat \citep{gaines1987,bologna1993,levin1994,anderson1997}.
+
+[Say something about kelp habitats that have a physical influence on the hydrodynamics within the beds...]
+
+The biogeographic distribution of kelp is limited by seawater temperature (Bolton 2010), where increasing temperature gradients reduce kelp distribution. Due to this limiting factor, the two main species of kelps in southern African waters, \emph{Ecklonia maxima} and \emph{Laminaria pallida}, are distributed along a section of the south coast from De Hoop, extending west around the Cape Peninsula, and thriving north into Namibia (Molloy 1990, Stegenga et al. 1997). This distribution follows a temperate temperature gradient, where sea temperatures increase as one moves south from Namibia, around Cape Point and towards De Hoop. Although the two species occur together for the majority of the coast, their basic morphologies and resource needs vary to a degree. The larger species, \emph{Ecklonia maxima}, is distributed from Lüderitz to Cape Agulhas (Bolton and Levitt 1985, Probyn and McQuaid 1985, Bolton and Anderson 1987, Bolton et al. 2012). Characterised by a large distal swollen bulb filled with gas, and smooth fronds, this species grows to approximately 10 meters (Bolton and Anderson 1987). There was, however, a 17-meter specimen collected in 2015 off Cape Point (Smit, unpubl. data). This species of kelp not only dominate the biomass of the South African nearshore, but plays an important ecological role (Bustamante and Branch 1996). The estimated productivity of \emph{Ecklonia maxima} within South Africa varies between 350 and 1500g C m\textsuperscript{-2yr-1} (Mann 1982).
+
+Across the majority of the coastline, \emph{Laminaria pallida} remains a subsurface kelp, dominating the kelp biomass at depths greater than 10 meters (Field et al. 1980, Bolton and Anderson 1987, Molloy and Bolton 1996). This species is distributed from Danger Point, east of the Cape Peninsula, to Rocky Point in northern Namibia, and reaches depths of greater than 20 meters (Field et al. 1980, Molloy 1990, Molloy and Bolton 1996, Stegenga et al. 1997). Towards the north along the west coast, from around Hondeklipbaai, \emph{Laminaria pallida} replaces \emph{Ecklonia maxima} as the dominant kelp species (Velimirov et al. 1977, Stegenga et al. 1997) and it also occupies increasingly shallower subtidal regions. The northern populations also exhibit an increase in stipe hollowness, compared to the solid stipe morphs in the species' southern distributions (Molloy and Bolton 1996). This variation in morphology was thought to represent two distinct species, with the northern populations formerly described as \emph{Laminaria schinzii} Foslie (Molloy and Bolton 1996). Genetic work has subsequently shown that the two morphs are in fact the same species (Rothman et al. 2017). In southern African waters, the primary production of \emph{Laminaria pallida} is between 120 and 1900g C m\textsuperscript{-2yr-1}, similar to that of \emph{Ecklonia maxima} (Mann 1982). Primary production is not the only pathway by which these two species influence the environment. Fresh and detrital matter from these kelps not only provide support for organisms in the immediate sandy and rocky shores of South Africa, but connect to distant ecosystems (Krumhansl and Scheibling 2012).
+
+
+\section{Methods}
+
+\section{Results}
+
+\subsection{Conclusions}
+
+\section*{Conflict of Interest Statement}
+The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.
+
+\section*{Author Contributions}
+
+\section*{Funding}
+The research was partly funded by the South African National Research Foundation (http://www.nrf.ac.za) programme ``Thermal characteristics of the
+South African nearshore: implications for biodiversity'' (CPRR14072378735).
+
+Aside from providing funding, the funders had no role in the study design, data collection and analysis, decision to publish, or preparation of the manuscript.
+
+\section*{Acknowledgements}
+Robert Schlegel is thanked for his assistance in the preparation of some of Figure 1.
+
+\bibliographystyle{frontiersinSCNS_ENG_HUMS} % for Science, Engineering and Humanities and Social Sciences articles, for Humanities and Social Sciences articles please include page numbers in the in-text citations
+%\bibliographystyle{frontiersinHLTH&FPHY} % for Health, Physics and Mathematics articles
+\bibliography{kelp_morph}
+
+%%% Make sure to upload the bib file along with the tex file and PDF
+%%% Please see the test.bib file for some examples of references
+
+\clearpage
+\nolinenumbers
+
+\end{document}

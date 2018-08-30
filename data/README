@@ -1,0 +1,1 @@
+RWS: The file 'daily_clim_pixel.Rdata' was taken from a project I worked on previously looking at range expansion of kelps along the coastline of SA. This 0.1 degree pixel interpolation along the entire coastline was created with the Akima interpolation package and then I went over it by hand to ensure there were no issues.
