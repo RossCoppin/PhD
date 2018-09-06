@@ -1,19 +1,44 @@
 ---
-title: 'Chapter 2:The shape of kelp: environmental influences on kelp morphology'
-author: "Ross Coppin"
-date: "30 August 2018"
+title: "The shape of kelp: environmental influences on kelp morphology"
 output:
-  pdf_document: 
+  word_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
     highlight: zenburn
-  word_document: default
+    toc: no
+  html_notebook:
+    fig_caption: yes
+    toc: yes
+  pdf_document:
+    toc: yes
+  bookdown::html_document2:
+    fig_caption: yes
+    fig_retina: 2
+    fig_width: 7
+    highlight: espresso
+    theme: sandstone
+    toc_float: no
+fontsize: 12pt
+geometry: margin=1in
+language: Australian
+mainfont: PT Serif
+monofont: PT Mono
+csl: LaTeX/ecography.csl
+papersize: A4
+sansfont: PT Sans
+tables: yes
+bibliography: LaTex/mycollection.bib
 ---
+
+\newpage
 ## Introduction
 
-Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera [@Bolton2010], nevertheless form the basis of one of the most productive ecosystems globally [@Mann1973]. Kelps generally have a dependence on cool, temperate and arctic seawater temperatures [@Santelices2007; @Bolton2010], and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Outside of these latitudes, they are also found in cool, deep water towards the tropics [@Graham2007]: this deeper tropical water, due to its water clarity, also allows for a minimum photon flux rate of 50 ??? and a nitrate concentration of ??? [@Luning1990; @Dayton1999; @Zimmerman1985], the two other environmental variables that support kelp productivity. Although kelps have a low taxonomic diversity, their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude other turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates [@Mann1973; @Dunton1987; @Duggins1989; @Steneck2002], each depending on a wide suite of ecological services provided by the kelp habitat [@Gaines1987; @Bologna1993; @Levin1994; @Anderson1997].
+Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera [@Bolton2010], nevertheless form the basis of one of the most productive ecosystems globally [@Mann1973]. Kelps generally have a dependence on cool, temperate and arctic seawater temperatures [@Santelices2007; @Bolton2010], and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Outside of these latitudes, they are also found in cool, deep water towards the tropics [@Graham2007]: this deeper tropical water, due to its water clarity, also allows for suitable photon flux and a nitrate concentration [@Luning1990; @Dayton1999; @Zimmerman1984], the two other environmental variables that support kelp productivity. Although kelps have a low taxonomic diversity, their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude other turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates [@Mann1973; @Dunton1987; @Duggins1989; @Steneck2002], each depending on a wide suite of ecological services provided by the kelp habitat [@Gaines1987; @Bologna1993; @Levin1994; @Anderson1997].
 
 Say something about kelp habitats that have a physical influence on the hydrodynamics within the beds.
 
-The biogeographic distribution of kelp is limited by seawater temperature [@Bolton2010], where increasing temperature gradients reduce kelp distribution. Due to this limiting factor, the two main species of kelps in southern African waters, _Ecklonia maxima_ and _Laminaria pallida_, are distributed along a section of the south coast from De Hoop, extending west around the Cape Peninsula, and thriving north into Namibia [@Molloy1990; @Stegenga1997]. This distribution follows a temperate gradient, where sea temperatures increase as one moves south from Namibia, around Cape Point and towards De Hoop. Although the two species occur together for the majority of the coast, their basic morphologies and resource needs vary to a degree. The larger species, _Ecklonia maxima_, is distributed from Lüderitz to Cape Agulhas [@Bolton1985; @Probyn1985; @Bolton1987; @Bolton2012]. Characterised by a large distal swollen bulb filled with gas, and smooth fronds, this species grows to approximately 10 meters [@Bolton1987]. There was, however, a 17-meter specimen collected in 2015 off Cape Point (Smit, unpubl. data).This species of kelp not only dominate the biomass of the South African nearshore, but plays an important ecological role [@Bustamante1996]. The estimated productivity of _Ecklonia maxima_ within South Africa varies between 350 and 1500g Cm-2yr-1 [@Mann1982]. Across the majority of the coastline, _Laminaria pallida_ remains a subsurface kelp, dominating the kelp biomass at depths greater than 10 meters [@Field1980; @Bolton1987; @Molloy1996]. This species is distributed from Danger Point, east of the Cape Peninsula, to Rocky Point in northern Namibia, and reaches depths of greater than 20 meters [@Field1980; @Molloy1990; @Molloy1996; @Stegenga1997]. Towards the north along the west coast, from around Hondeklipbaai, _Laminaria pallida_ replaces _Ecklonia maxima_ as the dominant kelp species [@Velimirov1977; @Stegenga1997] and it also occupies increasingly shallower subtidal regions. The northern populations also exhibit an increase in stipe hollowness, compared to the solid stipe morphs in the species’ southern distributions [@Molloy1996]. This variation in morphology was thought to represent two distinct species, with the northern populations formerly described as _Laminaria schinzii_ Foslie [@Molloy1996]. Genetic work has subsequently shown that the two morphs are in fact the same species [@Rothman2017]. In southern African waters, the primary production of _Laminaria pallida_ is between 120 and 1900g C m2yr1, similar to that of _Ecklonia maxima_ [@Mann1982]. Primary production is not the only pathway.
+The biogeographic distribution of kelp is limited by seawater temperature [@Bolton2010], where increasing temperature gradients reduce kelp distribution. Due to this limiting factor, the two main species of kelps in southern African waters, _Ecklonia maxima_ and _Laminaria pallida_, are distributed along a section of the south coast from De Hoop, extending west around the Cape Peninsula, and thriving north into Namibia [@Molloy1990; @Stegenga1997]. This distribution follows a temperate gradient, where sea temperatures increase as one moves south from Namibia, around Cape Point and towards De Hoop. Although the two species occur together for the majority of the coast, their basic morphologies and resource needs vary to a degree. The larger species, _Ecklonia maxima_, is distributed from Lüderitz to Cape Agulhas [@Bolton1985a; @Probyn1985; @Bolton1987; @Bolton2012]. Characterised by a large distal swollen bulb filled with gas, and smooth fronds, this species grows to approximately 10 meters [@Bolton1987]. There was, however, a 17-meter specimen collected in 2015 off Cape Point (Smit, unpubl. data).This species of kelp not only dominate the biomass of the South African nearshore, but plays an important ecological role [@Bustamante1996]. The estimated productivity of _Ecklonia maxima_ within South Africa varies between 350 and 1500g Cm-2yr-1 [@Mann1982]. Across the majority of the coastline, _Laminaria pallida_ remains a subsurface kelp, dominating the kelp biomass at depths greater than 10 meters [@Field1980b; @Bolton1987; @Molloy1996]. This species is distributed from Danger Point, east of the Cape Peninsula, to Rocky Point in northern Namibia, and reaches depths of greater than 20 meters [@Field1980b; @Molloy1990; @Molloy1996; @Stegenga1997]. Towards the north along the west coast, from around Hondeklipbaai, _Laminaria pallida_ replaces _Ecklonia maxima_ as the dominant kelp species [@Velimirov1977; @Stegenga1997] and it also occupies increasingly shallower subtidal regions. The northern populations also exhibit an increase in stipe hollowness, compared to the solid stipe morphs in the species’ southern distributions [@Molloy1996]. This variation in morphology was thought to represent two distinct species, with the northern populations formerly described as _Laminaria schinzii_ Foslie [@Molloy1996]. Genetic work has subsequently shown that the two morphs are in fact the same species [@Rothman2017]. In southern African waters, the primary production of _Laminaria pallida_ is between 120 and 1900g C m2yr1, similar to that of _Ecklonia maxima_ [@Mann1982]. Primary production is not the only pathway.
 
 The aim of this study is, therefore, to understand how environmental drivers such as temperature and wave energy can influence morphoplasticity in two species of kelps around South Africa. This will be achieved by initially understanding the variation in abiotic parameters, and morphometrics of _Ecklonia maxima_ and _Laminaria pallida_, around the Western Cape coast. Thereafter we will look at how the abiotic parameters both correlate and influence each other in the nearshore environment of our study region. Finally, we will investigate which abiotic parameters best describe the morphological variation of the two kelp species, using statistical tools. It is predicted that higher wave energy environments will exhibit kelps with reduced undulations, possessing strap-like blades, opposed to low flow regimes that will show greater undulations in frond morphology. An increase in temperature is predicted to influence specific morphological traits that rely on nutrient uptake, as temperature and nutrients share an inverse relationship. An increase in temperature is also predicted to reduce the dominance of the colder water kelp, _Laminaria pallida_, at depth, with a total absence of _Laminaria pallida_ as one approaches the eastern boundary of sample sites.
 
@@ -109,7 +134,7 @@ ggplot(data = kelp_sites_map, aes(x = lon, y = lat)) +
 
 ### Abiotic parameters
 
-In order to compare abiotic parameters for sites around the coast, large historical databases for both temperature and wave energy were accessed. Shallow water temperatures were sourced from the South African Coastal Temperature Network (SACTN) website (https://github.com/ajsmit/SACTN). Seven different organisations within South Africa contribute to the SACTN, where _in situ_ temperature measurements are made around the South African coast using either hand-held thermometers or digital temperature recorders positioned underwater. The mean duration of the 135 daily time series is 19.7 years, and these _in situ_ data are preferred over satellite SST, which have shown to exhibit large biases [@Smit2013]. Linear interpolated SST were calculated for sites where _in situ_ recorders were absent. Wave energy data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs [@Theron2014]. These data are first forecasted using NOAA Wave Watch III (WWIII), with National Centers for Environmental Predictions (NCEP) product as the numerical input [@benassai2006implementation]. Hindcast data from WWIII span from 1994-2013 at a 3-hour resolution. The data are then used to model short –crested waves generated by the wind into the coastal environment, using Simulating Waves in the Nearshore [SWAN; @booij1997swan]. SWAN allows one to extract wave parameters from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled, at both 7 meter and 15 meter contours. A 200 meter resolution was used as False Bay was nested within a larger grid area for the research from where the data were sourced.  For Table Bay and east of Cape Hangklip the resolution 500 meters at 7 meters and 15 meters. For this study the 7 meter contours were used.
+In order to compare abiotic parameters for sites around the coast, large historical databases for both temperature and wave energy were accessed. Shallow water temperatures were sourced from the South African Coastal Temperature Network (SACTN) website (https://github.com/ajsmit/SACTN). Seven different organisations within South Africa contribute to the SACTN, where _in situ_ temperature measurements are made around the South African coast using either hand-held thermometers or digital temperature recorders positioned underwater. The mean duration of the 135 daily time series is 19.7 years, and these _in situ_ data are preferred over satellite SST, which have shown to exhibit large biases [@Smit2013]. Linear interpolated SST were calculated for sites where _in situ_ recorders were absent. Wave energy data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs [@Theron2014]. These data are first forecasted using NOAA Wave Watch III (WWIII), with National Centers for Environmental Predictions (NCEP) product as the numerical input [@benassai2006]. Hindcast data from WWIII span from 1994-2013 at a 3-hour resolution. The data are then used to model short –crested waves generated by the wind into the coastal environment, using Simulating Waves in the Nearshore [SWAN; @booij1996]. SWAN allows one to extract wave parameters from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled, at both 7 meter and 15 meter contours. A 200 meter resolution was used as False Bay was nested within a larger grid area for the research from where the data were sourced.  For Table Bay and east of Cape Hangklip the resolution 500 meters at 7 meters and 15 meters. For this study the 7 meter contours were used.
 
 ###Statistical analyses
 
@@ -137,7 +162,7 @@ lam_data <- read_csv("data/Laminaria_morphometrics.csv") %>%
   # We need to decide how we want to handle this. Give it the same lon/lat as Buffelsbaai?
   mutate(site = replace(site, site == "Buffels Bay South", "Buffelsbaai South")) %>%
   # NB: This may also not be an appropriate change
-  mutate(site = replace(site, site == "Bordjiestif North", "Bordjies Deep")) %>%
+  mutate(site = replace(site, site == "Bordjies reef North", "Bordjies Deep")) %>%
   # Not using Rocky Bank in this study
   filter(site != "Rocky Bank")
 
@@ -242,7 +267,7 @@ wave_sites <- read_csv("metadata/sites_complete.csv") %>%
 # Monthly clims
 wave_feb_aug <- wave_model %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
-  filter(site!= "FB25") %>% # FB_25 has issues with 'hs' and 'tp'
+  filter(site != "FB25") %>% # FB_25 has issues with 'hs' and 'tp'
   group_by(site, date) %>% 
   summarise_all(funs(mean = mean, sd = sd), na.rm = T) %>%
   filter(date %in% c("Feb", "Aug")) %>% 
@@ -426,7 +451,7 @@ max <- ggplot(data = maxTemp, aes(x = lon, y = lat)) +
   geom_point(data = maxTemp, aes(col = value), size = 2) +
   scale_color_gradient("Max temp (°)", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(season), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(season), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -437,7 +462,7 @@ min <- ggplot(data = minTemp, aes(x = lon, y = lat)) +
   geom_point(data = minTemp, aes(col = value), size = 2) +
   scale_color_gradient("Min temp (°)", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(season), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(season), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -448,7 +473,7 @@ mean <- ggplot(data = meanTemp, aes(x = lon, y = lat)) +
   geom_point(data = meanTemp, aes(col = value), size = 2) +
   scale_color_gradient("Mean temp (°)", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(season), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(season), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -459,7 +484,7 @@ sd <- ggplot(data = sdTemp, aes(x = lon, y = lat)) +
   geom_point(data = sdTemp, aes(col = value), size = 2) +
   scale_color_gradient("SD temp (°)", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(season), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(season), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -470,7 +495,7 @@ range <- ggplot(data = rangeTemp, aes(x = lon, y = lat)) +
   geom_point(data = rangeTemp, aes(col = value), size = 2) +
   scale_color_gradient("Range temp (°)", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(season), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(season), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -542,7 +567,7 @@ medianDir1 <- ggplot(data = medianDir, aes(x = lon, y = lat)) +
   geom_point(data = medianDir, aes(col = value), size = 2) +
   scale_color_gradient("medianDir", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) + 
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) + 
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -556,7 +581,7 @@ medianDirw1 <- ggplot(data = medianDirw , aes(x = lon, y = lat)) +
   geom_point(data = medianDirw , aes(col = value), size = 2) +
   scale_color_gradient("medianDirw ", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -570,7 +595,7 @@ meanHs1 <- ggplot(data = meanHs, aes(x = lon, y = lat)) +
   geom_point(data = meanHs, aes(col = value), size = 2) +
   scale_color_gradient("meanHs", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -582,7 +607,7 @@ sdHs1 <- ggplot(data = sdHs, aes(x = lon, y = lat)) +
   geom_point(data = sdHs, aes(col = value), size = 2) +
   scale_color_gradient("sdHs", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -594,7 +619,7 @@ meanSpw1 <- ggplot(data = meanSpw, aes(x = lon, y = lat)) +
   geom_point(data = meanSpw, aes(col = value), size = 2) +
   scale_color_gradient("meanSpw", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -606,7 +631,7 @@ sdSpw1 <- ggplot(data = sdSpw, aes(x = lon, y = lat)) +
   geom_point(data = sdSpw, aes(col = value), size = 2) +
   scale_color_gradient("sdSpw", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -618,7 +643,7 @@ meanTp1 <- ggplot(data = meanTp, aes(x = lon, y = lat)) +
   geom_point(data = meanTp, aes(col = value), size = 2) +
   scale_color_gradient("meanTp", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -630,7 +655,7 @@ sdTp1 <- ggplot(data = sdTp, aes(x = lon, y = lat)) +
   geom_point(data = sdTp, aes(col = value), size = 2) +
   scale_color_gradient("sdTp", low = "blue", high = "red") +
   coord_fixed(xlim = c(17.85, 19), ylim = c(-32.75, -34.4)) +
-  facet_wrap(~ season, labeller = as_labeller(c(season)), scales = "free", ncol = 3) +
+  facet_wrap(~ season, labeller = as_labeller(c(season)), ncol = 3) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
@@ -638,7 +663,7 @@ sdTp1 <- ggplot(data = sdTp, aes(x = lon, y = lat)) +
 
 ### Wave and wind parameters
 
-Not only do the temperature parameters display seasonal fluctuations, but we see similar observations for wave parameters. The west side of Cape Point exhibit increased measurements of median direction, SD and mean significant wave height compared to within False Bay (Fig. 4). Sites within False Bay however display increased standard deviations of wave period. Median wind direction is northerly in winter (Fig. 5), and turns southerly in summer. 
+Not only do the temperature parameters display seasonal fluctuations, but we see similar observations for wave parameters. The west side of Cape Point exhibit increased median direction, SD and mean significant wave height compared to within False Bay (Fig. 4). Sites within False Bay however display increased standard deviations of wave period. Median wind direction is northerly in winter (Fig. 5), and turns southerly in summer. 
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Wave parameters relative to each morphometric collection site around the Western Cape coast. These wave parameters include mean and standard deviation of wave direction (° True north), significant wave height (Meters) as well as wave period (Seconds). Sites are colour-coded by the parameter statistic provided by the legend. Each wave parameter is also divided into August (winter), February (summer) and annual means, to visualise seasonal differences.", fig.height=8, fig.width=12, fig.pos="H"}
 
@@ -658,9 +683,9 @@ grid.arrange(medianDirw1, meanSpw1, sdSpw1)
 ### Morphologies
 
 #### _Laminaria pallida_
-Lamina length for laminaria pallida showed no geographical pattern moving from west to east. Kommetjie, Olifantsbos and Batsata Rock showed great variability in lamina length, and both Buffels Bay and Betty’s Bay were visually different to Miller’s Point and Roman Rock, when comparing the summary data represented by the boxplots (Fig.6). Lamina thickness showed great variation across sites, with Baboon Rock, Miller’s Point, A-Frame and Roman rock displaying large lamina thickness, significantly different to the rest of the sites. Lamina weight was observed to vary for Baboon Rock and Betty’s Bay. Neighbouring sites A-Frame and Roman Rock also showed visual difference when comparing boxplot summary statistics. An increase in the number of digits was observed as one moved from Cape Point north along the western side of False Bay. This ceased at Batstata Rock, which exhibited significantly less digits compared to the previous site, Bordjiestif North. Stipe diameter showed some geographical grouping, with west of Cape Point sites exhibiting larger stipe diameters compared to False Bay sites. 
+Lamina length for laminaria pallida showed no geographical pattern moving from west to east. Kommetjie, Olifantsbos and Batsata Rock showed great variability in lamina length, and both Buffels Bay and Betty’s Bay were visually different to Miller’s Point and Roman Rock, when comparing summary data (Fig.6). Lamina thickness showed great variation across sites, with Baboon Rock, Miller’s Point, A-Frame and Roman rock displaying large lamina thickness, significantly different to the rest of the sites. Lamina weight was observed to vary for Baboon Rock and Betty’s Bay. Neighbouring sites A-Frame and Roman Rock also showed visual difference when comparing boxplot summary statistics. An increase in the number of digits was observed as one moved from Cape Point north along the western side of False Bay. This ceased at Batstata Rock, which exhibited significantly less digits compared to the previous site, Bordjies reef North. Stipe diameter showed some geographical grouping, with west of Cape Point sites exhibiting larger stipe diameters compared to False Bay sites. 
 
-Stipe diameter decreased as one rounded the point into False Bay, where a sudden, significant difference was seen between Bordjiestif North and Batsata Rock. Greater variation of stipe length was observed for sites outside of False Bay (Kommetjie, Olifantsbos and Betty’s Bay). Baboon Rock, Miller’s Point, A-Frame and Roman Rock were again grouped together exhibiting the lowest stipe lengths, that were all significantly different to sites found west of Cape Point. Stipe mass displays similar patterns to stipe length, with larger stipe lengths west of Cape Point compared to within False Bay. The thallus mass of _Laminaria pallida_ was observed to be greater for sites around Cape Point, with an observed difference between Batsata Rock and Bordjiestif North, similar to the number of digit patterns. Larger total lengths were observed around Cape Point and Betty’s Bay, with the smallest total lengths at sites that exhibited the greatest lamina thicknesses (Baboon Rock, Miller’s Point, A-Frame and Roman Rock). 
+Stipe diameter decreased as one rounded the point into False Bay, where a sudden, significant difference was seen between Bordjies reef North and Batsata Rock. Greater variation of stipe length was observed for sites outside of False Bay (Kommetjie, Olifantsbos and Betty’s Bay). Baboon Rock, Miller’s Point, A-Frame and Roman Rock were again grouped together exhibiting the lowest stipe lengths, that were all significantly different to sites found west of Cape Point. Stipe mass displays similar patterns to stipe length, with larger stipe lengths west of Cape Point compared to within False Bay. The thallus mass of _Laminaria pallida_ was observed to be greater for sites around Cape Point, with an observed difference between Batsata Rock and Bordjies reef North, similar to the number of digit patterns. Larger total lengths were observed around Cape Point and Betty’s Bay, with the smallest total lengths at sites that exhibited the greatest lamina thicknesses (Baboon Rock, Miller’s Point, A-Frame and Roman Rock). 
 
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Boxplots representing the different _Laminaria pallida_ morphometrics measured around the Western Cape coastline, with the X-axis depicting the specific morphology measured, with units provided. Boxplots represent the minimum, 25^th^ percentile, median and 75^th^ percentile of the morphometrics measured. Interquartile range can be deduced as the different between the 75^th^ and 25^th^ percentiles, and dots represent outliers in the data. Sites are ordered sequentially on the Y-axis by location along the coast. The top site is Sea Point and is located at the north western boundary, and Betty’s Bay as the bottom site is located at the south eastern boundary, from our sample region.", fig.height=8, fig.width=12, fig.pos="H"}
@@ -712,7 +737,7 @@ lam_gather_mean <- subset(lam_gather_mean, !site == "Rocky Bank")
 
 # Order site names by location west to east
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point", "Baboon Rock", 
-                  "Batsata Rock", "Bordjiestif North", "Buffels Bay South", 
+                  "Batsata Rock", "Bordjies reef North", "Buffels Bay South", 
                   "Buffels Bay", "Olifantsbos", "Kommetjie", "Sea Point")
 
 
@@ -1134,11 +1159,11 @@ summary(lam_temp_season_RDA)
 \newpage
 ## Discussion
 
-Kelps, in particular brown seaweeds, are robust and resilient organisms that have been shown to adapt their morphology to suit local environmental conditions. Wave exposure has been shown to be the main driver of morphological variation in brown seaweeds as a strategy to reduce drag and ultimately dislodgement. Although wave exposure is regarded as an important abiotic variable that drives kelp morphology it does not act independently. For instance, a study by @Wernberg2005 investigated the effect of wave exposure on the morphology of _Ecklonia radiata_ of six locations along 1100 km of the southwest Australian coastline. The authors concluded that wave exposure was the main driver of kelp morphological adaption in the study, however the authors also noted the variation in morphology between sites was not consistent and concluded that wave parameters may play different roles in determining kelp morphology. The results from this current study confirm the idea that kelp morphology is driven by specific wave parameters, particulary significant wave height, wave period and wave direction.
+Kelps, in particular brown seaweeds, are robust and resilient organisms that have been shown to adapt their morphology to suit local environmental conditions. Wave exposure has been shown to be the main driver of morphological variation in brown seaweeds as a strategy to reduce drag and ultimately dislodgement. Although wave exposure is regarded as an important abiotic variable that drives kelp morphology it does not act independently. For instance, a study by @Wernberg2005 investigated the effect of wave exposure on the morphology of _Ecklonia radiata_ of six locations along 1100 km of the southwest Australian coastline. The authors concluded that wave exposure was the main driver of kelp morphological adaptation in the study, however the authors also noted the variation in morphology between sites was not consistent and concluded that wave parameters may play different roles in determining kelp morphology. The results from this current study confirm the idea that kelp morphology is driven by specific wave parameters, particularly significant wave height, wave period and wave direction.
 
-Seasonal variations in significant wave height (Hs), wave period and wave direction were observed from the data (Fig. 4, 5). The direction of swell swings to the south west in winter, generated by strong low pressures that originate from the southern ocean [@Reason2006]. These swells were found to correlate with increased wave period (Tp), wave direction and Hs. False Bay is therefore shielded by these south westerly swells by the Cape Peninsula [@Shipley1964]. In summer, these swells rotate anticlockwise and are able to enter False Bay, providing an explanation for increased variability of Hs and Tp. The wind speed and wind direction support the presence of upwelling in summer, where southerly winds blow parallel to the coast and trigger upwelling [@Field1980]. This is supported by the decreased in temperature in summer (Fig. 2, 3), specifically along the west side of Cape Point. We however see a differentiation of median wind directions in summer, with the western coast of False Bay experiencing south easterly winds, compared to the west side of Cape Point experiencing south westerly winds. It is hypothesised that the topography and elevation along the Cape Peninsula channels, shields winds along the strip of land. This is however absent in winter, where strong northerly winds are experiences from St. Helena Bay to Betty’s Bay [@Field1980]. St. Helena bay experiences decreased median wave directions, and is protected by a headland, similar to the sites found along the western side of False Bay, that are shielded by the Cape Peninsula. There is however increased variability in the wave direction from both False Bay sites and St. Helena Bay, which is encouraged by refraction of waves.  
+Seasonal variations in significant wave height (Hs), wave period and wave direction were observed from the data (Fig. 4, 5). The direction of swell swings to the south west in winter, generated by strong low pressures that originate from the southern ocean [@Reason2006]. These swells were found to correlate with increased wave period (Tp), wave direction and Hs. False Bay is therefore shielded by these south westerly swells by the Cape Peninsula [@Shipley1964]. In summer, these swells rotate anticlockwise and are able to enter False Bay, providing an explanation for increased variability of Hs and Tp. The wind speed and wind direction support the presence of upwelling in summer, where southerly winds blow parallel to the coast and trigger upwelling [@Field1980a]. This is supported by the decreased in temperature in summer (Fig. 2, 3), specifically along the west side of Cape Point. We however see a differentiation of median wind directions in summer, with the western coast of False Bay experiencing south easterly winds, compared to the west side of Cape Point experiencing south westerly winds. It is hypothesised that the topography and elevation along the Cape Peninsula channels, shields winds along the strip of land. This is however absent in winter, where strong northerly winds are experiences from St. Helena Bay to Betty’s Bay [@Field1980a]. St. Helena bay experiences decreased median wave directions, and is protected by a headland, similar to the sites found along the western side of False Bay, that are shielded by the Cape Peninsula. There is however increased variability in the wave direction from both False Bay sites and St. Helena Bay, which is encouraged by refraction of waves.  
 
-Morphological adaption due to water motion may manifest itself in a number of ways to high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, and stipe circumference increase and force of attachment. Although this study did not measure force of attachment, other morphological respnses to wave parameters was evident. An increase in mean annual wave period saw an increase of lamina length of _Laminaria pallida_, but a decrease in lamina thickness (Fig. 13). By decreasing the thickness of the lamina, and increasing the length of the lamina (directly increasing surface area), a larger more flexible kelp can survive in environments with greater wave period. Increased thickness of cortical tissues within the lamina aid photosynthetic ability [@Aminina2012], however increased wave exposure deceases the boundary diffusion layer [@Raven1981; @Hurd2011]. Therefore _Laminaria pallida_ in increased wave period sites may be able to reduce the need for thick lamina for photosynthesis, as the increased wave period provide longer wave events, which decreases the diffusion boundary layer and allow easier nutrient uptake. Conversely we see that sites with reduced wave height and wave period, such as Baboon Rock, Miller’s Point, A-Frame and Roman Rock displayed the greatest lamina thickness, with better photosynthetic ability, for _Laminaria pallida_. Pace [@Pace1972] however studied the effect of wave exposure on _Macrocystis pyrifera_ morphologies, and found that lamina thickness had a strong positive relationship with wave exposure. This may be species specific, with _Macrocystis pyrifera_ attaining larger sizes, but with incomparable stipe and lamina morphologies to _Ecklonia maxima_ and _Laminaria pallida_. 
+Morphological adaptation due to water motion may manifest itself in a number of ways to high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, and stipe circumference increase and force of attachment. Although this study did not measure force of attachment, other morphological responses to wave parameters was evident. An increase in mean annual wave period saw an increase of lamina length of _Laminaria pallida_, but a decrease in lamina thickness (Fig. 13). By decreasing the thickness of the lamina, and increasing the length of the lamina (directly increasing surface area), a larger more flexible kelp can survive in environments with greater wave period. Increased thickness of cortical tissues within the lamina aid photosynthetic ability [@Aminina2012], however increased wave exposure deceases the boundary diffusion layer [@Raven1981; @Hurd2011]. Therefore _Laminaria pallida_ in increased wave period sites may be able to reduce the need for thick lamina for photosynthesis, as the increased wave period provide longer wave events, which decreases the diffusion boundary layer and allow easier nutrient uptake. Conversely we see that sites with reduced wave height and wave period, such as Baboon Rock, Miller’s Point, A-Frame and Roman Rock displayed the greatest lamina thickness, with better photosynthetic ability, for _Laminaria pallida_. Pace [@Pace1972] however studied the effect of wave exposure on _Macrocystis pyrifera_ morphologies, and found that lamina thickness had a strong positive relationship with wave exposure. This may be species specific, with _Macrocystis pyrifera_ attaining larger sizes, but with incomparable stipe and lamina morphologies to _Ecklonia maxima_ and _Laminaria pallida_. 
 
 Lamina thickness showed positive correlation with annual SD wave period (Fig. 13). Although this variable may just negatively correlate with annual mean wave period, another reason may exist. The greatest variation of wave period and wave direction occurs in August along the western side of False Bay. Kelps at these sites may have developed thicker lamina, with a possible strategy of maximising photosynthesis at the expense of maybe being dislodged through rare increased wave energy events. The ‘spreading out’ of the lamina may also suggest a ‘go with the flow’ tactic, to reduce breaking by being less stiff [@Friedland1995]. @Denny1997 explored the stress forces that wave period played on _Nereocystis luetkeana_ by exposing various kelp plant sizes to a range of wave period that would be found in coastal environments. Results showed that for shorter kelps (smaller stipe lengths), the maximum stress on a plant occurs at 10s wave periods, but only at 5.5s for larger kelps that are similar in length to the water depth.  Similar results were observed for kelps with larger blades, with maximal stress forces occurring at approximately 8s, compared to a stress ratio of only 0.4 at 16s wave periods.  
 
@@ -1146,9 +1171,9 @@ Mean annual significant wave height (Hs) was observed to influence _Ecklonia max
 
 Stipe circumference for _Ecklonia maxima_ were explained by annual wave direction (Fig. 11).  For _Ecklonia maxima_, the sporophytes may be producing stipes that have a greater circumference to cope with increased wave energy. The west side of the peninsula is more exposed to significant wave heights during winter due to the direction of swell, while other sites such as Betty's Bay and Basata rock are more protected due to their location along the coast and the presence of headlands which refract wave parameters. 
 
-Temperature parameters were not found to be a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution of kelp and physiological functioning of adults and gametophytes, there is little evidence that temperature is a driver of morphological variation in kelps. Although turbidity is not a direct wave or temperature parameter, turbidity is influence by various abiotic variables. Increased swells around sandy beaches increase sedimentation and turbidity [@Yang2005], however wind direction and speed can encourage upwelling, with brings to the surface cold, clean, nutrient-rich water [@Boyd1998]. Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events [@Boyd1998]. We however see a lack of upwelling events for sites such as Betty’s Bay and Batsata Rock. These two sites display _Ecklonia maxima_ sporophytes with the largest total lengths (Fig. 7), as well as Betty’s Bay displaying the largest total length of _Laminaria pallida_ sporophytes(Fig. 6). The effect of depth on stipe length is regarded as insignificant in this study as all kelp were sampled at simialr depths. Stipe elongation has been shown to be a morphological adaption in wave exposed environment, as a longer kelp has time to extend back and forth in swell reducing the tension on the holdfast. Stipe lengths of _Ecklonia maxima_ from Kommetjie, Hout Bay and Soetwater are similar to Batsata rock and Betty’s Bay, but differs to west side neighbours such as Oudekraal and Scarborough (Fig. 7). Oudekraal and Scarborough experience more variability in wave direction, however they are observed to experience smaller annual mean significant wave heights, when compared to Kommetjie, Hout Bay, Soetwater, as well as Batsata Rock and Betty’s Bay (Fig. 4).@Friedland1995 found that longer kelps were able to reduce drag and tension as the sinusoidal displacement of most waves would not ‘stretch’ a kelp out long enough before falling. The ability to grow longer stipes would provide the kelp with a structure that could surpass most wave heights without the risk of dislodgement. 
+Temperature parameters were not found to be a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution of kelp and physiological functioning of adults and gametophytes, there is little evidence that temperature is a driver of morphological variation in kelps. Although turbidity is not a direct wave or temperature parameter, turbidity is influence by various abiotic variables. Increased swells around sandy beaches increase sedimentation and turbidity [@Yang2005], however wind direction and speed can encourage upwelling, with brings to the surface cold, clean, nutrient-rich water [@Boyd1998]. Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events [@Boyd1998]. We however see a lack of upwelling events for sites such as Betty’s Bay and Batsata Rock. These two sites display _Ecklonia maxima_ sporophytes with the largest total lengths (Fig. 7), as well as Betty’s Bay displaying the largest total length of _Laminaria pallida_ sporophytes(Fig. 6). The effect of depth on stipe length is regarded as insignificant in this study as all kelp were sampled at similar depths. Stipe elongation has been shown to be a morphological adaptation in wave exposed environment, as a longer kelp has time to extend back and forth in swell reducing the tension on the holdfast. Stipe lengths of _Ecklonia maxima_ from Kommetjie, Hout Bay and Soetwater are similar to Batsata rock and Betty’s Bay, but differs to west side neighbours such as Oudekraal and Scarborough (Fig. 7). Oudekraal and Scarborough experience more variability in wave direction, however they are observed to experience smaller annual mean significant wave heights, when compared to Kommetjie, Hout Bay, Soetwater, as well as Batsata Rock and Betty’s Bay (Fig. 4).@Friedland1995 found that longer kelps were able to reduce drag and tension as the sinusoidal displacement of most waves would not ‘stretch’ a kelp out long enough before falling. The ability to grow longer stipes would provide the kelp with a structure that could surpass most wave heights without the risk of dislodgement. 
 
-  
+# References
 
 
  
