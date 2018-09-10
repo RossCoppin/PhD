@@ -1,0 +1,527 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{eurosym}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Kelp morphometric properties and the link to hydrodynamic modelling},
+            pdfauthor={Ross Coppin},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Kelp morphometric properties and the link to hydrodynamic modelling}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Ross Coppin}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{26 February 2017}
+
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsection{Summary}\label{summary}
+
+Marine ecosystems are maintained by a variety of complex interactions
+between abiotic and biotic variables such as temperature, wave exposure,
+pH, competition, and processes such as top-down and bottom-up control,
+predator-prey relationships and phenology {[}@Doney2012{]}. These
+abiotic and biotic variables, the interactions between them, and the
+various ecological processes, ultimately determine the community
+composition and ecological functioning of all ecosystems. Climate
+directly and indirectly affects the way in which abiotic and biotic
+variables interact, but is often compounded by other impacts such as
+habitat destruction, pollution, and over-fishing {[}@Blamey2015{]}.
+Temperature and wave exposure have been recognised as important
+variables with regards to climate-driven changes within the ocean. In
+order to persist and survive within variable and changing environments,
+organisms must either migrate, adapt, or die.
+
+Seaweeds are sessile organisms which are unable to migrate to new areas
+when local environmental conditions become unsuitable and therefore are
+forced to adapt to new conditions in order to avoid expiration. The main
+form of mortality for seaweeds is through mechanical dislodgment by wave
+action. Seaweeds, particularly brown seaweeds, are able to undergo rapid
+morphological adaptation to the hydrodynamic environment. This allows
+seaweeds to reduce mortality through mechanical dislodgement by inducing
+morphology which reduces overall drag. Seaweeds that are unable to avoid
+mechanical dislodgement either raft out to sea or wash up onto beaches.
+However, not all the beach-cast kelp may have originated from a nearby
+kelp population and may have originated from other sites or regions of
+the coast through rafting and ocean currents. Therefore, because kelp
+morphology is specific to its local environment the morphological
+features may be able to indicate, within a certain amount of
+probability, what site or region it most likely originated from. In
+other words, beach-cast kelp may be used as proxy for investigating the
+flow of coastal currents. Using kelp as a proxy for determining its
+original location will be calibrated by means of a hydrodynamic model
+which will be designed from already existing SWAN and Delf3D models.
+This combined approach will allow investigation into flow regimes around
+the west and south-west coasts of South Africa and the role they play in
+sub-tidal and beach ecology. For instance, micro-plastics are recognised
+as a threat to marine life, however very little is known about how
+micro-plastics may be transported along the coast.
+
+The increased use of plastic in society over the past half century has
+resulted in large amounts of plastic litter in both the marine and
+terrestrial environment. The problems associated with large plastic
+debris have received attention for many decades, whereas those connected
+to marine micro-plastics comparatively received very little attention.
+However, today it has become a prioritized area among political
+organizations, agencies and NGOs around the world. The micro-plastic
+debris present in the ocean are derived from marine and terrestrial
+sources, however there is little understanding of how microplastics may
+be distributed with ocean currents. Therefore, the coupling of kelp
+morphology and the ability to simulate hydrodynamic processes can
+greatly improve our understanding of transport pathways and likely
+locations of accumulation. This in turn may inform management descions
+with regards to elimating and managing marine pollution in South Africa.
+
+\subsection{Background}\label{background}
+
+Seaweeds, browns in particular, are capable of adapting morphological
+characteristics to persist in changing and variable ocean environments.
+Changes in morphology have been shown to increase photosynthetic
+ability, enhance nutrient uptake, and reduce drag with regards to
+changes in temperature and wave exposure. Wave exposure has been shown
+to be an important driver of seaweed morphology, as the main mechanism
+of seaweed mortality is through the dislodgment. Changing morphology
+reduces drag and increases the probability of survival. However, locally
+adapted seaweed may still be dislodged in pulse disturbance events such
+as storms, and may raft far distances and wash up on beaches. An example
+would be \emph{Ecklonia maxima} which is a conspicuous brown seaweed
+along the coastline and beaches around South Africa. Therefore, the
+beach-cast may not always originate from adjacent kelp populations but
+rather from other regions which the individual is adapted for.
+Therefore, the kelp morphology may act as a proxy for investigating
+coastal currents and changes thereof. The advances in ocean hydrodynamic
+modelling has made great progress and has been applied in a variety of
+ways. Therefore, this study will use advances in hydrodynamic modelling
+in combination with kelp morphological characteristics to investigate
+coastal currents. Once the model has been established it may be applied
+in other ways, such as investigating the transport of micorplastics
+along the South African coastline. The harms of microplastics to the
+marine environment has gained much traction in recent years, but
+research in South Africa is lacking. The coupling of kelp morphology and
+the ability to simulate hydrodynamic processes can greatly improve our
+understanding of transport pathways and likely locations of
+accumulation. This in turn may inform management decisions with regards
+to eliminating and managing marine pollution in South Africa.
+
+Pollution is a huge environmental problem that affects both terrestrial
+and marine ecosystems. Pollution from land enters the sea where it could
+harm or kill marine organisms or is transported by ocean currents to
+other coastal areas. In these areas the pollution could re-enter the
+ocean or be blown by wind into terrestrail ecoystems where it could once
+again be ingested by oragnsims causing harm or even death. Pollution is
+therefore a major threat to the environment and marine organisms. In
+recent years the affect of microplastics on the ocean has gained much
+traction with scientists and politictions alike. Microplastics cosiste
+of tiny particles of plastic and other pollution and are thereofore are
+difficult to detect. Currently there is no hydrodynamic model that is
+able to determine dispersion, source and accumulation of microplastics
+along the South African coastline. Given the significant deterimental
+affect microplastics play in the ocean, it is important that such a
+mechanism be developed that will aid in better management of marine
+pollution in South Africa. Furthermore, this project allows for a
+multidicisplinery approach to be taken by combining ecology and coastal
+oceanography.
+
+Abiotic and biotic factors interact in complex ways which indirectly
+determine behavioral and ecophysiological responses in organisms. For
+example, when storms or strong currents form in sub-tidal habitats, sea
+urchins form aggregations in order to reduce overall drag to avoid being
+swept away by currents. Organisms that are motile my migrate into more
+environmentally suitable areas when conditions become unfavorable or
+food sources become depleted. In changing environments migration may
+also allow organisms to extend their distributions. For example, ocean
+warming off the coast of Western Australia has allowed tropical fish
+species to extend their distribution into areas that were previously
+characterised as temperate reefs. Sessile organisms are unable to
+migrate into more environmentally suitable areas and are forced to
+either adapt or suffer expiration. Sessile organisms may respond to
+changing environmental conditions through changes in physiology. For
+example, plants may produce heat shock proteins that help buffer the
+affect of temperature increases. Sessile organisms may also adapt their
+morphology,in order to persist in changing and harsh environments, such
+as seaweeds.
+
+Temperature and wave exposure have been shown to be important drivers of
+seaweed distribution, physiological functioning, ability to recover,
+population dynamics and morphology. Mechanical forces generated by the
+hydrodynamic environment, in the form of sudden strong ocean currents or
+storms, between 10- 20 m s-1 with accelerations of 400 m s-2
+{[}@Friedland1995{]} are the biggest threat to kelp survival. Kelps are
+able to rapidly adapt their morphological characteristics to reduce drag
+and avoid dislodgment {[}@Blanchette1997{]}. For example a study by
+@Koehletal2008 showed that transplanted \emph{Nereocystis luetkeana}
+plants from a wave sheltered site to a wave exposed site changed their
+morphology to flat blades and narrow laterals that are less prone to
+drag forces in 4-5 days. Another study by @FowlerWalker2006 tested for
+differences in morphology of \emph{Ecklonia radiata} between
+wave-sheltered and wave-exposed sites and was a combination of \emph{in
+situ} sampling and transplant of juvenile plants. The results showed
+that morphology differed between wave-sheltered and wave-exposed sites
+(thin thallus at sheltered sites and a narrow, thick thallus with a
+thick stipe at exposed sites), and was consistent with previous studies.
+Juveniles transplanted into wave exposed sites under went rapid
+morphological adaption, whilst the opposite was true for wave-sheltered
+sites which showed slower morphological adaption.
+
+Kelp morphology may be distinct to a particular region with a specific
+hydrodynamic environment and has the ability to raft far distances using
+coastal currents, and may accumulate as beach-cast in areas far from its
+original location. Therefore, kelp morphology may be used as a proxy for
+determining its original location as well as aid in characterising
+coastal currents. However, this approach must be combined with advances
+in hydrodynamic modelling for a quantitative outcome.
+
+Advances in numerical modelling has gained much traction in recent years
+and has been applied in a variety of ways with regards to ecological
+studies. For example, a study by @wang2009 used the Delft3D-Flow model
+to assess the hydraulic suitability of a stream as a spawing ground for
+the Chinese Sturgeon (\emph{Acipenser sinensis}) in the Yangtze River.
+The authors calculated the horizontal mean vorticity which was used to
+assess the hydraulic environment of spawning ground. The flow field
+state was determined through model simulation and field-measured data
+used to validate the model. The results added to existing scientific
+database for spawning ground hydraulic environmental protection.
+Different numerical models can often be integrated to model across
+ecosystem levels. For example a study by @leon2003 used integrated
+physical (Delft3D hydrological model) and bio-chemical (Agricultural
+Non-point Source model) processes models to investigate the possible
+impact on the Lake Malawi water quality due to management actions
+performed at the watershed level.
+
+Since wave energy is an important driver in marine ecosystems,
+particularly kelp, the advances in hydrodynamic modelling offer a new
+opportunity for multifactoral and quantitative approach to research in
+marine ecosystems. The Delf3D and SWAN models have been used
+successfully in previous studies regarding brine plume discharge,
+impacts of storms, affects of climate change on the hydrological
+environment etc. The models have not been designed for shallow
+environments (\textless{}6m) and therefore may not be suitable to model
+coastal hydrological environments. However these models may be adjusted
+to suit coastal waters if they are combined with a new numerical model
+which can be calibrated to suit these needs.
+
+In recent years there has been growing attention on plastic pollution,
+particulary in the ocean. Plastic pollution can be in the form of macro-
+and microplastics. Microplastics are tiny plastic granuales used as
+scrubbers in cosmetics and air-blasting, and small plastic fragments
+that originate from larger pieces of plastic known as macroplastics,
+while macroplastics\ldots{}\textbf{insert definition here}\ldots{} The
+potential harms of of plastic pollution in the marine environment was
+highlighted in the 1970's and renewed interest has lead to research
+showing that plastic pollution in the ocean are widespread. Plastics may
+become bio-available to biota in the food-web which may cause problems
+with an organisms physiological functioning. Furthermore, the relatively
+large surface area and composition of microplastics provides an
+environmeht that is able of adhering to organic pollutants. In other
+words microplastics also act as a vector for transport and assimilation
+of organic polluants.
+
+Therefore, this study not only enables research into the ecological
+affects of the hydrological environment on an important habitat-forming
+organism, it also offers the opportunity to improve on current
+hydrological numerical models to suit coastal environments. This in turn
+will allow investigation into the flow and accumulation of microplastics
+which are regarded as a major threat to marine life. Furthermore, the
+calibrated model could be applicable to other ecological studies such as
+dispersal of benthic flora and fauna, climate change studies,
+forecasting etc.
+
+\section{Kelp environmental drivers}\label{kelp-environmental-drivers}
+
+The important environmental drivers of kelp idividuals and communities
+include light, substrata, salinity, sedimentation, nitrients,
+temperature and water motion. Although studies have investigated the
+effects of important environmental drivers, the roles these factors play
+is often difficult to evaluate as such factors may never be fully
+independent of each other, i.e.~environmental factors are to some extent
+temperature dependent. Multifactorial studies have attempt to explain
+combined affects, however these studies are often limited to
+investigating combination of two or three environmental drivers as
+inclusion of too many factors can lead to results that are difficult to
+interept. Environmetal factors are highly variable on temporal and
+spatial scales, and their effects may also dependent on life-stage
+adding a further layer of complexity to investigations.
+
+\section{Light}\label{light}
+
+Light is an important factor for kelp survival, however if light is
+limited or excessive this may negatively impact kelp survival or growth.
+Much of the past research into the role light plays into the functioning
+of kelp {[}@Bruhn1996);@Belseth2012{]}. For instance, solar ultraviolate
+radiation has been shown to aï¬\euro{}ect sub-canopy Ecklonia radiata
+sporophytes when the canopy of mature \emph{Ecklonia radiata} was
+removed {[}@Wood 1987{]}. The sub-canopy sporophytes experienced tissue
+damage,photopigment destruction,reduced growthand decreased
+survivorship, thus inhibiting their settlement and survival {[}@Wood
+1987{]}. Laboratory experiments revealed that the UV component of
+radiation, rather than intense radiation itself, was responsible for the
+eï¬\euro{}ects mentioned above. High light stress has negative
+eï¬\euro{}ects, such as photoinhibition and photo-damage on
+\emph{Ecklonia cava} sporophytes {[}@Altamirano2004{]}. @Altamirano2004
+found that \emph{Ecklonia cava} is more vulnerable to light stress
+conditions, and less likely to recover under unfavourable conditions
+{[}@Altamirano2004{]}. @Bolton1985 showed that under sub-saturating
+irradiances and supra- optimal temperatures \emph{Ecklonia maxima} to
+showed a decrease in reproductive rates and an increase in cell
+production. An additional ï¬nding of this study was that despite the
+decrease in reproductive rates, the ï¬nal egge production per female
+was greater under these conditons. The authors interpreted this an
+ecological adaption that may increase survival rates under times of
+stress or non - ideal conditions {[}@Bolton1985{]}.
+
+\section{Depth}\label{depth}
+
+Depth does not aï¬\euro{}ect kelp ecosystems directly, however a change
+in depth often causes ï¬‚uctuations or changes in other environmental
+variables such as water motion, light and temperature. Water motion also
+decreases with depth, and some kelps better suited to deeper
+environments (\emph{L. pallida}) replace those in the shallows (\emph{E.
+maxima}) (Dayton 1985; Gerard 1982). The increase in depth can lead to a
+decrease in sunlight penetration, with some species better adapted for
+low-light conditions than others, such as (\emph{L. pallida}).
+Temperature may also change along a depth gradient due to a reduction in
+sunlight penetration. (Dayton 1985; Gerard 1982). Therefore depth does
+not directly play a role in kelp functioning but may alter more
+inï¬‚uential factors such as light and water motion.
+
+\section{Nutrients}\label{nutrients}
+
+The importance of nutrients in the functioning of kelps is well
+understood {[}@Dayton1985; @Gaylord2012{]}. Dissolved nitrogen, and in
+particular nitrate, are important; however research has also placed
+emphasis on phosphate and other trace compounds for functioning of kelps
+{[}@Dayton1985{]}. Additionally, some kelps have the ability to store
+inorganic nitrogen in order to compensate for periods of low nutrient
+availability, which has been observed for Laminaria and Macrocystis
+{[}@Dayton1985; @Gaylord2012{]}. Nutrient stratiï¬cation is also an
+important factor, particularly for canopy type kelps. The concentration
+of nutrients at the surface is important to the functioning and
+maintenance of the canopy. For instance kelp canopies in California
+often deteriorate in the summer months when surface nitrate levels are
+low {[}@Jackson1977{]}. Water motion is important in the assimilation of
+nutrients from the water column, and kelps have been shown to adapt
+blade morphology in order to create more turbulence around the boundary
+layer of the frond to enhance nutrient assimilation (Wheeler 1980).
+Temperature has also been closely linked with nutrient concentrations.
+Nutrients are often in higher concentrations in the water column during
+low temperature events. This is often an indication of an
+â\euro{}œup-wellingâ\euro{} event, which brings cold and nutrient rich
+waters from the bottom to the surface of the water column. Temperature
+can play a direct role in the uptake of nutrients through eï¬\euro{}ects
+on algal metabolism; however this may vary from species to species
+{[}@Raven1988{]}.
+
+\section{Temperature}\label{temperature}
+
+Temperature is a driver of kelp species distributions and
+ecophysiological processes, as well as a lesser role in morphological
+adaption\ldots{}\textbf{example here}\ldots{}The majority of kelp
+species are artic and temperate organisms, and the warming of ocean
+temperatures is expected to cause a poleward biogeographical shift of
+species {[}@Bolton2012{]}. There is evidence to suggest that South
+African kelp forests are expanding due to ocean cooling
+{[}@Bolton2012{]}, possibly driven by an intensiï¬cation and increase
+in coastal upwelling {[}@Blamey2012, @Blamey2015{]}. In South Africa
+there has been a biogeographical shift eastward along the coast due to a
+change in inshore temperature regime, making South Africa no exception
+to changing ocean temperatures {[}@Bolton2012{]}. Macroalgae, such as
+kelps, can react to an increase in surface temperatures in one of three
+ways: they can migrate, adapt and die {[}@Biskup2014{]}. A study by
+@Biskup2014 investigated the functional response of two kelp species
+(\emph{Laminaria ochroleuca} and \emph{Saccorhiza polyschides}) to
+rising sea temperatures. The functional responses of Saccorhiza
+polyschides was measured for both the subtidal and intertidal habitats,
+to see what aï¬\euro{}ect non- optimal conditions (intertidal zone) had
+on the kelps {[}@Rinde2005{]}. The study found that Laminaria ochroleuca
+exhibited a poor ability to acclimatise and was dependent on the
+kelpâ\euro{}™s life history traits {[}@Biskup2014{]}. Therefore annual
+kelp species are more likely to survive under non-ideal condition, and
+the intertidal Saccorhiza polyschides, compared to the subtidal, showed
+a higher physiological ï¬‚exibility to changing conditions
+{[}@Biskup2014{]}. This may be because the intertidal zone undergoes far
+more change than the subtidal and therefore kelps in the intertidal are
+forced to adapt to harsher conditions where ï¬‚uctuations in
+temperature, sunlight, turbidity and water motion are common. The
+eï¬\euro{}ects on temperature have also been investigated by
+@Wernberg2010. The study looked at resilience of kelp beds along a
+latitudinal temperature gradient. Kelp abundance is likely to decline
+with the predicted warming of ocean waters @Wernberg2010 and although
+kelps have the ability to acclimatize and adjust their metabolic
+performance, which in turn allows them to change their physiological
+performance to mitigate the seasonal ï¬‚uctuations in temperature, this
+acclimatization is done at a cost @Wernberg2010\ldots{}\textbf{link to
+paragraph on kelp morphology}\ldots{}
+
+\section{Wave exposure}\label{wave-exposure}
+
+Other than temperature, wave exposure is also recognised as an important
+driver of the marine environment. Like temperature, wave exposure can
+act on regional scales and has been shown to play a role in determing
+distribution, abundance, diversity, composition and productivity of
+benthic and rocky shore communties. For example, increasing degrees of
+exposure may positively influence the amount of area available to trap
+light on macroalgal fronds, as well as increasing nutrient uptake
+through increased turbulence in the boundry layer {[}@lobban1994{]}.
+@lewis found that degrees of wave exposure vertical structure rocky
+shore communities\ldots{}\textbf{work in progress}\ldots{}
+
+\section{Hydrodynamic modelling}\label{hydrodynamic-modelling}
+
+Traditional ecological measures of wave exposure usually incorportates
+integrative measures of hyrdodynamic conditions at a particular site.
+More specifically, it is the integration of mechanical processes and the
+influence that is has on the ecology of nearshore communities.
+
+Wave exposure may be modelled through various methods which range from
+simple cartographic to more advanced numerical wave models.
+Cartographical models can be qualitative or quantitative and were
+designed for the need of wave exposure measures to explain ecological
+distributions. A simple set of calculations on coastline and wind data,
+and relatively small input data sets are required. These are regarded as
+``fetch-based models'', which measure the length of open water
+associated with a site along a straight line. The output of such an
+approach is a simplified estimate of the potential wave energy for a
+specific set of sites. Advances in cartographical methods using
+fetch-based models has allowed for wave exposure measurments for larger
+areas, and has been suggested as a method for predicting macroalgal
+community structure {[}@burrows2008{]}. An example of such a model is
+the ``BioEx model'' which was developed by @baardseth1970 to estimate
+wave exposure over large regions. BioEx requires frequency, strength and
+direction of winds, weighted by degree of exposure within various
+directions. BioEx is calculated as the sum of the index developed at
+different spatial scales (local, fjord and open). This method has been
+used in mapping of marine coastal biodiveristy {[}@Rinde2004{]}.
+
+@lindegarth2005 critized this approach, arguing that the choice of wave
+exposure method can influence ecological inference. The authors also
+highlighted the need for objective, reproducible and quantitative
+studies comparing exposure indices {[}@lindegarth2005{]}. A study by
+@sundbald\ldots{}\textbf{include description of study here}\ldots{}Other
+authors, such as @hill2010, have argued that these simple measures can
+be improved upon by including bathymetery data which allows the
+incorporation of diffraction into the calculation. Diffraction is
+topographically induced variations in wave direction. A model
+incorporating this complexity was developed by @isaeus2004, and is known
+as the ``simplified wave model'' (SWM). The model uses measurements of
+wind strength, fetch and empirically derived algorithims to mimic
+diffraction.
+
+Advances in numerical modelling have been founded on physical wave
+theory on how a wave ``behaves''. This approach is based on a
+theoretical persepctive rather than the need to answer ecological
+questions. Besides diffraction, these models incorporate more complexity
+by including wind forcing, wave-to-wave interactions and loss of energy
+due to friction and wave breaking. Numerical models have a variety of
+applications and are often incorporated within hydrodynamic general
+circulation models and are used operationally for forecasting the sea
+state {[}@hasselmann1988; @booij1999; @smith2001{]}. The downside of
+advanced numerical models is that are computationally intensive which
+creates limitations for large scale simulations. Therefore, their
+application along long stretches of variable coastline, inshore
+environments and ocean-wide simulations limited due to the poor spatial
+coverage. However, this models can be designed for local or site
+specific coverage, provided the correct data is available.
+
+\subsection{Aims of research}\label{aims-of-research}
+
+The aim of the project is to investigate coastal flow regimes along the
+west coast and south-west coast of South Africa and the role this may
+play in transport of kelp beach-cast and microplastics. This aim will be
+met through the following objectives:
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Determine if the hydrodynamic environment is the main driver of kelp
+  morphology and if this is specific to a location
+\item
+  Simulate kelp rafting by means of a hydrodynamic modelling and
+  calibrate this model with \emph{in situ} beach-cast morphometric data.
+\item
+  Use the calibrated hydrodynamic model to investigate dispersal of
+  microplastics along the west coast and south-west coast of South
+  Africa.
+\end{enumerate}
+
+
+\end{document}
