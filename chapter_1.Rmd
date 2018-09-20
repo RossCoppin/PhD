@@ -3,11 +3,14 @@ title: "Kelp morphometric properties and the link to hydrodynamic modelling"
 author: "Ross Coppin"
 date: "26 February 2017"
 output:
-  word_document:
-    toc: yes
   pdf_document:
     highlight: zenburn
     number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+  word_document:
     toc: yes
 ---
 
@@ -64,7 +67,7 @@ Temperature is a driver of kelp species distributions and ecophysiological proce
 
 # Wave exposure
 
-Other than temperature, wave exposure is also recognised as an important driver of the marine environment, and macroalgae are not exception. Wave exposure has been shown to play a role in determing distribution, abundance, diversity, composition, growth [@Cousens1982] and productivity [@pedersen2012a] of macroalgae communties. For example, the width, vertical zonation and diversity of algal communities often change predictably along gradients of wave exposure. Wave exposure may also drive macroalgae communties indirectly through the alteration in affect of another environmental driver. For instance, increasing degrees of exposure may positively influence the amount of area available to trap light on macroalgal fronds, as well as increasing nutrient uptake due to increased turbulence in the boundry layer around the frond [@lobban1994]. The most important direct effect of wave exposure on macroalgal communities is through mechanical dislodgment, which ultimately leads to expiration. Wave exposure is a complex abiotic variable which varies spatially and temporarly in the marine enviroment. Furthermore, the degree to which a macroalgae community is exposed which depend on local site characteristics, such as bathymetry and local wind patterns. Despite this fact, macrolagae have been able to persist in often harsh and variable wave environments. Macroalage are sessile organisms and incapabable of migrating when local conditions become unsuitable. Therefore, macroalgae must adapt to the local wave climate in order to persist and survive, and achieve this through morphological variation.  @moss1948 investigated the anatomy, chemical composistion of *Fucus spiralis* at three sites that varied in wave exposure (sheltered, medium exposure and exposed). The authors found that individuals in exposed sites showed less branching of thalli as well as variation in organic nitrogen, mannitol, laminarian and alginic acid concentrations. 
+Other than temperature, wave exposure is also recognised as an important driver of the marine environment, and macroalgae are not exception. Wave exposure has been shown to play a role in determing distribution, abundance, diversity, composition, growth [@Cousens1982] and productivity [@pedersen2012a] of macroalgae communties. For example, the width, vertical zonation and diversity of algal communities often change predictably along gradients of wave exposure. Wave exposure may also drive macroalgae communties indirectly through the alteration in affect of another environmental driver. For instance, increasing degrees of exposure may positively influence the amount of area available to trap light on macroalgal fronds, as well as increasing nutrient uptake due to increased turbulence in the boundry layer around the frond [@lobban1994]. The most important direct effect of wave exposure on macroalgal communities is through mechanical dislodgment, which ultimately leads to expiration. Wave exposure is a complex abiotic variable which varies spatially and temporarly in the marine enviroment. Furthermore, the degree to which a macroalgae community is exposed which depend on local site characteristics, such as bathymetry and local wind patterns. Despite this fact, macrolagae have been able to persist in often harsh and variable wave environments. Macroalage are sessile organisms and incapabable of migrating when local conditions become unsuitable. Therefore, macroalgae must adapt to the local wave climate in order to persist and survive, and achieve this through morphological variation. This morphological variation allows macroalgae to reduce the amount of drag experienced during times of high wave energy or pulse distrubance events, such as storms. This may be achieved through different strategies and are species-specific, which can be directly attributed the high diversity in morphological characters of algal communities. For example some algae have fronds and others are articulated corraline, and therefore these species would need to adpat their morphology differently in order to persist. @moss1948 investigated the anatomy, chemical composistion of *Fucus spiralis* at three sites that varied in wave exposure (sheltered, medium exposure and exposed). The authors found that individuals in exposed sites showed less branching of thalli as well as variation in organic nitrogen, mannitol, laminarian and alginic acid concentrations. 
 
 # Hydrodynamic modelling
 
