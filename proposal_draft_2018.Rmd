@@ -51,7 +51,7 @@ Wave exposure may be modelled through various methods which range from simple ca
 
 @lindegarth2005 critized this approach, arguing that the choice of wave exposure method  can influence ecological inference. The authors also highlighted the need for objective, reproducible and quantitative studies comparing exposure indices [@lindegarth2005]. A study by @sundbald...**include description of study here**...Other authors, such as @hill2010, have argued that these simple measures can be improved upon by including bathymetery data which allows the incorporation of diffraction into the calculation. Diffraction is topographically induced variations in wave direction. A model incorporating this complexity was developed by @isaeus2004, and is known as the "simplified wave model" (SWM). The model uses measurements of wind strength, fetch and empirically derived algorithims to mimic diffraction.
 
-Advances in numerical modelling have been founded on physical wave theory on how a wave "behaves". This approach is based on a theoretical persepctive rather than the need to answer ecological questions. Besides diffraction, these models incorporate more complexity by including wind forcing, wave-to-wave interactions and loss of energy due to friction and wave breaking. Numerical models have a variety of applications and are often incorporated within hydrodynamic general circulation models and are used operationally for forecasting the sea state [@hasselmann1988; @booij1999; @smith2001]. The downside of advanced numerical models is that are computationally intensive which creates limitations for large scale simulations. Therefore, their application along long stretches of variable coastline, inshore environments and ocean-wide simulations limited due to the poor spatial coverage. However, this models can be designed for local or site specific coverage, provided the correct data is available. 
+Advances in numerical modelling have been founded on physical wave theory on how a wave "behaves". This approach is based on a theoretical persepctive rather than the need to answer ecological questions. Besides diffraction, these models incorporate more complexity by including wind forcing, wave-to-wave interactions and loss of energy due to friction and wave breaking. Numerical models have a variety of applications and are often incorporated within hydrodynamic general circulation models and are used operationally for forecasting the sea state [@hasselmann1988; @booij1999; @smith2001]. The downside of advanced numerical models is that are computationally intensive which creates limitations for large scale simulations. Therefore, their application along long stretches of variable coastline, inshore environments and ocean-wide simulations are limited due to the poor spatial coverage. However, these models can be designed for local or site specific coverage, provided the correct data are available. 
 
 Since wave energy is an important driver in marine ecosystems, particularly kelp, the advances in hydrodynamic modelling offer a new opportunity for multifactoral and quantitative approach to research in marine ecosystems. The Delf3D and SWAN models have been used successfully in previous studies regarding brine plume discharge, impacts of storms, affects of climate change on the hydrological environment etc. The models have not been designed for shallow environments (<6m) and therefore may not be suitable to model coastal hydrological environments. However these models may be adjusted to suit coastal waters if they are combined with a new numerical model which can be calibrated to suit these needs.
 
@@ -68,7 +68,7 @@ C) Use the calibrated hydrodynamic model to investigate dispersal of microplasti
 
 ## Research design and methodology
 
-A combined quantitative ecology and oceanography approach will be used for this study. Morphological characteristics and their relation to the hydrodynamic environment must first be established and the findings will form the basis for the proceeding research. Once the relationship has been established it will be used to calibrate future hydrodynamic models developed during the course of the study. Once the hydrodynamic model has been established and calibrated it will be used to investigate the flow of microplastics along the South African coastline.
+A combined quantitative ecology and oceanography approach will be used for this study. Morphological characteristics and their relation to the hydrodynamic environment must first be established and the findings will form the basis for the proceeding chapters. Once the relationship has been established it will be used to calibrate future hydrodynamic models developed during the course of the study. Once the hydrodynamic model has been established and calibrated it will be used to investigate the flow of microplastics along the South African coastline.
 
 # Morphology
 
@@ -84,6 +84,18 @@ The calibrated model developed in previous chapters will be used to determine fl
 
 
 ## Time-frame
+
+Months | Description
+------------------------------ | -------------------------------------------
+April 2018 - September 2018 | Develop and write proposal for submission to department
+September 2018 - December 2018 | Acceptable level of progress on literature review. The first data chapter should also be complete and submission of first paper
+January 2019 - May 2019 | Become competent in relevant software (Python). Data analyses for the 2nd data chapter should ideally be near completion. Substantial additions to literature review. 
+May 2019 - August 2019| Completion of 2nd data chapter and relevant paper should also be near completion. 
+August 2019 - December 2019 | Complete analyses and write-up for final data chapter. Significant progress on the relevant paper. Literature review should be near completion. 
+January 2020 - April 2020 | This time will be used to make final edits and complete thesis write-up
+
+
+
 
 ## References
 
