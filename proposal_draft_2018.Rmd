@@ -76,7 +76,7 @@ Morphometrics collection Between October 2014 and April 2015, morphological meas
 
 # Hydrodynamic model
 
-The hydrodynamic model for coastal flow will be developed using already existing models that have been developed. These models will consist of the SWAN and Delf3D models and the apporach is to use aspects of each model, that are related to coastal flow, from which further development will take place. Once the model has been developed it will be used to predict kelp morphology at random sites which will then be sampled. The *in situ* kelp morphology data collected at the predicted site will be used to calibrate the model. This process will be repeated until the model can predict coastal flow and kelp morphology within a certian degree of probability.
+The hydrodynamic model for coastal flow will be developed using already existing models that have been developed. These models will consist of the SWAN and Delf3D models and the apporach is to use aspects of each model, that are related to coastal flow, from which further development will take place. Once the model has been developed it will be used to predict kelp morphology at random sites which will then be sampled. The *in situ* kelp morphology data collected at the predicted site will be used to calibrate the model. This process will be repeated until the model can predict coastal flow and kelp morphology within a certian degree of probability. Kelp morphology is driven by regional and local environmental factors, the spatial scales used will be dependent on the spatial patterns of the various abiotic variables being investigated. Fully nested hierarchical design at three spatial scales will be used: regions, locations (within regions) and sites (within locations). 
 
 # Microplastics
 
