@@ -5,15 +5,15 @@ author:
   name: Ross Coppin, AJ Smit, Christo Rautenbach
 date: "2018"
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: 4
   word_document:
     fig_caption: yes
     fig_height: 7
     fig_width: 7
     highlight: zenburn
-    toc: no
-  pdf_document:
     toc: yes
-    toc_depth: 4
 bibliography: mycollection.bib   
 ---
 
@@ -100,9 +100,7 @@ August 2019 - December 2019 | Complete analyses and write-up for final data chap
 January 2020 - June 2020 | Complete of final data chapter and final chapter.
 June 2020 - December 2020 | This time will be used to make final edits and complete thesis write-up
 
-
-
-
+\newpage
 ## References
 
 
