@@ -14,7 +14,7 @@ output:
   pdf_document:
     toc: yes
     toc_depth: 4
-bibliography: mycollection.bib   
+bibliography: LaTeX/mycollection.bib   
 ---
 
 \newpage
@@ -45,7 +45,7 @@ Wave exposure is a complex abiotic variable which varies spatially and temporarl
 
 Advances in numerical modelling has gained much traction in recent years and has been applied in a variety of ways with regards to ecological studies. For example, a study by @wang2009 used the Delft3D-Flow model to assess the hydraulic suitability of a stream as a spawing ground for the Chinese Sturgeon (*Acipenser sinensis*) in the Yangtze River. The authors calculated the horizontal mean vorticity which was used to assess the hydraulic environment of spawning ground. The flow field state was determined through model simulation and field-measured data used to validate the model. The results added to existing scientific database for spawning ground hydraulic environmental protection. Different numerical models can often be integrated to model across ecosystem levels. For example a study by @leon2003 used integrated physical (Delft3D hydrological model) and bio-chemical (Agricultural Non-point Source model) processes models to investigate the possible impact on the Lake Malawi water quality due to management actions performed at the watershed level. Traditional ecological measures of wave exposure usually incorportates integrative measures of hyrdodynamic conditions at a particular site. More specifically, it is the integration of mechanical processes and the influence that is has on the ecology of nearshore communities. 
 
-Wave exposure may be modelled through various methods which range from simple cartographic to more advanced numerical wave models. Cartographical models can be qualitative or quantitative and were designed for the need of wave exposure measures to explain ecological distributions. A simple set of calculations on coastline and wind data, and relatively small input data sets are required. These are regarded as "fetch-based models", which measure the length of open water associated with a site along a straight line. The output of such an approach is a simplified estimate of the potential wave energy for a specific set of sites. Advances in cartographical methods using fetch-based models has allowed for wave exposure measurments for larger areas, and has been suggested as a method for predicting macroalgal community structure [@Burrows2008]. An example of such a model is the "BioEx model" which was developed by @baardseth1970 to estimate wave exposure over large regions. BioEx requires frequency, strength and direction of winds, weighted by degree of exposure within various directions. BioEx is calculated as the sum of the index developed at different spatial scales (local, fjord and open). This method has been used in mapping of marine coastal biodiveristy [@Rinde2004]. 
+Wave exposure may be modelled through various methods which range from simple cartographic to more advanced numerical wave models. Cartographical models can be qualitative or quantitative and were designed for the need of wave exposure measures to explain ecological distributions. A simple set of calculations on coastline and wind data, and relatively small input data sets are required. These are regarded as "fetch-based models", which measure the length of open water associated with a site along a straight line. The output of such an approach is a simplified estimate of the potential wave energy for a specific set of sites. Advances in cartographical methods using fetch-based models has allowed for wave exposure measurments for larger areas, and has been suggested as a method for predicting macroalgal community structure [@Burrows2008]. An example of such a model is the "BioEx model" which was developed by @baardseth1970 to estimate wave exposure over large regions. BioEx requires frequency, strength and direction of winds, weighted by degree of exposure within various directions. BioEx is calculated as the sum of the index developed at different spatial scales (local, fjord and open).
 
 @lindegarth2005 critized this approach, arguing that the choice of wave exposure method  can influence ecological inference. The authors also highlighted the need for objective, reproducible and quantitative studies comparing exposure indices [@lindegarth2005]. Other authors, such as @hill2010, have argued that these simple measures can be improved upon by including bathymetery data which allows the incorporation of diffraction into the calculation. Diffraction is topographically induced variations in wave direction. A model incorporating this complexity was developed by @isaeus2004, and is known as the "simplified wave model" (SWM). The model uses measurements of wind strength, fetch and empirically derived algorithims to mimic diffraction.
 
@@ -64,8 +64,10 @@ Therefore, this study not only enables research into the ecological affects of t
 The aim of the project is to investigate coastal flow regimes along the west coast and south-west coast of South Africa and the role this may play in transport of kelp beach-cast and microplastics. This aim will be met through the following objectives:
 
 A) Determine if the hydrodynamic environment is the main driver of kelp morphology and if this is specific to a location
-B) Simulate kelp rafting by means of a hydrodynamic modelling and calibrate this model with *in situ* beach-cast morphometric data.
-C) Use the calibrated hydrodynamic model to investigate dispersal of microplastics along the west coast and south-west coast of South Africa.
+B) Determine quantitative relationships with kelp morphology and the hydrodynamic environment to create a biological index.
+C) Use *in situ* morphological data to calibrate this to a specific area, or ideally site, within a reasonable amount of probability
+D) Simulate kelp rafting by means of a hydrodynamic modelling and calibrate this model with *in situ* beach-cast morphometric data.
+E) Use the calibrated hydrodynamic model to investigate dispersal of microplastics along the west coast and south-west coast of South Africa.
 
 # Research design and methodology
 
@@ -77,14 +79,56 @@ Morphometrics collection Between October 2014 and April 2015, morphological meas
 
 ## Hydrodynamic model
 
-The hydrodynamic model for coastal flow will be developed using already existing models that have been developed. These models will consist of the SWAN and Delf3D models and the apporach is to use aspects of each model, that are related to coastal flow, from which further development will take place. 
-
-Once the model has been developed it will be used to predict kelp morphology at random sites which will then be sampled. The *in situ* kelp morphology data collected at the predicted site will be used to calibrate the model. This process will be repeated until the model can predict coastal flow and kelp morphology within a certian degree of probability. Kelp morphology is driven by regional and local environmental factors, the spatial scales used will be dependent on the spatial patterns of the various abiotic variables being investigated. Fully nested hierarchical design at three spatial scales will be used: regions, locations (within regions) and sites (within locations). 
+The hydrodynamic model for coastal flow will be developed using already existing models that have been developed. These models will consist of the SWAN and Delf3D models and the apporach is to use aspects of each model, that are related to coastal flow, from which further development will take place. Once the model has been developed it will be used to predict kelp morphology at random sites which will then be sampled. The *in situ* kelp morphology data collected at the predicted site will be used to calibrate the model. This process will be repeated until the model can predict coastal flow and kelp morphology within a certian degree of probability. Kelp morphology is driven by regional and local environmental factors, the spatial scales used will be dependent on the spatial patterns of the various abiotic variables being investigated. Fully nested hierarchical design at three spatial scales will be used: regions, locations (within regions) and sites (within locations). 
 
 ## Microplastics
 
 The calibrated model developed in previous chapters will be used to determine flow, source and accumulatiom points along the South African coastline. Certian characteristcs of microplastics such as bouyancy, flow rate, fluid dynamics ect. Which characteristics are important for modeling dispersion of microplastics will be achieved by investigating the literature and  experimental simulations. Once the model has been established it will once again be calibrated through _in situ_ sampling.
 
+## Outline of Chapters
+
+Chapter and sections| Title
+-----------------------|------------------------------------------------------------------------
+Chapter 1 | Summary
+Chapter 1.1| Background
+Chapter 1.2| Kelp environmental drivers
+Chapter 1.3| Ocean and coastal waves
+Chapter 1.4| Hydrodynamic modelling
+Chapter 1.5| Aims and objectives
+References | Reference list for chapter 
+Chapter 2 | Abiotic drivers of morphological adaption of *Ecklonia maxima* along the South African coastline
+Chapter 2.1 | Introduction 
+Chapter 2.1.2| Waves and kelp morphology 
+Chapter 2.1.3| The South African context 
+Chapter 2.2 | Aims and objectives
+Chapter 2.3 | Methods
+Chapter 2.4 | Results
+Chapter 2.5 | Discussion
+References | Reference list for chapter
+Chapter 3 | Using kelp morphology as an index for calibrating coastal-flow model
+Chapter 3.1 | Introduction
+Chapter 3.1.2 | The SWAN model design and application
+Chapter 3.1.3 | SWAN as a platform for further development
+Chapter 3.2 | Aims and objectives
+Chapter 3.3 | Methods
+Chapter 3.4 | Results
+Chapter 3.5 | Discussion
+References | Reference list for chapter
+Chapter 4 | Application of modified coastal-flow model
+Chapter 4.1 | Introduction
+Chapter 4.1.2 | Plastic plloution in the marine environment
+Chapter 4.1.3 | Application of hydrodynamic modelling in dispersal of plastics
+Chapter 4.1.4 | Plastic pollution in SOuth Africa
+Chapter 4.2 | Aims and objectives
+Chapter 4.3 | Methods
+Chapter 4.4 | Results
+Chapter 4.5 | Discussion
+References | Reference list for chapter
+Chapter 5 | Synthesis
+Chapter 5.1 | Synthesis of Chapters
+Chapter 5.2 | Challenges and limitations
+Chapter 5.3 | Gaps and future research
+Chapter 5.4 | Concluding remarks
 
 ## Time-frame
 
