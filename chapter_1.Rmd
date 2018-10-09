@@ -105,6 +105,10 @@ Wave exposure may be modelled through various methods which range from simple ca
 
 Advances in numerical modelling have been founded on physical wave theory on how a wave "behaves". This approach is based on a theoretical perspective rather than the need to answer ecological questions. Besides diffraction, these models incorporate more complexity by including wind forcing, wave-to-wave interactions and loss of energy due to friction and wave breaking. Numerical models have a variety of applications and are often incorporated within hydrodynamic general circulation models and are used operationally for forecasting the sea state [@hasselmann1988; @booij1999; @smith2001]. The downside of advanced numerical models is that are computationally intensive which creates limitations for large scale simulations. Therefore, their application along long stretches of variable coastline, inshore environments and ocean-wide simulations limited due to the poor spatial coverage. However, this models can be designed for local or site specific coverage, provided the correct data is available. 
 
+# Coastal flow
+
+# Kelp-rafting 
+
 #Aims of research
 
 The aim of the project is to investigate coastal flow regimes along the west coast and south-west coast of South Africa and the role this may play in transport of kelp beach-cast and microplastics. This aim will be met through the following objectives:
