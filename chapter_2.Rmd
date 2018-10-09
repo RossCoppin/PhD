@@ -5,7 +5,7 @@ output:
     fig_caption: yes
     fig_height: 7
     fig_width: 7
-    toc: no
+    toc: yes
   html_notebook:
     fig_caption: yes
     toc: yes
