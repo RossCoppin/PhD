@@ -39,45 +39,6 @@ Kelps are sessile species and have to adapt to local environmental conditions in
 
 The biogeographic distribution of kelp is limited by seawater temperature [@Bolton2010], where increasing temperature gradients reduce kelp distribution. Due to this limiting factor, the two main species of kelps in southern African waters, _Ecklonia maxima_ and _Laminaria pallida_, are distributed along a section of the south coast from De Hoop, extending west around the Cape Peninsula, and thriving north into Namibia [@Molloy1990; @Stegenga1997]. This distribution follows a temperate gradient, where sea temperatures increase as one moves south from Namibia, around Cape Point and towards De Hoop. Although the two species occur together for the majority of the coast, their basic morphologies and resource needs vary to a degree. The larger species, _Ecklonia maxima_, is distributed from Lüderitz to Cape Agulhas [@Bolton1985a; @Probyn1985; @Bolton1987; @Bolton2012]. Characterised by a large distal swollen bulb filled with gas, and smooth fronds, this species grows to approximately 10 meters [@Bolton1987]. There was, however, a 17-meter specimen collected in 2015 off Cape Point (Smit, unpubl. data).This species of kelp not only dominate the biomass of the South African nearshore, but plays an important ecological role [@Bustamante1996]. The estimated productivity of _Ecklonia maxima_ within South Africa varies between 350 and 1500g Cm-2yr-1 [@Mann1982]. Across the majority of the coastline, _Laminaria pallida_ remains a subsurface kelp, dominating the kelp biomass at depths greater than 10 meters [@Field1980b; @Bolton1987; @Molloy1996]. This species is distributed from Danger Point, east of the Cape Peninsula, to Rocky Point in northern Namibia, and reaches depths of greater than 20 meters [@Field1980b; @Molloy1990; @Molloy1996; @Stegenga1997]. Towards the north along the west coast, from around Hondeklipbaai, _Laminaria pallida_ replaces _Ecklonia maxima_ as the dominant kelp species [@Velimirov1977; @Stegenga1997] and it also occupies increasingly shallower subtidal regions. The northern populations also exhibit an increase in stipe hollowness, compared to the solid stipe morphs in the species’ southern distributions [@Molloy1996]. This variation in morphology was thought to represent two distinct species, with the northern populations formerly described as _Laminaria schinzii_ Foslie [@Molloy1996]. Genetic work has subsequently shown that the two morphs are in fact the same species [@Rothman2017]. In southern African waters, the primary production of _Laminaria pallida_ is between 120 and 1900g C m2yr1, similar to that of _Ecklonia maxima_ [@Mann1982]. Primary production is not the only pathway.
 
-The aim of this study is, therefore, to understand how environmental drivers such as temperature and wave energy can influence morphoplasticity in two species of kelps around South Africa. This will be achieved by initially understanding the variation in abiotic parameters, and morphometrics of _Ecklonia maxima_ and _Laminaria pallida_, around the Western Cape coast. Thereafter we will look at how the abiotic parameters both correlate and influence each other in the nearshore environment of our study region. Finally, we will investigate which abiotic parameters best describe the morphological variation of the two kelp species, using statistical tools. It is predicted that higher wave energy environments will exhibit kelps with reduced undulations, possessing strap-like blades, opposed to low flow regimes that will show greater undulations in frond morphology. An increase in temperature is predicted to influence specific morphological traits that rely on nutrient uptake, as temperature and nutrients share an inverse relationship. An increase in temperature is also predicted to reduce the dominance of the colder water kelp, _Laminaria pallida_, at depth, with a total absence of _Laminaria pallida_ as one approaches the eastern boundary of sample sites.
-
-### Study area
-
-Due to the Cape Peninsula’s temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean [@Reason2006]. These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter. The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay [@Shipley1964]. Conversely, the west coast of Cape Point is battered by these large swells at full force. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity.
-
-\newpage
-## Methods
-### Morphometrics collection
-
-Between October 2014 and April 2015, morphological measurements of _Laminaria pallida_ and _Ecklonia maxima_ were collected at 18 sites along the Western Cape coast of South Africa (Fig. 1). Eleven samples were collected per morphology, for each species (Table 1, 2). These varying morphometrics allowed measurements such as weight, length and thickness to be compared between sites. Because the macroalgae differ in morphological features, species-specific morphometrics were included. These sites span across the majority of the south-west coast, in varying thermal and wave energy regimes.
-
-
-```{r, echo= FALSE, message=FALSE, warning=FALSE}
-library(knitr)
-morph <- read.csv("tables/Morphology table.csv")
-
-colnames(morph) <- c("Morphometric", "Unit measurement")
-
-morph_eck <- morph[(1:10), ]
-morph_lam <- morph[(11:19), ]
-
-```
-```{r, echo= FALSE, message=FALSE, warning=FALSE}
-
-kable(morph_eck, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Ecklonia maxima _. Units for each morphometric are included.")
-
-```
-```{r, echo= FALSE, message=FALSE, warning=FALSE}
-
-kable(morph_lam, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Laminaria pallida_. Units for each morphometric are included.")
-
-```
-
-### Sites
-
-Sites were chosen to represent an array of morphological differences seen within _Ecklonia maxima_ and _Laminaria pallida_. Sites were also chosen to reflect locations that displayed variable wave and temperature regimes (Fig. 2-5), to allow us to robustly test our hypothesis of environmental drivers influencing kelp morphology. St. Helena Bay and Betty’s Bay constituted the north western and south eastern boundary sites respectively. These sites are roughly 300km apart, and lie within separate marine provinces, as outlined above. The Cape Peninsula provides an interesting topographical boundary that shelters the coast in False Bay. Sites were therefore chosen to represent an array of environments, from offshore reefs (Batsata Rock), to sheltered intertidal zones (Miller’s Point). West of Cape Point, a number of sites were chosen to highlight the presence of upwelling (Oudekraal, Kommetjie), as well as kelps growing in protected bays (Hout Bay). 
-
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="A map indicating the sites where morphometric measurements were collected for _Ecklonia maxima_ and _Laminaria pallida_.", fig.height=8, fig.width=12}
 
 library(tidyverse)
@@ -130,6 +91,48 @@ ggplot(data = kelp_sites_map, aes(x = lon, y = lat)) +
         axis.text = element_blank())
 
 ```
+
+The aim of this study is, therefore, to understand how environmental drivers such as temperature and wave energy can influence morphoplasticity in two species of kelps around South Africa. This will be achieved by initially understanding the variation in abiotic parameters, and morphometrics of _Ecklonia maxima_ and _Laminaria pallida_, around the Western Cape coast. Thereafter we will look at how the abiotic parameters both correlate and influence each other in the nearshore environment of our study region. Finally, we will investigate which abiotic parameters best describe the morphological variation of the two kelp species, using statistical tools. It is predicted that higher wave energy environments will exhibit kelps with reduced undulations, possessing strap-like blades, opposed to low flow regimes that will show greater undulations in frond morphology. An increase in temperature is predicted to influence specific morphological traits that rely on nutrient uptake, as temperature and nutrients share an inverse relationship. An increase in temperature is also predicted to reduce the dominance of the colder water kelp, _Laminaria pallida_, at depth, with a total absence of _Laminaria pallida_ as one approaches the eastern boundary of sample sites.
+
+### Study area
+
+Due to the Cape Peninsula’s temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean [@Reason2006]. These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter [@Veitch2018]. The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay [@Shipley1964]. Conversely, the west coast of Cape Point is battered by these large swells at full force. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity.
+
+In Figure 1 the total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). It is due to the near consistent South-westerly swell waves and the complex orography around the peninsula, that the wave energy distribution around the Cape Peninsula varies significantly over a small geographical area. For details on the seasonality of the wave climate around the Cape peninsula please refer to [@Veitch2018].
+
+**insert wave rider images here**
+
+\newpage
+## Methods
+### Morphometrics collection
+
+Between October 2014 and April 2015, morphological measurements of _Laminaria pallida_ and _Ecklonia maxima_ were collected at 18 sites along the Western Cape coast of South Africa (Fig. 1). Eleven samples were collected per morphology, for each species (Table 1, 2). These varying morphometrics allowed measurements such as weight, length and thickness to be compared between sites. Because the macroalgae differ in morphological features, species-specific morphometrics were included. These sites span across the majority of the south-west coast, in varying thermal and wave energy regimes.
+
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+morph <- read.csv("tables/Morphology table.csv")
+
+colnames(morph) <- c("Morphometric", "Unit measurement")
+
+morph_eck <- morph[(1:10), ]
+morph_lam <- morph[(11:19), ]
+
+```
+```{r, echo= FALSE, message=FALSE, warning=FALSE}
+
+kable(morph_eck, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Ecklonia maxima _. Units for each morphometric are included.")
+
+```
+```{r, echo= FALSE, message=FALSE, warning=FALSE}
+
+kable(morph_lam, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Laminaria pallida_. Units for each morphometric are included.")
+
+```
+
+### Sites
+
+Sites were chosen to represent an array of morphological differences seen within _Ecklonia maxima_ and _Laminaria pallida_. Sites were also chosen to reflect locations that displayed variable wave and temperature regimes (Fig. 2-5), to allow us to robustly test our hypothesis of environmental drivers influencing kelp morphology. St. Helena Bay and Betty’s Bay constituted the north western and south eastern boundary sites respectively. These sites are roughly 300km apart, and lie within separate marine provinces, as outlined above. The Cape Peninsula provides an interesting topographical boundary that shelters the coast in False Bay. Sites were therefore chosen to represent an array of environments, from offshore reefs (Batsata Rock), to sheltered intertidal zones (Miller’s Point). West of Cape Point, a number of sites were chosen to highlight the presence of upwelling (Oudekraal, Kommetjie), as well as kelps growing in protected bays (Hout Bay). 
 
 ### Abiotic parameters
 
