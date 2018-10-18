@@ -100,7 +100,7 @@ Due to the Cape Peninsula’s temperate latitude, winter months bring an increas
 
 In Figure 1 the total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). It is due to the near consistent South-westerly swell waves and the complex orography around the peninsula, that the wave energy distribution around the Cape Peninsula varies significantly over a small geographical area. For details on the seasonality of the wave climate around the Cape peninsula please refer to [@Veitch2018].
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Wave roses of the Cape Point wave rider buoy situated at 18.29oE, 34.2oS in 70m water depth. (a) total wave record, (b) winter waves and (c) summer waves."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Wave roses of the Cape Point wave rider buoy situated at 18.29oE, message=FALSE, warning=FALSE, 34.2oS in 70m water depth. (a) total wave record, (b) winter waves and (c) summer waves."}
 
 library(png)
 library(grid)
@@ -110,7 +110,7 @@ img_twr <-  rasterGrob(as.raster(readPNG("figures/total_wave_rose_2.png")), inte
 img_wwr <-  rasterGrob(as.raster(readPNG("figures/winter_wave_rose_2.png")), interpolate = FALSE)
 img_swr <-  rasterGrob(as.raster(readPNG("figures/summer_wave_rose_2.png")), interpolate = FALSE)
 
-grid.arrange(img_twr, img_wwr,img_swr, ncol = 3)
+grid.arrange(img_twr, img_wwr,img_swr, ncol = 2, nrow = 2)
 
 ```
 
@@ -159,12 +159,12 @@ morph_lam <- morph[(11:19), ]
 ```
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 
-kable(morph_eck, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Ecklonia maxima _. Units for each morphometric are included.")
+t1 <- kable(morph_eck, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Ecklonia maxima _. Units for each morphometric are included.")
 
 ```
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 
-kable(morph_lam, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Laminaria pallida_. Units for each morphometric are included.")
+t2 <- kable(morph_lam, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Laminaria pallida_. Units for each morphometric are included.")
 
 ```
 
@@ -226,10 +226,7 @@ temps <- SACTNmonthly_v4.1 %>%
   filter(site!= "Roman Rock") %>% 
   rbind(., rr_patch)
 ```
-
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, results='hide'}
-
 
 ## Up next we need to calculate the relevant temperature statistics for each site. These are: mean, range, and sd, for Annual, February, and August climatologies.
 
@@ -453,7 +450,6 @@ lam_abio <- lam_all %>%
   decostand(method = "standardize")
 
 ```
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 # Merge site list with temp_clim
 site_temp <- merge(temp_clim, kelp_sites, by = "site")
@@ -545,22 +541,13 @@ range <- ggplot(data = rangeTemp, aes(x = lon, y = lat)) +
 
 The temperature parameters around the Western Cape coast vary among sites and seasons. During February and August, the west side of Cape point experiences decreased temperatures (Fig. 2).  This region also experiences lower mean and maximum temperatures when compared to False Bay, a region known as east of Cape Point. The range of temperatures within False Bay are larger in winter (August) compared to summer (February) (Fig. 3). The sites north of Kommetjie on the west side display larger temperatures ranges than sites south of Kommetjie on the west side.  
 
-```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Morphometric site locations represented by various temperature parameters. Temperature parameters include minimum, maximum and mean temperatures (° Celsius). These site locations are coloured by the temperature statistic relative to the legends provided. Each temperature parameter is also divided into August (winter) and February (summer) as well as the annual mean.", fig.height=8, fig.width=12, fig.pos="H"}
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Morphometric site locations represented by various temperature parameters. Temperature parameters include minimum, maximum, mean, range and standard deviation (° Celsius). These site locations are coloured by the temperature statistic relative to the legends provided. Each temperature parameter is also divided into August (winter) and February (summer) as well as the annual mean.", fig.height=8, fig.width=12, fig.pos="H"}
 
-grid.arrange(min, max, mean, ncol = 1)
-ggarrange(min, max, mean, ncol = 1, nrow = 1, labels = "AUTO", legend = "bottom", common.legend = TRUE, align = "none", heights = c(1.5,1))
-```
-
-
-```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Morphometric site locations represented by various temperature parameters. Temperature parameters include temperature range as well as standard deviation (° Celsius). These site locations are coloured by the temperature statistic relative to the legends provided. Each temperature parameter is also divided into August (winter) and February (summer) as well as the annual mean.", fig.height=8, fig.width=12, fig.pos="H"}
-
-grid.arrange(range, sd, ncol = 1)
+grid.arrange(max,min,mean,range, sd, ncol = 2)
 
 ```
 
-
-
-
+### Wave and wind parameters
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 
@@ -589,7 +576,7 @@ abioPar <- c("dir" = "Direction", "dirw" = "Wind direction", "hs" = "Sig. wave h
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 
-## MEthod 2 (shows individual legends, still squashed)
+##  (shows individual legends, still squashed)
 
 medianDir <- subset(site_wave, statistic == "median" & abioPara == "dir")
 medianDirw <- subset(site_wave, statistic == "median" & abioPara == "dirw")
@@ -612,8 +599,6 @@ medianDir1 <- ggplot(data = medianDir, aes(x = lon, y = lat)) +
         axis.ticks = element_blank(),
         axis.text = element_blank())
 
-
-
 # meanDirw 
 medianDirw1 <- ggplot(data = medianDirw , aes(x = lon, y = lat)) + 
   geom_polygon(data = south_africa_coast, aes(group = group), fill = "grey70") +
@@ -625,7 +610,6 @@ medianDirw1 <- ggplot(data = medianDirw , aes(x = lon, y = lat)) +
   theme(axis.title = element_blank(),
         axis.ticks = element_blank(),
         axis.text = element_blank())
-
 
 # meanHs
 
@@ -701,22 +685,19 @@ sdTp1 <- ggplot(data = sdTp, aes(x = lon, y = lat)) +
         axis.text = element_blank())
 ```
 
-### Wave and wind parameters
-
 Not only do the temperature parameters display seasonal fluctuations, but we see similar observations for wave parameters. The west side of Cape Point exhibit increased median direction, SD and mean significant wave height compared to within False Bay (Fig. 4). Sites within False Bay however display increased standard deviations of wave period. Median wind direction is northerly in winter (Fig. 5), and turns southerly in summer. 
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Wave parameters relative to each morphometric collection site around the Western Cape coast. These wave parameters include mean and standard deviation of wave direction (° True north), significant wave height (Meters) as well as wave period (Seconds). Sites are colour-coded by the parameter statistic provided by the legend. Each wave parameter is also divided into August (winter), February (summer) and annual means, to visualise seasonal differences.", fig.height=8, fig.width=12, fig.pos="H"}
 
-grid.arrange(medianDir1, meanHs1, sdHs1, meanTp1, sdTp1)
+grid.arrange(medianDir1, meanHs1, sdHs1, meanTp1, sdTp1, ncol = 2)
 
 
 
 ```
 
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Wind parameters relative to each morphometric collection site around the Western Cape coast. These wind parameters include mean and standard deviation of wind direction (° True north) as well as wind speed (Meters/ second). Sites are colour-coded by the parameter statistic provided by the legend. Each wave parameter is also divided into August (winter), February (summer) and annual means, to visualise seasonal differences.", fig.height=8, fig.width=12, fig.pos="H"}
 
-grid.arrange(medianDirw1, meanSpw1, sdSpw1)
+grid.arrange(medianDirw1, meanSpw1, sdSpw1, ncol = 2)
 
 ```
 
@@ -801,7 +782,6 @@ ggplot(data = lam_gather, aes(x = site, y = Measurement)) +
 
 For frond length, frond mass, stipe circumferences, stipe length and total length of _Ecklonia maxima_ morphometrics, we see a gradual increase in value as one moves south from St. Helena Bay to Kommetjie and Soetwater (Fig. 7). Hout Bay, Kommetjie and Soetwater show similarities in their stipes lengths to Buffels Bay, Batsata Rock and Betty’s Bay, and are significantly different to west of Cape Point counterpart sites such as Oudekraal and Scarborough. A difference for the majority of the morphologies are seen between Soetwater and Scarborough, with significant differences for epiphyte length, frond length, frond mass, stipe length, stipe mass and total length.  A separation along the same stretch of coast (west of Cape Point) for stipe mass shows that Hout Bay, Kommetjie and Soetwater are again significantly different to neighboring west side sites such as Oudekraal and Scarborough. 
 
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Boxplots representing the different _Ecklonia maxima_ morphometrics measured around the Western Cape coastline, with the X-axis depicting the specific morphology measured, with units provided. Boxplots represent the minimum, 25^th^ percentile, median and 75^th^ percentile of the morphometrics measured. Interquartile range can be deduced as the different between the 75^th^ and 25^th^ percentiles, and dots represent outliers in the data. Sites are ordered sequentially on the Y-axis by location along the coast. The top site is St. Helena Bay and is located at the north western boundary, and Betty’s Bay as the bottom site is located at the south eastern boundary, from our sample region.", fig.height=8, fig.width=12, fig.pos="H"}
 
 
@@ -852,6 +832,7 @@ eck_gather_mean <- eck_gather %>%
 
 
 # Order site names by location west to east
+
 positionsEck <- c("Betty's Bay", "Kalk Bay", "A-Frame", 
                   "Miller's Point", "Baboon Rock", "Batsata Rock", 
                   "Buffels Bay", "Scarborough", 
@@ -876,11 +857,7 @@ ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
 
 ```
 
-
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, results="hide"}
-
-
 
 # merge all abiotic data
 combine <- merge(temp_clim, wave_clim, by = "site")
