@@ -472,7 +472,6 @@ statistic <- c("mean" = "Mean", "sd" = "SD", "range" = "Range", "max" = "Max", "
 
 ```
 
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 
 maxTemp <- subset(site_temp, statistic == "max")
@@ -543,7 +542,7 @@ range <- ggplot(data = rangeTemp, aes(x = lon, y = lat)) +
 
 The temperature parameters around the Western Cape coast vary among sites and seasons. During February and August, the west side of Cape point experiences decreased temperatures (Fig. 2).  This region also experiences lower mean and maximum temperatures when compared to False Bay, a region known as east of Cape Point. The range of temperatures within False Bay are larger in winter (August) compared to summer (February) (Fig. 3). The sites north of Kommetjie on the west side display larger temperatures ranges than sites south of Kommetjie on the west side.  
 
-```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Morphometric site locations represented by various temperature parameters. Temperature parameters include minimum, maximum, mean, range and standard deviation (° Celsius). These site locations are coloured by the temperature statistic relative to the legends provided. Each temperature parameter is also divided into August (winter) and February (summer) as well as the annual mean.", fig.height=8, fig.width=12, fig.pos="H"}
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature parameters relative to each morphometric collection site around the Western Cape coast. Temperature parameters include minimum, maximum, mean, range and standard deviation (° Celsius). These site locations are coloured by the temperature statistic relative to the legends provided. Each temperature parameter is also divided into August (winter) and February (summer) as well as the annual mean.", fig.height=8, fig.width=12, fig.pos="H"}
 
 grid.arrange(max,min,mean,range, sd, ncol = 2)
 
