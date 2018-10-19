@@ -1,15 +1,15 @@
 ---
 title: "The shape of kelp: environmental influences on kelp morphology"
 output:
-  pdf_document:
-    toc: yes
-  html_notebook:
-    fig_caption: yes
-    toc: yes
   word_document:
     fig_caption: yes
     fig_height: 7
     fig_width: 7
+    toc: yes
+  html_notebook:
+    fig_caption: yes
+    toc: yes
+  pdf_document:
     toc: yes
   bookdown::html_document2:
     fig_caption: yes
@@ -537,6 +537,8 @@ range <- ggplot(data = rangeTemp, aes(x = lon, y = lat)) +
         axis.text = element_blank())
 
 ```
+
+
 ### Temperature parameters
 
 The temperature parameters around the Western Cape coast vary among sites and seasons. During February and August, the west side of Cape point experiences decreased temperatures (Fig. 2).  This region also experiences lower mean and maximum temperatures when compared to False Bay, a region known as east of Cape Point. The range of temperatures within False Bay are larger in winter (August) compared to summer (February) (Fig. 3). The sites north of Kommetjie on the west side display larger temperatures ranges than sites south of Kommetjie on the west side.  
@@ -546,6 +548,8 @@ The temperature parameters around the Western Cape coast vary among sites and se
 grid.arrange(max,min,mean,range, sd, ncol = 2)
 
 ```
+
+
 
 ### Wave and wind parameters
 
