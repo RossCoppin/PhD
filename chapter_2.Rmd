@@ -148,7 +148,6 @@ Between October 2014 and April 2015, morphological measurements of _Laminaria pa
 
 Between February 2017 and Novevember 2018, morphological measurements for _Ecklonia maxima_ individuals in shallow water (<1m) at 5 sites along the Western Cape coast of South Africa were collected. These sites represent a wave gradient moving south along the peninsula and into False Bay. The same morphometric measurements were taken as per the deeper _Ecklonia maxima_, and this allowed comparison between morphological characteristics between deep and shallow individuals. 
 
-
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 library(knitr)
 morph <- read.csv("tables/Morphology table.csv")
@@ -852,6 +851,8 @@ ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
 
 
 ```
+
+When comparing morphologies bewteen deep and shallow water _Ecklonia maxima_ individuals, clear pattern is seen in certian morphological characteristics. These are frond length, frond mass, primary length, primary width and stipe circumference, and all show a similar pattern. Significant differences in these morphological characterstics at Kommetjie and Soetwater are evident, however there are no significant differences from Buffel's Bay to Kalk Bay. 
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Boxplots representing the different _Ecklonia maxima_ morphometrics between deep and shallow water sites measured around the Western Cape coastline, with the X-axis depicting the specific morphology measured, with units provided. Boxplots represent the minimum, 25^th^ percentile, median and 75^th^ percentile of the morphometrics measured. Interquartile range can be deduced as the different between the 75^th^ and 25^th^ percentiles, and dots represent outliers in the data. Sites are ordered sequentially on the Y-axis by location along the coast. The top site is St. Helena Bay and is located at the north western boundary, and Betty’s Bay as the bottom site is located at the south eastern boundary, from our sample region.", fig.height=8, fig.width=12, fig.pos="H"}
 
