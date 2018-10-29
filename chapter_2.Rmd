@@ -851,6 +851,73 @@ ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
 
 ```
 
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Boxplots representing the different _Ecklonia maxima_ morphometrics between deep and shallow water sites measured around the Western Cape coastline, with the X-axis depicting the specific morphology measured, with units provided. Boxplots represent the minimum, 25^th^ percentile, median and 75^th^ percentile of the morphometrics measured. Interquartile range can be deduced as the different between the 75^th^ and 25^th^ percentiles, and dots represent outliers in the data. Sites are ordered sequentially on the Y-axis by location along the coast. The top site is St. Helena Bay and is located at the north western boundary, and Betty’s Bay as the bottom site is located at the south eastern boundary, from our sample region.", fig.height=8, fig.width=12, fig.pos="H"}
+
+# load data
+comp_df <- read.csv("data/morph_comp.csv", sep = ";")
+
+# remove unnecessary columns
+comp_df <- subset(comp_df, select = -c(3))
+
+# alter dataframe for more friendly plotting
+comp_gather <- gather(comp_df, "Morphology", "Measurement", 3:12, na.rm = TRUE)
+
+# Replace morphology names
+comp_gather <- comp_gather %>%
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "fond_mass", "Frond mass (kg)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "primary_length", "Primary length (cm)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "primary_width", "Primary width (cm)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "frond_length", "Frond length (cm)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "stipe_mass", "Stipe mass (kg)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "stipe_length", "Stipe length (cm)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "stipe_circ", "Stipe circumference (cm)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "tufts", "Number of tufts")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "epi_length", "Epiphyte length (cm)")) %>% 
+  mutate(Morphology = replace(Morphology, 
+                              Morphology == "total_length", "Total length (cm)"))
+
+# Mean morphology per site
+
+comp_gather_mean <- comp_gather %>%
+  group_by(site, Morphology) %>%
+  summarise(mean = mean(Measurement, na.rm = TRUE)) %>%
+  ungroup()
+
+
+# Order site names by location west to east
+
+positionsComp <- c("Kalk Bay", 
+                  "Miller's Point", "Buffels Bay", "Soetwater", "Kommetjie")
+
+# Remove Depth and Rocky Bank site
+eck_gather <- subset(eck_gather, !Morphology == "Depth (m)")
+eck_gather <- subset(eck_gather, !site == "Rocky Bank" | !site == "De Hoop")
+
+# Plot morphologies
+
+ggplot(data = comp_gather, aes(x = site, y = Measurement, fill = depth)) +
+  geom_boxplot() +
+  facet_wrap(~Morphology, scales = "free_x", strip.position = "bottom", ncol = 5) +
+  coord_flip() + 
+  scale_x_discrete(limits = positionsComp) +
+  theme(strip.background = element_blank(), strip.placement = "outside", text = element_text(size   = 4.5)) +
+  xlab("Site") +
+  ylab("Morphology measurement") + 
+  theme_bw()
+
+```
+
+
+### Abiotic correlations
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, results="hide"}
 
 # merge all abiotic data
@@ -924,8 +991,6 @@ aug_abio_cor <- spread(aug_abio_cor, "parameter", "measurement")
 feb_abio_cor <- spread(feb_abio_cor, "parameter", "measurement")
  
 ```
-
-### Abiotic correlations
 
 There are various strong correlations within the temperature parameters, and within the wave parameters on an annual time scale (Fig. 8). SD Significant wave height (Hs) and mean Hs showed a strong positive correlate(0.92), as well as  SD wave period (Tp) and mean Hs with a strong negative correlation(-0.9) For SD wind speed and mean wind speed a strong positive correlation existed (0.967). Minimum and mean temperatures correlate strongly (0.918), as well as SD wind speed and median wind direction (0.999). A strong correlation exists between SD temperature and temperature range (0.942). Median wind direction and mean wind speed are also correlated well (0.954). We however see no strong correlations between wave and temperature parameters.
 
