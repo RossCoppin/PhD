@@ -1,15 +1,15 @@
 ---
 title: "The shape of kelp: environmental influences on kelp morphology"
 output:
-  word_document:
-    fig_caption: yes
-    fig_height: 7
-    fig_width: 7
+  pdf_document:
     toc: yes
   html_notebook:
     fig_caption: yes
     toc: yes
-  pdf_document:
+  word_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
     toc: yes
   bookdown::html_document2:
     fig_caption: yes
@@ -714,9 +714,7 @@ Stipe diameter decreased as one rounded the point into False Bay, where a sudden
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Boxplots representing the different _Laminaria pallida_ morphometrics measured around the Western Cape coastline, with the X-axis depicting the specific morphology measured, with units provided. Boxplots represent the minimum, 25^th^ percentile, median and 75^th^ percentile of the morphometrics measured. Interquartile range can be deduced as the different between the 75^th^ and 25^th^ percentiles, and dots represent outliers in the data. Sites are ordered sequentially on the Y-axis by location along the coast. The top site is Sea Point and is located at the north western boundary, and Betty’s Bay as the bottom site is located at the south eastern boundary, from our sample region.", fig.height=8, fig.width=12, fig.pos="H"}
 
-
 # Laminaria morphologies
-
 
 # load data
 lam <- read.csv("data/Laminaria_morphometrics.csv", sep = ",")
@@ -755,7 +753,6 @@ lam_gather_mean <- lam_gather %>%
   summarise(mean = mean(Measurement, na.rm = TRUE)) %>%
   ungroup()
 
-
 # Remove Rocky Bank
 lam_gather_mean <- subset(lam_gather_mean, !site == "Rocky Bank")
 
@@ -776,7 +773,6 @@ ggplot(data = lam_gather, aes(x = site, y = Measurement)) +
   xlab("Site") +
   ylab("Morphology measurement")
 
-
 ```
 
 #### _Ecklonia maxima_
@@ -785,10 +781,7 @@ For frond length, frond mass, stipe circumferences, stipe length and total lengt
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Boxplots representing the different _Ecklonia maxima_ morphometrics measured around the Western Cape coastline, with the X-axis depicting the specific morphology measured, with units provided. Boxplots represent the minimum, 25^th^ percentile, median and 75^th^ percentile of the morphometrics measured. Interquartile range can be deduced as the different between the 75^th^ and 25^th^ percentiles, and dots represent outliers in the data. Sites are ordered sequentially on the Y-axis by location along the coast. The top site is St. Helena Bay and is located at the north western boundary, and Betty’s Bay as the bottom site is located at the south eastern boundary, from our sample region.", fig.height=8, fig.width=12, fig.pos="H"}
 
-
 # Ecklonia morphologies
-
-
 
 # load data
 eck <- read.csv("data/Ecklonia_morphometrics.csv", sep = ",")
