@@ -146,6 +146,8 @@ knitr::include_graphics('figures/regional_waves.png')
 
 Between October 2014 and April 2015, morphological measurements of _Laminaria pallida_ and _Ecklonia maxima_ were collected at 18 sites along the Western Cape coast of South Africa (Fig. 1). Eleven samples were collected per morphology, for each species (Table 1, 2). These varying morphometrics allowed measurements such as weight, length and thickness to be compared between sites. Because the macroalgae differ in morphological features, species-specific morphometrics were included. These sites span across the majority of the south-west coast, in varying thermal and wave energy regimes.
 
+Between February 2017 and Novevember 2018, morphological measurements for _Ecklonia maxima_ individuals in shallow water (<1m) at 5 sites along the Western Cape coast of South Africa were collected. These sites represent a wave gradient moving south along the peninsula and into False Bay. The same morphometric measurements were taken as per the deeper _Ecklonia maxima_, and this allowed comparison between morphological characteristics between deep and shallow individuals. 
+
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
 library(knitr)
