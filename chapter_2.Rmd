@@ -584,8 +584,6 @@ season <- c("Ann" = "Annual", "Feb" = "February", "Aug" = "August")
 statistic <- c("mean" = "Mean", "sd" = "SD", "range" = "Range", "max" = "Max", "min" = "Min", "median" = "Median")
 abioPar <- c("dir" = "Direction", "dirw" = "Wind direction", "hs" = "Sig. wave height", "tp" = "Wave period", "spw" = "Spw")
 
-# fix incorrect
-
 ```
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE}
@@ -1010,8 +1008,8 @@ There are various strong correlations within the temperature parameters, and wit
 These correlations vary through the three timescales (Annual, August and February). Although there are no strong correlations between temperature and wave parameters, we see interesting differences between the seasonal timescales. The mean temperature and mean wind speed are weakly correlated in August (0.253)(Fig. 12), but are observed to be more strongly negatively correlated in February (-0.788)(Fig. 13).  The same is seen for minimum temperature and median wind direction in August (0.129) compared to February (-0.715).
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, results="hide", fig.cap="A correlation graph depicting the relationships that various temperature and wave parameters share, at an annual timescale. The left Y-axis as well as bottom X-axis represent the measurements for the parameters, while the top X-axis and right Y-axis depict the abiotic parameter name. The top right section of the graph represents correlation coefficients between abiotic parameters. The bottom left section provides individual linear regressions between each abiotic parameter, with a fitted line. Each point of each linear graph represents a collection site. The diagonal density plots represent the spread of the data for each abiotic relationship.", fig.height=8, fig.width=12, fig.pos="H"}
-# # ggpairs to plot correlation coefficients
-# # Annual
+## ggpairs to plot correlation coefficients
+## Annual
 ggpairs(data = ann_abio_cor, columns = 2:14, 
         upper = list(continuous = wrap("cor", size = 3)), 
         lower = list(continuous = "smooth"), 
@@ -1023,7 +1021,7 @@ ggpairs(data = ann_abio_cor, columns = 2:14,
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, results="hide", fig.cap="A correlation graph depicting the relationships that various temperature and wave parameters share, during August. The left Y-axis as well as bottom X-axis represent the measurements for the parameters, while the top X-axis and right Y-axis depict the abiotic parameter name. The top right section of the graph represents correlation coefficients between abiotic parameters. The bottom left section provides individual linear regressions between each abiotic parameter, with a fitted line. Each point of each linear graph represents a collection site. The diagonal density plots represent the spread of the data for each abiotic relationship.", fig.height=8, fig.width=12, fig.pos="H"}
 
-# # August
+## August
 ggpairs(data = aug_abio_cor, columns = 2:14, 
         upper = list(continuous = wrap("cor", size = 3)), 
         lower = list(continuous = "smooth"), 
@@ -1035,7 +1033,7 @@ ggpairs(data = aug_abio_cor, columns = 2:14,
 
 ```{r, echo= FALSE, message=FALSE, warning=FALSE, results="hide", fig.cap="A correlation graph depicting the relationships that various temperature and wave parameters share, during February. The left Y-axis as well as bottom X-axis represent the measurements for the parameters, while the top X-axis and right Y-axis depict the abiotic parameter name. The top right section of the graph represents correlation coefficients between abiotic parameters. The bottom left section provides individual linear regressions between each abiotic parameter, with a fitted line. Each point of each linear graph represents a collection site. The diagonal density plots represent the spread of the data for each abiotic relationship.", fig.height=8, fig.width=12, fig.pos="H"}
 
-# # February
+## February
 ggpairs(data = feb_abio_cor, columns = 2:14, 
         upper = list(continuous = wrap("cor", size = 3)), 
         lower = list(continuous = "smooth"),
