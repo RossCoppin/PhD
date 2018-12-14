@@ -822,11 +822,9 @@ ggpairs(data = feb_abio_cor, columns = 2:14,
   theme(text = element_text(size = 9)) + 
   ggtitle("February")
 
-### Redundancy analyses 
+#### Redundancy analyses 
 #### USing RDA's to see how wave parameters and temperature parameters
-# influence the morphology pf kelp species
-
-###
+#### influence the morphology of kelp species
 
 # rename eck_all to eck-site0
 
@@ -867,6 +865,8 @@ eck_wave_bio <- eck_wave_bio%>%
 # run RDA
 eck_wave_RDA <- rda(eck_wave_bio ~ ., data = eck_wave)
 
+vif.cca(eck_wave_RDA)
+
 # Plot scaling = 2
 plot(eck_wave_RDA, scaling  = 2)
 
@@ -892,6 +892,9 @@ eck_temp_season <- eck_temp_season %>%
 
 # run RDA
 eck_temp_season_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_season)
+
+vif.cca(eck_temp_season_RDA)
+
 
 # Plot scaling = 2
 plot(eck_temp_season_RDA, scaling = 2)
@@ -940,11 +943,14 @@ lam_wave_bio <- lam_wave_bio%>%
 # run RDA
 lam_wave_RDA <- rda(lam_wave_bio ~ ., data = lam_wave)
 
+vif.cca(lam_wave_RDA)
+
 # Plot scaling = 2
 plot(lam_wave_RDA, scaling  = 2)
 
 # Summary
 summary(lam_wave_RDA)
+
 ## Temp
 
 # Subset temps for Lam sites (seasons)
@@ -964,6 +970,8 @@ lam_temp_season <- lam_temp_season %>%
 
 # run RDA
 lam_temp_season_RDA <- rda(lam_wave_bio ~ ., data = lam_temp_season)
+
+vif.cca(lam_temp_season_RDA)
 
 # Plot scaling = 2
 plot(lam_temp_season_RDA, scaling = 2)
