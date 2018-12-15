@@ -840,7 +840,6 @@ eck_wave <- subset(eck_site0, select = c(27:32, 45, 46))
 eck_wave <- eck_wave %>%
   decostand(method = "standardize")
 
-
 # subset ecklonia morpho's
 eck_wave_bio <- subset(eck_site0, select = c(2:11))
 
@@ -855,7 +854,6 @@ eck_wave <- eck_wave %>%
   remove_rownames %>%
   column_to_rownames(var = "site")
 
-
 eck_wave_bio <- cbind(eck_site, eck_wave_bio)
 
 eck_wave_bio <- eck_wave_bio%>%
@@ -865,13 +863,55 @@ eck_wave_bio <- eck_wave_bio%>%
 # run RDA
 eck_wave_RDA <- rda(eck_wave_bio ~ ., data = eck_wave)
 
-vif.cca(eck_wave_RDA)
-
 # Plot scaling = 2
 plot(eck_wave_RDA, scaling  = 2)
 
 # Summary
 summary(eck_wave_RDA)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_eck_wave <- round(cor(eck_wave, use = "pair"), 2)
+cor_eck_wave
+
+# Calculate "Variance Inflation Factor" using vegan
+
+vif.cca(eck_wave_RDA)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(eck_wave_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_wave),
+                         scope=formula(eck_wave_RDA), direction = "forward", pstep = 1000)
+
+# Application of stopping criterion, threshold of 0.585435
+# Copy and paste code and the add predictor, rinse and repeat until threshold reached
+
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean + Ann_dir_median , data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean + Ann_dir_median + Ann_tp_mean, data = eck_wave))$adj.r.squared
+RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean + Ann_dir_median + Ann_tp_mean + Ann_hs_sd, data = eck_wave))$adj.r.squared
+
+
+# Parsimonious RDA
+
+eck_wave_pars <- rda(eck_wave_bio ~ Ann_tp_sd + Ann_tp_mean + Ann_dirw_median, data = eck_wave)
+eck_wave_pars
+anova.cca(eck_wave_pars, step = 1000)
+anova.cca(eck_wave_pars, step = 1000, by = "axis")
+vif.cca(eck_wave_pars)
+(R2a.pars <- RsquareAdj(eck_wave_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(eck_wave_pars, scaling  = 2)
 
 ## Temp
 
@@ -893,8 +933,23 @@ eck_temp_season <- eck_temp_season %>%
 # run RDA
 eck_temp_season_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_season)
 
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_eck_temp_season <- round(cor(eck_temp_season, use = "pair"), 2)
+cor_eck_temp_season
+
+# Calculate VIF using vegan
+
 vif.cca(eck_temp_season_RDA)
 
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(eck_temp_season_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_temp_season),
+                         scope=formula(eck_temp_season_RDA), direction = "forward", pstep = 1000)
 
 # Plot scaling = 2
 plot(eck_temp_season_RDA, scaling = 2)
@@ -943,7 +998,23 @@ lam_wave_bio <- lam_wave_bio%>%
 # run RDA
 lam_wave_RDA <- rda(lam_wave_bio ~ ., data = lam_wave)
 
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_lam_wave <- round(cor(lam_wave, use = "pair"), 2)
+cor_lam_wave
+
+# Calculate VIF using vegan
+
 vif.cca(lam_wave_RDA)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(lam_wave_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_wave),
+                         scope=formula(lam_wave_RDA), direction = "forward", pstep = 1000)
 
 # Plot scaling = 2
 plot(lam_wave_RDA, scaling  = 2)
@@ -971,7 +1042,23 @@ lam_temp_season <- lam_temp_season %>%
 # run RDA
 lam_temp_season_RDA <- rda(lam_wave_bio ~ ., data = lam_temp_season)
 
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_lam_temp_season <- round(cor(lam_temp_season, use = "pair"), 2)
+cor_lam_temp_season
+
+# Calculate VIF using vegan
+
 vif.cca(lam_temp_season_RDA)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(lam_temp_season_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_temp_season),
+                         scope=formula(lam_temp_season_RDA), direction = "forward", pstep = 1000)
 
 # Plot scaling = 2
 plot(lam_temp_season_RDA, scaling = 2)
