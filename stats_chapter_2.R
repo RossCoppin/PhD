@@ -887,20 +887,6 @@ vif.cca(eck_wave_RDA)
 step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_wave),
                          scope=formula(eck_wave_RDA), direction = "forward", pstep = 1000)
 
-# Application of stopping criterion, threshold of 0.585435
-# Copy and paste code and the add predictor, rinse and repeat until threshold reached
-
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean + Ann_dir_median , data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean + Ann_dir_median + Ann_tp_mean, data = eck_wave))$adj.r.squared
-RsquareAdj(rda(eck_wave_bio ~ Ann_tp_sd + Ann_spw_mean + Ann_spw_sd + Ann_dirw_median + Ann_hs_mean + Ann_dir_median + Ann_tp_mean + Ann_hs_sd, data = eck_wave))$adj.r.squared
-
-
 # Parsimonious RDA
 
 eck_wave_pars <- rda(eck_wave_bio ~ Ann_tp_sd + Ann_tp_mean + Ann_dirw_median, data = eck_wave)
@@ -1040,7 +1026,6 @@ lam_wave <- subset(lam_site0, select = c(26:31, 44, 45))
 lam_wave <- lam_wave %>%
   decostand(method = "standardize")
 
-
 # subset Lam morpho's
 lam_wave_bio <- subset(lam_site0, select = c(2:10))
 
@@ -1055,7 +1040,6 @@ lam_wave <- lam_wave %>%
   remove_rownames %>%
   column_to_rownames(var = "site")
 
-
 lam_wave_bio <- cbind(lam_site, lam_wave_bio)
 
 lam_wave_bio <- lam_wave_bio%>%
@@ -1064,6 +1048,9 @@ lam_wave_bio <- lam_wave_bio%>%
 
 # run RDA
 lam_wave_RDA <- rda(lam_wave_bio ~ ., data = lam_wave)
+
+# Plot RDA
+plot(lam_wave_RDA, scaling  = 2)
 
 # Use the "cor" function to calculate Pearson correlation between predictors.
 
@@ -1083,8 +1070,18 @@ vif.cca(lam_wave_RDA)
 step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_wave),
                          scope=formula(lam_wave_RDA), direction = "forward", pstep = 1000)
 
-# Plot scaling = 2
-plot(lam_wave_RDA, scaling  = 2)
+
+# Parsimonious RDA
+
+lam_wave_pars <- rda(lam_wave_bio ~ Ann_hs_mean + Ann_spw_mean + Ann_tp_mean, data = lam_wave)
+lam_wave_pars
+anova.cca(lam_wave_pars, step = 1000)
+anova.cca(lam_wave_pars, step = 1000, by = "axis")
+vif.cca(lam_wave_pars)
+(R2a.pars <- RsquareAdj(lam_wave_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(lam_wave_pars, scaling  = 2)
 
 # Summary
 summary(lam_wave_RDA)
@@ -1093,7 +1090,6 @@ summary(lam_wave_RDA)
 
 # Subset temps for Lam sites (seasons)
 lam_temp_season <- subset(lam_site0, select = c(16:25))
-
 
 # standardise wave measurements
 lam_temp_season <- lam_temp_season %>%
@@ -1132,4 +1128,109 @@ plot(lam_temp_season_RDA, scaling = 2)
 
 # Summary
 summary(lam_temp_season_RDA)
+
+## Temp: Annual
+
+# Subset temps for ecklonia sites (for seasons)
+lam_temp_annual <- subset(lam_site0, select = c(11:15))
+
+# standardise wave measurements
+lam_temp_annual <- lam_temp_annual %>%
+  decostand(method = "standardize")
+
+# Force site names as column 0
+lam_temp_annual <- cbind(lam_site, lam_temp_annual)
+
+lam_temp_annual <- lam_temp_annual %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+# run RDA
+lam_temp_annual_RDA <- rda(lam_wave_bio ~ ., data = lam_temp_annual)
+
+# Plot RDA
+plot(lam_temp_annual_RDA, scaling  = 2)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_lam_temp_annual <- round(cor(lam_temp_annual, use = "pair"), 2)
+cor_lam_temp_annual
+
+# Calculate VIF using vegan
+
+vif.cca(lam_temp_annual_RDA)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(lam_temp_annual_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_temp_annual),
+                         scope=formula(lam_temp_annual_RDA), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+lam_temp_annual_pars <- rda(lam_wave_bio ~ Ann_mean_temp + Ann_sd_temp, data = lam_temp_annual)
+lam_temp_annual_pars
+anova.cca(lam_temp_annual_pars, step = 1000)
+anova.cca(lam_temp_annual_pars, step = 1000, by = "axis")
+vif.cca(lam_temp_annual_pars)
+(R2a.pars <- RsquareAdj(lam_temp_annual_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(lam_temp_annual_pars, scaling  = 2)
+
+# Summary
+summary(lam_temp_annual_pars)
+
+## Shallow kelp
+
+
+# Mean morphology per site
+
+eck_shallow <- comp_gather %>%
+  group_by(depth = "shallow") 
+
+??????????????????????
+??????????????????????
+
+# run RDA
+eck_temp_annual_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_annual)
+
+# Plot RDA
+plot(eck_temp_annual_RDA, scaling  = 2)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_eck_temp_annual <- round(cor(eck_temp_annual, use = "pair"), 2)
+cor_eck_temp_annual
+
+# Calculate VIF using vegan
+
+vif.cca(eck_temp_annual_RDA)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(eck_temp_annual_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_temp_annual),
+                         scope=formula(eck_temp_annual_RDA), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+eck_temp_annual_pars <- rda(eck_wave_bio ~ Ann_sd_temp + Ann_min_temp + Ann_max_temp, data = eck_temp_annual)
+eck_temp_annual_pars
+anova.cca(eck_temp_annual_pars, step = 1000)
+anova.cca(eck_temp_annual_pars, step = 1000, by = "axis")
+vif.cca(eck_temp_annual_pars)
+(R2a.pars <- RsquareAdj(eck_temp_annual_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(eck_temp_annual_pars, scaling  = 2)
+
+# Summary
+summary(eck_temp_annual_pars)
 
