@@ -913,7 +913,7 @@ vif.cca(eck_wave_pars)
 # Plot parsimonious RDA
 plot(eck_wave_pars, scaling  = 2)
 
-## Temp
+## Temp: seasonal
 
 # Subset temps for ecklonia sites (for seasons)
 eck_temp_season <- subset(eck_site0, select = c(17:26))
@@ -933,6 +933,9 @@ eck_temp_season <- eck_temp_season %>%
 # run RDA
 eck_temp_season_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_season)
 
+# Plot RDA
+plot(eck_temp_season_RDA, scaling  = 2)
+
 # Use the "cor" function to calculate Pearson correlation between predictors.
 
 cor_eck_temp_season <- round(cor(eck_temp_season, use = "pair"), 2)
@@ -951,11 +954,75 @@ vif.cca(eck_temp_season_RDA)
 step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_temp_season),
                          scope=formula(eck_temp_season_RDA), direction = "forward", pstep = 1000)
 
-# Plot scaling = 2
-plot(eck_temp_season_RDA, scaling = 2)
+# Parsimonious RDA
+
+eck_temp_season_pars <- rda(eck_wave_bio ~ Aug_mean_temp + Feb_mean_temp, data = eck_temp_season)
+eck_temp_season_pars
+anova.cca(eck_temp_season_pars, step = 1000)
+anova.cca(eck_temp_season_pars, step = 1000, by = "axis")
+vif.cca(eck_temp_season_pars)
+(R2a.pars <- RsquareAdj(eck_temp_season_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(eck_temp_season_pars, scaling  = 2)
 
 # Summary
-summary(eck_temp_season_RDA)
+summary(eck_temp_season_pars)
+
+## Temp: Annual
+
+# Subset temps for ecklonia sites (for seasons)
+eck_temp_annual <- subset(eck_site0, select = c(12:16))
+
+# standardise wave measurements
+eck_temp_annual <- eck_temp_annual %>%
+  decostand(method = "standardize")
+
+# Force site names as column 0
+eck_temp_annual <- cbind(eck_site, eck_temp_annual)
+
+eck_temp_annual <- eck_temp_annual %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+# run RDA
+eck_temp_annual_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_annual)
+
+# Plot RDA
+plot(eck_temp_annual_RDA, scaling  = 2)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_eck_temp_annual <- round(cor(eck_temp_annual, use = "pair"), 2)
+cor_eck_temp_annual
+
+# Calculate VIF using vegan
+
+vif.cca(eck_temp_annual_RDA)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(eck_temp_annual_RDA)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_temp_annual),
+                         scope=formula(eck_temp_annual_RDA), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+eck_temp_annual_pars <- rda(eck_wave_bio ~ Ann_sd_temp + Ann_min_temp + Ann_max_temp, data = eck_temp_annual)
+eck_temp_annual_pars
+anova.cca(eck_temp_annual_pars, step = 1000)
+anova.cca(eck_temp_annual_pars, step = 1000, by = "axis")
+vif.cca(eck_temp_annual_pars)
+(R2a.pars <- RsquareAdj(eck_temp_annual_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(eck_temp_annual_pars, scaling  = 2)
+
+# Summary
+summary(eck_temp_annual_pars)
 
 ###### Laminaria
 
