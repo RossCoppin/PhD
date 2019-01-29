@@ -1010,6 +1010,17 @@ plot(eck_temp_annual_pars, scaling  = 2)
 # Summary
 summary(eck_temp_annual_pars)
 
+## RDA including both wave and temp variables for E.maxima
+
+abio_all_eck <- cbind(eck_wave, eck_temp_annual)
+
+# run RDA
+RDA_all_eck <- rda(eck_wave_bio ~ ., data = abio_all_eck)
+
+# Plot RDA
+plot(RDA_all_eck, scaling  = 2)
+
+
 ###### Laminaria
 
 # rename lam_all to lam_site
@@ -1184,6 +1195,16 @@ plot(lam_temp_annual_pars, scaling  = 2)
 # Summary
 summary(lam_temp_annual_pars)
 
+## RDA for both wave and temp variables for L.pallida
+
+abio_all_lam <- cbind(lam_wave, lam_temp_annual)
+
+# run RDA
+RDA_all_lam <- rda(lam_wave_bio ~ ., data = abio_all_lam)
+
+# Plot RDA
+plot(RDA_all_lam, scaling  = 2)
+
 ## Shallow kelp RDA
 
 ## Shallow kelp RDA (Temperature:Annual only)
@@ -1254,7 +1275,7 @@ shallow_bio <- shallow_bio%>%
 
 # run RDA
 shallow_temp_RDA <- rda(shallow_bio ~ ., data = shallow_temp)
-
+summary(shallow_temp_RDA)
 # Plot intial RDA
 plot(shallow_temp_RDA, scaling  = 2)
 
