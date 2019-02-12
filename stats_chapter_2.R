@@ -581,8 +581,7 @@ lam_gather_mean <- subset(lam_gather_mean, !site == "Rocky Bank")
 
 # Order site names by location west to east
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point", "Baboon Rock", 
-                  "Batsata Rock", "Bordjies reef North", "Buffels Bay South", 
-                  "Buffels Bay", "Olifantsbos", "Kommetjie", "Sea Point")
+                  "Batsata Rock", "Buffels Bay", "Olifantsbos", "Kommetjie", "Sea Point")
 
 
 # Plot morphologies
@@ -707,12 +706,8 @@ comp_gather_mean <- comp_gather %>%
 
 # Order site names by location west to east
 
-positionsComp <- c("Kalk Bay", 
-                   "Miller's Point", "Buffels Bay", "Soetwater", "Kommetjie")
-
-# Remove Depth and Rocky Bank site
-eck_gather <- subset(eck_gather, !Morphology == "Depth (m)")
-eck_gather <- subset(eck_gather, !site == "Rocky Bank" | !site == "De Hoop")
+positionsComp <- c("Betty's Bay","Kalk Bay", 
+                   "Miller's Point","A-Frame", "Buffels Bay","Hout Bay", "Soetwater", "Kommetjie")
 
 # Plot morphologies
 
