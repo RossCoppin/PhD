@@ -1005,7 +1005,7 @@ plot(eck_temp_annual_pars, scaling  = 2)
 # Summary
 summary(eck_temp_annual_pars)
 
-## RDA including both wave and temp variables for E.maxima
+### RDA including both wave and temp variables for E.maxima
 
 abio_all_eck <- cbind(eck_wave, eck_temp_annual)
 
@@ -1219,7 +1219,7 @@ plot(lam_temp_annual_pars, scaling  = 2)
 # Summary
 summary(lam_temp_annual_pars)
 
-## RDA for both wave and temp variables for L.pallida
+### RDA for both wave and temp variables for L.pallida
 
 abio_all_lam <- cbind(lam_wave, lam_temp_annual)
 
@@ -1328,7 +1328,7 @@ shallow_bio <- shallow_bio%>%
   column_to_rownames(var = "site")
 
 # run RDA
-shallow_temp_RDA <- rda(shallow_bio ~ ., data = shallow_temp)
+shallow_temp_RDA <- rda(shallow_bio ~ ., data = shallow_abio)
 summary(shallow_temp_RDA)
 # Plot intial RDA
 plot(shallow_temp_RDA, scaling  = 2)
@@ -1397,7 +1397,7 @@ vif.cca(shallow_wave_RDA)
 # Forward selection using vegan's ordistep
 # Note that is function does not use R^2adjusted-based stopping criterion
 
-step.forward <- ordistep(rda(shallow_bio ~ 1, data = shallow_wave),
+step.forward <- ordistep(rda(shallow_bio ~ 1, data = eck_shallow_abio),
                          scope=formula(shallow_wave_RDA), direction = "forward", pstep = 1000)
 
 # Parsimonious RDA
@@ -1414,6 +1414,37 @@ plot(shallow_wave_pars, scaling  = 2)
 
 # Summary
 summary(lam_temp_annual_pars)
+
+### RDA for wave and temperature for shallow E. maxima
+
+shallow_wave_RDA <- rda(shallow_bio ~ ., data = eck_shallow_abio)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_shallow_all <- round(cor(eck_shallow_abio, use = "pair"), 2)
+cor_shallow_all
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(shallow_bio ~ 1, data = eck_shallow_abio),
+                         scope=formula(shallow_wave_RDA), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+shallow_all_pars <- rda(shallow_bio ~ Ann_mean_temp + Ann_sd_temp + Ann_tp_mean + Ann_hs_mean, data = eck_shallow_abio)
+shallow_all_pars
+anova.cca(shallow_all_pars, step = 1000)
+anova.cca(shallow_all_pars, step = 1000, by = "axis")
+vif.cca(shallow_all_pars)
+(R2a.pars <- RsquareAdj(shallow_all_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(shallow_all_pars, scaling  = 1)
+
+# Summary
+summary(shallow_all_pars)
+
 
 
 
