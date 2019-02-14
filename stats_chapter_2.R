@@ -1015,6 +1015,35 @@ RDA_all_eck <- rda(eck_wave_bio ~ ., data = abio_all_eck)
 # Plot RDA
 plot(RDA_all_eck, scaling  = 2)
 
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_eck_all <- round(cor(abio_all_eck, use = "pair"), 2)
+cor_eck_all
+
+# Calculate "Variance Inflation Factor" using vegan
+
+vif.cca(RDA_all_eck)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(RDA_all_eck)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = abio_all_eck),
+                         scope=formula(RDA_all_eck), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+eck_all_pars <- rda(eck_wave_bio ~ Ann_spw_mean + Ann_tp_mean + Ann_tp_sd + Ann_min_temp + Ann_sd_temp, data = abio_all_eck)
+eck_all_pars
+anova.cca(eck_all_pars, step = 1000)
+anova.cca(eck_all_pars, step = 1000, by = "axis")
+vif.cca(eck_all_pars)
+(R2a.pars <- RsquareAdj(eck_all_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(eck_all_pars, scaling  = 2)
 
 ###### Laminaria
 
@@ -1199,6 +1228,36 @@ RDA_all_lam <- rda(lam_wave_bio ~ ., data = abio_all_lam)
 
 # Plot RDA
 plot(RDA_all_lam, scaling  = 2)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_lam_all <- round(cor(abio_all_lam, use = "pair"), 2)
+cor_lam_all
+
+# Calculate VIF using vegan
+
+vif.cca(RDA_all_lam)
+
+# Global adjusted R^2
+(R2a.all <- RsquareAdj(RDA_all_lam)$adj.r.squared) 
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = abio_all_lam),
+                         scope=formula(RDA_all_lam), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+lam_all_pars <- rda(lam_wave_bio ~ Ann_max_temp + Ann_tp_mean + Ann_tp_sd + Ann_dir_median, data = abio_all_lam)
+lam_all_pars
+anova.cca(lam_all_pars, step = 1000)
+anova.cca(lam_all_pars, step = 1000, by = "axis")
+vif.cca(lam_all_pars)
+(R2a.pars <- RsquareAdj(lam_all_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(lam_all_pars, scaling  = 2)
 
 ## Shallow kelp RDA
 
