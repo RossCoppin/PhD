@@ -707,7 +707,7 @@ comp_gather_mean <- comp_gather %>%
 # Order site names by location west to east
 
 positionsComp <- c("Betty's Bay","Kalk Bay", 
-                   "Miller's Point","A-Frame", "Buffels Bay","Hout Bay", "Soetwater", "Kommetjie")
+                   "Miller's Point","A-Frame", "Buffelsbaai","Hout Bay", "Soetwater", "Kommetjie")
 
 # Plot morphologies
 
@@ -818,8 +818,8 @@ ggpairs(data = feb_abio_cor, columns = 2:14,
   ggtitle("February")
 
 #### Redundancy analyses 
-#### USing RDA's to see how wave parameters and temperature parameters
-#### influence the morphology of kelp species
+### RDA including wave, temp and wind variables 
+## Deep E. maxima populations
 
 # rename eck_all to eck-site0
 
@@ -828,224 +828,151 @@ eck_site0 <- eck_all
 # Subset site names
 eck_site <- subset(eck_site0, select = c(1))
 
-# Subset wave for ecklonia sites (Annual only)
-eck_wave <- subset(eck_site0, select = c(27:32, 45, 46))
-
-# standardise wave measurements
-eck_wave <- eck_wave %>%
-  decostand(method = "standardize")
+# remove De Hoop
+eck_bio_deep <- eck_mean[-6,]
 
 # subset ecklonia morpho's
-eck_wave_bio <- subset(eck_site0, select = c(2:11))
+eck_bio_deep <- subset(eck_bio_deep, select = c(2:11))
 
 # standardise measurements
-eck_wave_bio <- eck_wave_bio %>%
+eck_bio_deep <- eck_bio_deep %>%
   decostand(method = "standardize")
 
-# Force site names as column 0
-eck_wave <- cbind(eck_site, eck_wave)
+# merge site names list with abiotic data set to align datasets
 
-eck_wave <- eck_wave %>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
+eck_abio_deep_site <- merge(combine, eck_site, by = "site")
 
-eck_wave_bio <- cbind(eck_site, eck_wave_bio)
+# subset abiotic variables
 
-eck_wave_bio <- eck_wave_bio%>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
+eck_abio_deep <- subset(eck_abio_deep_site, select = c(2:40))
 
-# run RDA
-eck_wave_RDA <- rda(eck_wave_bio ~ ., data = eck_wave)
-
-# Plot scaling = 2
-plot(eck_wave_RDA, scaling  = 2)
-
-# Summary
-summary(eck_wave_RDA)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_eck_wave <- round(cor(eck_wave, use = "pair"), 2)
-cor_eck_wave
-
-# Calculate "Variance Inflation Factor" using vegan
-
-vif.cca(eck_wave_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(eck_wave_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_wave),
-                         scope=formula(eck_wave_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-eck_wave_pars <- rda(eck_wave_bio ~ Ann_tp_sd + Ann_tp_mean + Ann_dirw_median, data = eck_wave)
-eck_wave_pars
-anova.cca(eck_wave_pars, step = 1000)
-anova.cca(eck_wave_pars, step = 1000, by = "axis")
-vif.cca(eck_wave_pars)
-(R2a.pars <- RsquareAdj(eck_wave_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(eck_wave_pars, scaling  = 2)
-
-## Temp: seasonal
-
-# Subset temps for ecklonia sites (for seasons)
-eck_temp_season <- subset(eck_site0, select = c(17:26))
-
-
-# standardise wave measurements
-eck_temp_season <- eck_temp_season %>%
+# standardise measurements
+eck_abio_deep <- eck_abio_deep %>%
   decostand(method = "standardize")
 
-# Force site names as column 0
-eck_temp_season <- cbind(eck_site, eck_temp_season)
+eck_bio_deep <- cbind(eck_bio_deep, eck_site)
 
-eck_temp_season <- eck_temp_season %>%
+eck_bio_deep <- eck_bio_deep %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+eck_abio_deep <- cbind(eck_abio_deep, eck_site)
+
+eck_abio_deep <- eck_abio_deep %>%
   remove_rownames %>%
   column_to_rownames(var = "site")
 
 # run RDA
-eck_temp_season_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_season)
 
-# Plot RDA
-plot(eck_temp_season_RDA, scaling  = 2)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_eck_temp_season <- round(cor(eck_temp_season, use = "pair"), 2)
-cor_eck_temp_season
-
-# Calculate VIF using vegan
-
-vif.cca(eck_temp_season_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(eck_temp_season_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_temp_season),
-                         scope=formula(eck_temp_season_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-eck_temp_season_pars <- rda(eck_wave_bio ~ Aug_mean_temp + Feb_mean_temp, data = eck_temp_season)
-eck_temp_season_pars
-anova.cca(eck_temp_season_pars, step = 1000)
-anova.cca(eck_temp_season_pars, step = 1000, by = "axis")
-vif.cca(eck_temp_season_pars)
-(R2a.pars <- RsquareAdj(eck_temp_season_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(eck_temp_season_pars, scaling  = 2)
-
-# Summary
-summary(eck_temp_season_pars)
-
-## Temp: Annual
-
-# Subset temps for ecklonia sites (for seasons)
-eck_temp_annual <- subset(eck_site0, select = c(12:16))
-
-# standardise wave measurements
-eck_temp_annual <- eck_temp_annual %>%
-  decostand(method = "standardize")
-
-# Force site names as column 0
-eck_temp_annual <- cbind(eck_site, eck_temp_annual)
-
-eck_temp_annual <- eck_temp_annual %>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
-
-# run RDA
-eck_temp_annual_RDA <- rda(eck_wave_bio ~ ., data = eck_temp_annual)
-
-# Plot RDA
-plot(eck_temp_annual_RDA, scaling  = 2)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_eck_temp_annual <- round(cor(eck_temp_annual, use = "pair"), 2)
-cor_eck_temp_annual
-
-# Calculate VIF using vegan
-
-vif.cca(eck_temp_annual_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(eck_temp_annual_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = eck_temp_annual),
-                         scope=formula(eck_temp_annual_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-eck_temp_annual_pars <- rda(eck_wave_bio ~ Ann_sd_temp + Ann_min_temp + Ann_max_temp, data = eck_temp_annual)
-eck_temp_annual_pars
-anova.cca(eck_temp_annual_pars, step = 1000)
-anova.cca(eck_temp_annual_pars, step = 1000, by = "axis")
-vif.cca(eck_temp_annual_pars)
-(R2a.pars <- RsquareAdj(eck_temp_annual_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(eck_temp_annual_pars, scaling  = 2)
-
-# Summary
-summary(eck_temp_annual_pars)
-
-### RDA including both wave and temp variables for E.maxima
-
-abio_all_eck <- cbind(eck_wave, eck_temp_annual)
-
-# run RDA
-RDA_all_eck <- rda(eck_wave_bio ~ ., data = abio_all_eck)
+RDA_all_eck <- rda(eck_bio_deep ~ ., data = eck_abio_deep)
 
 # Plot RDA
 plot(RDA_all_eck, scaling  = 2)
+summary(RDA_all_eck)
 
 # Use the "cor" function to calculate Pearson correlation between predictors.
 
-cor_eck_all <- round(cor(abio_all_eck, use = "pair"), 2)
-cor_eck_all
-
-# Calculate "Variance Inflation Factor" using vegan
-
-vif.cca(RDA_all_eck)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(RDA_all_eck)$adj.r.squared) 
+cor_eck_abio <- round(cor(eck_abio_deep, use = "pair"), 2)
+cor_eck_abio
 
 # Forward selection using vegan's ordistep
 # Note that is function does not use R^2adjusted-based stopping criterion
 
-step.forward <- ordistep(rda(eck_wave_bio ~ 1, data = abio_all_eck),
+step.forward <- ordistep(rda(eck_bio_deep ~ 1, data = eck_abio_deep),
                          scope=formula(RDA_all_eck), direction = "forward", pstep = 1000)
 
 # Parsimonious RDA
 
-eck_all_pars <- rda(eck_wave_bio ~ Ann_spw_mean + Ann_tp_mean + Ann_tp_sd + Ann_min_temp + Ann_sd_temp, data = abio_all_eck)
-eck_all_pars
-anova.cca(eck_all_pars, step = 1000)
-anova.cca(eck_all_pars, step = 1000, by = "axis")
-vif.cca(eck_all_pars)
-(R2a.pars <- RsquareAdj(eck_all_pars)$adj.r.squared)
+eck_rda_pars <- rda(eck_bio_deep ~ Feb_tp_sd + Feb_hs_mean + Aug_hs_mean + Ann_tp_sd + Aug_min_temp + Aug_dirw_median + Feb_dirw_median + Ann_tp_mean, data = eck_abio_deep)
+eck_rda_pars
+anova.cca(eck_rda_pars, step = 1000)
+anova.cca(eck_rda_pars, step = 1000, by = "axis")
+vif.cca(eck_rda_pars)
+(R2a.pars <- RsquareAdj(eck_rda_pars)$adj.r.squared)
 
 # Plot parsimonious RDA
-plot(eck_all_pars, scaling  = 2)
 
-###### Laminaria
+plot(eck_rda_pars, scaling  = 1, main = "RDA biotic_deep ~ abiotic_deep - scaling 1")
+summary(eck_rda_pars)
+
+## Shallow E. maxima populations
+
+eck_all_shallow <- comp_df %>% 
+  filter(depth == "shallow")
+
+# remove unnecessary columns
+
+eck_shallow <- subset(eck_all_shallow, select = -c(2))
+
+## First create mean vlaues from each site for shallow ecklonia
+
+eck_shallow_mean <- eck_shallow %>% 
+  select(site, frond_mass:total_length) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean(., na.rm = F)))  
+
+## Merge the biotic and abiotic variables
+# Ecklonia
+
+eck_all_shallow <- eck_shallow_mean %>% 
+  left_join(combine, by = "site") %>%
+  na.omit()
+
+eck_all_shallow_site0 <- eck_all_shallow 
+
+eck_all_shallow_site <- subset(eck_all_shallow_site0, select = c(1))
+
+eck_shallow_bio <- eck_shallow_mean %>% 
+  select(frond_mass:total_length) %>% 
+  decostand(method = "standardize")
+
+eck_shallow_abio <- eck_all_shallow %>% 
+  select(Ann_max_temp:Feb_dir_median) %>% 
+  decostand(method = "standardize")
+
+eck_shallow_bio <- cbind(eck_shallow_bio, eck_all_shallow_site)
+
+eck_shallow_bio <- eck_shallow_bio %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+eck_shallow_abio <- cbind(eck_shallow_abio, eck_all_shallow_site)
+
+eck_shallow_abio <- eck_shallow_abio %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+shallow_eck_RDA <- rda(eck_shallow_bio ~ ., data = eck_shallow_abio)
+plot(shallow_eck_RDA, scaling = 2)
+summary(shallow_eck_RDA)
+
+# Use the "cor" function to calculate Pearson correlation between predictors.
+
+cor_shallow_all <- round(cor(eck_shallow_abio, use = "pair"), 2)
+cor_shallow_all
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(eck_shallow_bio ~ 1, data = eck_shallow_abio),
+                         scope=formula(shallow_eck_RDA), direction = "forward", pstep = 1000)
+
+# Parsimonious RDA
+
+eck_shallow_rda_pars <- rda(eck_shallow_bio ~ Aug_mean_temp + Ann_max_temp + Ann_hs_mean + Ann_tp_mean + Ann_hs_sd, data = eck_shallow_abio)
+eck_shallow_rda_pars
+anova.cca(eck_shallow_rda_pars, step = 1000)
+anova.cca(eck_shallow_rda_pars, step = 1000, by = "axis")
+vif.cca(eck_shallow_rda_pars)
+(R2a.pars <- RsquareAdj(eck_shallow_rda_pars)$adj.r.squared)
+
+# Plot parsimonious RDA
+plot(eck_shallow_rda_pars, scaling  = 1)
+
+# Summary
+summary(shallow_all_pars)
+
+### RDA for wave, temp and wind variables for L.pallida
 
 # rename lam_all to lam_site
 
@@ -1054,8 +981,8 @@ lam_site0 <- lam_all
 # Subset site names
 lam_site <- subset(lam_site0, select = c(1))
 
-# Subset wave for Lam sites (Annual only)
-lam_wave <- subset(lam_site0, select = c(26:31, 44, 45))
+# Subset abiotic data for Lam sites 
+lam_wave <- subset(lam_site0, select = c(11:49))
 
 # standardise wave measurements
 lam_wave <- lam_wave %>%
@@ -1108,7 +1035,7 @@ step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_wave),
 
 # Parsimonious RDA
 
-lam_wave_pars <- rda(lam_wave_bio ~ Ann_hs_mean + Ann_spw_mean + Ann_tp_mean, data = lam_wave)
+lam_wave_pars <- rda(lam_wave_bio ~ Ann_hs_mean + Ann_tp_mean + Ann_mean_temp + Ann_tp_sd + Feb_max_temp + Ann_sd_temp, data = lam_wave)
 lam_wave_pars
 anova.cca(lam_wave_pars, step = 1000)
 anova.cca(lam_wave_pars, step = 1000, by = "axis")
@@ -1120,331 +1047,3 @@ plot(lam_wave_pars, scaling  = 2)
 
 # Summary
 summary(lam_wave_RDA)
-
-## Temp
-
-# Subset temps for Lam sites (seasons)
-lam_temp_season <- subset(lam_site0, select = c(16:25))
-
-# standardise wave measurements
-lam_temp_season <- lam_temp_season %>%
-  decostand(method = "standardize")
-
-# Force site names as column 0
-lam_temp_season <- cbind(lam_site, lam_temp_season)
-
-lam_temp_season <- lam_temp_season %>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
-
-# run RDA
-lam_temp_season_RDA <- rda(lam_wave_bio ~ ., data = lam_temp_season)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_lam_temp_season <- round(cor(lam_temp_season, use = "pair"), 2)
-cor_lam_temp_season
-
-# Calculate VIF using vegan
-
-vif.cca(lam_temp_season_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(lam_temp_season_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_temp_season),
-                         scope=formula(lam_temp_season_RDA), direction = "forward", pstep = 1000)
-
-# Plot scaling = 2
-plot(lam_temp_season_RDA, scaling = 2)
-
-# Summary
-summary(lam_temp_season_RDA)
-
-## Temp: Annual
-
-# Subset temps for ecklonia sites (for seasons)
-lam_temp_annual <- subset(lam_site0, select = c(11:15))
-
-# standardise temp measurements
-lam_temp_annual <- lam_temp_annual %>%
-  decostand(method = "standardize")
-
-# Force site names as column 0
-lam_temp_annual <- cbind(lam_site, lam_temp_annual)
-
-lam_temp_annual <- lam_temp_annual %>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
-
-# run RDA
-lam_temp_annual_RDA <- rda(lam_wave_bio ~ ., data = lam_temp_annual)
-
-# Plot RDA
-plot(lam_temp_annual_RDA, scaling  = 2)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_lam_temp_annual <- round(cor(lam_temp_annual, use = "pair"), 2)
-cor_lam_temp_annual
-
-# Calculate VIF using vegan
-
-vif.cca(lam_temp_annual_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(lam_temp_annual_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_temp_annual),
-                         scope=formula(lam_temp_annual_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-lam_temp_annual_pars <- rda(lam_wave_bio ~ Ann_mean_temp + Ann_sd_temp, data = lam_temp_annual)
-lam_temp_annual_pars
-anova.cca(lam_temp_annual_pars, step = 1000)
-anova.cca(lam_temp_annual_pars, step = 1000, by = "axis")
-vif.cca(lam_temp_annual_pars)
-(R2a.pars <- RsquareAdj(lam_temp_annual_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(lam_temp_annual_pars, scaling  = 2)
-
-# Summary
-summary(lam_temp_annual_pars)
-
-### RDA for both wave and temp variables for L.pallida
-
-abio_all_lam <- cbind(lam_wave, lam_temp_annual)
-
-# run RDA
-RDA_all_lam <- rda(lam_wave_bio ~ ., data = abio_all_lam)
-
-# Plot RDA
-plot(RDA_all_lam, scaling  = 2)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_lam_all <- round(cor(abio_all_lam, use = "pair"), 2)
-cor_lam_all
-
-# Calculate VIF using vegan
-
-vif.cca(RDA_all_lam)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(RDA_all_lam)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = abio_all_lam),
-                         scope=formula(RDA_all_lam), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-lam_all_pars <- rda(lam_wave_bio ~ Ann_max_temp + Ann_tp_mean + Ann_tp_sd + Ann_dir_median, data = abio_all_lam)
-lam_all_pars
-anova.cca(lam_all_pars, step = 1000)
-anova.cca(lam_all_pars, step = 1000, by = "axis")
-vif.cca(lam_all_pars)
-(R2a.pars <- RsquareAdj(lam_all_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(lam_all_pars, scaling  = 2)
-
-## Shallow kelp RDA
-
-## Shallow kelp RDA (Temperature:Annual only)
-# Select out shallow kelp
-
-eck_all_shallow <- comp_df %>% 
-  filter(depth == "shallow")
-
-# remove unnecessary columns
-
-eck_shallow <- subset(eck_all_shallow, select = -c(2))
-
-## First create mean vlaues from each site for shallow ecklonia
-
-eck_shallow_mean <- eck_shallow %>% 
-  select(site, frond_mass:total_length) %>% 
-  group_by(site) %>% 
-  summarise_all(funs(mean(., na.rm = F)))
-
-## Merge the biotic and abiotic variables
-# Ecklonia
-eck_all_shallow <- eck_shallow_mean %>% 
-  left_join(temp_clim, by = "site") %>%
-  left_join(wave_clim, by = "site") %>% # With wave data
-  na.omit()
-eck_shallow_bio <- eck_all_shallow %>% 
-  select(frond_mass:total_length) %>% 
-  decostand(method = "standardize")
-eck_shallow_abio <- eck_all_shallow %>% 
-  # select(Ann_mean_temp:Feb_sd_temp) %>% # Without wave data
-  select(Ann_mean_temp:Feb_tp_sd) %>% # With wave data
-  decostand(method = "standardize")
-
-# rename eck_shallow to shallow_site0
-
-shallow_site0 <- eck_all_shallow
-
-# Subset site names
-eck_shallow_site <- subset(shallow_site0, select = c(1))
-
-# subset annual temp data
-shallow_temp <- subset(shallow_site0, select = c(12:15))
-
-# standardise temp measurements
-shallow_temp <- shallow_temp %>%
-  decostand(method = "standardize")
-
-# subset ecklonia morpho's
-
-shallow_bio <- subset(shallow_site0, select = c(2:11))
-
-# standardise measurements
-shallow_bio <- shallow_bio %>%
-  decostand(method = "standardize")
-
-# Force site names as column 0
-shallow_temp <- cbind(eck_shallow_site, shallow_temp)
-
-shallow_temp <- shallow_temp %>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
-
-shallow_bio <- cbind(eck_shallow_site, shallow_bio)
-
-shallow_bio <- shallow_bio%>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
-
-# run RDA
-shallow_temp_RDA <- rda(shallow_bio ~ ., data = shallow_abio)
-summary(shallow_temp_RDA)
-# Plot intial RDA
-plot(shallow_temp_RDA, scaling  = 2)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_shallow_temp_annual <- round(cor(shallow_temp, use = "pair"), 2)
-cor_shallow_temp_annual
-
-# Calculate VIF using vegan
-
-vif.cca(shallow_temp_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(shallow_temp_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(shallow_bio ~ 1, data = shallow_temp),
-                         scope=formula(shallow_temp_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-shallow_temp_pars <- rda(shallow_bio ~ Ann_range_temp + Ann_mean_temp, data = shallow_temp)
-shallow_temp_pars
-anova.cca(shallow_temp_pars, step = 1000)
-anova.cca(shallow_temp_pars, step = 1000, by = "axis")
-vif.cca(shallow_temp_pars)
-(R2a.pars <- RsquareAdj(shallow_temp_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(shallow_temp_pars, scaling  = 2)
-
-# Summary
-summary(shallow_temp_pars)
-
-## Shallow RDA (Waves)
-
-# subset waves data
-shallow_wave <- subset(shallow_site0, select = c(27:32, 45, 46))
-
-# Force site names as column 0
-shallow_wave <- cbind(eck_shallow_site, shallow_wave)
-
-shallow_wave <- shallow_wave %>%
-  remove_rownames %>%
-  column_to_rownames(var = "site")
-
-# run RDA
-shallow_wave_RDA <- rda(shallow_bio ~ ., data = shallow_wave)
-
-# Plot RDA
-plot(shallow_wave_RDA, scaling  = 2)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_shallow_wave <- round(cor(shallow_wave, use = "pair"), 2)
-cor_shallow_wave
-
-vif.cca(shallow_wave_RDA)
-
-# Global adjusted R^2
-(R2a.all <- RsquareAdj(lam_temp_annual_RDA)$adj.r.squared) 
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(shallow_bio ~ 1, data = eck_shallow_abio),
-                         scope=formula(shallow_wave_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-shallow_wave_pars <- rda(shallow_bio ~ Ann_hs_mean  + Ann_hs_sd, data = shallow_wave)
-shallow_wave_pars
-anova.cca(shallow_wave_pars, step = 1000)
-anova.cca(shallow_wave_pars, step = 1000, by = "axis")
-vif.cca(shallow_wave_pars)
-(R2a.pars <- RsquareAdj(shallow_wave_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(shallow_wave_pars, scaling  = 2)
-
-# Summary
-summary(lam_temp_annual_pars)
-
-### RDA for wave and temperature for shallow E. maxima
-
-shallow_wave_RDA <- rda(shallow_bio ~ ., data = eck_shallow_abio)
-
-# Use the "cor" function to calculate Pearson correlation between predictors.
-
-cor_shallow_all <- round(cor(eck_shallow_abio, use = "pair"), 2)
-cor_shallow_all
-
-# Forward selection using vegan's ordistep
-# Note that is function does not use R^2adjusted-based stopping criterion
-
-step.forward <- ordistep(rda(shallow_bio ~ 1, data = eck_shallow_abio),
-                         scope=formula(shallow_wave_RDA), direction = "forward", pstep = 1000)
-
-# Parsimonious RDA
-
-shallow_all_pars <- rda(shallow_bio ~ Ann_mean_temp + Ann_sd_temp + Ann_tp_mean + Ann_hs_mean, data = eck_shallow_abio)
-shallow_all_pars
-anova.cca(shallow_all_pars, step = 1000)
-anova.cca(shallow_all_pars, step = 1000, by = "axis")
-vif.cca(shallow_all_pars)
-(R2a.pars <- RsquareAdj(shallow_all_pars)$adj.r.squared)
-
-# Plot parsimonious RDA
-plot(shallow_all_pars, scaling  = 1)
-
-# Summary
-summary(shallow_all_pars)
-
-
-
-
