@@ -959,7 +959,7 @@ step.forward <- ordistep(rda(eck_shallow_bio ~ 1, data = eck_shallow_abio),
 
 # Parsimonious RDA
 
-eck_shallow_rda_pars <- rda(eck_shallow_bio ~ Aug_mean_temp + Ann_max_temp + Ann_hs_mean + Ann_tp_mean + Ann_hs_sd, data = eck_shallow_abio)
+eck_shallow_rda_pars <- rda(eck_shallow_bio ~ Aug_mean_temp + Ann_max_temp + Ann_hs_mean + Ann_tp_mean + Ann_hs_sd + Ann_tp_sd, data = eck_shallow_abio)
 eck_shallow_rda_pars
 anova.cca(eck_shallow_rda_pars, step = 1000)
 anova.cca(eck_shallow_rda_pars, step = 1000, by = "axis")
