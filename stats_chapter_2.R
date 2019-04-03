@@ -581,19 +581,23 @@ lam_gather_mean <- subset(lam_gather_mean, !site == "Rocky Bank")
 
 # Order site names by location west to east
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point", "Baboon Rock", 
-                  "Batsata Rock", "Buffels Bay", "Olifantsbos", "Kommetjie", "Sea Point")
+                  "Batsata Rock", "Buffels Bay"," Buffels Bay South","Bordjies North","Olifantsbos", "Kommetjie", "Sea Point")
 
 
 # Plot morphologies
-ggplot(data = lam_gather, aes(x = site, y = Measurement)) +
-  geom_boxplot() +
+lam_plot <- ggplot(data = lam_gather, aes(x = site, y = Measurement)) +
+  geom_boxplot(notch = TRUE) +
   facet_wrap(~Morphology, scales = "free_x", strip.position = "bottom") +
   coord_flip() + 
   scale_x_discrete(limits = positionsLam) + 
   theme(strip.background = element_blank(), strip.placement = "outside", text = element_text(size = 4.5)) +
   theme_bw() +
   xlab("Site") +
-  ylab("Morphology measurement")
+  ylab("Morphology measurement") + 
+  stat_compare_means()
+
+ggsave("lam_morph.png", plot = lam_plot, path = "figures/", dpi = 300, width = 4, height = 4, limitsize = TRUE, scale = 2)
+
 
 # Ecklonia morphologies
 
@@ -652,8 +656,8 @@ eck_gather <- subset(eck_gather, !Morphology == "Depth (m)")
 eck_gather <- subset(eck_gather, !site == "Rocky Bank" | !site == "De Hoop")
 
 # Plot morphologies
-ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
-  geom_boxplot() +
+eck_plot <- ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
+  geom_boxplot(notch = TRUE) +
   facet_wrap(~Morphology, scales = "free_x", strip.position = "bottom", ncol = 5) +
   coord_flip() + 
   scale_x_discrete(limits = positionsEck) +
@@ -661,6 +665,14 @@ ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
   theme_bw() +
   xlab("Site") +
   ylab("Morphology measurement")
+
+ggsave("eck_morph.png", plot = eck_plot, path = "figures/", dpi = 300, width = 4, height = 4, limitsize = TRUE, scale = 2)
+
+combined_morph <- ggarrange(lam_plot, eck_plot, 
+          labels = c("A", "B"),
+          ncol = 1, nrow = 2, align = "hv")
+
+ggsave("combined_morph.png", plot = combined_morph, path = "figures/", dpi = 300, width = 4, height = 6, limitsize = TRUE, scale = 2)
 
 # Deep and shallow morphology comparisons
 
@@ -712,7 +724,7 @@ positionsComp <- c("Betty's Bay","Kalk Bay",
 # Plot morphologies
 
 ggplot(data = comp_gather, aes(x = site, y = Measurement, fill = depth)) +
-  geom_boxplot() +
+  geom_boxplot(notch = TRUE) +
   facet_wrap(~Morphology, scales = "free_x", strip.position = "bottom", ncol = 5) +
   coord_flip() + 
   scale_x_discrete(limits = positionsComp) +
@@ -720,6 +732,9 @@ ggplot(data = comp_gather, aes(x = site, y = Measurement, fill = depth)) +
   xlab("Site") +
   ylab("Morphology measurement") + 
   theme_bw()
+
+ggsave("comp_morph.png", plot = last_plot(), path = "figures/", dpi = 300, width = 5, height = 4, limitsize = TRUE, scale = 2)
+
 
 ### Abiotic correlations
 # merge all abiotic data
@@ -1047,3 +1062,19 @@ plot(lam_wave_pars, scaling  = 2)
 
 # Summary
 summary(lam_wave_RDA)
+
+
+# Plotting rda's together
+
+
+par(mfrow=c(2,2))
+plot(lam_wave_pars, scaling  = 2)
+plot(eck_shallow_rda_pars, scaling  = 1)
+plot(eck_rda_pars, scaling  = 1)
+
+
+
+
+
+
+
