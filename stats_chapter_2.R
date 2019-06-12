@@ -30,6 +30,10 @@ east_down_site <- subset(kelp_sites, site == "Batsata Rock" | site == "Bordjies 
                          | site == "Buffelsbaai" | site == "Betty's Bay")
 
 # plot map
+
+cape_town_df <- data.frame(lat=c(-33.9249), # making seperate data frame to inlcude Cape Town 
+                lon=c(18.4241))
+
 ggplot(data = kelp_sites_map, aes(x = lon, y = lat)) +
   geom_polygon(data = south_africa_coast, aes(group = group), fill = "grey70") +
   geom_path(data = sa_provinces, aes(group = group)) +
@@ -42,10 +46,13 @@ ggplot(data = kelp_sites_map, aes(x = lon, y = lat)) +
   geom_label_repel(data = east_up_site, aes(x = lon, y = lat, label = site), 
                    size = 3, box.padding = 0.5, nudge_x = 0.5, nudge_y = 0.3, segment.alpha = 0.4) +
   geom_label_repel(data = east_down_site, aes(x = lon, y = lat, label = site), 
-                   size = 3, box.padding = 0.5, nudge_x = 0.35, nudge_y = -0.15, segment.alpha = 0.4) +
-  theme(axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_blank())
+                   size = 3, box.padding = 0.5, nudge_x = 0.35, nudge_y = -0.15, segment.alpha = 0.4) + 
+  geom_point(data = cape_town_df, aes(x = lon, y = lat), color = "red", size = 2) + 
+  xlab("") + 
+  ylab("")
+
+ggsave("sa_map.png", plot = last_plot(), path = "figures/", dpi = 300, width = 3, height = 3, limitsize = TRUE, scale = 2)
+
 
 ## Create morphology table
 
@@ -57,7 +64,7 @@ colnames(morph) <- c("Morphometric", "Unit measurement")
 morph_eck <- morph[(1:10), ]
 morph_lam <- morph[(11:19), ]
 
-t1 <- kable(morph_eck, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Ecklonia maxima _. Units for each morphometric are included.")
+t1 <- kable(morph_eck, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Ecklonia maxima _. Units for each morphometric are included.") bg
 
 t2 <- kable(morph_lam, row.names = FALSE, caption = "A list of morphology measurements that were collected to investigate how environmental drivers may influence the morphology of _Laminaria pallida_. Units for each morphometric are included.")
 
@@ -105,6 +112,7 @@ temps <- SACTNmonthly_v4.1 %>%
 ## Temperature analyses
 # Up next we need to calculate the relevant temperature statistics for each site. These are: #mean, range, and sd, for Annual, February, and August climatologies.
 # Monthly clims
+
 temp_feb_aug <- temps %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
   group_by(site, date) %>% 
@@ -177,7 +185,7 @@ wave_sites <- read_csv("metadata/sites_complete.csv") %>%
 # Monthly clims
 wave_feb_aug <- wave_model %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
-  filter(site != "FB25") %>% # FB_25 has issues with 'hs' and 'tp'
+  filter(site != "FB025") %>% # FB_25 has issues with 'hs' and 'tp'
   group_by(site, date) %>% 
   summarise_all(funs(mean = mean, sd = sd), na.rm = T) %>%
   filter(date %in% c("Feb", "Aug")) %>% 
@@ -186,7 +194,7 @@ wave_feb_aug <- wave_model %>%
 # Annual clims
 wave_ann <- wave_model %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
-  filter(site != "FB25") %>% # FB_25 has issues with 'hs' and 'tp'
+  filter(site != "FB025") %>% # FB_25 has issues with 'hs' and 'tp'
   group_by(site, date) %>% 
   summarise_all(funs(mean = mean, sd = sd), na.rm = T) %>%
   ungroup() %>% 
@@ -592,8 +600,8 @@ lam_plot <- ggplot(data = lam_gather, aes(x = site, y = Measurement)) +
   scale_x_discrete(limits = positionsLam) + 
   theme(strip.background = element_blank(), strip.placement = "outside", text = element_text(size = 4.5)) +
   theme_bw() +
-  xlab("Site") +
-  ylab("Morphology measurement") + 
+  xlab("") +
+  ylab("") + 
   stat_compare_means()
 
 ggsave("lam_morph.png", plot = lam_plot, path = "figures/", dpi = 300, width = 4, height = 4, limitsize = TRUE, scale = 2)
@@ -663,7 +671,7 @@ eck_plot <- ggplot(data = eck_gather, aes(x = site, y = Measurement)) +
   scale_x_discrete(limits = positionsEck) +
   theme(strip.background = element_blank(), strip.placement = "outside", text = element_text(size = 4.5)) +
   theme_bw() +
-  xlab("Site") +
+  xlab("") +
   ylab("Morphology measurement")
 
 ggsave("eck_morph.png", plot = eck_plot, path = "figures/", dpi = 300, width = 4, height = 4, limitsize = TRUE, scale = 2)
@@ -672,7 +680,7 @@ combined_morph <- ggarrange(lam_plot, eck_plot,
           labels = c("A", "B"),
           ncol = 1, nrow = 2, align = "hv")
 
-ggsave("combined_morph.png", plot = combined_morph, path = "figures/", dpi = 300, width = 4, height = 6, limitsize = TRUE, scale = 2)
+ggsave("combined_morph.png", plot = combined_morph, path = "figures/", dpi = 300, width = 4.5, height = 6, limitsize = TRUE, scale = 2)
 
 # Deep and shallow morphology comparisons
 
@@ -731,9 +739,12 @@ ggplot(data = comp_gather, aes(x = site, y = Measurement, fill = depth)) +
   theme(strip.background = element_blank(), strip.placement = "outside", text = element_text(size   = 4.5)) +
   xlab("Site") +
   ylab("Morphology measurement") + 
+  scale_fill_discrete(name="Depth Category",
+                      breaks=c("deep", "shallow"),
+                      labels=c("Deep", "Shallow")) +
   theme_bw()
 
-ggsave("comp_morph.png", plot = last_plot(), path = "figures/", dpi = 300, width = 5, height = 4, limitsize = TRUE, scale = 2)
+ggsave("comp_morph.png", plot = last_plot(), path = "figures/", dpi = 300, width = 6, height = 5, limitsize = TRUE, scale = 2)
 
 
 ### Abiotic correlations
@@ -907,7 +918,7 @@ vif.cca(eck_rda_pars)
 
 # Plot parsimonious RDA
 
-plot(eck_rda_pars, scaling  = 1, main = "RDA biotic_deep ~ abiotic_deep - scaling 1")
+plot(eck_rda_pars, scaling  = 1, main = "B")
 summary(eck_rda_pars)
 
 ## Shallow E. maxima populations
@@ -958,7 +969,7 @@ eck_shallow_abio <- eck_shallow_abio %>%
   column_to_rownames(var = "site")
 
 shallow_eck_RDA <- rda(eck_shallow_bio ~ ., data = eck_shallow_abio)
-plot(shallow_eck_RDA, scaling = 2)
+plot(shallow_eck_RDA, scaling = 1)
 summary(shallow_eck_RDA)
 
 # Use the "cor" function to calculate Pearson correlation between predictors.
@@ -974,7 +985,7 @@ step.forward <- ordistep(rda(eck_shallow_bio ~ 1, data = eck_shallow_abio),
 
 # Parsimonious RDA
 
-eck_shallow_rda_pars <- rda(eck_shallow_bio ~ Aug_mean_temp + Ann_max_temp + Ann_hs_mean + Ann_tp_mean + Ann_hs_sd + Ann_tp_sd, data = eck_shallow_abio)
+eck_shallow_rda_pars <- rda(eck_shallow_bio ~ Aug_mean_temp + Feb_max_temp + Feb_hs_mean, data = eck_shallow_abio)
 eck_shallow_rda_pars
 anova.cca(eck_shallow_rda_pars, step = 1000)
 anova.cca(eck_shallow_rda_pars, step = 1000, by = "axis")
@@ -982,10 +993,10 @@ vif.cca(eck_shallow_rda_pars)
 (R2a.pars <- RsquareAdj(eck_shallow_rda_pars)$adj.r.squared)
 
 # Plot parsimonious RDA
-plot(eck_shallow_rda_pars, scaling  = 1)
+plot(eck_shallow_rda_pars, scaling  = 1, main = "C")
 
 # Summary
-summary(shallow_all_pars)
+summary(eck_shallow_rda_pars)
 
 ### RDA for wave, temp and wind variables for L.pallida
 
@@ -1050,7 +1061,9 @@ step.forward <- ordistep(rda(lam_wave_bio ~ 1, data = lam_wave),
 
 # Parsimonious RDA
 
-lam_wave_pars <- rda(lam_wave_bio ~ Ann_hs_mean + Ann_tp_mean + Ann_mean_temp + Ann_tp_sd + Feb_max_temp + Ann_sd_temp, data = lam_wave)
+# Parsimonious RDA
+
+lam_wave_pars <- rda(lam_wave_bio ~ Feb_mean_temp + Aug_tp_sd + Feb_tp_sd + Ann_dir_median, data = lam_wave)
 lam_wave_pars
 anova.cca(lam_wave_pars, step = 1000)
 anova.cca(lam_wave_pars, step = 1000, by = "axis")
@@ -1058,20 +1071,18 @@ vif.cca(lam_wave_pars)
 (R2a.pars <- RsquareAdj(lam_wave_pars)$adj.r.squared)
 
 # Plot parsimonious RDA
-plot(lam_wave_pars, scaling  = 2)
-
-# Summary
-summary(lam_wave_RDA)
+plot(lam_wave_pars, scaling  = 1, main = "A")
+summary(lam_wave_pars)
 
 
 # Plotting rda's together
 
 
-par(mfrow=c(2,2))
-plot(lam_wave_pars, scaling  = 2)
-plot(eck_shallow_rda_pars, scaling  = 1)
-plot(eck_rda_pars, scaling  = 1)
+par(mfrow=c(2,2) + 0.2)
 
+plot(lam_wave_pars, scaling  = 2)
+plot(eck_rda_pars, scaling  = 1)
+plot(eck_shallow_rda_pars, scaling  = 1)
 
 
 
