@@ -11,10 +11,13 @@ temp_plot_A <- ggplot(data = temp_ann, aes(x = site, y = mean_temp)) +
   geom_errorbar(aes(x = site, ymin = mean_temp - sd_temp, ymax = mean_temp + sd_temp)) + 
   geom_point(data = temp_ann, aes(x = site, y = max_temp, colour = "blue")) + 
   geom_point(data = temp_ann, aes(x = site, y = min_temp, colour = "pink")) + 
-  xlab("") + 
+  xlab("Annual") + 
   ylab("") + 
+  ggtitle("Temperature (\u00B0C)") +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme(legend.position = "none") + 
   coord_flip() 
+
 # Annual temperature range
 temp_plot_B <- ggplot(data = temp_ann, aes(x = site, y = range_temp)) +
   theme_bw() + 
@@ -24,6 +27,8 @@ temp_plot_B <- ggplot(data = temp_ann, aes(x = site, y = range_temp)) +
   geom_point() + 
   xlab("") + 
   ylab("") + 
+  ggtitle("Temperature range (\u00B0C)") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
   coord_flip()
 
 # Summer summary temp
@@ -35,7 +40,7 @@ temp_plot_C <- ggplot(data = temp_clim, aes(x = site, y = Feb_mean_temp)) +
   geom_errorbar(aes(x = site, ymin = Feb_mean_temp - Feb_sd_temp, ymax = Feb_mean_temp + Feb_sd_temp   )) + 
   geom_point(data = temp_clim, aes(x = site, y = Feb_max_temp, colour = "blue")) + 
   geom_point(data = temp_clim, aes(x = site, y = Feb_min_temp, colour = "pink")) + 
-  xlab("Sites") + 
+  xlab("Summer") + 
   ylab("") + 
   theme(legend.position = "none") + 
   coord_flip() 
@@ -60,8 +65,8 @@ temp_plot_E <- ggplot(data = temp_clim, aes(x = site, y = Aug_mean_temp)) +
   geom_errorbar(aes(x = site, ymin = Aug_mean_temp - Aug_sd_temp, ymax = Aug_mean_temp + Aug_sd_temp   )) + 
   geom_point(data = temp_clim, aes(x = site, y = Aug_max_temp, colour = "blue")) + 
   geom_point(data = temp_clim, aes(x = site, y = Aug_min_temp, colour = "pink")) + 
-  xlab("") + 
-  ylab("Temperature (\u00B0C)") + 
+  xlab("Winter") + 
+  ylab("") + 
   theme(legend.position = "none") + 
   coord_flip() 
 
@@ -73,12 +78,12 @@ temp_plot_F <- ggplot(data = temp_clim, aes(x = site, y = Aug_range_temp)) +
   theme(axis.text.x = element_text(angle = 90, hjust = , vjust = 0.5)) +
   geom_point() + 
   xlab("") + 
-  ylab("Temperature range (\u00B0C)") + 
+  ylab("") + 
   coord_flip()
 
 temp_plot_all <- grid.arrange(temp_plot_A, temp_plot_B,temp_plot_C,temp_plot_D,temp_plot_E,temp_plot_F, ncol = 2, nrow = 3)
 
-ggsave("temperature_plot.png", plot = temp_plot_all, path = "figures/", dpi = 300, width = 4, height = 4, limitsize = TRUE, scale = 2)
+ggsave("temperature_plot.png", plot = temp_plot_all, path = "figures/", dpi = 300, width = 5, height = 5, limitsize = TRUE, scale = 2)
 
 ### Plots for wave variables
 #Annual wave plots

@@ -222,8 +222,6 @@ dirs_feb_aug <- dirs %>%
   filter(date %in% c("Feb", "Aug")) %>% 
   ungroup()
 
-
-
 # Annual
 dirs_ann <- dirs %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
