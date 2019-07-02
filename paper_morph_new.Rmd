@@ -1,0 +1,446 @@
+---
+title: Temperature, wave exposure and wind as drivers of morphology in two kelp species
+  along the coast of South Africa
+author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres (Steneck et al. 2002). Their size and complex morphology provide a heterogeneous habitat structure (Steneck et al. 2002) that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck et al. 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & Roughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson 2003; Anderson et al. 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013), abundance (Cavanaugh et al. 2011; Dayton et al. 1998), diversity (Wing et al. 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton et al. 1998; Krumhansl & Scheibling 2012) of kelps. 
+
+Wave exposure and temperature have also been shown to be the main drivers of morphological adaptation across various kelp species. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility (Denny & Gaylord 2002). For example, a study by (Wernberg & Thomsen 2005)) examined the consistency of wave exposure as a driver of *Ecklonia radiata* (C. Agardh) J. Agardh across a broad geographic range, and  showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. The morphological adaptation to wave exposure must be kept in balance with other important processes, such as nutrient assimilation and light absorption, which are dependent on the amount of surface area of the blades. Therefore, there is a trade-off between reducing overall drag and maintaining nutrient and photosynthetic ability. Temperature has also been shown to play a role in driving kelp morphology. For example, a study by (Serisawa et al. 2002) compared the morphology of Ecklonia cava Kjellman growing in warm temperate and cool temperate morphologies. The results showed that wrinkles in the blade seem to be a characteristic of warm temperate regions. However this study did not take into account the interaction with other environmental variables such as wave exposure, which also affect kelp morphology. The morphological adapatibility of kelps is driven by a combination of environmental factors that in turn do not act independently of one another. A study by (Wernberg et al. 2003) investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales (Wernberg et al. 2003). Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Wave exposure may be greater in shallower environments, or it may be reduced through damping effects of kelp further offshore and natural barriers such as rock outcrops; also, seawater temperature may be higher in shallow water environments due to higher solar irradiance. Wind has also been shown to play a role in influencing stipe length. A study by (Denny et al. 1997) used a combination of field and laboratory tests to model the drag properties on the canopy kelp *Nereocystis luetkeana* (K. Mertens) Postels & Ruprecht. The results from the model suggest that wind may play a role in the extension capabilities of the stipe under certain wave/wind conditions. Furthermore, wind generates surface-gravity waves under certain conditions, and may influence the overall wave climate at a specific location in-time (Holthuijsen 2010). 
+
+Comparatively little research has been done on other species of kelp, such as *Laminaria pallida* and *Ecklonia maxima* (Osbeck) Papenfuss  which are important habitat forming seaweeds that exist around the coast of South Africa. Although both these species exist in the subtidal, *L. pallida* dominates deeper waters while *E. maxima* forms dense surface canopies in the shallower waters. Therefore, *E. maxima* is exposed to variations in waved, swell and temperature, while *L. pallida* is exposed to variations in waves and temperature. (Molloy & Bolton 1996) investigated the effect of depth and wave exposure on *L. pallida* at different depths and wave exposure and  showed that depth had a greater effect than wave exposure when considering all the morphological characteristics; when considering individual characteristics, however, wave exposure had the most significant effect on blade thickness. Another study by (Rothman et al. 2017) investigated the changes in morphology in shallow populations of *L. pallida* and *E. maxima* along the South African coastline and into Namibia; *E. maxima* exhibited no morphological changes along the coast but the stipes of *L. pallida* become increasingly hollow further north along the coastline. They suggested that turbidity was the environmental driver responsible for this change. Research using advanced numerical tools is lacking. Previous research investigating drivers of kelp morphological characteristics used qualitative estimates of wave exposure and did not consider other morphological characteristics. Furthermore, only shallow populations have been considered in previous research which ignores the effects of wave damping. No work currently exists where other morphological characters have been considered, quantitative estimates of environmental drivers have been calculated, and the addition of wind as a possible driver of morphological characteristics has been considered. 
+
+The aim of this study is, therefore, to understand how temperature, wave exposure and wind can influence the morphology in two species of kelps around South Africa. This will be achieved by initially understanding the variation in temperature and waves and the consequences for morphological characteristics of *E. maxima* and *L. pallida*. 
+
+## Methods
+### Site selection
+
+Sites were chosen to represent an array of environmental gradients, as indicated in Fig. 1. St. Helena Bay and Betty?s Bay constituted the north western and south eastern boundary sites, respectively. 
+
+These sites are roughly 300 km apart, and lie within separate marine provinces[3] and cover a cline in wave exposure and temperature. Study sites  span across the majority of the south-west coast, in varying thermal and wave energy regimes. The region is dominated by kelp communities that persist in contrasting abiotic environments. The west coast region has been termed as ?cool temperate? region, which is defined as a region where mean monthly temperatures are always above 10?C and always below 15?C (Smit et al. 2013). East of Cape Point marks the beginning of an overlap or transition area, which is also referred to as the Benguela-Agulhas Transition Zone (Smit et al. 2013). The Agulhas Marine Province is characterised by a wide temperature range of up to 7?C difference between mean monthly temperatures between summer and winter (Smit et al. 2013). Due to the Cape Peninsula temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean (Reason et al. 2006). These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter (Veitch et al. 2018). The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay (Shipley 1964). Conversely, the west coast of Cape Point is battered by these large swells. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity. 
+
+The topography and elevation along the Cape Peninsula channel and shield winds along False Bay. This is however absent in winter, where strong northerly winds are prevalent from St. Helena Bay to Betty?s Bay (Field et al. 1980; Jury et al. 1985; Andrews & Hutchings 1980; Jury 1980). Patterns are also evident in the wave data. Seasonal variations in significant wave height (Hs), wave period and wave direction are also present. The direction of the dominant swell changes to the south west in winter, generated by strong low pressures that originate from the southern ocean (Reason et al. 2006), which False Bay is sheltered from (Shipley 1964; Atkins 1970; Dufois & Rouault 2012). In summer, these swells rotate anticlockwise and are able to enter False Bay, providing an increased variability of Hs and Tp in this region. It should be noted that what is classified as sheltered around the South African coastline (a high energy coastline) might be classified as exposed in other regions of the world (Norderhaug et al. 2012; Leliaert et al. 2000). It is due to the near consistent south-westerly swell and the complex orography around the peninsula that the wave energy distribution around the Cape Peninsula varies significantly over a small geographical area.
+
+## Study species
+
+The morphological characteristics of both species are presented in Fig. 2. *Laminaria pallida* is characterised by a single smooth blade which is divided longitudinally into sections, and develops from a single meristematic region located at the junction between the blade and the stipe (Dyer 2018). This species has a solid stipe but develops a hollow stipe along the west coast northward and into Namibia (Rothman et al. 2017). *Ecklonia maxima* consists of a single primary blade which develops above a gas-filled float and a hollow stipe below. Secondary blades are produced laterally from the primary blade from several meristematic regions along the margins of the primary blade, known as digits (Dyer 2018). Both species are held to the substrate by finger-like haptera, collectively known as the holdfast. 
+
+## Abiotic variables
+
+In order to compare abiotic variables for sites around the coast, large historical databases for temperature, wave energy and wind were accessed. Shallow water temperatures were sourced from The South African Coastal Temperature Network (SACTN) website (https://github.com/ajsmit/SACTN). In terms of nearshore temperature, in situ data are preferred over satellite SST, which have shown to exhibit large biases (Smit et al. 2013). Linear interpolated SST were calculated for sites where in situ recorders were absent. Wave model variable data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs (DEA) and produced by the Council for Scientific and Industrial Research (CSIR) (Rautenbach 2015). The South African wave climate was modeled via 20 spectral numerical wave models that simulated the offshore wave climate to the nearshore. The boundary conditions of these models were obtained by using the NOAA Wave Watch III (WWIII) model output, distributed via the National Centers for Environmental Prediction (NCEP) product (Office of the Director 2000; Environmental Modeling Center / Marine Modeling Branch 2005). The particular hindcast product utilised during the DEA-CSIR study spans 1994-2013 at a 3-hour resolution. These data were then used to model swell propagation into the coastal models while wind waves (seas) were generated via stationary computations in the Simulating Waves in the Nearshore SWAN model (Booij et al. 1997). The assumption of stationary computations are acceptable as the model domains were small enough so the temporal variation of the model boundary were slower than the time it takes for that boundary condition to propagate to the coast.  SWAN allows one to extract wave variables from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled and output produced at both the 7 meter and 15 meter isobaths. A 200 meter resolution was used as the False Bay computational grid was nested within a larger grid (1 kilometer resolution). This allowed for a computational effective wave resolution of increasing resolution, from the NCEP, low resolution output to nested, high resolution coastal output. For Table Bay and east of Cape Hangklip the resolution was 500 meters and also had output at the 7 meters and 15 meter isobaths. These contour outputs were chosen in the original study by the CSIR as most engineering run-up calculations require wave parameter information at these contour depths and were the main focus of the original study. For this study the 7 meter contours were used. Site-specific summary statistics were calculated for each of the environmental variables considered in this study. The summary statistics calculated for temperature, waves and wind variables were minimum, maximum, mean, range and standard deviation for annual, February[6] (Austral summer) and August (Austral winter) timescales, respectively. In addition, annual and seasonal median wave and wind direction were also calculated; all summary data and their respective abbreviation are presented in Table 3. The median was calculated for wind and wave direction, as issues arise when calculating the mean and standard deviation for compass metrics. Dot and whisker plots were used to present the summary statistics for both temperature and wave variables. Summary statistics for wind was not plotted and instead are discussed, as the data was course relative to the other environmental variables considered in this study.  
+
+## Results
+### Temperature variables
+
+```{r echo=FALSE}
+
+## Data wrangling and preparation
+
+library(tidyverse)
+library(ggpubr)
+library(gridExtra)
+
+## Preparing data
+# Complete lon/lats
+kelp_sites <- read_csv("metadata/sites_complete.csv")
+
+# Ecklonia
+eck_data <- read_csv("data/Ecklonia_morphometrics.csv") %>%
+  mutate(site = replace(site, site == "Buffels Bay", "Buffelsbaai")) %>%
+  mutate(site = replace(site, site == "St. Helena Bay", "St Helena Bay")) %>%
+  # Not using Rocky Bank in this study
+  filter(site != "Rocky Bank")
+
+# Laminaria
+lam_data <- read_csv("data/Laminaria_morphometrics.csv") %>%
+  mutate(site = replace(site, site == "Buffels Bay", "Buffelsbaai")) %>%
+  # NB: Even though I am changing the name, there will still be no lon/lat values for this site
+  # We need to decide how we want to handle this. Give it the same lon/lat as Buffelsbaai?
+  mutate(site = replace(site, site == "Buffels Bay South", "Buffelsbaai South")) %>%
+  # NB: This may also not be an appropriate change
+  mutate(site = replace(site, site == "Bordjies reef North", "Bordjies Deep")) %>%
+  # Not using Rocky Bank in this study
+  filter(site != "Rocky Bank")
+
+# NB: (RWS) I have removed Roman Rock as this has less than a year of temperature data
+
+# The SACTN monthly data
+load("data/SACTNmonthly_v4.1.Rdata")
+
+# The missing site temperatures
+load("data/interp_sites.Rdata")
+
+# The patched Roman Rock temperatures
+load("data/rr_patch.Rdata")
+
+## Subset temperatures for collection sites
+temps <- SACTNmonthly_v4.1 %>% 
+  filter(site %in% eck_data$site | site %in% lam_data$site) %>% 
+  select(site, date, temp) %>% 
+  rbind(., interp_sites) %>% 
+  filter(site!= "Roman Rock") %>% 
+  rbind(., rr_patch)
+
+## Temperature analyses
+# Up next we need to calculate the relevant temperature statistics for each site. These are: #mean, range, and sd, for Annual, February, and August climatologies.
+# Monthly clims
+
+temp_feb_aug <- temps %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(mean_temp = mean(temp, na.rm = T),
+            min_temp = min(temp, na.rm = T),
+            max_temp = max(temp, na.rm = T),
+            range_temp = range(temp, na.rm = T)[2]-range(temp, na.rm = T)[1],
+            sd_temp = sd(temp, na.rm = T)) %>%
+  filter(date %in% c("Feb", "Aug")) %>% 
+  ungroup()
+
+# Annual clims
+temp_ann <- temps %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(mean_temp = mean(temp, na.rm = T),
+            min_temp = min(temp, na.rm = T),
+            max_temp = max(temp, na.rm = T),
+            range_temp = range(temp, na.rm = T)[2]-range(temp, na.rm = T)[1],
+            sd_temp = sd(temp, na.rm = T)) %>% 
+  ungroup() %>% 
+  select(-date) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean(., na.rm = T))) %>% 
+  mutate(date = "Ann") %>% 
+  select(site, date, everything())
+
+# Combine
+temp_clim <- rbind(temp_feb_aug, temp_ann) %>% 
+  group_by(site) %>% 
+  gather(key = statistic, value = value, 
+         mean_temp:sd_temp) %>% 
+  mutate(clim_stat = paste(date, statistic, sep = "_")) %>% 
+  select(-date, -statistic) %>% 
+  spread(key = clim_stat, value = value)
+
+```
+
+```{r}
+
+### Plots for temperature variables 
+
+positions_temp <- c("Betty's Bay", "Roman Rock","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock",  "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Olifantsbos","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","Sea Point","De Hoop", "St Helena Bay")
+
+# Annual temp
+temp_plot_A <- ggplot(data = temp_ann, aes(x = site, y = mean_temp)) +
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  ylim(8, 22) + 
+  geom_errorbar(aes(x = site, ymin = mean_temp - sd_temp, ymax = mean_temp + sd_temp)) + 
+  geom_point(data = temp_ann, aes(x = site, y = max_temp, colour = "blue")) + 
+  geom_point(data = temp_ann, aes(x = site, y = min_temp, colour = "pink")) + 
+  xlab("") + 
+  ylab("") + 
+  ggtitle("A") +
+  theme(plot.title = element_text(hjust = 0)) +
+  theme(legend.position = "none") + 
+  coord_flip() 
+
+# Summer temp
+temp_plot_B <- ggplot(data = temp_clim, aes(x = site, y = Feb_mean_temp)) +
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  ylim(8, 22) +
+  geom_errorbar(aes(x = site, ymin = Feb_mean_temp - Feb_sd_temp, ymax = Feb_mean_temp + Feb_sd_temp   )) + 
+  geom_point(data = temp_clim, aes(x = site, y = Feb_max_temp, colour = "blue")) + 
+  geom_point(data = temp_clim, aes(x = site, y = Feb_min_temp, colour = "pink")) + 
+  xlab("") + 
+  ylab("") + 
+  ggtitle("B") +
+  theme(legend.position = "none") + 
+  coord_flip() 
+
+# Winter temp
+temp_plot_C <- ggplot(data = temp_clim, aes(x = site, y = Aug_mean_temp)) +
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  ylim(8, 22) + 
+  geom_errorbar(aes(x = site, ymin = Aug_mean_temp - Aug_sd_temp, ymax = Aug_mean_temp + Aug_sd_temp   )) + 
+  geom_point(data = temp_clim, aes(x = site, y = Aug_max_temp, colour = "blue")) + 
+  geom_point(data = temp_clim, aes(x = site, y = Aug_min_temp, colour = "pink")) + 
+  xlab("") + 
+  ylab("") + 
+  ggtitle("C") +
+  theme(legend.position = "none") + 
+  coord_flip() 
+
+```
+
+```{r Temperature plot, echo=FALSE, fig.width = 7, fig.height = 9}
+
+temp_plot_all <- grid.arrange(temp_plot_A, temp_plot_B,temp_plot_C, ncol = 1, nrow = 3 )
+
+ggsave("temperature_plot.png", plot = temp_plot_all, path = "figures/", dpi = 300, width = 5, height = 5, limitsize = TRUE, scale = 2)
+
+```
+
+### Wave variables
+
+```{r echo=FALSE}
+
+## Data wrangling and preparation
+
+# Wave data 
+
+# Load the loading functions
+source("func/load.wave.R")
+
+# Then load the data
+fb_model <- load.model("data/wave_data/FB")
+tb_model <- load.model("data/wave_data/TB")
+he_model <- load.model("data/wave_data/HE")
+sh_model <- load.model("data/wave_data/SH")
+
+# Combine
+wave_model <- rbind(fb_model, tb_model, he_model, sh_model)
+rm(fb_model, tb_model)
+
+# The site list key
+wave_sites <- read_csv("metadata/sites_complete.csv") %>% 
+  select(site, wave_7, wave_15)
+
+# Calculate the necessary stats
+# Monthly clims
+wave_feb_aug <- wave_model %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  filter(site != "FB025") %>% # FB_25 has issues with 'hs' and 'tp'
+  group_by(site, date) %>% 
+  summarise_all(funs(mean = mean, sd = sd), na.rm = T) %>%
+  filter(date %in% c("Feb", "Aug")) %>% 
+  ungroup()
+
+# Annual clims
+wave_ann <- wave_model %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  filter(site != "FB025") %>% # FB_25 has issues with 'hs' and 'tp'
+  group_by(site, date) %>% 
+  summarise_all(funs(mean = mean, sd = sd), na.rm = T) %>%
+  ungroup() %>% 
+  select(-date) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean), na.rm = T) %>% 
+  mutate(date = "Ann") %>% 
+  select(site, date, everything())
+
+# Subset directions out
+dirs <- subset(wave_model, select = c(1, 2, 5, 6))
+
+# Seasons
+dirs_feb_aug <- dirs %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(dir_min = min(dir, na.rm = T),
+            dir_max = max(dir, na.rm = T),
+            dir_range = range(dir, na.rm = T)[2]-range(dir, na.rm = T)[1],
+            dir_median = median(dir, na.rm = T), 
+            dirw_min = min(dirw, na.rm = T),
+            dirw_max = max(dirw, na.rm = T),
+            dirw_range = range(dirw, na.rm = T)[2]-range(dirw, na.rm = T)[1],
+            dirw_median = median(dirw, na.rm = T)) %>%
+  filter(date %in% c("Feb", "Aug")) %>% 
+  ungroup()
+
+# Annual
+dirs_ann <- dirs %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(dir_min = min(dir, na.rm = T),
+            dir_max = max(dir, na.rm = T),
+            dir_range = range(dir, na.rm = T)[2]-range(dir, na.rm = T)[1],
+            dir_median = median(dir, na.rm = T), 
+            dirw_min = min(dirw, na.rm = T),
+            dirw_max = max(dirw, na.rm = T),
+            dirw_range = range(dirw, na.rm = T)[2]-range(dirw, na.rm = T)[1],
+            dirw_median = median(dirw, na.rm = T)) %>% 
+  ungroup() %>% 
+  select(-date) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean(., na.rm = T))) %>% 
+  mutate(date = "Ann") %>% 
+  select(site, date, everything())
+
+# subset useless columns
+dirs_feb_aug <- subset(dirs_feb_aug, select = c(1, 2, 6, 10))
+dirs_ann <- subset(dirs_ann, select = c(1, 2, 6, 10))
+
+
+# combine all direction metrics
+dirs_clim <- rbind(dirs_feb_aug, dirs_ann) %>% 
+  group_by(site) %>% 
+  gather(key = statistic, value = value, 
+         3:4) %>% 
+  mutate(clim_stat = paste(date, statistic, sep = "_")) %>% 
+  select(-date, -statistic) %>% 
+  spread(key = clim_stat, value = value) %>% 
+  left_join(wave_sites, by = c("site" = "wave_7")) %>% 
+  ungroup() %>% 
+  select(-site, wave_15) %>%
+  rename(site = site.y) %>% 
+  select(site, everything()) %>% 
+  na.omit()
+
+# Combine
+# NB: This only uses the wave data from the 7 metre contour
+wave_clim <- rbind(wave_feb_aug, wave_ann) %>% 
+  group_by(site) %>% 
+  gather(key = statistic, value = value, 
+         hs_mean:spw_sd) %>% 
+  mutate(clim_stat = paste(date, statistic, sep = "_")) %>% 
+  select(-date, -statistic) %>% 
+  spread(key = clim_stat, value = value) %>% 
+  left_join(wave_sites, by = c("site" = "wave_7")) %>% 
+  ungroup() %>% 
+  select(-site, wave_15) %>%
+  rename(site = site.y) %>% 
+  select(site, everything()) %>% 
+  na.omit()
+
+# combine all wave metrics
+wave_clim <- cbind(wave_clim, dirs_clim)
+
+# remove all useless direction metrics from original wave_clim
+wave_clim <- subset(wave_clim, select = -c(2,3,4,5,12,13,14,15,22,23,24,25,32,33,40))
+
+```
+
+```{r}
+
+### Plots for wave variables
+#Annual wave plots
+
+wave_plot_A <- ggplot(data = wave_clim, aes(x = site, y = Ann_hs_mean)) +
+  theme_bw() + 
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
+  geom_errorbar(aes(x = site, ymin = Ann_hs_mean - Ann_hs_sd, ymax = Ann_hs_mean + Ann_hs_sd)) + 
+  xlab("") + 
+  ylab("") + 
+  theme(legend.position = "none") + 
+  ggtitle("") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  coord_flip()  
+
+wave_plot_B <- ggplot(data = wave_clim, aes(x = site, y = Ann_tp_mean)) +
+  theme_bw() + 
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
+  geom_errorbar(aes(x = site, ymin = Ann_tp_mean - Ann_tp_sd, ymax = Ann_tp_mean + Ann_tp_sd)) + 
+  xlab("") + 
+  ylab("") + 
+  theme(legend.position = "none") + 
+  ggtitle("") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+#Summer wave plots
+wave_plot_C <- ggplot(data = wave_clim, aes(x = site, y = Feb_hs_mean)) +
+  theme_bw() + 
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
+  geom_errorbar(aes(x = site, ymin = Feb_hs_mean - Feb_hs_sd, ymax = Feb_hs_mean + Feb_hs_sd)) + 
+  xlab("") + 
+  ylab("") + 
+  theme(legend.position = "none") + 
+  coord_flip() 
+
+wave_plot_D <- ggplot(data = wave_clim, aes(x = site, y = Feb_tp_mean)) +
+  theme_bw() + 
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
+  geom_errorbar(aes(x = site, ymin = Feb_tp_mean - Feb_tp_sd, ymax = Feb_tp_mean + Feb_tp_sd)) + 
+  xlab("") + 
+  ylab("") + 
+  theme(legend.position = "none") + 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+# Winter summary temp
+wave_plot_E <- ggplot(data = wave_clim, aes(x = site, y = Aug_hs_mean)) +
+  theme_bw() + 
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
+  geom_errorbar(aes(x = site, ymin = Aug_hs_mean - Aug_hs_sd, ymax = Aug_hs_mean + Aug_hs_sd)) + 
+  xlab("") + 
+  ylab("") + 
+  theme(legend.position = "none") + 
+  coord_flip() 
+
+# Winter temperature range
+wave_plot_F <- ggplot(data = wave_clim, aes(x = site, y = Aug_tp_mean)) +
+  theme_bw() + 
+  geom_point() + 
+  scale_x_discrete(limits = positions_temp) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
+  geom_errorbar(aes(x = site, ymin = Aug_tp_mean - Aug_tp_sd, ymax = Aug_tp_mean + Aug_tp_sd)) + 
+  xlab("") + 
+  ylab("") + 
+  theme(legend.position = "none") + 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+```
+
+
+```{r echo=FALSE, fig.height= 8, fig.width= 8}
+
+wave_plot_all <- grid.arrange(wave_plot_A, wave_plot_B, wave_plot_C, wave_plot_D, wave_plot_E, wave_plot_F, ncol = 2, nrow = 3)
+
+ggsave("wave_plot.png", plot = wave_plot_all, path = "figures/", dpi = 300, width = 6, height = 6, limitsize = TRUE, scale = 2)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
