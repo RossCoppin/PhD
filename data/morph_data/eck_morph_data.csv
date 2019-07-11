@@ -1,0 +1,344 @@
+;Date;Country;Population;Site;Depth (m);Individual;Fertile;Frond Mass (kg);Primary Length (cm);Primary Width (cm);Frond Length (cm);Stipe Mass (kg);Stipe Length (cm);Stipe Circumference (cm);Tufts;Epiphyte Length;Total Length (cm)
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;1;NA;2.25;17;11;170;5.25;531;17;10;380;701
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;2;NA;1.6;12;7.5;126;5.25;482;14;7;359;608
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;3;NA;1.75;15;9;137;5;455;15;8;258;592
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;4;NA;1.3;25;13;144;5.25;509;20;10;387;653
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;5;NA;2.75;22;21;144;5;574;30;8;500;718
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;6;NA;1.3;17;8;160;4.25;439;15;8;NA;599
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;7;NA;5.2;25;22;192;7.25;493;25;9;391;685
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;8;NA;2.25;19;10;174;4;386;17;9;65;560
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;9;NA;2.75;14;10;196;5.7;549;18;8;202;745
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;10;NA;2.5;NA;16;173;6.2;480;22;NA;420;653
+RPP;2015/03/25;South Africa;Deep;Miller's Point;6;11;NA;2.25;19;13;200;6;523;18;NA;292;723
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;1;NA;6.51;26;16;190;6.5;494;27;10;380;684
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;2;NA;1.6;17;16;155;5.75;429;21;8;372;584
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;3;NA;2.75;19;12;147;6.5;455;17.5;11;NA;602
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;4;NA;0.25;13;6;66;3.5;375;13;7;249;441
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;5;NA;7.5;16;17;228;6.25;645;19;8;639;873
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;6;NA;4.75;22;12;192;5;557;26;8;442;749
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;7;NA;3;21;15;144;5.75;448;21;9;367;592
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;8;NA;3.5;23;13;180;6;501;21;10;404;681
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;9;NA;2.25;15.5;7;130;4.78;416;15;7;319;546
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;10;NA;3;20;12;151;5.75;457;18;9;328;608
+RPP;2015/03/25;South Africa;Deep;Baboon Rock;5.5;11;NA;3.5;17;10.5;160;6.25;460;19;6;359;620
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;1;NA;6.25;17;24;239;7.6;715;30;12;410;954
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;2;NA;4.3;19;11;238;7.6;752;23;8;430;990
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;3;NA;5.75;21;12;205;8.55;735;27;8;512;940
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;4;NA;3;15;10;203;6.75;680;19;11;315;883
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;5;NA;1.8;13;8;225;6;680;15;9;455;905
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;6;NA;4.125;20;15;175;7;788;28;9;495;963
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;7;NA;2.75;18;13;180;5.8;745;20;8;270;925
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;8;NA;2.75;14;24;190;6.25;750;34;8;460;940
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;9;NA;NA;16;10;180;6.6;755;16;10;430;935
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;10;NA;5.25;21;19;239;9.5;742;40;9;555;981
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;11;NA;2.3;16;8;200;6.25;649;17;13;374;849
+AJS;2015/03/31;South Africa;Deep;Betty's Bay;8;12;NA;5.75;17;24;236;8.8;805;29;15;725;1041
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;1;yes;5.25;19;14;145;6;490;25.5;9;399;635
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;2;yes;2.6;15;12;132;5.2;377;19;8;276;509
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;3;no;0.8;14;7;76;4.3;284;15.5;7;220;360
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;4;no;1.3;11;7;84;5;391;16;6;265;475
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;5;no;0.7;11.5;7.5;88;4.5;341;16.5;6;275;429
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;6;yes;3.35;15;19;146;4.5;286;34;5;259;432
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;7;no;3.25;14;13.5;165;4.25;281;24;7;228;446
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;8;yes;2.5;16;12;152;6.4;486;20.5;6;442;638
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;9;no;1.4;8;8;94;4.5;305;15.5;4;227;399
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;10;yes;0.55;17;8;52;4.05;323;14.5;8;224;375
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;11;no;1.5;15;9;117;1.25;322;19;9;305;439
+AJS;2015/04/09;South Africa;Deep;Kalk Bay;6;12;yes;3.9;14;13;148;7.25;461;23;6;402;609
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;1;yes;3;18;15;116;5.25;456;23.5;6;332;572
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;2;yes;2.5;17;20;141;8.75;477;27;6;381;618
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;3;yes;2.25;16;10;144;4.05;427;17.5;7;357;571
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;4;yes;2.25;20;12;127;4.5;347;22.5;5;320;474
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;5;yes;3.25;15;11;160;4.25;470;17;5;384;630
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;6;yes;2.25;18.5;10.5;181;5;478;17.5;4;394;659
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;7;yes;4.78;14;13;174;5.05;472;24;6;409;646
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;8;no;1;19;13;95;5.5;459;25.5;8;392;554
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;9;yes;0.75;17;7;87;2.75;397;14.5;4;369;484
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;10;yes;3;22.5;20;127;6.5;541;25.5;6;508;668
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;11;yes;5;18;16;118;6.35;507;30;6;482;625
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;12;yes;3;16;13.5;151;4.5;463;22;8;384;614
+RPP;2015/04/10;South Africa;Deep;A-Frame;5.5;13;no;1.1;16;8;121;2.5;271;14;10;177;392
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;1;yes;10;28;17;181;7.35;720;33;7;575;901
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;2;yes;9.85;18;22.5;194;8.5;600;36;8;450;794
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;3;yes;5;14;8.8;160;6.51;720;24.5;6;373;880
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;4;yes;7.5;21;18;229;6.65;395;29;6;620;624
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;5;yes;4.8;29;18;220;6.75;669;34;10;575;889
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;6;yes;7.2;19;22;243;6.85;684;30;8;544;927
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;7;yes;6.5;5;16;242;7.5;668;32.5;8;534;910
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;8;yes;9;17;7;129;3.05;356;14.5;8;229;485
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;9;yes;6.1;16;9.5;219;5.35;631;17;8;351;850
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;10;yes;4.23;17;10.5;250;4.65;669;19;8;474;919
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;11;yes;6.4;19;12.5;198;5.55;746;28.5;7;675;944
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;12;yes;5.5;20;14.5;235;5.35;655;32.5;8;536;890
+RPP;2015/04/10;South Africa;Deep;Batsata Rock;6;13;yes;5.75;16;9.5;215;5.45;536;17.5;7;770;751
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;1;yes;6.25;24;15;205;13.75;1291;27;8;1244;1496
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;2;yes;2.2;19;7;190;9.8;974;17;6;180;1164
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;3;yes;3.9;16;11;220;13.05;1170;23;9;700;1390
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;4;yes;3.4;16;12;294;12.75;1397;24;9;0;1691
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;5;yes;2.25;15;8;183;9.6;1152;15;9;750;1335
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;6;yes;17.8;23;11;254;16.2;1190;18;10;1105;1444
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;7;yes;3.38;17;8;215;9;1210;13;9;1152;1425
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;8;yes;6;20;15;180;12.5;1190;28;9;428;1370
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;9;yes;6.7;12;7;140;15.25;1010;14;8;916;1150
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;10;yes;2.6;20;10;157;8.5;830;17;11;697;987
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;11;yes;1.5;14;9;308;8.3;1050;28;8;0;1358
+AJS;2015/05/01;South Africa;Deep;Rocky Bank;13;12;yes;5.9;16;11;242;12.25;1050;22;6;0;1292
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;1;yes;0.75;14;8;82;5.8;634;19;7;0;716
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;2;yes;2.25;13;8;142;4.2;59;17;8;0;201
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;3;yes;3.9;17;9;160;6.3;618;18;7;0;778
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;4;yes;1.5;13;7;103;5.75;540;14;8;0;643
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;5;yes;2.75;16;8;117;5.3;607;18;8;0;724
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;6;yes;2.05;21;9;165;4.25;574;13;8;157;739
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;7;yes;1.625;19;9;138;5.25;59;17;11;31;197
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;8;yes;3.75;17;8;170;5.5;676;15;8;0;846
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;9;yes;2.25;20;9;165;5.4;623;20;11;87;788
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;10;yes;2;21;9;125;5.6;662;15;11;90;787
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;11;yes;2.65;20;9;123;4.25;565;15;9;14;688
+AJS;2015/05/01;South Africa;Deep;Buffelsbaai;6;12;yes;2.25;10;6;152;5.75;524;15;7;70;676
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;1;NA;2.15;27;20;115;4.4;279;31;5;229;394
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;2;NA;3.3;16;13;150;2.7;310;21;6;78;460
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;3;NA;4.9;14;11;220;2.2;294;20;5;118;514
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;4;NA;1.45;15;15;85;4.6;330;24;3;260;415
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;5;NA;2.25;25;19;173;4.35;309;27;6;238;482
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;6;NA;3.85;16;11;169;1.6;282;23;6;190;451
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;7;NA;2;23;11;147;1.85;300;21;4;67;447
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;8;NA;3.55;15;8;172;1.85;238;14;6;50;410
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;9;NA;4.2;28;16;178;4.05;326;26;6;200;504
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;10;NA;2.35;17;8;168;2;307;15;6;0;475
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;11;NA;2.75;24;12;172;2.2;281;22;6;147;453
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;12;NA;3.35;13;13;160;2.2;230;29;4;0;390
+TL;2015/10/16;South Africa;Deep;Oudekraal;6.5;13;NA;2.25;17;8;144;1.6;263;13;7;0;407
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;1;NA;10;19;19;236;8.6;526;37.3;7;384;545
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;2;NA;2.4;16.8;9;175;6.3;463;22.1;7;380;479.8
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;3;NA;1.85;20;9.5;192.6;4.75;423.5;19.2;8;275;443.5
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;4;NA;5.91;23.1;13;162;6.2;593;28.9;7;309;616.1
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;5;NA;11.2;28;17;212;9.6;563;30.5;9;442;591
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;6;NA;5.9;46.7;21;210;8.6;564;35.3;15;372;610.7
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;7;NA;4.7;21.5;14;335;6.7;676;33.2;8;640;697.5
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;8;NA;5.3;49.5;22;245;6.95;417;32;13;374;466.5
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;9;NA;4.7;24;18;196.3;7.3;640;36;7;586;664
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;10;NA;7.4;35;16;211;6.7;542;39;10;411;577
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;11;NA;3.8;28;10;183;6.9;651;22;10;526;679
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;12;NA;6.7;37.5;25;247;7.1;609;34;10;393;646.5
+JC;2016/09/19;South Africa;Deep;Soetwater;6.5;13;NA;9.9;22;15;219;8.3;589;30;7;510;611
+JC;2016/09/19;South Africa;Deep;Scarborough;4;1;NA;3.7;17;11;170;4.15;372;27;8;295;389
+JC;2016/09/19;South Africa;Deep;Scarborough;4;2;NA;3.1;20;15;156;5.95;388;37;7;383;408
+JC;2016/09/19;South Africa;Deep;Scarborough;4;3;NA;1.6;13.8;6.8;123;2.8;35;15;6;293;48.8
+JC;2016/09/19;South Africa;Deep;Scarborough;4;4;NA;1.3;20;9;122;4.15;402;17;8;305;422
+JC;2016/09/19;South Africa;Deep;Scarborough;4;5;NA;1.25;13.5;7.5;122;3.55;348;18;6;126;361.5
+JC;2016/09/19;South Africa;Deep;Scarborough;4;6;NA;3.25;21;15;199;4.25;272;30;8;243;293
+JC;2016/09/19;South Africa;Deep;Scarborough;4;7;NA;0.65;16;8;111;3.35;267;20;9;108;283
+JC;2016/09/19;South Africa;Deep;Scarborough;4;8;NA;2.6;20;10;81;3.95;315;19;6;295;335
+JC;2016/09/19;South Africa;Deep;Scarborough;4;9;NA;2.2;20.5;8.5;133;3.45;255;20;7;118;275.5
+JC;2016/09/19;South Africa;Deep;Scarborough;4;10;NA;4.9;22;13;241;5.25;372;31;7;212;394
+JC;2016/09/19;South Africa;Deep;Scarborough;4;11;NA;4.4;22;16;216;5.25;367;35;7;256;389
+JC;2016/09/19;South Africa;Deep;Scarborough;4;12;NA;2.25;25;12;136;4.65;318;24;9;277;343
+JC;2016/09/19;South Africa;Deep;Scarborough;4;13;NA;4.1;27;14;187;4.05;390;29.5;6;387;417
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;1;NA;3.3;18;13;135;7;574;27;5;229;592
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;2;NA;3.45;27;14;209;6.7;469;27;7;473;496
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;3;NA;7.1;29;17;232;6.95;554;28;8;279;583
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;4;NA;5;20;13;144;5.25;504;27;9;409;524
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;5;NA;3.4;29;18;187;6.85;385;34;8;240;414
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;6;NA;5.8;32;18;188;7.95;512;39;6;276;544
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;7;NA;5.2;17;12;184;4.75;515;21;7;268;532
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;8;NA;4.3;29;14;161;7.25;516;25;9;469;545
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;9;NA;3.2;18.5;16;180;6.05;525;33;4;384;543.5
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;10;NA;4.6;22;15;184;7.75;458;33;7;224;480
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;11;NA;3.6;24.5;14;198;7.95;504;23;6;252;528.5
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;12;NA;4.6;29;22.5;149;8.45;506;37.5;7;300;535
+JC;2016/09/19;South Africa;Deep;Hout Bay;6.5;13;NA;2.7;21;13;165;7.05;593;26.5;8;352;614
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;1;NA;4.1;28;16;245;3.6;486;25.5;8;486;514
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;2;NA;3.9;29;15;214;6.05;587;30;11;527;616
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;3;NA;4.65;26;25;175;7.35;498;34;5;475;524
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;4;NA;2.25;23;12;153;7.55;575;32;8;522;598
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;5;NA;5.8;25;23;192;5.75;507;37;6;485;532
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;6;NA;4.5;26;21;187;6.25;467;44;7;467;493
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;7;NA;3;25;22;109;4.75;380;39;4;356;405
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;8;NA;6.5;16;37;191;6.65;445;57.5;8;445;461
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;9;NA;5.9;22;23;239;7.35;412;41;6;375;434
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;10;NA;6.5;20;27;202;4.15;494;37;7;494;514
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;11;NA;2.6;24;19;179;6.35;576;39;7;518;600
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;12;NA;6.8;18;27;227;7.85;501;42;6;501;519
+JC;2016/09/19;South Africa;Deep;Kommetjie;5.5;13;NA;4.8;22;24;176;6.85;552;40;5;520;574
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;1;Y;2.25;28;18;98;1.6;300;19;7;NA;328
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;2;Y;0.75;14;9;42;1.1;277;12;4;153;291
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;3;Y;1.85;27;13;118;1.65;303;16;7;NA;330
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;4;N;0.7;28;9;86;0.95;235;11.2;5;101;263
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;5;Y;2.3;22;7.8;164;0.95;301;13;5;180;323
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;6;Y;1.4;30;9;138;0.65;178;10;6;122;208
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;7;N;2.65;23;16;114.5;1.4;324;15;6;282;347
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;8;Y;1.1;22.5;16;87;2.45;331;20;5;71;353.5
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;9;N;0.5;22.5;19;116.5;2.4;288;19;5;271;310.5
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;10;Y;1.05;10.7;19;124.5;1.8;301;21;3;301;311.7
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;11;N;0.85;22;7;103;0.7;227;10;5;205;249
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;12;N;1.3;12;16.5;125.5;1.75;333;15;5;306;345
+JC;2016/08/19;South Africa;Deep;St. Helena Bay;3.5;13;Y;1.95;22;9.5;146;0.85;249;12;5;155;271
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;1;Y;0.28;8;6;80;0.24;61;11;5;23;141
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;2;Y;0.91;10;5.5;103;0.34;78;10;6;19;181
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;3;Y;0.14;15;7;92;0.39;67;12;8;NA;159
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;4;Y;0.62;10.5;5.5;104;0.37;78;12.5;6;NA;182
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;5;Y;0.78;14;7;113;0.6;77;4;8;25;190
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;6;Y;0.59;10;4;104;0.28;62;11;7;36;166
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;7;Y;0.54;10;4;95;0.28;79;9.5;6;NA;174
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;8;Y;0.4;14;4.5;68;0.19;57;9;8;NA;125
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;9;Y;0.54;10;7;98;0.5;84;16;5;44;182
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;10;Y;1.05;12;9.5;111;0.51;76;15.5;6;51.5;187
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;11;Y;0.26;13;5.5;96;0.32;75;10.5;8;29;171
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;12;Y;0.8;14.5;6.5;100;0.72;88;16;9;59;188
+RC;2016/09/23;South Africa;Deep;De Hoop;1.5;13;Y;0.23;10;5;69;0.29;77;10.5;6;NA;146
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;1;N;2.4;12;5.5;163.7;0.56;127;11.5;4;0;302.7
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;2;N;1.9;10.6;9.5;136;0.55;156;22;4;0;302.6
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;3;N;3.4;14;6.2;126.5;1.1;157;14.5;5;0;297.5
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;4;N;2.2;18;14.2;106;0.8;89;21;4;0;213
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;5;N;1.52;9.9;5.3;105.5;0.4;88.3;10.7;5;0;203.7
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;6;N;2.5;17.2;4.8;123;1.52;150;10;8;0;290.2
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;7;N;4.1;17;9.5;177;1.3;179;21.5;4;0;373
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;8;N;4.3;15;9;150;1;141;20.5;4;0;306
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;9;N;1.54;15;8;178;0.52;105.8;19.5;3;0;298.8
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;10;N;4.4;16.3;6.6;153;1.3;198;15.9;4;0;367.3
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;11;N;4.1;18.2;10.2;129;0.8;133;21;3;0;280.2
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;12;N;3.8;13.7;8.3;143;0.8;116;15.5;3;0;272.7
+JS;2018/03/17;South Africa;Shallow;Kalk Bay;1.0;13;N;3;18.8;9;152;1;145;18;4;0;315.8
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;1;Y;1.4;22;12;140;0.8;118;16;3;1;280
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;2;Y;3.4;15;12;150;1.3;181;21;3;1;346
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;3;Y;2.25;14;12;154;1;117;24;2;1;285
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;4;Y;1.35;14;12;127;0.75;105;16;2;1;246
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;5;Y;3.05;10;9;150;1.2;131;16;3;1;291
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;6;Y;2;12;9;155;0.95;150;19;3;1;317
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;7;Y;1;15;8;112;0.8;141;14;4;1;268
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;8;Y;2.05;15;7;110;1;166;15;3;1;291
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;9;Y;1;14;11;83;0.65;118;13;3;1;215
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;10;Y;1.05;24;18;113;1;134;14;4;1;271
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;11;Y;1.9;18;8;130;0.9;100;14;4;1;248
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;12;Y;1.4;14;7;122;1.1;138;16;2;1;274
+JS;2018/05/04;South Africa;Shallow;Miller's Point;1.0;13;Y;1.45;18;10;108;1.25;130;18;3;1;256
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;1;Y;1.5;12;11;116;0.75;101;18.5;3;1;229
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;2;N;1.4;11;12.5;125;0.95;130;14.5;3;1;266
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;3;N;0.6;8;9;87;0.55;72;13;3;1;167
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;4;N;2.35;13;10.5;123;1.3;119;20;3;1;255
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;5;Y;1.45;14;9.5;120;0.8;98;19.5;3;1;232
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;6;Y;0.6;8;5;102;0.4;89;8.5;3;1;199
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;7;N;1.25;14;7;105;0.75;128;17;4;1;247
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;8;N;0.5;10;5;106.5;0.7;127;10;4;1;243.5
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;9;N;1.4;13;6;150;0.25;142.5;11.5;5;1;305.5
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;10;Y;1;12;15;95;1;105.5;23;3;1;212.5
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;11;Y;1;13;12;96.5;0.75;83;24;3;1;192.5
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;12;Y;1.55;12;14;139;1.1;160;21.5;2;1;311
+JS;2018/07/07;South Africa;Shallow;Buffelsbaai;1.0;13;Y;1.2;14.5;10;117;0.8;118;21;3;1;249.5
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;1;Y;2.85;21;11;134;0.5;56;18;3;1;211
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;2;Y;2.1;23;11;150;0.75;78;21;4;1;251
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;3;Y;2.4;22;6;128;0.35;76;11;3;1;226
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;4;Y;0.7;17;13;88;0.85;96;17;2;1;201
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;5;Y;1.7;16;6;142;0.4;104;11;2;1;262
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;6;Y;0.8;14;7;101;0.45;90;14;2;1;205
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;7;Y;1;18;4;125;0.45;115;10;2;1;258
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;8;Y;3.25;18;9;116;0.85;121;19;4;1;255
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;9;Y;1.25;12;7;130;0.6;104;22;2;1;246
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;10;Y;1.35;21;8;100;0.9;121;17;3;1;242
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;11;Y;2.15;11;9;140;0.8;103;22;3;1;254
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;12;Y;0.8;12;6;104;0.5;89;15;3;1;205
+JS;2018/07/15;South Africa;Shallow;Soetwater;1.0;13;Y;1.2;21;8;84;0.5;81;10;3;1;186
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;1;Y;1.65;26;7;129;0.25;74;13;3;1;229
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;2;Y;0.55;17;13;70;0.95;136;21;3;1;223
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;3;N;0.4;18;6;56;0.55;108;16;3;1;182
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;4;Y;2;17;7;164;0.6;108;19;3;1;289
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;5;Y;0.55;14;4;107;0.65;141;12;2;1;262
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;6;Y;3.1;14;9;203;0.75;109;20;2;1;326
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;7;Y;2.3;20;12;153;1.25;128;12;3;1;301
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;8;Y;0.95;18;4;121;0.55;130;12;2;1;269
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;9;Y;0.65;17;5;103;0.4;110;13;2;1;230
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;10;Y;1.2;16;21;98;0.65;52;23;3;1;166
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;11;Y;2.35;20;12;88;0.5;66;18;3;1;174
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;12;Y;0.6;29;12;133;2.4;226;25;4;1;388
+JS;2018/07/15;South Africa;Shallow;Kommetjie;1.0;13;Y;1.95;14;5;111;0.55;101;14;3;1;226
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;1;Y;0.8;14;8;110;0.7;100;14;3;0;114
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;2;Y;0.5;11;7;80;0.4;72;14;3;0;83
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;3;Y;1.3;15;6;81;0.1;21;9;3;0;36
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;4;Y;1.1;9;4;92;0.1;16;10;3;0;25
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;5;N;0.6;10;8;66;0.4;16;56;4;0;26
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;6;Y;0.2;14;5;63;0.3;48;8;3;0;62
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;7;Y;1.3;17;9;80;0.6;87;19;4;0;104
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;8;N;1.7;17;9;66;0.6;94.2;16;4;0;111.2
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;9;Y;0.6;12;9.5;97;0.6;65;19;3;0;77
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;10;N;0.7;20;10;68;0.5;61;19;4;0;81
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;11;N;0.6;12;5;69;0.3;92;9.5;4;0;104
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;12;Y;0.4;27;5;89;0.3;75;8;6;0;102
+JS;2018/08/22;South Africa;Shallow;A-Frame;1.0;13;Y;0.6;14.5;5.5;84;0.3;75;10.5;5;0;89.5
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;1;N;1.4;17;6;100;0.7;78;18;4;0;95
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;2;N;1.4;15;7;85;0.7;86;14;4;0;101
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;3;N;0.5;11;8;48;0.3;47;17;3;0;58
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;4;N;0.4;11;8;53;0.5;98;17;1;0;109
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;5;N;0.4;13;7;28;0.8;41;13;3;0;54
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;6;N;0.3;13;7;35;0.7;82;16.5;3;0;95
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;7;Y;1.6;11;12;64;0.6;88;22;3;0;99
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;8;N;0.5;13;6;97;0.5;69;13;3;0;82
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;9;Y;0.3;18;6.5;120;1.2;58;15;4;0;76
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;10;N;0.9;16.5;5.5;76;0.1;71;13;6;0;87.5
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;11;N;0.3;15;7;46;0.3;48;13;4;0;63
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;12;N;0.4;15;9;42;0.4;45;20;3;0;60
+JS;2018/11/05;South Africa;Shallow;Hout Bay;1.0;13;N;0.3;10;8;42;0.2;24;12;3;0;34
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;1;Y;1.6;21;14;69;0.8;131;24;4;56;152
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;2;Y;1.45;14.5;8.5;79;0.7;101;13;4;0;118.5
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;3;Y;1.2;8;16;101;1.05;118.5;19;4;0;126.5
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;4;Y;1.85;14;8;131;0.7;114.5;16.5;4;0;128.5
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;5;Y;0.8;14;6;81;0.65;129;9;4;0;143
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;6;Y;1.45;16;6;137;0.55;109;11;4;0;125
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;7;Y;1.4;19;12;81.5;1.8;157;21.5;4;0;176
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;8;Y;2.1;22;14;120;1.25;163;19;4;0;185
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;9;Y;1.85;27;12;114;1.2;131;23;5;0;158
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;10;Y;2.1;26;12;131;1.1;149;22;4;0;175
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;11;Y;0.9;16.5;11;109;0.7;114;18;4;0;130.5
+JS;2018/11/20;South Africa;Shallow;Betty's Bay;1.0;12;Y;1.5;18;7;130;0.6;118;15.5;4;0;136
+JS;2019/11/20;South Africa;Shallow;Betty's Bay;1.0;13;Y;1.35;24;14;113.5;1.0;130;18;3;0;154
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;1;N;1.1;13;16;95;0.5;84;15;5;0;179
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;2;N;0.85;17;6;86;0.3;68;8;4;0;154
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;3;N;1.25;23;5;125;0.6;120;10;6;0;245
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;4;Y;1.25;16;11;92;0.7;92;19;4;0;184
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;5;N;2.4;18;7;156;0.55;120;13;5;0;276
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;6;N;1.26;22;5;123;0.25;75;10;6;0;198
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;7;Y;0.7;25;5;136;0.5;146;9;7;0;282
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;8;Y;1.3;21;5;115;0.4;95;10;6;0;210
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;9;N;1.4;18;6;96;0.4;72;11;5;0;168
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;10;N;2.35;16;11;107;0.5;77;14;4;0;184
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;11;N;0.9;25;5;150;0.25;78;10;7;0;228
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;12;N;0.6;23;5;86;0.25;59;10;7;0;145
+JS;2018/05/04;South Africa;Shallow;Bakoven;1.0;13;N;0.35;19;5;73;0.2;58;8;5;0;131
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;1;Y;4;18;89;103;0.7;80;17;5;55;183
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;2;Y;3.43;16;8;131;0.7;103;15;4;0;234
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;3;N;2.1;14;8;141;0.55;76;16;5;21;217
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;4;Y;2.8;16;6;158;0.6;123;14;4;139;281
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;5;Y;3.25;19;7;119;0.55;67;17;6;11;186
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;6;N;1.35;16;5;115;0.45;106;11;4;20;221
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;7;N;3.4;22;7;155;0.65;84;17;4;84;239
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;8;Y;1.35;16;6;134;0.4;73;12;4;73;207
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;9;Y;4.05;31;9;188;0.9;100;17;7;45;288
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;10;Y;3.9;18;7;152;0.9;177;17;4;57;329
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;11;N;1.95;18;4;98;0.35;103;9;4;20;201
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;12;Y;4.25;21;8;187;0.7;87;16;5;87;274
+JS;2018/10/04;South Africa;Shallow;Yzerfontein;1.0;13;Y;1.5;18;5;111;0.4;97;11;5;30;208
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;1;Y;0.85;6;4;127;0.6;126;15;3;126;303
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;2;Y;1.7;13;10;120;0.85;117;17;3;117;237
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;3;Y;1.95;15;10;177;0.95;131;22;2;131;308
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;4;Y;1.4;16;8;115;0.75;130;14;3;130;245
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;5;Y;2.3;22;11;148;1;127;22;2;127;275
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;6;Y;1.7;18;11;107;0.7;122;17;3;122;229
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;7;Y;3.25;21;25;129;1.2;144;22;3;144;273
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;8;Y;1.2;11;5;115;0.3;73;7;2;0;188
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;9;Y;1.6;19;12;146;0.95;135;16;3;135;281
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;10;Y;0.95;12;10;189;0.8;144;18;3;144;333
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;11;Y;1.85;15;9;155;0.6;110;17;4;110;265
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;12;Y;2;17;14;98;0.75;112;19;4;112;210
+JS;2018/05/04;South Africa;Shallow;Miller`s_B;1.0;13;Y;1.7;11;10;118;0.6;80;17;3;0;198
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;1;Y;1.4;22;12;140;0.8;118;16;3;118;258
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;2;Y;3.4;15;12;150;1.3;181;21;3;181;331
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;3;Y;2.25;14;12;154;1;117;24;2;117;271
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;4;Y;1.35;14;12;127;0.75;105;16;2;105;232
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;5;Y;3.05;10;9;150;1.2;131;16;3;131;281
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;6;Y;2;12;9;155;0.95;150;19;3;150;305
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;7;Y;1;15;8;112;0.8;141;14;4;141;253
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;8;Y;2.05;15;7;110;1;166;15;3;166;276
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;9;Y;1;14;11;83;0.65;118;13;3;118;201
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;10;Y;1.05;24;18;113;1;134;14;4;134;247
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;11;Y;1.9;18;8;130;0.9;100;14;4;100;230
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;12;Y;1.4;14;7;122;1.1;138;16;2;138;260
+JS;2018/05/04;South Africa;Shallow;Miller`s_C;1.0;13;Y;1.45;18;10;108;1.25;130;18;3;130;238
