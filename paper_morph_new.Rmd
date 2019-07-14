@@ -12,11 +12,7 @@ tables: yes
 fontsize: 10pt
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(include = FALSE)
-```
-
-## Introduction
+# Introduction
 
 Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres (Steneck et al. 2002). Their size and complex morphology provide a heterogeneous habitat structure (Steneck et al. 2002) that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck et al. 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & Roughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson 2003; Anderson et al. 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013), abundance (Cavanaugh et al. 2011; Dayton et al. 1998), diversity (Wing et al. 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton et al. 1998; Krumhansl & Scheibling 2012) of kelps. 
 
@@ -26,7 +22,7 @@ Other species of kelp, such as *Laminaria pallida* and *Ecklonia maxima* (Osbeck
 
 Measures of wave exposure in ecological studies often incorporate integrative measures of hydrodynamic conditions at a particular site which are based on cartographical models of wave exposure. Cartographical models of wave exposure are regarded as 'fetch-based-models' which measure the length of open water associated with a particular site in a straight line, and are regarded as simple measures of wave exposure. Advances in numerical modelling based on physical/linear wave theory incorporate more complexity (wind forcing, wave-wave interactions, wave breaking, diffraction and variation in wave direction) into the models and allow for a quantitave, reproducible approach for measuring wave exposure. Currently, no ecological studies investigating macroalgal communities have incorporated 3D spectral numerical modelling. Previous research investigating drivers of kelp morphological characteristics used qualitative estimates of wave exposure and did not consider other morphological characteristics. Furthermore, only shallow populations have been considered in previous research which ignores the effects of wave damping. No work currently exists where other morphological characters have been considered, quantitative estimates of environmental drivers have been calculated, and the addition of wind as a possible driver of morphological characteristics has been considered. The aim of this study is, therefore, to understand how temperature, wave exposure and wind can influence the morphology in two species of kelps around South Africa. This will be achieved by initially understanding the variation in temperature and waves and the consequences for morphological characteristics of *E. maxima* and *L. pallida*. 
 
-## Methods
+# Methods
 ### Site selection
 
 Sites were chosen to represent an array of environmental gradients, as indicated in Fig. 1. St. Helena Bay and Betty's Bay constituted the north western and south eastern boundary sites, respectively. These sites are roughly 300 km apart, and lie within separate marine provinces[3] and cover a cline in wave exposure and temperature. Study sites  span across the majority of the south-west coast, in varying thermal and wave energy regimes. The region is dominated by kelp communities that persist in contrasting abiotic environments. The west coast region has been termed as a cool temperate region, which is defined as a region where mean monthly temperatures are always above 10°C and always below 15°C (Smit et al. 2013). East of Cape Point marks the beginning of an overlap or transition area, which is also referred to as the Benguela-Agulhas Transition Zone (Smit et al. 2013). The Agulhas Marine Province is characterised by a wide temperature range of up to 7°C difference between mean monthly temperatures between summer and winter (Smit et al. 2013). Due to the Cape Peninsula temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean (Reason et al. 2006). These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter (Veitch et al. 2018). The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay (Shipley 1964). Conversely, the west coast of Cape Point is battered by these large swells. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity. 
@@ -52,8 +48,8 @@ The morphological characteristics of both species are presented in Fig. 2. *Lami
 
 In order to compare abiotic variables for sites around the coast, large historical databases for temperature, wave energy and wind were accessed. Shallow water temperatures were sourced from The South African Coastal Temperature Network (SACTN) website (https://github.com/ajsmit/SACTN). In terms of nearshore temperature, in situ data are preferred over satellite SST, which have shown to exhibit large biases (Smit et al. 2013). Linear interpolated SST were calculated for sites where in situ recorders were absent. Wave model variable data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs (DEA) and produced by the Council for Scientific and Industrial Research (CSIR) (Rautenbach 2015). The South African wave climate was modeled via 20 spectral numerical wave models that simulated the offshore wave climate to the nearshore. The boundary conditions of these models were obtained by using the NOAA Wave Watch III (WWIII) model output, distributed via the National Centers for Environmental Prediction (NCEP) product (Office of the Director 2000; Environmental Modeling Center / Marine Modeling Branch 2005). The particular hindcast product utilised during the DEA-CSIR study spans 1994-2013 at a 3-hour resolution. These data were then used to model swell propagation into the coastal models while wind waves (seas) were generated via stationary computations in the Simulating Waves in the Nearshore SWAN model (Booij et al. 1997). The assumption of stationary computations are acceptable as the model domains were small enough so the temporal variation of the model boundary were slower than the time it takes for that boundary condition to propagate to the coast.  SWAN allows one to extract wave variables from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled and output produced at both the 7 meter and 15 meter isobaths. A 200 meter resolution was used as the False Bay computational grid was nested within a larger grid (1 kilometer resolution). This allowed for a computational effective wave resolution of increasing resolution, from the NCEP, low resolution output to nested, high resolution coastal output. For Table Bay and east of Cape Hangklip the resolution was 500 meters and also had output at the 7 meters and 15 meter isobaths. These contour outputs were chosen in the original study by the CSIR as most engineering run-up calculations require wave parameter information at these contour depths and were the main focus of the original study. For this study the 7 meter contours were used. Site-specific summary statistics were calculated for each of the environmental variables considered in this study. The summary statistics calculated for temperature, waves and wind variables were minimum, maximum, mean, range and standard deviation for annual, February[6] (Austral summer) and August (Austral winter) timescales, respectively. In addition, annual and seasonal median wave and wind direction were also calculated; all summary data and their respective abbreviation are presented in Table 3. The median was calculated for wind and wave direction, as issues arise when calculating the mean and standard deviation for compass metrics. Dot and whisker plots were used to present the summary statistics for both temperature and wave variables. Summary statistics for wind was not plotted and instead are discussed, as the data was course relative to the other environmental variables considered in this study.  
 
-## Results
-### Temperature variables
+# Results
+## Temperature variables
 
 ```{r Temperature data prep, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -65,17 +61,15 @@ library(gridExtra)
 
 ## Preparing data
 # Complete lon/lats
-kelp_sites <- read_csv("metadata/sites_complete.csv")
+kelp_sites <- read.csv("metadata/site_meta_complete.csv", sep = ";")
 
 # Ecklonia
-eck_data <- read_csv("data/Ecklonia_morphometrics.csv") %>%
-  mutate(site = replace(site, site == "Buffels Bay", "Buffelsbaai")) %>%
-  mutate(site = replace(site, site == "St. Helena Bay", "St Helena Bay")) %>%
-  # Not using Rocky Bank in this study
-  filter(site != "Rocky Bank")
+eck_data <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
+  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
+  filter(site!= "De Hoop")
 
 # Laminaria
-lam_data <- read_csv("data/Laminaria_morphometrics.csv") %>%
+lam_data <- read.csv("data/morph_data/lam_morph_data.csv", sep = ";") %>%
   mutate(site = replace(site, site == "Buffels Bay", "Buffelsbaai")) %>%
   # NB: Even though I am changing the name, there will still be no lon/lat values for this site
   # We need to decide how we want to handle this. Give it the same lon/lat as Buffelsbaai?
@@ -88,10 +82,10 @@ lam_data <- read_csv("data/Laminaria_morphometrics.csv") %>%
 # NB: (RWS) I have removed Roman Rock as this has less than a year of temperature data
 
 # The SACTN monthly data
-load("data/SACTNmonthly_v4.1.Rdata")
+load("data/temp_data/SACTNmonthly_v4.1.Rdata")
 
 # The missing site temperatures
-load("data/interp_sites.Rdata")
+load("data/temp_data/interp_sites.Rdata")
 
 # The patched Roman Rock temperatures
 load("data/rr_patch.Rdata")
@@ -146,7 +140,7 @@ temp_clim <- rbind(temp_feb_aug, temp_ann) %>%
 
 ```
 
-```{r Temperature variable processing, message=FALSE, warning=TRUE, include=FALSE}
+```{r Temperature variable processing, message=FALSE, warning=FALSE, include=FALSE}
 
 ### Plots for temperature variables 
 
@@ -197,7 +191,7 @@ temp_plot_C <- ggplot(data = temp_clim, aes(x = site, y = Aug_mean_temp)) +
 
 ```
 
-```{r Temperature variables plot, echo=FALSE, include = FALSE, fig.cap="Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots.", fig.height=9, fig.width=7}
+```{r Temperature variables plot, echo=FALSE, warning=FALSE, fig.cap="Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots.", fig.height=9, fig.width=7}
 
 temp_plot_all <- grid.arrange(temp_plot_A, temp_plot_B,temp_plot_C, ncol = 1, nrow = 3 )
 
@@ -206,9 +200,9 @@ ggsave("temperature_plot.png", plot = temp_plot_all, path = "figures/", dpi = 30
 ```
 
 
-### Wave variables
+## Wave variables
 
-```{r Wave data prep, message=FALSE, warning=FALSE, include=FALSE}
+```{r wave data prep, message=FALSE, warning=FALSE, include=FALSE}
 
 ## Data wrangling and preparation
 
@@ -228,10 +222,10 @@ wave_model <- rbind(fb_model, tb_model, he_model, sh_model)
 rm(fb_model, tb_model)
 
 # The site list key
-wave_sites <- read_csv("metadata/sites_complete.csv") %>% 
+wave_sites <- read_csv2("metadata/site_meta_complete.csv") %>% 
   select(site, wave_7, wave_15)
 
-# Calculate the necessary stats
+ # Calculate the necessary stats
 # Monthly clims
 wave_feb_aug <- wave_model %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
@@ -335,7 +329,7 @@ wave_clim <- subset(wave_clim, select = -c(2,3,4,5,12,13,14,15,22,23,24,25,32,33
 
 ```
 
-```{r Wave variable processing, warning=FALSE, include=FALSE, echo = FALSE}
+```{r wave variable processing, warning=FALSE, include=FALSE, echo = FALSE}
 
 ### Plots for wave variables
 #Annual wave plots
@@ -422,7 +416,7 @@ wave_plot_F <- ggplot(data = wave_clim, aes(x = site, y = Aug_tp_mean)) +
 
 ```
 
-```{r Wave variable plot, echo=FALSE, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers. Plot "A" represents annual significant wave height.', fig.height=8, fig.width=7}
+```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers. Plot "A" represents annual significant wave height.', fig.height=8, fig.width=7}
 
 wave_plot_all <- grid.arrange(wave_plot_A, wave_plot_B, wave_plot_C, wave_plot_D, wave_plot_E, wave_plot_F, ncol = 2, nrow = 3)
 
@@ -430,28 +424,115 @@ ggsave("wave_plot.png", plot = wave_plot_all, path = "figures/", dpi = 300, widt
 
 ```
 
+## Morphology
+### *L. pallida*
+```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE}
 
+lam_data <- read.csv("data/morph_data/lam_morph_data.csv", sep = ";") %>% 
+   filter(site!= "Rocky Bank")
 
+# remove unnecessary columns
+lam_df <- subset(lam_data, select = -c(1,2,6))
 
+pos_lam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point", "Baboon Rock", 
+                  "Batsata Rock", "Buffels Bay"," Buffels Bay South","Bordjies North","Olifantsbos", "Kommetjie", "Sea Point")
+pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Sheltered", "Moderatley exposed", "Exposed", "Very exposed")
 
+lamina_weight_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+lamina_length_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+lamina_thickness_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+stipe_mass_lam_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+stipe_length_lam_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+stipe_diameter_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+digits_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+thallus_mass_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+total_length_plot <- ggplot(data = lam_df, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure_lam) + 
+         geom_boxplot(outlier.shape = NA) 
+```
 
+```{r laminaria plots, echo=FALSE, message=FALSE, warning=FALSE}
+grid.arrange(lamina_weight_plot,lamina_length_plot,lamina_thickness_plot,stipe_mass_lam_plot,stipe_length_lam_plot,stipe_diameter_plot, digits_plot, thallus_mass_plot,total_length_plot,total_length_plot, ncol = 3, nrow = 4)
 
+```
 
+### *E.maxima*
 
+```{r ecklonia  processing, message=FALSE, warning=FALSE, include=FALSE}
 
+library(ggplot2)
 
+## Preparing data
+# Ecklonia
+eck_data <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
+ filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
+ filter(site!= "De Hoop")  
+# group_by(wave_exposure, frond_mass) %>% 
+# summarise(mean = mean(frond_mass:total_length, na.rm = TRUE)) %>% 
+# ungroup()
 
+eck_deep <- eck_data %>% 
+  filter(population == "Deep")
 
+# custom positions for wave exposure categories and sites
+pos_exposure <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Sheltered", "Moderatley exposed", "Exposed", "Very exposed")
+pos_eck<- c("Betty's Bay", "Kalk Bay", "A-Frame",  "Miller's Point", "Baboon Rock", "Batsata Rock", "Buffelsbaai", "Scarborough", "Soetwater","Kommetjie","Hout Bay", "Oudekraal", "St Helena Bay")
 
+frond_mass_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+primary_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+primary_width_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+frond_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+stipe_mass_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+stipe_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+stipe_circ_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+tufts_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+epi_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
+         scale_x_discrete(limits = pos_exposure) + 
+         geom_boxplot(outlier.shape = NA) 
+total_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure) + 
+  geom_boxplot(outlier.shape = NA) +
+  ylim(0, 2000)
 
+```
 
+```{r ecklonia plots, echo=FALSE, message=FALSE, warning=FALSE}
 
+grid.arrange(frond_mass_plot,primary_length_plot,primary_width_plot,frond_length_plot,stipe_mass_plot,stipe_length_plot,stipe_circ_plot, tufts_plot, epi_length_plot,total_length_plot, ncol = 3, nrow = 4)
 
-
-
-
-
-
+```
 
 
 
