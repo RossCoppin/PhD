@@ -1,158 +1,158 @@
-dataEntered,date,site,Ind,laminaWeight,laminaLength,laminaThickness,stipeMass,stipeLength,stipeDiameter,digits,thallusMass,totalLength
-EG,2014/10/13,Kommetjie,1,2.1,190,1.9,1.3,106,51,15,3400,296
-EG,2014/10/13,Kommetjie,2,1.9,160,2,1.1,96,56,12,3000,256
-EG,2014/10/13,Kommetjie,3,1.5,120,1.4,2.25,149,68.5,12,3750,269
-EG,2014/10/13,Kommetjie,4,0.55,110,1.5,1.15,97,69,13,1700,207
-EG,2014/10/13,Kommetjie,5,1,159,1.5,2.6,167,60,8,3600,326
-EG,2014/10/13,Kommetjie,6,2.3,149,2,2.8,146,73,15,5100,295
-EG,2014/10/13,Kommetjie,7,1.6,107,1.75,2.9,161,63,17,4500,268
-EG,2014/10/13,Kommetjie,8,0.65,104,2,0.75,110,51,11,1400,214
-EG,2014/10/13,Kommetjie,9,0.6,82,2,2.95,164,57,10,3550,246
-EG,2014/10/13,Kommetjie,10,0.95,111,1.25,1.6,136,56,11,2550,247
-EG,2014/10/13,Kommetjie,11,2.3,178,2.5,4.2,176,76,8,6500,354
-EG,2014/10/15,Bordjies North,1,1.75,145,1,0.75,82,40,19,2500,227
-EG,2014/10/15,Bordjies North,2,1.8,94,1.25,1.8,133,53,30,3600,227
-EG,2014/10/15,Bordjies North,3,2.35,146,1.75,1.25,118,46,20,3600,264
-EG,2014/10/15,Bordjies North,4,1.7,116,1.25,1.52,117,46.5,23,3220,233
-EG,2014/10/15,Bordjies North,5,1.4,110,1,1,112,39.5,20,2400,222
-EG,2014/10/15,Bordjies North,6,2.45,136,1,1.95,132,54,24,4400,268
-EG,2014/10/15,Bordjies North,7,2,124,1.25,1.3,119,45,18,3300,243
-EG,2014/10/15,Bordjies North,8,2.4,121,1.25,2.6,165,55,22,5000,286
-EG,2014/10/15,Bordjies North,9,1.3,102,1,1.25,112,50,16,2550,214
-EG,2014/10/15,Bordjies North,10,1.7,149,1,1.35,113,50,11,3050,262
-EG,2014/10/15,Bordjies North,11,0.9,95,1.25,1.05,102,41,17,1950,197
-EG,2014/10/15,Bordjies North,12,1.35,112,1,1.05,92,49.5,17,2400,204
-EG,2014/10/17,Olifantsbos,1,1.85,139,1.5,1.8,109,66,26,3650,248
-EG,2014/10/17,Olifantsbos,2,1.25,147,1.2,1.75,123,58,7,3000,270
-EG,2014/10/17,Olifantsbos,3,3.25,172,1.5,3,160,65,25,6250,332
-EG,2014/10/17,Olifantsbos,4,3.35,205,1,4.75,238,67,16,8100,443
-EG,2014/10/17,Olifantsbos,5,1.4,136,1.25,3,199,56.5,11,4400,335
-EG,2014/10/17,Olifantsbos,6,2.55,173,1.5,2.25,136,58,13,4800,309
-EG,2014/10/17,Olifantsbos,7,1.75,150,1.25,1.2,108,47,29,2950,258
-EG,2014/10/17,Olifantsbos,8,0.75,91,1.8,1.25,112,53,16,2000,203
-EG,2014/10/17,Olifantsbos,9,1.6,124,1.25,3,181,62,15,4600,305
-EG,2014/10/17,Olifantsbos,10,0.9,121,1,1.65,138,54,8,2550,259
-EG,2014/10/17,Olifantsbos,11,2.25,169,1.4,2.3,114,65.4,16,4550,283
-AJS,2014/11/27,Buffels Bay,1,1.375,150,1.35,1.25,105,49,15,2625,255
-AJS,2014/11/27,Buffels Bay,2,1.4,150,1.15,1.25,118,45,15,2650,268
-AJS,2014/11/27,Buffels Bay,3,1.65,158,1.2,1,98,42,22,2650,256
-AJS,2014/11/27,Buffels Bay,4,1,127,1,1.25,132,39,17,2250,259
-AJS,2014/11/27,Buffels Bay,5,1.5,156,1,1.25,128,46,14,2750,284
-AJS,2014/11/27,Buffels Bay,6,2.25,142,1.9,1.8,133,49,16,4050,275
-AJS,2014/11/27,Buffels Bay,7,2.2,133,1,0.9,85,45,21,3100,218
-AJS,2014/11/27,Buffels Bay,8,1.875,152,1,1.375,110,48,23,3250,262
-AJS,2014/11/27,Buffels Bay,9,2.2,166,1.1,1.36,120,47,23,3560,286
-AJS,2014/11/27,Buffels Bay,10,0.8,133,2,1.375,153,46,12,2175,286
-AJS,2014/11/27,Buffels Bay,11,1.7,123,1,1.3,115,50,24,3000,238
-AJS,2014/11/27,Buffels Bay,12,0.63,136,0.85,0.78,109,39,12,1410,245
-AJS,2014/11/27,Buffels Bay South,1,2.25,147,2,1.125,108,46,25,3375,255
-AJS,2014/11/27,Buffels Bay South,2,1.5,118,1,0.7,87,40,19,2200,205
-AJS,2014/11/27,Buffels Bay South,3,1.8,107,1.4,0.875,91,46,21,2675,198
-AJS,2014/11/27,Buffels Bay South,4,2.25,137,1.8,1.75,138,55,18,4000,275
-AJS,2014/11/27,Buffels Bay South,5,2.5,141,1.3,1.25,104,47,16,3750,245
-AJS,2014/11/27,Buffels Bay South,6,1.4,127,1.95,0.75,72,44,17,2150,199
-AJS,2014/11/27,Buffels Bay South,7,1.1,126,1.3,0.875,102,40,12,1975,228
-AJS,2014/11/27,Buffels Bay South,8,1.25,130,1.7,0.9,109,40,13,2150,239
-AJS,2014/11/27,Buffels Bay South,9,2.25,134,1.35,1.275,113,45,18,3525,247
-AJS,2014/11/27,Buffels Bay South,10,2.375,153,1.2,1.4,113,52,18,3775,266
-AJS,2014/11/27,Buffels Bay South,11,1.875,108,1.2,0.64,75,40,26,2515,183
-AJS,2014/11/27,Buffels Bay South,12,1.9,157,1,0.875,95,39,17,2775,252
-RPP,2015/03/25,Miller's Point,1,1.75,126,8.4,0.5,174,37,12,2250,300
-RPP,2015/03/25,Miller's Point,2,2,133,5.2,0.5,78,37,19,2500,211
-RPP,2015/03/25,Miller's Point,3,1.5,125,2.35,0.5,90,38.5,14,2000,215
-RPP,2015/03/25,Miller's Point,4,0.5,103,4.2,0.5,83,37,7,1000,186
-RPP,2015/03/25,Miller's Point,5,1.5,121,5.88,0.3,58,31,13,1800,179
-RPP,2015/03/25,Miller's Point,6,1.25,150,4.15,1.25,118,42,13,2500,268
-RPP,2015/03/25,Miller's Point,7,1.25,127,4,0.51,67,35,16,1760,194
-RPP,2015/03/25,Miller's Point,8,1.3,119,6.2,0.75,88,36,11,2050,207
-RPP,2015/03/25,Miller's Point,9,0.25,50,3.6,0.75,85,37.5,5,1000,135
-RPP,2015/03/25,Miller's Point,10,1,109,5.8,0.5,58,34,14,1500,167
-RPP,2015/03/25,Baboon Rock,1,1.25,110,1.25,0.13,36,32.4,12,1380,146
-RPP,2015/03/25,Baboon Rock,2,0.877,147,2.2,0.625,,36,19,1502,147
-RPP,2015/03/25,Baboon Rock,3,2.13,130,5.42,0.38,60,33,19,2510,190
-RPP,2015/03/25,Baboon Rock,4,2.375,134,3.9,0.75,85,37,14,3125,219
-RPP,2015/03/25,Baboon Rock,5,2.65,137,5.15,0.5,66,39,19,3150,203
-RPP,2015/03/25,Baboon Rock,6,2.62,146,5.9,0.75,107,35.5,16,3370,253
-RPP,2015/03/25,Baboon Rock,7,0.625,104,4.1,0.25,53,28.5,9,875,157
-RPP,2015/03/25,Baboon Rock,8,0.212,110,4.7,0.125,35,31,17,337,145
-RPP,2015/03/25,Baboon Rock,9,0.125,160,3,0.25,51,26,11,375,211
-RPP,2015/03/25,Baboon Rock,10,0.23,132,3.67,0.375,76,27,15,605,208
-RPP,2015/03/25,Baboon Rock,11,0.625,160,4.77,0.875,97,36,14,1500,257
-RPP,2015/03/25,Baboon Rock,12,0.215,149,5.9,0.25,53,29.5,18,465,202
-RPP,2015/03/25,Baboon Rock,13,1,95,4.65,0.375,63,30.5,14,1375,158
-AJS,2015/03/31,Betty's Bay,1,0.63,125,3.1,1,107,47.74648293,15,1630,232
-AJS,2015/03/31,Betty's Bay,2,2.125,135,2.7,1.625,164,44.56338407,19,3750,299
-AJS,2015/03/31,Betty's Bay,3,1.625,170,4.15,1.6,143,47.74648293,19,3225,313
-AJS,2015/03/31,Betty's Bay,4,1.375,170,3.15,0.575,95,35.01408748,15,1950,265
-AJS,2015/03/31,Betty's Bay,5,3.25,192,2.9,2.75,204,57.29577951,12,6000,396
-AJS,2015/03/31,Betty's Bay,6,1.75,160,4.4,1.25,112,50.92958179,15,3000,272
-AJS,2015/03/31,Betty's Bay,7,1.95,150,2.7,1.5,138,47.74648293,17,3450,288
-AJS,2015/03/31,Betty's Bay,8,3.5,186,3.4,2.1,156,54.11268065,24,5600,342
-AJS,2015/03/31,Betty's Bay,9,1,135,1.6,0.85,190,41.3802852,16,1850,325
-AJS,2015/03/31,Betty's Bay,10,2.5,153,3.6,1.25,127,44.56338407,18,3750,280
-AJS,2015/03/31,Betty's Bay,11,0.55,148,2,1.2,77,38.19718634,19,1750,225
-AJS,2015/03/31,Betty's Bay,12,0.75,127,3,0.625,97,44.56338407,14,1375,224
-RPP,2015/04/10,Roman Rock,1,2,115,7.35,0.75,92,37.2,15,2750,207
-RPP,2015/04/10,Roman Rock,2,2.1,100,8.2,1,113,35.2,16,3100,213
-RPP,2015/04/10,Roman Rock,3,0.95,90,8.3,0.8,108,34,16,1750,198
-RPP,2015/04/10,Roman Rock,4,1.38,102,5.8,0.88,107,38.8,15,2260,209
-RPP,2015/04/10,Roman Rock,5,1.95,95,7.8,0.95,88,41.5,31,2900,183
-RPP,2015/04/10,Roman Rock,6,2.13,113,6.1,0.87,95,44,18,3000,208
-RPP,2015/04/10,Roman Rock,7,2.37,115,7.3,0.83,99,36.2,28,3200,214
-RPP,2015/04/10,Roman Rock,8,3.05,137,8,0.88,87,39.6,24,3930,224
-RPP,2015/04/10,Roman Rock,9,2.9,138,8,1.1,101,42,19,4000,239
-RPP,2015/04/10,Roman Rock,10,2.5,126,0.1,0.75,81,37.5,24,3250,207
-RPP,2015/04/10,Roman Rock,11,2.26,126,7.2,0.63,84,36.2,25,2890,210
-RPP,2015/04/10,Roman Rock,12,2.87,138,7.4,0.63,73,36.4,24,3500,211
-RPP,2015/04/10,Roman Rock,13,2.86,107,9.1,0.62,75,36.2,22,3480,182
-RPP,2015/04/10,A-Frame,1,1.37,114,6.4,0.2,34,3.18,18,1570,148
-RPP,2015/04/10,A-Frame,2,1.25,93,7.9,0.75,87,3.5,15,2000,180
-RPP,2015/04/10,A-Frame,3,0.8,134,5.5,0.53,99,3.1,10,1330,233
-RPP,2015/04/10,A-Frame,4,1.2,110,1.2,1.3,90,4.82,21,2500,200
-RPP,2015/04/10,A-Frame,5,1.62,134,6.9,0.53,66,3.42,20,2150,200
-RPP,2015/04/10,A-Frame,6,2.8,170,1.2,0.9,91,4.29,17,3700,261
-RPP,2015/04/10,A-Frame,7,0.75,106,4.9,0.25,60,2.7,8,1000,166
-RPP,2015/04/10,A-Frame,8,1.1,111,5,0.5,74,3.5,9,1600,185
-RPP,2015/04/10,A-Frame,9,1.25,131,5,0.25,51,2.9,9,1500,182
-RPP,2015/04/10,A-Frame,10,0.88,128,5.3,0.37,61,3.52,14,1250,189
-RPP,2015/04/10,A-Frame,11,1.3,120,4.1,0.19,45,2.2,13,1490,165
-RPP,2015/04/10,A-Frame,12,0.43,100,4.4,0.38,71,2.9,11,810,171
-RPP,2015/04/10,A-Frame,13,0.95,123,5.9,0.27,53,3.26,9,1220,176
-RPP,2015/04/10,Batsata Rock,1,0.63,114,0.11,1.25,119,4.05,8,1880,233
-RPP,2015/04/10,Batsata Rock,2,3.75,185,6,0.25,39,3.7,11,4000,224
-RPP,2015/04/10,Batsata Rock,3,0.53,95,0.75,0.32,58,3,6,850,153
-RPP,2015/04/10,Batsata Rock,4,2.64,186,0.13,1.26,104,4.7,11,3900,290
-RPP,2015/04/10,Batsata Rock,5,0.75,75,0.69,0.67,80,4.35,6,1420,155
-RPP,2015/04/10,Batsata Rock,6,1,180,0.6,0.28,56,3.15,11,1280,236
-RPP,2015/04/10,Batsata Rock,7,1.02,179,0.48,0.85,98,3.9,8,1874,277
-RPP,2015/04/10,Batsata Rock,8,2.14,186,0.1,1.25,104,4.5,14,3390,290
-RPP,2015/04/10,Batsata Rock,9,0.87,128,0.8,0.63,81,3.65,7,1500,209
-RPP,2015/04/10,Batsata Rock,10,0.08,144,0.48,0.62,72,3.74,10,695,216
-RPP,2015/04/10,Batsata Rock,11,0.5,123,0.38,1.12,114,4,13,1620,237
-RPP,2015/04/10,Batsata Rock,12,1.37,159,0.49,0.22,37,2.78,13,1590,196
-RPP,2015/04/10,Batsata Rock,13,0.36,98,0.65,0.56,185,3.25,10,920,283
-TW,2015/04/26,Sea Point,1,0,171,1.6,2.45,147,63.5,17,2450,318
-TW,2015/04/26,Sea Point,2,0,128,1.5,1.5,102,46,17,1500,230
-TW,2015/04/26,Sea Point,3,0,65,1.1,1.38,135,37.9,15,1375,200
-TW,2015/04/26,Sea Point,4,0,121,1.8,1.5,130,47.2,10,1500,251
-TW,2015/04/26,Sea Point,5,0,163,1.5,2,134,47.9,14,2000,297
-TW,2015/04/26,Sea Point,6,0,105,1.4,1.63,137,45,17,1625,242
-TW,2015/04/26,Sea Point,7,0,91,1.8,1.38,124,42,12,1375,215
-TW,2015/04/26,Sea Point,8,0,161,1.9,2.3,153,51.8,15,2300,314
-TW,2015/04/26,Sea Point,9,0,153,1.6,1.38,104,48,16,1375,257
-TW,2015/04/26,Sea Point,10,0,120,1.2,1.63,126,45,14,1625,246
-TW,2015/04/26,Sea Point,11,0,143,1.7,1.75,123,51.5,13,1750,266
-TW,2015/04/26,Sea Point,12,0,142,1.7,1.88,134,51,22,1875,276
-AJS,2015//05/01,Rocky Bank,1,2.25,139,1.3,3.75,187,54.11,17,6000,326
-AJS,2015//05/01,Rocky Bank,2,3,175,1.9,2.8,141,54.11,17,5800,316
-AJS,2015//05/01,Rocky Bank,3,3.8,195,1.6,5.6,174,50.93,16,9400,369
-AJS,2015//05/01,Rocky Bank,4,1.9,137,2.2,4.2,214,41.38,13,6100,351
-AJS,2015//05/01,Rocky Bank,5,2.25,147,1.6,3.3,187,38.2,12,5550,334
-AJS,2015//05/01,Rocky Bank,6,1.9,180,1.6,2.25,141,41.38,13,4150,321
-AJS,2015//05/01,Rocky Bank,7,4.4,237,1.9,4.25,174,54.11,17,8650,411
-AJS,2015//05/01,Rocky Bank,8,1.3,122,1.1,4,197,38.2,12,5300,319
-AJS,2015//05/01,Rocky Bank,9,1.6,273,1.7,4.5,204,31.83,10,6100,477
-AJS,2015//05/01,Rocky Bank,10,2.6,167,1.5,4.1,224,41.38,13,6700,391
-AJS,2015//05/01,Rocky Bank,11,2.2,170,1.9,2.6,147,47.75,15,4800,317
-AJS,2015//05/01,Rocky Bank,12,2.1,194,1.4,3.75,183,38.2,12,5850,377
-AJS,2015//05/01,Rocky Bank,13,1.3,160,1.9,2.25,137,50.93,16,3550,297
+dataEntered;date;temp_regime;wave_exposure;site;Ind;laminaWeight;laminaLength;laminaThickness;stipeMass;stipeLength;stipeDiameter;digits;thallusMass;totalLength
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;1;2.1;190;1.9;1.3;106;51;15;3400;296
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;2;1.9;160;2;1.1;96;56;12;3000;256
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;3;1.5;120;1.4;2.25;149;68.5;12;3750;269
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;4;0.55;110;1.5;1.15;97;69;13;1700;207
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;5;1;159;1.5;2.6;167;60;8;3600;326
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;6;2.3;149;2;2.8;146;73;15;5100;295
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;7;1.6;107;1.75;2.9;161;63;17;4500;268
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;8;0.65;104;2;0.75;110;51;11;1400;214
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;9;0.6;82;2;2.95;164;57;10;3550;246
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;10;0.95;111;1.25;1.6;136;56;11;2550;247
+EG;2014/10/13;Cool temperate;Very exposed;Kommetjie;11;2.3;178;2.5;4.2;176;76;8;6500;354
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;1;1.75;145;1;0.75;82;40;19;2500;227
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;2;1.8;94;1.25;1.8;133;53;30;3600;227
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;3;2.35;146;1.75;1.25;118;46;20;3600;264
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;4;1.7;116;1.25;1.52;117;46.5;23;3220;233
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;5;1.4;110;1;1;112;39.5;20;2400;222
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;6;2.45;136;1;1.95;132;54;24;4400;268
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;7;2;124;1.25;1.3;119;45;18;3300;243
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;8;2.4;121;1.25;2.6;165;55;22;5000;286
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;9;1.3;102;1;1.25;112;50;16;2550;214
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;10;1.7;149;1;1.35;113;50;11;3050;262
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;11;0.9;95;1.25;1.05;102;41;17;1950;197
+EG;2014/10/15;Warm temperate;Fully sheltered;Bordjies North;12;1.35;112;1;1.05;92;49.5;17;2400;204
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;1;1.85;139;1.5;1.8;109;66;26;3650;248
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;2;1.25;147;1.2;1.75;123;58;7;3000;270
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;3;3.25;172;1.5;3;160;65;25;6250;332
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;4;3.35;205;1;4.75;238;67;16;8100;443
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;5;1.4;136;1.25;3;199;56.5;11;4400;335
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;6;2.55;173;1.5;2.25;136;58;13;4800;309
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;7;1.75;150;1.25;1.2;108;47;29;2950;258
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;8;0.75;91;1.8;1.25;112;53;16;2000;203
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;9;1.6;124;1.25;3;181;62;15;4600;305
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;10;0.9;121;1;1.65;138;54;8;2550;259
+EG;2014/10/17;Cool temperate;Very exposed;Olifantsbos;11;2.25;169;1.4;2.3;114;65.4;16;4550;283
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;1;1.375;150;1.35;1.25;105;49;15;2625;255
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;2;1.4;150;1.15;1.25;118;45;15;2650;268
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;3;1.65;158;1.2;1;98;42;22;2650;256
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;4;1;127;1;1.25;132;39;17;2250;259
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;5;1.5;156;1;1.25;128;46;14;2750;284
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;6;2.25;142;1.9;1.8;133;49;16;4050;275
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;7;2.2;133;1;0.9;85;45;21;3100;218
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;8;1.875;152;1;1.375;110;48;23;3250;262
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;9;2.2;166;1.1;1.36;120;47;23;3560;286
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;10;0.8;133;2;1.375;153;46;12;2175;286
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;11;1.7;123;1;1.3;115;50;24;3000;238
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai;12;0.63;136;0.85;0.78;109;39;12;1410;245
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;1;2.25;147;2;1.125;108;46;25;3375;255
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;2;1.5;118;1;0.7;87;40;19;2200;205
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;3;1.8;107;1.4;0.875;91;46;21;2675;198
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;4;2.25;137;1.8;1.75;138;55;18;4000;275
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;5;2.5;141;1.3;1.25;104;47;16;3750;245
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;6;1.4;127;1.95;0.75;72;44;17;2150;199
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;7;1.1;126;1.3;0.875;102;40;12;1975;228
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;8;1.25;130;1.7;0.9;109;40;13;2150;239
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;9;2.25;134;1.35;1.275;113;45;18;3525;247
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;10;2.375;153;1.2;1.4;113;52;18;3775;266
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;11;1.875;108;1.2;0.64;75;40;26;2515;183
+AJS;2014/11/27;Warm temperate;Fully sheltered;Buffelsbaai South;12;1.9;157;1;0.875;95;39;17;2775;252
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;1;1.75;126;8.4;0.5;174;37;12;2250;300
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;2;2;133;5.2;0.5;78;37;19;2500;211
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;3;1.5;125;2.35;0.5;90;38.5;14;2000;215
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;4;0.5;103;4.2;0.5;83;37;7;1000;186
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;5;1.5;121;5.88;0.3;58;31;13;1800;179
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;6;1.25;150;4.15;1.25;118;42;13;2500;268
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;7;1.25;127;4;0.51;67;35;16;1760;194
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;8;1.3;119;6.2;0.75;88;36;11;2050;207
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;9;0.25;50;3.6;0.75;85;37.5;5;1000;135
+RPP;2015/03/25;Warm temperate;Extremely sheltered;Miller's Point;10;1;109;5.8;0.5;58;34;14;1500;167
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;1;1.25;110;1.25;0.13;36;32.4;12;1380;146
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;2;0.877;147;2.2;0.625;;36;19;1502;147
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;3;2.13;130;5.42;0.38;60;33;19;2510;190
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;4;2.375;134;3.9;0.75;85;37;14;3125;219
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;5;2.65;137;5.15;0.5;66;39;19;3150;203
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;6;2.62;146;5.9;0.75;107;35.5;16;3370;253
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;7;0.625;104;4.1;0.25;53;28.5;9;875;157
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;8;0.212;110;4.7;0.125;35;31;17;337;145
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;9;0.125;160;3;0.25;51;26;11;375;211
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;10;0.23;132;3.67;0.375;76;27;15;605;208
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;11;0.625;160;4.77;0.875;97;36;14;1500;257
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;12;0.215;149;5.9;0.25;53;29.5;18;465;202
+RPP;2015/03/25;Warm temperate;Very sheltered;Baboon Rock;13;1;95;4.65;0.375;63;30.5;14;1375;158
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;1;0.63;125;3.1;1;107;47.74648293;15;1630;232
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;2;2.125;135;2.7;1.625;164;44.56338407;19;3750;299
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;3;1.625;170;4.15;1.6;143;47.74648293;19;3225;313
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;4;1.375;170;3.15;0.575;95;35.01408748;15;1950;265
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;5;3.25;192;2.9;2.75;204;57.29577951;12;6000;396
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;6;1.75;160;4.4;1.25;112;50.92958179;15;3000;272
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;7;1.95;150;2.7;1.5;138;47.74648293;17;3450;288
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;8;3.5;186;3.4;2.1;156;54.11268065;24;5600;342
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;9;1;135;1.6;0.85;190;41.3802852;16;1850;325
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;10;2.5;153;3.6;1.25;127;44.56338407;18;3750;280
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;11;0.55;148;2;1.2;77;38.19718634;19;1750;225
+AJS;2015/03/31;Warm temperate;Very exposed;Betty's Bay;12;0.75;127;3;0.625;97;44.56338407;14;1375;224
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;1;2;115;7.35;0.75;92;37.2;15;2750;207
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;2;2.1;100;8.2;1;113;35.2;16;3100;213
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;3;0.95;90;8.3;0.8;108;34;16;1750;198
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;4;1.38;102;5.8;0.88;107;38.8;15;2260;209
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;5;1.95;95;7.8;0.95;88;41.5;31;2900;183
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;6;2.13;113;6.1;0.87;95;44;18;3000;208
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;7;2.37;115;7.3;0.83;99;36.2;28;3200;214
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;8;3.05;137;8;0.88;87;39.6;24;3930;224
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;9;2.9;138;8;1.1;101;42;19;4000;239
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;10;2.5;126;0.1;0.75;81;37.5;24;3250;207
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;11;2.26;126;7.2;0.63;84;36.2;25;2890;210
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;12;2.87;138;7.4;0.63;73;36.4;24;3500;211
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Roman Rock;13;2.86;107;9.1;0.62;75;36.2;22;3480;182
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;1;1.37;114;6.4;0.2;34;3.18;18;1570;148
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;2;1.25;93;7.9;0.75;87;3.5;15;2000;180
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;3;0.8;134;5.5;0.53;99;3.1;10;1330;233
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;4;1.2;110;1.2;1.3;90;4.82;21;2500;200
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;5;1.62;134;6.9;0.53;66;3.42;20;2150;200
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;6;2.8;170;1.2;0.9;91;4.29;17;3700;261
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;7;0.75;106;4.9;0.25;60;2.7;8;1000;166
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;8;1.1;111;5;0.5;74;3.5;9;1600;185
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;9;1.25;131;5;0.25;51;2.9;9;1500;182
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;10;0.88;128;5.3;0.37;61;3.52;14;1250;189
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;11;1.3;120;4.1;0.19;45;2.2;13;1490;165
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;12;0.43;100;4.4;0.38;71;2.9;11;810;171
+RPP;2015/04/10;Warm temperate;Fully sheltered;A-Frame;13;0.95;123;5.9;0.27;53;3.26;9;1220;176
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;1;0.63;114;0.11;1.25;119;4.05;8;1880;233
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;2;3.75;185;6;0.25;39;3.7;11;4000;224
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;3;0.53;95;0.75;0.32;58;3;6;850;153
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;4;2.64;186;0.13;1.26;104;4.7;11;3900;290
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;5;0.75;75;0.69;0.67;80;4.35;6;1420;155
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;6;1;180;0.6;0.28;56;3.15;11;1280;236
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;7;1.02;179;0.48;0.85;98;3.9;8;1874;277
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;8;2.14;186;0.1;1.25;104;4.5;14;3390;290
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;9;0.87;128;0.8;0.63;81;3.65;7;1500;209
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;10;0.08;144;0.48;0.62;72;3.74;10;695;216
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;11;0.5;123;0.38;1.12;114;4;13;1620;237
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;12;1.37;159;0.49;0.22;37;2.78;13;1590;196
+RPP;2015/04/10;Warm temperate;Extremely sheltered;Batsata Rock;13;0.36;98;0.65;0.56;185;3.25;10;920;283
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;1;0;171;1.6;2.45;147;63.5;17;2450;318
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;2;0;128;1.5;1.5;102;46;17;1500;230
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;3;0;65;1.1;1.38;135;37.9;15;1375;200
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;4;0;121;1.8;1.5;130;47.2;10;1500;251
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;5;0;163;1.5;2;134;47.9;14;2000;297
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;6;0;105;1.4;1.63;137;45;17;1625;242
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;7;0;91;1.8;1.38;124;42;12;1375;215
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;8;0;161;1.9;2.3;153;51.8;15;2300;314
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;9;0;153;1.6;1.38;104;48;16;1375;257
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;10;0;120;1.2;1.63;126;45;14;1625;246
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;11;0;143;1.7;1.75;123;51.5;13;1750;266
+TW;2015/04/26;Cool temperate;Moderately exposed;Sea Point;12;0;142;1.7;1.88;134;51;22;1875;276
+AJS;2015//05/01;NA;NA;Rocky Bank;1;2.25;139;1.3;3.75;187;54.11;17;6000;326
+AJS;2015//05/01;NA;NA;Rocky Bank;2;3;175;1.9;2.8;141;54.11;17;5800;316
+AJS;2015//05/01;NA;NA;Rocky Bank;3;3.8;195;1.6;5.6;174;50.93;16;9400;369
+AJS;2015//05/01;NA;NA;Rocky Bank;4;1.9;137;2.2;4.2;214;41.38;13;6100;351
+AJS;2015//05/01;NA;NA;Rocky Bank;5;2.25;147;1.6;3.3;187;38.2;12;5550;334
+AJS;2015//05/01;NA;NA;Rocky Bank;6;1.9;180;1.6;2.25;141;41.38;13;4150;321
+AJS;2015//05/01;NA;NA;Rocky Bank;7;4.4;237;1.9;4.25;174;54.11;17;8650;411
+AJS;2015//05/01;NA;NA;Rocky Bank;8;1.3;122;1.1;4;197;38.2;12;5300;319
+AJS;2015//05/01;NA;NA;Rocky Bank;9;1.6;273;1.7;4.5;204;31.83;10;6100;477
+AJS;2015//05/01;NA;NA;Rocky Bank;10;2.6;167;1.5;4.1;224;41.38;13;6700;391
+AJS;2015//05/01;NA;NA;Rocky Bank;11;2.2;170;1.9;2.6;147;47.75;15;4800;317
+AJS;2015//05/01;NA;NA;Rocky Bank;12;2.1;194;1.4;3.75;183;38.2;12;5850;377
+AJS;2015//05/01;NA;NA;Rocky Bank;13;1.3;160;1.9;2.25;137;50.93;16;3550;297
