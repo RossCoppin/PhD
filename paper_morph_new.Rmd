@@ -4,9 +4,10 @@ title: Temperature and wave exposure as drivers of morphology in two kelp specie
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
+  pdf_document: 
+    fig_crop: no
   word_document:
     fig_caption: yes
-  pdf_document: default
 papersize: A4
 tables: yes
 fontsize: 10pt
@@ -50,7 +51,8 @@ In order to compare abiotic variables for sites around the coast, large historic
 
 # Results
 ## Temperature variables
-```{r software packages, message=TRUE, warning=TRUE, include=FALSE, echo=FALSE}
+
+```{r software packages, message=TRUE, warning=FALSE, include=FALSE, echo=FALSE}
 library(tidyverse)
 library(ggpubr)
 library(gridExtra)
@@ -190,7 +192,7 @@ temp_plot_C <- ggplot(data = temp_clim, aes(x = site, y = Aug_mean_temp)) +
 
 ```
 
-```{r Temperature variables plot, echo=FALSE, warning=FALSE, fig.cap="Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots.", fig.height=9, fig.width=7}
+```{r Temperature variables plot, echo=FALSE, warning=FALSE, fig.cap="Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots.", fig.height=8, fig.width=8}
 
 temp_plot_all <- grid.arrange(temp_plot_A, temp_plot_B,temp_plot_C, ncol = 1, nrow = 3 )
 
@@ -200,7 +202,7 @@ ggsave("temperature_plot.png", plot = temp_plot_all, path = "figures/", dpi = 30
 
 ## Wave variables
 
-```{r wave data prep, message=FALSE, warning=FALSE, include=FALSE}
+```{r wave data prep, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 
 ## Data wrangling and preparation
 
@@ -327,7 +329,7 @@ wave_clim <- subset(wave_clim, select = -c(2,3,4,5,12,13,14,15,22,23,24,25,32,33
 
 ```
 
-```{r wave variable processing, warning=FALSE, include=FALSE, echo = FALSE}
+```{r wave variable processing, warning=FALSE, include=FALSE, echo = FALSE, message=FALSE}
 
 ### Plots for wave variables
 #Annual wave plots
@@ -414,7 +416,7 @@ wave_plot_F <- ggplot(data = wave_clim, aes(x = site, y = Aug_tp_mean)) +
 
 ```
 
-```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers. Plot "A" represents annual significant wave height.', fig.height=8, fig.width=7}
+```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers.', fig.height=8, fig.width=8}
 
 wave_plot_all <- grid.arrange(wave_plot_A, wave_plot_B, wave_plot_C, wave_plot_D, wave_plot_E, wave_plot_F, ncol = 2, nrow = 3)
 
@@ -425,19 +427,19 @@ ggsave("wave_plot.png", plot = wave_plot_all, path = "figures/", dpi = 300, widt
 ## Morphology
 ### *L. pallida*
 
-```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 lam_data <- read.csv("data/morph_data/lam_morph_data.csv", sep = ";") %>% 
    filter(site!= "Rocky Bank")
 
 # remove unnecessary columns
 lam_df <- subset(lam_data, select = -c(1,2,6))
 
-pos_temp <- c("Cool temperate", "Warm temperate")
-  
+pos_temp <- c("Cool temperate", "Warm temperate")#custom temperature categories position on x-axis
+#temperature and lamanaria  
 LT1 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaWeight, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Lamina weight") +
   scale_fill_discrete(name="Temperature regime") +
@@ -449,7 +451,7 @@ LT1 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaWeight, fill = temp_
 LT2 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Lamina length") +
   scale_fill_discrete(name="Temperature regime") +
@@ -461,7 +463,7 @@ LT2 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaLength, fill = temp_
 LT3 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Lamina thickness") +
   scale_fill_discrete(name="Temperature regime") +
@@ -473,7 +475,7 @@ LT3 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaThickness, fill = te
 LT4 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Stipe mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -485,7 +487,7 @@ LT4 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeMass, fill = temp_reg
 LT5 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Stipe length (cm)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -497,7 +499,7 @@ LT5 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeLength, fill = temp_r
 LT6 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Stipe diameter (cm)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -509,7 +511,7 @@ LT6 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeDiameter, fill = temp
 LT7 <- ggplot(data = lam_df, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("No. of digits") +
   scale_fill_discrete(name="Temperature regime") +
@@ -521,7 +523,7 @@ LT7 <- ggplot(data = lam_df, aes(x = temp_regime, y = digits, fill = temp_regime
 LT8 <- ggplot(data = lam_df, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Thallus mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -533,7 +535,7 @@ LT8 <- ggplot(data = lam_df, aes(x = temp_regime, y = thallusMass, fill = temp_r
 LT9 <- ggplot(data = lam_df, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "wilcox.test") + 
   xlab("") + 
   ylab("Total length (cm)") +
   theme(axis.title.x=element_blank(),
@@ -542,12 +544,14 @@ LT9 <- ggplot(data = lam_df, aes(x = temp_regime, y = totalLength, fill = temp_r
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank()) 
 
+#wave exposure and lamanaria
 lam_df$wave_exposure <- factor(lam_df$wave_exposure, levels=c("Very sheltered", "Very exposed", "Moderately exposed","Fully sheltered","Extremely sheltered"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed"))
 pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed")
 
 LW1 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -556,10 +560,10 @@ LW1 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaWeight, fill = wav
   ylab("Lamina weight (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))
-
 LW2 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -570,7 +574,8 @@ LW2 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaLength, fill = wav
   guides(fill=guide_legend(title="Wave exposure level"))
 LW3 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -581,7 +586,8 @@ LW3 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaThickness, fill = 
   guides(fill=guide_legend(title="Wave exposure level")) 
 LW4 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -592,7 +598,8 @@ LW4 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeMass, fill = wave_e
   guides(fill=guide_legend(title="Wave exposure level")) 
 LW5 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -603,7 +610,8 @@ LW5 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeLength, fill = wave
   guides(fill=guide_legend(title="Wave exposure level")) 
 LW6 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -614,7 +622,8 @@ LW6 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeDiameter, fill = wa
   guides(fill=guide_legend(title="Wave exposure level")) 
 LW7 <- ggplot(data = lam_df, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -625,7 +634,8 @@ LW7 <- ggplot(data = lam_df, aes(x = wave_exposure, y = digits, fill = wave_expo
   guides(fill=guide_legend(title="Wave exposure level")) 
 LW8 <- ggplot(data = lam_df, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -636,7 +646,8 @@ LW8 <- ggplot(data = lam_df, aes(x = wave_exposure, y = thallusMass, fill = wave
   guides(fill=guide_legend(title="Wave exposure level")) 
 LW9 <- ggplot(data = lam_df, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
+  stat_compare_means(method = "kruskal.test") + 
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -647,19 +658,18 @@ LW9 <- ggplot(data = lam_df, aes(x = wave_exposure, y = totalLength, fill = wave
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE}
+```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, fig.height=9, fig.width=9, fig.cap='Boxplot of morphological characteristics for *L. pallida* categorised by temperature regime.'}
 ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c('A', 'B', 'C','D','E','F','G','H',"I"), common.legend = TRUE, legend = "bottom", label = "p.format", ncol = 3, nrow = 3)
 ```
 
-```{r laminaria wave plots, echo=FALSE, message=FALSE, warning=FALSE}
+```{r laminaria wave plots, echo=FALSE, message=FALSE, warning=FALSE, fig.height=9, fig.width=9, fig.cap ='Boxplot of morphological characteristics for *L. pallida* categorised by wave exposure.'}
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c('A', 'B', 'C','D','E','F','G','H',"I"), common.legend = TRUE, legend = "bottom")
 ```
 
 ### *E.maxima*
 
-```{r ecklonia  processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r deep ecklonia  processing, message=FALSE, warning=FALSE, include=FALSE}
 library(ggplot2)
-
 ## Preparing data
 # Ecklonia
 eck_data <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
@@ -668,21 +678,132 @@ eck_data <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
 # group_by(wave_exposure, frond_mass) %>% 
 # summarise(mean = mean(frond_mass:total_length, na.rm = TRUE)) %>% 
 # ungroup()
-
 eck_deep <- eck_data %>% 
   filter(population == "Deep")
 eck_shall <- eck_data %>% 
   filter(population == "Shallow")
+pos_temp <- c("Cool temperate", "Warm temperate") #custom temperature categories position on x-axis
+#temperature plots made seperately for each morphological characteristic
+ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Frond mass (g)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Primary length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Primary width (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Frond length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Stipe mass (g)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Stipe length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Stipe circ (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())
+ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("No. of tufts") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Epi length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Total length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
 
 eck_deep$wave_exposure <- factor(eck_deep$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"))
 
 # custom positions for wave exposure categories and sites
 pos_exposure <- c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed")
-
-frond_mass_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
+#morphology and wave exposure
+EW1 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Frond mass (g)") +
   theme(axis.title.x=element_blank(),
@@ -692,10 +813,10 @@ frond_mass_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-primary_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
+EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Primary length (cm)") +
   theme(axis.title.x=element_blank(),
@@ -705,10 +826,10 @@ primary_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primar
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-primary_width_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
+EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Primary width (cm)") +
   theme(axis.title.x=element_blank(),
@@ -718,10 +839,10 @@ primary_width_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-frond_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
+EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Frond length (cm)") +
   theme(axis.title.x=element_blank(),
@@ -731,10 +852,10 @@ frond_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_le
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-stipe_mass_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
+EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Stipe mass (g)") +
   theme(axis.title.x=element_blank(),
@@ -744,10 +865,10 @@ stipe_mass_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-stipe_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
+EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Stipe length (cm)") +
   theme(axis.title.x=element_blank(),
@@ -757,10 +878,10 @@ stipe_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_le
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-stipe_circ_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
+EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Stipe circumference (cm)") +
   theme(axis.title.x=element_blank(),
@@ -770,10 +891,10 @@ stipe_circ_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-tufts_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
+EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("No of Tufts") +
   theme(axis.title.x=element_blank(),
@@ -783,10 +904,10 @@ tufts_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = w
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-epi_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
+EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
          scale_x_discrete(limits = pos_exposure) + 
          geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Epi length (cm)") +
   theme(axis.title.x=element_blank(),
@@ -796,10 +917,10 @@ epi_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-total_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
+EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means() + 
+  stat_compare_means(method = "kruskal.test") + 
   xlab("") + 
   ylab("Total length (cm)") +
   theme(axis.title.x=element_blank(),
@@ -809,15 +930,271 @@ total_length_plot <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_le
         panel.background = element_blank()) +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-
 ```
 
-```{r ecklonia plots, echo=FALSE, message=FALSE, warning=FALSE}
-
-ggarrange(frond_mass_plot,primary_length_plot,primary_width_plot,frond_length_plot,stipe_mass_plot,stipe_length_plot,stipe_circ_plot, tufts_plot, epi_length_plot,total_length_plot, labels = "AUTO", common.legend = TRUE, legend = "bottom")
-
+```{r deep ecklonia temp plots, echo=FALSE, message=TRUE, warning=FALSE, fig.height=9, fig.width=9, fig.cap ='Boxplot of morphological characteristics for deep population *E. maxima* categorised by temperature regime.'}
+ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = TRUE, legend = "bottom")
 ```
 
+```{r deep ecklonia wave plots, echo=FALSE, message=FALSE, warning=FALSE, fig.height=9, fig.width=9, fig.cap = 'Boxplot of morphological characteristics for deep population *E. maxima* categorised by wave exposure.'}
+ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8, EW9, EW10,labels = "AUTO", common.legend = TRUE, legend = "bottom")
+```
 
+```{r shallow ecklonia temp processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Frond mass (g)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Primary length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Primary width (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Frond length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Stipe mass (g)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Stipe length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Stipe circ (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank())
+EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("No. of tufts") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Epi length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
+  scale_x_discrete(limits = pos_temp) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "wilcox.test") + 
+  xlab("") + 
+  ylab("Total length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) 
+```
 
+```{r shallow ecklonia wave processing, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+eck_shall$wave_exposure <- factor(eck_shall$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"))
+# custom positions for wave exposure categories and sites
+pos_exposure_shall <- c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed")
+#morphology and wave exposure
+ESW1 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Frond mass (g)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level")) 
+ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Primary length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Primary width (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Frond length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Stipe mass (g)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Stipe length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Stipe circumference (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("No of Tufts") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level"))  
+ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA)  + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Epi length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level")) 
+ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
+  scale_x_discrete(limits = pos_exposure_shall) + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
+  stat_compare_means(method = "kruskal.test") + 
+  xlab("") + 
+  ylab("Total length (cm)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank()) +
+  scale_fill_brewer(palette="OrRd") +
+  guides(fill=guide_legend(title="Wave exposure level")) 
+```
+
+```{r shallow ecklonia temp plots, echo=FALSE, message=TRUE, warning=FALSE, fig.height=9, fig.width=9, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* categorised by temperature regime.'}
+ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = TRUE, legend = "bottom")
+```
+
+```{r shallow eck wave plot, message=FALSE,warning=FALSE,include=TRUE, fig.height=9, fig.width=9 ,fig.cap = 'Boxplot of morphological characteristics for shallow population *E. maxima* categorised by wave exposure.'}
+ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, ESW10,labels = "AUTO", common.legend = TRUE, legend = "bottom")
+```
 
