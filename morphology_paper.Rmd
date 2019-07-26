@@ -4,12 +4,12 @@ title: Temperature and wave exposure as drivers of morphology in two kelp specie
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
+  html_notebook: default
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
-  html_notebook: default
   html_document:
     df_print: paged
   word_document:
@@ -211,7 +211,7 @@ rm(fb_model, tb_model)
 wave_sites <- read_csv2("metadata/site_meta_complete.csv") %>% 
   select(site, wave_7, wave_15)
 
- # Calculate the necessary stats
+# Calculate the necessary stats
 # Monthly clims
 wave_feb_aug <- wave_model %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
@@ -251,6 +251,7 @@ wave_ann <- wave_ann %>%
 ```{r wave variable processing, warning=FALSE, include=FALSE, echo = FALSE, message=FALSE}
 ### Plots for wave variables
 #Annual wave plots
+pos_temp <- c("Cool temperate", "Warm temperate")
 
 wave_plot_A <- ggplot(data = wave_ann, aes(x = site, y = hs_mean)) +
   geom_point() + 
@@ -300,15 +301,11 @@ In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in te
 ## Drivers of kelp morphological characteristics
 
 ```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
-lam_data <- read.csv("data/morph_data/lam_morph_data.csv", sep = ";") %>% 
-   filter(site!= "Rocky Bank")
+#custom temperature categories position on x-axis
+pos_temp <- c("Cool temperate", "Warm temperate")
 
-# remove unnecessary columns
-lam_df <- subset(lam_data, select = -c(1,2,6))
-
-pos_temp <- c("Cool temperate", "Warm temperate")#custom temperature categories position on x-axis
 #temperature and lamanaria  
-LT1 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaWeight, fill = temp_regime)) +
+LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -320,7 +317,7 @@ LT1 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaWeight, fill = temp_
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT2 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
+LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -332,7 +329,7 @@ LT2 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaLength, fill = temp_
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT3 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
+LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -344,7 +341,7 @@ LT3 <- ggplot(data = lam_df, aes(x = temp_regime, y = laminaThickness, fill = te
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT4 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
+LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -356,7 +353,7 @@ LT4 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeMass, fill = temp_reg
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT5 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
+LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -368,7 +365,7 @@ LT5 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeLength, fill = temp_r
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT6 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
+LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -380,7 +377,7 @@ LT6 <- ggplot(data = lam_df, aes(x = temp_regime, y = stipeDiameter, fill = temp
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT7 <- ggplot(data = lam_df, aes(x = temp_regime, y = digits, fill = temp_regime)) +
+LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -392,7 +389,7 @@ LT7 <- ggplot(data = lam_df, aes(x = temp_regime, y = digits, fill = temp_regime
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT8 <- ggplot(data = lam_df, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
+LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -404,7 +401,7 @@ LT8 <- ggplot(data = lam_df, aes(x = temp_regime, y = thallusMass, fill = temp_r
         axis.ticks.x=element_blank(),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank())
-LT9 <- ggplot(data = lam_df, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
+LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
   stat_compare_means(method = "wilcox.test") + 
@@ -416,10 +413,10 @@ LT9 <- ggplot(data = lam_df, aes(x = temp_regime, y = totalLength, fill = temp_r
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank()) 
 
-lam_df$wave_exposure <- factor(lam_df$wave_exposure, levels=c("Very sheltered", "Very exposed", "Moderately exposed","Fully sheltered","Extremely sheltered"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed"))#wave exposure levels for lamanaria
+lam_data$wave_exposure <- factor(lam_data$wave_exposure, levels=c("Very sheltered", "Very exposed", "Moderately exposed","Fully sheltered","Extremely sheltered"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed"))#wave exposure levels for lamanaria
 pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed")#custom positions
 
-LW1 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
+LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -431,7 +428,8 @@ LW1 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaWeight, fill = wav
   ylab("Lamina weight (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))
-LW2 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
+
+LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -443,7 +441,8 @@ LW2 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaLength, fill = wav
   ylab("Lamina length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))
-LW3 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
+
+LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -455,7 +454,8 @@ LW3 <- ggplot(data = lam_df, aes(x = wave_exposure, y = laminaThickness, fill = 
   ylab("Lamina thickness") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-LW4 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
+
+LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -467,7 +467,8 @@ LW4 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeMass, fill = wave_e
   ylab("Stipe mass (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-LW5 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
+
+LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -479,7 +480,8 @@ LW5 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeLength, fill = wave
   ylab("Stipe length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-LW6 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
+
+LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -491,7 +493,8 @@ LW6 <- ggplot(data = lam_df, aes(x = wave_exposure, y = stipeDiameter, fill = wa
   ylab("Stipe diameter (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-LW7 <- ggplot(data = lam_df, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
+
+LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -503,7 +506,8 @@ LW7 <- ggplot(data = lam_df, aes(x = wave_exposure, y = digits, fill = wave_expo
   ylab("No. of digits") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-LW8 <- ggplot(data = lam_df, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
+
+LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -515,7 +519,8 @@ LW8 <- ggplot(data = lam_df, aes(x = wave_exposure, y = thallusMass, fill = wave
   ylab("Thallus mass (kg)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-LW9 <- ggplot(data = lam_df, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
+
+LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
   stat_compare_means(method = "kruskal.test") + 
@@ -1059,7 +1064,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = FALSE, legend = "bottom")
 ```
 
-```{r echo=FALSE}
+```{r rda analysis lamanaria, include=FALSE}
+
+# remove unnecessary columns
+lam_df <- subset(lam_data, select = -c(1,2,6))
+
 #calculate mean values for lamanaria morphology
 lam_mean <- lam_df %>% 
   subset(select = -c(1,2)) %>% 
@@ -1067,24 +1076,285 @@ lam_mean <- lam_df %>%
   summarise_all(funs(mean), na.rm = T) %>% 
   ungroup()
 
-# merge temp and wave data to create environmental data-frame
-abio_clim <- merge(temp_ann, wave_ann, by = "site")
+#subset sites into seperate object for aligning data sets
+lam_sites <- subset(lam_mean, select = c(1))
 
-#remove date column
-abio_clim <- subset(abio_clim, select = -c(2))
+#remove Bordjies North from data-frame
+lam_mean <- lam_mean[-c(5),] 
 
-# standardise measurements
-abio_clim <- abio_clim %>%
+lam_meta <- kelp_sites %>% 
+  filter(population == "Deep") %>% 
+  filter(species == "Both") 
+  
+lam_meta <- merge(lam_sites, kelp_sites, by = "site")
+#drop useless columns
+lam_meta <- lam_meta[-c(1,9,11), ]
+
+#standardise all abiotic measurements
+bio_lam <- lam_mean %>%
   subset(select = -c(1)) %>% 
   decostand(method = "standardize")
 
-# run RDA
-RDA_all_eck <- rda(eck_bio_deep ~ ., data = eck_abio_deep)
+#subset sites into seperate object for aligning data sets
+lam_sites <- subset(lam_mean, select = c(1))
 
-# Plot RDA
-plot(RDA_all_eck, scaling  = 2)
+#bind site column back to dataframe
+bio_lam <- cbind(lam_sites, bio_lam)
+
+bio_lam <- bio_lam %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+#subset sites into seperate object for aligning data sets
+lam_sites <- subset(lam_mean, select = c(1))
+
+# merge temp and wave data to create environmental data-frame
+abio_clim <- merge(temp_ann, wave_ann, by = "site")
+
+#use site lam_site to align appropriate data
+abio_lam <- merge(lam_sites, abio_clim, by = "site")
+
+#remove date column
+abio_lam <- abio_lam[ , -c(2)]
+
+# standardise all abiotic measurements
+abio_lam <- abio_lam %>%
+  subset(select = -c(1)) %>% 
+  decostand(method = "standardize")
+
+abio_lam <- cbind(lam_sites, abio_lam)
+
+abio_lam <- abio_lam %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+#run RDA for abiotic variables
+rda_all_lam <- rda(bio_lam ~ ., data = abio_lam)
+
+#summary of rda output
+summary(rda_all_lam)
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(bio_lam ~ 1, data = abio_lam),
+                         scope=formula(rda_all_lam), direction = "forward", pstep = 1000)
+#calculate variance inlfation factor
+#vif.cca(rda_all_lam)
+
+#use pearson correlations to determine best abiotic variables for model
+cor_lam_abio <- round(cor(abio_lam, use = "pair"), 2)
+cor_lam_abio
+
+# Parsimonious RDA
+rda_lam <- rda(bio_lam ~ tp_sd + max_temp + hs_mean, data = abio_lam)
+summary(rda_lam)
+
+#visual screenshot of rda axes to help determine which axes explain the most variation
+screeplot(rda_lam)
+
+#retreive adjusted R2 value which measures the unbiased amount of explained variation
+R2adj <- RsquareAdj(rda_lam)$adj.r.squared
+R2adj 
+
 ```
 
+```{r rda plot lamanaria, echo=FALSE, message=FALSE, warning=FALSE}
+# Plot RDA
+ggord(rda_lam, lam_meta$region, ellipse = FALSE, hull = FALSE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9)  
+```
+
+```{r rda ecklonia processing, echo=FALSE, message=FALSE, warning=FALSE}
+
+#filter to select only deep population ecklonia
+eck_df <- eck_data %>% 
+  filter(population == "Deep")
+
+# remove unnecessary columns
+eck_df <- subset(eck_df, select = -c(1,2,3,4,8,9,10))
+
+#calculate mean values for lamanaria morphology
+eck_mean <- eck_df %>% 
+  subset(select = -c(1,2)) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean), na.rm = T) %>% 
+  ungroup()
+
+#remove St Helena Bay for now as wave model not available for that site
+eck_mean <- eck_mean[-c(13), ]
+
+#subset sites into seperate object for aligning data sets
+eck_sites <- subset(eck_mean, select = c(1))
+
+#remove Miller's Point site as it is causing issues, also this keeps the amount of western and eastern sites more balanced
+eck_sites <- eck_sites %>% 
+  filter(site != "Miller's Point")
+
+eck_meta <- read.csv("metadata/eck_meta.csv", sep = ";") 
+eck_meta <- eck_meta %>% 
+  filter(population == "Deep") %>% 
+  mutate(site = replace(site, site == "Miller's Point", "Miller's Point"))
+
+eck_meta <- merge(eck_meta, eck_sites,  by = "site")
+
+#standardise all abiotic measurements
+bio_eck<- eck_mean %>%
+  filter(site != "Miller's Point") %>% 
+  subset(select = -c(1)) %>%
+  decostand(method = "standardize")
+
+#bind site column back to dataframe
+bio_eck <- cbind(eck_sites, bio_eck)
+
+bio_eck <- bio_eck %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+#use site eck_site to align appropriate data from abio_clim data from the lamanaria processing section
+abio_eck <- merge(eck_sites, abio_clim, by = "site")
+
+#remove date column
+abio_eck <- abio_eck[ , -c(2)]
+
+# standardise all abiotic measurements
+abio_eck <- abio_eck %>%
+  filter(site != "Miller's Point") %>% 
+  subset(select = -c(1)) %>% 
+  decostand(method = "standardize")
+
+abio_eck <- cbind(eck_sites, abio_eck)
+
+abio_eck <- abio_eck %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+#run RDA for abiotic variables
+rda_all_eck <- rda(bio_eck ~ ., data = abio_eck)
+
+#summary of rda output
+summary(rda_all_eck)
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(bio_eck ~ 1, data = abio_eck),
+                         scope=formula(rda_all_eck), direction = "forward", pstep = 1000)
+#calculate variance inlfation factor
+vif.cca(rda_all_eck)
+
+#use pearson correlations to determine best abiotic variables for model
+cor_eck_abio <- round(cor(abio_eck, use = "pair"), 2)
+cor_eck_abio
+
+# Parsimonious RDA
+rda_eck <- rda(bio_eck ~ tp_mean + hs_mean + tp_sd + hs_sd + mean_temp, data = abio_eck)
+summary(rda_eck)
+
+#visual screenshot of rda axes to help determine which axes explain the most variation
+screeplot(rda_eck)
+
+#retreive adjusted R2 value which measures the unbiased amount of explained variation
+R2adj <- RsquareAdj(rda_eck)$adj.r.squared
+R2adj 
+
+# Plot RDA
+ggord(rda_eck, eck_meta$region, ellipse = FALSE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  # looking at the raw code, this is plotting the 'wa scores', the blue 
+```
+
+```{r rda shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
+
+#filter to select only deep population ecklonia and remove Millers B and C for now...
+eck_df_sh <- eck_data %>% 
+  filter(population == "Shallow") %>% 
+  filter(site != "Miller's Point B") %>% 
+  filter(site != "Miller's Point C")
+
+# remove unnecessary columns
+eck_df_sh <- subset(eck_df_sh, select = -c(1,2,3,4,8,9,10))
+
+#calculate mean values for lamanaria morphology
+eck_mean_sh <- eck_df_sh %>% 
+  subset(select = -c(1,2)) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean), na.rm = T) %>% 
+  ungroup()
+
+#subset sites into seperate object for aligning data sets
+eck_sites_sh <- subset(eck_mean_sh, select = c(1))
+
+eck_meta_sh <- read.csv("metadata/eck_meta.csv", sep = ";") 
+eck_meta_sh <- eck_meta_sh %>% 
+  filter(population == "Shallow") 
+
+eck_meta_sh <- merge(eck_meta_sh, eck_sites_sh,  by = "site")
+
+#standardise all abiotic measurements
+bio_eck_sh<- eck_mean_sh %>%
+  subset(select = -c(1)) %>%
+  decostand(method = "standardize")
+
+#bind site column back to dataframe
+bio_eck_sh <- cbind(eck_sites_sh, bio_eck_sh)
+
+bio_eck_sh <- bio_eck_sh %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+#use site eck_site to align appropriate data from abio_clim data from the lamanaria processing section
+abio_eck_sh <- merge(eck_sites_sh, abio_clim, by = "site")
+
+#remove date column
+abio_eck_sh <- abio_eck_sh[ , -c(2)]
+
+# standardise all abiotic measurements
+abio_eck_sh <- abio_eck_sh %>%
+  subset(select = -c(1)) %>% 
+  decostand(method = "standardize")
+
+abio_eck_sh <- cbind(eck_sites_sh, abio_eck_sh)
+
+abio_eck_sh <- abio_eck_sh %>%
+  remove_rownames %>%
+  column_to_rownames(var = "site")
+
+#run RDA for abiotic variables
+rda_all_eck <- rda(bio_eck_sh ~ ., data = abio_eck_sh)
+
+#summary of rda output
+summary(rda_all_eck)
+
+# Forward selection using vegan's ordistep
+# Note that is function does not use R^2adjusted-based stopping criterion
+
+step.forward <- ordistep(rda(bio_eck ~ 1, data = abio_eck),
+                         scope=formula(rda_all_eck), direction = "forward", pstep = 1000)
+#calculate variance inlfation factor
+vif.cca(rda_all_eck)
+
+#use pearson correlations to determine best abiotic variables for model
+cor_eck_abio <- round(cor(abio_eck, use = "pair"), 2)
+cor_eck_abio
+
+# Parsimonious RDA
+rda_eck <- rda(bio_eck ~ tp_mean + hs_mean + tp_sd + hs_sd + mean_temp, data = abio_eck)
+summary(rda_eck)
+
+#visual screenshot of rda axes to help determine which axes explain the most variation
+screeplot(rda_eck)
+
+#retreive adjusted R2 value which measures the unbiased amount of explained variation
+R2adj <- RsquareAdj(rda_eck)$adj.r.squared
+R2adj 
+
+# Plot RDA
+ggord(rda_eck, eck_meta$region, ellipse = FALSE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  # looking at the raw code, this is plotting the 'wa scores', the blue 
+
+
+
+
+
+
+```
 
 # Discussion
 
