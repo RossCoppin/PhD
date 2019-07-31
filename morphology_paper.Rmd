@@ -4,34 +4,37 @@ title: Temperature and wave exposure as drivers of morphology in two kelp specie
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
-  html_notebook: 
-    css: frontiers.csl
-    fig_caption: yes
-    fig_height: 7
-    fig_width: 7
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
+  html_notebook:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
   html_document:
     df_print: paged
   word_document:
-    reference_docx: frontiers_template.docx
+    reference_docx: morphology_paper_files/frontiers_template.docx
 papersize: A4
 tables: yes
 fontsize: 10pt
 ---
 
+```{r include=FALSE}
+knitr::opts_chunk$set(cache=FALSE)
+```
+
 # Introduction
 
 Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres (Steneck et al. 2002). Their size and complex morphology provide a heterogeneous habitat structure (Steneck et al. 2002) that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck et al. 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & Roughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson 2003; Anderson et al. 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013), abundance (Cavanaugh et al. 2011; Dayton et al. 1998), diversity (Wing et al. 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton et al. 1998; Krumhansl & Scheibling 2012) of kelps. 
 
-Wave exposure and temperature have also been shown to be the main drivers of morphological adaptation across various kelp species. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility (Denny & Gaylord 2002). For example, a study by Wernberg & Thomsen (2005) examined the consistency of wave exposure as a driver of *Ecklonia radiata* (C. Agardh) J. Agardh across a broad geographic range, and  showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. The morphological adaptation to wave exposure must be kept in balance with other important processes, such as nutrient assimilation and light absorption, which are dependent on the amount of surface area of the blades. Therefore, there is a trade-off between reducing overall drag and maintaining nutrient and photosynthetic ability. Temperature has also been shown to play a role in driving kelp morphology. For example, a study by Serisawa et al. (2002) compared the morphology of Ecklonia cava Kjellman growing in warm temperate and cool temperate morphologies. The results showed that wrinkles in the blade seem to be a characteristic of warm temperate regions. However this study did not take into account the interaction with other environmental variables such as wave exposure, which also affect kelp morphology. The morphological adapatibility of kelps is driven by a combination of environmental factors that in turn do not act independently of one another. A study by Wernberg et al. (2003) investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales (Wernberg et al. 2003). Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Wave exposure may be greater in shallower environments, or it may be reduced through damping effects of kelp further offshore and natural barriers such as rock outcrops; also, seawater temperature may be higher in shallow water environments due to higher solar irradiance. 
+Temperature and wave exposure have been shown to play a role in driving kelp morphology. For example, a study by Serisawa et al. (2002) compared the morphology of Ecklonia cava Kjellman growing in warm temperate and cool temperate morphologies. The results showed that wrinkles in the blade seem to be a characteristic of warm temperate regions. However this study did not take into account the interaction with other environmental variables such as wave exposure. Wave exposure has also been shown to be the main drivers of morphological adaptation across various kelp species. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility (Denny & Gaylord 2002). For example, a study by Wernberg & Thomsen (2005) examined the consistency of wave exposure as a driver of *Ecklonia radiata* (C. Agardh) J. Agardh across a broad geographic range, and  showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. The morphological adaptation to wave exposure must be kept in balance with other important processes, such as nutrient assimilation and light absorption, which are dependent on the amount of surface area of the blades. Therefore, there is a trade-off between reducing overall drag and maintaining nutrient and photosynthetic ability.  The morphological adapatibility of kelps is driven by a combination of environmental factors that in turn do not act independently of one another. A study by Wernberg et al. (2003) investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales (Wernberg et al. 2003). Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Wave exposure may be greater in shallower environments, or it may be reduced through damping effects of kelp further offshore and natural barriers such as rock outcrops; also, seawater temperature may be higher in shallow water environments due to higher solar irradiance. 
 
-Other species of kelp, such as *Laminaria pallida* and *Ecklonia maxima* (Osbeck) Papenfuss which are important habitat forming seaweeds that exist around the coast of South Africa, offer a unique opportunity to investigate the drivers of macroalgal morphological characteristics between deep and shallow water environments. Although both these species exist in the subtidal, *L. pallida* dominates deeper waters while *E. maxima* forms dense surface canopies in the shallower waters. Therefore, *E. maxima* is exposed to variations in wave, swell and temperature, while *L. pallida* is exposed to variations in waves and temperature. (Molloy & Bolton 1996) investigated the effect of depth and wave exposure on *L. pallida* at different depths and wave exposure and  showed that depth had a greater effect than wave exposure when considering all the morphological characteristics; when considering individual characteristics, however, wave exposure had the most significant effect on blade thickness. Another study by Rothman et al. (2017) investigated the changes in morphology in shallow populations of *L. pallida* and *E. maxima* along the South African coastline and into Namibia; *E. maxima* exhibited no morphological changes along the coast but the stipes of *L. pallida* become increasingly hollow further north along the coastline. They suggested that turbidity was the environmental driver responsible for this change. 
+Other species of kelp, such as *Laminaria pallida* and *Ecklonia maxima* (Osbeck) Papenfuss which are important habitat forming seaweeds that exist around the coast of South Africa, offer a unique opportunity to investigate the drivers of macroalgal morphological characteristics between deep and shallow water environments. Although both these species exist in the subtidal, *L. pallida* dominates deeper waters while *E. maxima* forms dense surface canopies in from the subtidal to shallower waters. Therefore, *E. maxima* is exposed to variations in wave, swell and temperature, while *L. pallida* is exposed to variations in waves and temperature. (Molloy & Bolton 1996) investigated the effect of depth and wave exposure on *L. pallida* at different depths and wave exposure and showed that depth had a greater effect than wave exposure when considering all the morphological characteristics; when considering individual characteristics, however, wave exposure had the most significant effect on blade thickness. Another study by Rothman et al. (2017) investigated the changes in morphology in shallow populations of *L. pallida* and *E. maxima* along the South African coastline and into Namibia; *E. maxima* exhibited no morphological changes along the coast but the stipes of *L. pallida* become increasingly hollow further north along the coastline. They suggested that turbidity was the environmental driver responsible for this change. 
 
-Measures of wave exposure in ecological studies often incorporate integrative measures of hydrodynamic conditions at a particular site which are based on cartographical models of wave exposure. Cartographical models of wave exposure are regarded as 'fetch-based-models' which measure the length of open water associated with a particular site in a straight line, and are regarded as simple measures of wave exposure. Advances in numerical modelling based on physical/linear wave theory incorporate more complexity (wind forcing, wave-wave interactions, wave breaking, diffraction and variation in wave direction) into the models and allow for a quantitave, reproducible approach for measuring wave exposure. Currently, no ecological studies investigating macroalgal communities have incorporated 3D spectral numerical modelling. Previous research investigating drivers of kelp morphological characteristics used qualitative estimates of wave exposure and did not consider other morphological characteristics. Furthermore, only shallow populations have been considered in previous research which ignores the effects of wave damping. No work currently exists where other morphological characters have been considered, quantitative estimates of environmental drivers have been calculated, and the addition of wind as a possible driver of morphological characteristics has been considered. The aim of this study is, therefore, to understand how temperature, wave exposure and wind can influence the morphology in two species of kelps around South Africa. This will be achieved by initially understanding the variation in temperature and waves and the consequences for morphological characteristics of *E. maxima* and *L. pallida*. 
+Measures of wave exposure in ecological studies often incorporate integrative measures of hydrodynamic conditions at a particular site which are based on cartographical models of wave exposure. Cartographical models of wave exposure are regarded as 'fetch-based-models' which measure the length of open water associated with a particular site in a straight line, and are regarded as simple measures of wave exposure. Advances in numerical modelling based on physical/linear wave theory incorporate more complexity (wind forcing, wave-wave interactions, wave breaking, diffraction and variation in wave direction) into the models and allow for a quantitave, reproducible approach for measuring wave exposure. Currently, no ecological studies investigating macroalgal morphological characteristics in relation to the wave environment have incorporated 3D spectral numerical modelling. Previous research investigating drivers of kelp morphological characteristics used qualitative estimates of wave exposure and did not consider other morphological characteristics. Furthermore, possible differences in morphology between shallow and deep water populations have not been considered in previous research which ignores the effects of wave damping. The aim of this study is, therefore, to understand how temperature and wave exposure can influence the morphology in two species of kelps around South Africa, as well as between deep and shallow populations of the same species. This will be achieved by initially understanding the variation in temperature and waves using advanced numerical models. These numerical models will then be used as a basis for investigating the consequences for morphological chracteristics of *E. maxima* and *L. pallida* using statistical tools. 
 
 # Materials and methods
 ## Site selection
@@ -43,11 +46,11 @@ The topography and elevation along the Cape Peninsula channel and shield winds a
 ## Abiotic environment
 ### Temperature
 
-In order to compare abiotic variables for sites around the coast, large historical databases for temperature, wave energy and wind were accessed. Shallow water temperatures were sourced from The South African Coastal Temperature Network (SACTN) website (https://github.com/ajsmit/SACTN). In terms of nearshore temperature, in situ data are preferred over satellite SST, which have shown to exhibit large biases (Smit et al. 2013). Linear interpolated SST were calculated for sites where *in situ* recorders were absent. 
+In order to compare abiotic variables for sites around the coast, large historical databases for temperature, wave energy and wind were accessed. Shallow water temperatures were sourced from The South African Coastal Temperature Network (SACTN) website (https://github.com/ajsmit/SACTN). In terms of nearshore temperature, in situ data are preferred over satellite SST, which have shown to exhibit large biases (Smit et al. 2013). Linear interpolated SST were calculated for sites where *in situ* recorders were absent. These data were used to group sites into 'Cool temperate' and 'Warm temperate' categorisations of thermal regime. 
 
 ### wave environment
 
-Wave model variable data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs (DEA) and produced by the Council for Scientific and Industrial Research (CSIR) (Rautenbach 2015). The South African wave climate was modeled via 20 spectral numerical wave models that simulated the offshore wave climate to the nearshore. The boundary conditions of these models were obtained by using the NOAA Wave Watch III (WWIII) model output, distributed via the National Centers for Environmental Prediction (NCEP) product (Office of the Director 2000; Environmental Modeling Center / Marine Modeling Branch 2005). The particular hindcast product utilised during the DEA-CSIR study spans 1994-2013 at a 3-hour resolution. These data were then used to model swell propagation into the coastal models while wind waves (seas) were generated via stationary computations in the Simulating Waves in the Nearshore SWAN model (Booij et al. 1997). The assumption of stationary computations are acceptable as the model domains were small enough so the temporal variation of the model boundary were slower than the time it takes for that boundary condition to propagate to the coast.  SWAN allows one to extract wave variables from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled and output produced at both the 7 meter and 15 meter isobaths. A 200 meter resolution was used as the False Bay computational grid was nested within a larger grid (1 kilometer resolution). This allowed for a computational effective wave resolution of increasing resolution, from the NCEP, low resolution output to nested, high resolution coastal output. For Table Bay and east of Cape Hangklip the resolution was 500 meters and also had output at the 7 meters and 15 meter isobaths. These contour outputs were chosen in the original study by the CSIR as most engineering run-up calculations require wave parameter information at these contour depths and were the main focus of the original study. For this study the 7 meter contours were used. 
+Wave model variable data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs (DEA) and produced by the Council for Scientific and Industrial Research (CSIR) (Rautenbach 2015). The South African wave climate was modeled via 20 spectral numerical wave models that simulated the offshore wave climate to the nearshore. The boundary conditions of these models were obtained by using the NOAA Wave Watch III (WWIII) model output, distributed via the National Centers for Environmental Prediction (NCEP) product (Office of the Director 2000; Environmental Modeling Center / Marine Modeling Branch 2005). The particular hindcast product utilised during the DEA-CSIR study spans 1994-2013 at a 3-hour resolution. These data were then used to model swell propagation into the coastal models while wind waves (seas) were generated via stationary computations in the Simulating Waves in the Nearshore SWAN model (Booij et al. 1997). The assumption of stationary computations are acceptable as the model domains were small enough so the temporal variation of the model boundary were slower than the time it takes for that boundary condition to propagate to the coast.  SWAN allows one to extract wave variables from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled and output produced at both the 7 meter and 15 meter isobaths. A 200 meter resolution was used as the False Bay computational grid was nested within a larger grid (1 kilometer resolution). This allowed for a computational effective wave resolution of increasing resolution, from the NCEP, low resolution output to nested, high resolution coastal output. For Table Bay and east of Cape Hangklip the resolution was 500 meters and also had output at the 7 meters and 15 meter isobaths. These contour outputs were chosen in the original study by the CSIR as most engineering run-up calculations require wave parameter information at these contour depths and were the main focus of the original study. For this study the 7 meter contours were used. These data were used to group sites according to
 
 ### Collection of kelp morphological characteristics
 
@@ -101,7 +104,7 @@ lam_data <- read.csv("data/morph_data/lam_morph_data.csv", sep = ";") %>%
   # We need to decide how we want to handle this. Give it the same lon/lat as Buffelsbaai?
   mutate(site = replace(site, site == "Buffels Bay South", "Buffelsbaai South")) %>%
   # NB: This may also not be an appropriate change
-  mutate(site = replace(site, site == "Bordjies North", "Bordjies")) %>%
+  mutate(site = replace(site, site == "Bordjies North", "Bordjies Deep")) %>%
   # Not using Rocky Bank in this study
   filter(site != "Rocky Bank")
 
@@ -115,8 +118,6 @@ load("data/temp_data/interp_sites.Rdata")
 
 # The patched Roman Rock temperatures
 load("data/rr_patch.Rdata")
-kelp_sites <- read.csv("metadata/site_meta_complete.csv", sep = ";") %>% 
-  mutate(site = replace(site, site == "Bakoven", "Sea Point"))
 
 ## Subset temperatures for collection sites
 temps <- SACTNmonthly_v4.1 %>% 
@@ -125,6 +126,7 @@ temps <- SACTNmonthly_v4.1 %>%
   rbind(., interp_sites) %>% 
   filter(site!= "Roman Rock") %>% 
   rbind(., rr_patch)
+
 ## Temperature analyses
 # Up next we need to calculate the relevant temperature statistics for each site. These are: #mean, range, and sd, for Annual climatology.
 # Annual clims
@@ -490,16 +492,17 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r laminaria plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by temperature regime and wave exposure category.', message=FALSE, warning=FALSE, include=FALSE}
-ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = FALSE, legend = "bottom")
+```{r laminaria temp plots, echo=FALSE, warning=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by temperature regime.', message=FALSE, warning=FALSE, include=FALSE}
+ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legend = FALSE, legend = "bottom")
+```
+
+```{r lamanaria wave plots, echo=FALSE,warning=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by wave exposure category.'}
+ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = FALSE, legend = "bottom")
 ```
 
 ```{r deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 ## Preparing data
 # Ecklonia
-eck_data <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
-  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
-  filter(site!= "De Hoop")  
 # group_by(wave_exposure, frond_mass) %>% 
 # summarise(mean = mean(frond_mass:total_length, na.rm = TRUE)) %>% 
 # ungroup()
@@ -759,8 +762,12 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r deep ecklonia plot, message=FALSE, warning= FALSE, fig.cap ='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature regime and wave exposure.'}
-ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10,EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
+```{r deep ecklonia temp plot, message=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.'}
+ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
+```
+
+```{r deep ecklonia wave plots, warning=FALSE,fig.cap ='Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.'}
+ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
 ```
 
 ```{r shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
@@ -1016,11 +1023,15 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime and wave exposure.'}
-ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10,ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = FALSE, legend = "bottom")
+```{r shallow ecklonia temp plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.'}
+ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
 ```
 
-```{r rda analysis lamanaria, include=FALSE}
+```{r echo=FALSE, warning=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.'}
+ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = FALSE, legend = "bottom")
+```
+
+```{r rda analysis lamanaria, eval=FALSE, include=FALSE}
 
 # remove unnecessary columns
 lam_df <- subset(lam_data, select = -c(1,2,6))
@@ -1031,6 +1042,7 @@ lam_mean <- lam_df %>%
   group_by(site) %>% 
   summarise_all(funs(mean), na.rm = T) %>% 
   filter(site != "Roman Rock") %>% 
+  filter(site != "Miller's Point") %>%  #the scipt keeps dropping it when combing the site list with the metadata
   ungroup()
 
 #subset sites into seperate object for aligning data sets
@@ -1054,8 +1066,8 @@ abio_clim <- merge(temp_ann, wave_ann, by = "site")
 #use site lam_site to align appropriate data
 abio_lam <- merge(lam_sites, abio_clim, by = "site")
 
-#remove date column
-abio_lam <- abio_lam[ , -c(2)]
+#remove date column and extra Betty's Bay
+abio_lam <- abio_lam[-c(5) , -c(2)]
 
 # standardise all abiotic measurements
 abio_lam <- abio_lam %>%
@@ -1104,12 +1116,11 @@ lam_meta_rda <- lam_meta_rda[-c(1,9,11,14), ]
 lam_rda <- ggord(rda_lam, lam_meta_rda$region, ellipse = TRUE, hull = FALSE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9) 
 ```
 
-```{r rda deep ecklonia processing, echo=FALSE, message=FALSE, warning=FALSE}
+```{r rda deep ecklonia processing, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 #filter to select only deep population ecklonia
 eck_df <- eck_data %>% 
-  filter(population == "Deep") %>% 
-  filter(site != "Miller's Point")
+  filter(population == "Deep")
 
 # remove unnecessary columns
 eck_df <- subset(eck_df, select = -c(1,2,3,4,8,9,10))
@@ -1123,7 +1134,8 @@ eck_mean <- eck_df %>%
 
 #remove St Helena Bay for now as wave model not available for that site
 eck_mean <- eck_mean %>% 
-  filter(site != "St Helena Bay")
+  filter(site != "St Helena Bay") %>% 
+  filter(site != "Miller's Point")
 
 #subset sites into seperate object for aligning data sets
 eck_sites <- subset(eck_mean, select = c(1))
@@ -1143,8 +1155,8 @@ bio_eck <- bio_eck %>%
 #use site eck_site to align appropriate data from abio_clim data from the lamanaria processing section
 abio_eck <- merge(eck_sites, abio_clim, by = "site")
 
-#remove date column
-abio_eck <- abio_eck[ , -c(2)]
+#remove date column and extra Betty's Bay row
+abio_eck <- abio_eck[-c(5) , -c(2)]
 
 # standardise all abiotic measurements
 abio_eck <- abio_eck %>%
@@ -1191,16 +1203,20 @@ eck_meta_rda <- eck_meta_rda %>%
   filter(population == "Deep")
 
 # Plot RDA
-rda_eck_deep <- ggord(rda_eck, ellipse = TRUE, hull = FALSE, ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  # looking at the raw code, this is plotting the 'wa scores', the blue 
+rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = TRUE, hull = FALSE, ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  # looking at the raw code, this is plotting the 'wa scores', the blue 
 ```
 
-```{r rda shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r rda shallow ecklonia processing, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 #filter to select only deep population ecklonia and remove Millers B and C for now...
 eck_df_sh <- eck_data %>%
   filter(population == "Shallow") %>% 
-  mutate(site = replace(site, site == "Miller's Point A", "Miller's Point")) %>% 
-  mutate(site = replace(site, site == "Bakoven", "Sea Point"))
+  mutate(site = replace(site, site == "Buffelsbaai", "Buffelsbaai South")) %>% 
+  mutate(site = replace(site, site == "Miller's Point C", "Miller's Point")) %>% 
+  mutate(site = replace(site, site == "Miller's Point B", "Baboon Rock")) %>% 
+  filter(site != "St James") %>% 
+  filter(site != "Slangkop") %>% 
+  filter(site != "Miller's Point A")
 
 # remove unnecessary columns
 eck_df_sh <- subset(eck_df_sh, select = -c(1,2,3,4,8,9,10))
@@ -1210,7 +1226,9 @@ eck_mean_sh <- eck_df_sh %>%
   subset(select = -c(1,2)) %>% 
   group_by(site) %>% 
   summarise_all(funs(mean), na.rm = T) %>% 
-  ungroup()
+  ungroup() 
+eck_mean_sh <- eck_mean_sh %>% 
+  mutate(site = replace(site, site == "Yzerfontein", "St Helena Bay")) 
 
 #subset sites into seperate object for aligning data sets
 eck_sites_sh <- subset(eck_mean_sh, select = c(1))
@@ -1228,6 +1246,9 @@ bio_eck_sh <- bio_eck_sh %>%
   column_to_rownames(var = "site")
 
 #use site eck_site to align appropriate data from abio_clim data from the lamanaria processing section
+abio_clim_temp <- abio_clim %>% 
+  mutate(site = replace(site, site == "Sea Point", "Bakoven"))
+  
 abio_eck_sh <- merge(abio_clim, eck_sites_sh, by = "site") 
 
 #remove date column
@@ -1236,7 +1257,7 @@ abio_eck_sh <- abio_eck_sh[ , -c(2)]
 # standardise all abiotic measurements
 abio_eck_sh <- abio_eck_sh %>%
   subset(select = -c(1)) %>% 
-  decostand(method = "standardize")
+  decostand(method = "standardize") 
 
 abio_eck_sh <- cbind(eck_sites_sh, abio_eck_sh)
 
@@ -1274,11 +1295,11 @@ R2adj <- RsquareAdj(rda_eck_shallow)$adj.r.squared
 R2adj 
 
 # Plot RDA
-rda_eck_shallow <- ggord(rda_eck_shallow, eck_meta_sh$region,ellipse = TRUE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9, coord_fix = TRUE)  # looking at the raw code, this is plotting the 'wa scores', the blue 
+rda_eck_shallow <- ggord(rda_eck_shallow,ellipse = TRUE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9, coord_fix = TRUE)  # looking at the raw code, this is plotting the 'wa scores', the blue 
 
 ```
 
-```{r rda plots, echo=FALSE}
+```{r rda plots, eval=FALSE, include=FALSE}
 ggarrange(lam_rda, rda_eck_deep,rda_eck_shallow, common.legend = TRUE, labels = "AUTO", legend = "bottom")
 ```
 
