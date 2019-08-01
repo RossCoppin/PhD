@@ -4,19 +4,19 @@ title: Temperature and wave exposure as drivers of morphology in two kelp specie
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
-  html_notebook:
-    fig_caption: yes
-    fig_height: 7
-    fig_width: 7
+  html_document:
+    df_print: paged
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
-  html_document:
-    df_print: paged
   word_document:
     reference_docx: morphology_paper_files/frontiers_template.docx
+  html_notebook:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
 papersize: A4
 tables: yes
 fontsize: 10pt
@@ -100,17 +100,14 @@ The mean annual coastal water temperature for the study sites located on the wes
 eck_data <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
   filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
   filter(site!= "De Hoop")
+eck_data$site <- as.character(eck_data$site)
 
 # Laminaria
 lam_data <- read.csv("data/morph_data/lam_morph_data.csv", sep = ";") %>%
-  mutate(site = replace(site, site == "Buffels Bay", "Buffelsbaai")) %>%
-  # NB: Even though I am changing the name, there will still be no lon/lat values for this site
-  # We need to decide how we want to handle this. Give it the same lon/lat as Buffelsbaai?
-  mutate(site = replace(site, site == "Buffels Bay South", "Buffelsbaai South")) %>%
   # NB: This may also not be an appropriate change
-  mutate(site = replace(site, site == "Bordjies North", "Bordjies Deep")) %>%
   # Not using Rocky Bank in this study
   filter(site != "Rocky Bank")
+lam_data$site <- as.character(lam_data$site)
 
 # NB: (RWS) I have removed Roman Rock as this has less than a year of temperature data
 
@@ -152,7 +149,7 @@ temp_ann <- temps %>%
 
 ```{r Temperature variable processing, message=FALSE, warning=FALSE, include=FALSE}
 ### Plots for temperature variables 
-positions_temp <- c("Betty's Bay", "Roman Rock","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock",  "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Olifantsbos","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","Sea Point","St Helena Bay")
+positions_temp <- c("Betty's Bay", "Roman Rock","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock", "Batsata Rock","Bordjies Deep","Buffelsbaai","Buffelsbaai South","Olifantsbos","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","Sea Point","St Helena Bay")
 
 # Annual temp
 temp_plot <- ggplot(data = temp_ann, aes(x = site, y = mean_temp)) +
@@ -193,7 +190,6 @@ rm(fb_model, tb_model)
 # The site list key
 wave_sites <- read_csv2("metadata/site_meta_complete.csv") %>% 
   select(site, wave_7, wave_15)
-
 # Annual clims
 wave_ann <- wave_model %>% 
   mutate(date = lubridate::month(date, label = TRUE)) %>% 
@@ -214,11 +210,58 @@ wave_ann <- wave_model %>%
   select(site, everything()) %>% 
   na.omit()
 
+#remove useless coloumns
 wave_ann <- wave_ann[-c(9,15,20,22), -c(2,23)]
 
-#remove useless coloumns
 wave_ann <- wave_ann %>% 
   select(site, hs_mean, hs_min, hs_max, hs_sd, tp_mean, tp_min, tp_max, tp_sd) 
+
+# Subset directions out
+dirs <- subset(wave_model, select = c(1, 2, 5, 6))
+
+# Annual
+dirs_ann <- dirs %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(dir_min = min(dir, na.rm = T),
+            dir_max = max(dir, na.rm = T),
+            dir_range = range(dir, na.rm = T)[2]-range(dir, na.rm = T)[1],
+            dir_median = median(dir, na.rm = T), 
+            dirw_min = min(dirw, na.rm = T),
+            dirw_max = max(dirw, na.rm = T),
+            dirw_range = range(dirw, na.rm = T)[2]-range(dirw, na.rm = T)[1],
+            dirw_median = median(dirw, na.rm = T)) %>% 
+  ungroup() %>% 
+  select(-date) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean(., na.rm = T))) %>% 
+  mutate(date = "Ann") %>% 
+  select(site, date, everything())
+
+# combine all direction metrics
+dirs_ann <- dirs_ann %>% 
+  group_by(site) %>% 
+  gather(key = statistic, value = value, 
+         3:4) %>% 
+  mutate(clim_stat = paste(date, statistic, sep = "_")) %>% 
+  select(-date, -statistic) %>% 
+  spread(key = clim_stat, value = value) %>% 
+  left_join(wave_sites, by = c("site" = "wave_7")) %>% 
+  ungroup() %>% 
+  select(-site, wave_15) %>%
+  rename(site = site.y) %>% 
+  select(site, everything()) %>% 
+  na.omit()
+
+# Combine
+#these will be used later for the redudancy analysis
+clim <- merge(wave_ann, dirs_ann, by = "site")  
+clim <- clim[ , -c(12,13,16,17,18)]
+#remove duplicate sites
+clim <- clim[-c(1,6,7,8,12,18,20), ]
+
+# merge temp and wave data to create environmental data-frame
+abio_clim <- merge(temp_ann, clim, by = "site")
 ```
 
 ```{r wave variable processing, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
@@ -258,19 +301,20 @@ Our data show the western side of the peninsula experiences higher significant w
 
 Annual mean wave peak period for sites on the western side of the peninsula ranged from 10.3 ± 3.5 s at St. Helena Bay to 11.0 ± 2.0 s at Olifantsbos, and ranged from 10.6 ± 3.0 s at Buffelsbaai to 10.8 ± 2.2 s at Betty’s Bay ([Fig. 4]. Annual peak wave period was 10.0 ± 3.0 s and 9.2 ± 3.1 s in winter and summer respectively, Miller’s point and had the lowest peak wave period amongst all sites. These data show that the western side of the peninsula has a lower variation (SD) compared to the eastern side of the peninsula, with Miller’s point showing the highest variation across timescales.  Annual maximum peak wave period ranged from 18.9 s at St. Helena Bay to 18.4 s at Olifantsbos for the western side of the peninsula, and ranged from 18.0 s at Buffelsbaai to 18.0 s at Betty’s Bay on the eastern side of the peninsula. Data for median wave direction showed no trend across timescales; however the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula [Fig. 4]. Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively. This phenomenon can be explained by the sheltering effect of the Cape Peninsula, resulting in a wave climate with a narrower directional spreading on the eastern side of the peninsula (refer to Fig. 7). 
 
-```{r wave power map, echo=FALSE, fig.cap='Schematic of *E. maxima* on the left and *L. pallida* on the right. (Dyer 2018)'}
+```{r wave power map, echo=FALSE, fig.cap='wave power maps'}
 library(png)
 library(grid)
 
 img_wavepower <- readPNG("figures/CapePen_Total.PNG")
-grid.raster(img_wavepower)
+legend_wave_power <- readPNG("figures/CapePen_Legend.PNG")
+grid.raster(img_wavepower,legend_wave_power)
 ```
 
 In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The directional sheltering effect of the Cape Peninsula, against the dominant swell direction is clearly observed in the wave exposures presented in [Fig. 6]. The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures [Fig. 6]. THere the marked seasonality, with higher energy waves during winter, may be clearly observed once more. To clarify the averaged wave exposure maps presented, the propagation of a typical offshore wave spectrum as produced from a single time-step in SWAN is presented in [Fig. 7]. Tracing the wave height contours into False Bay its clear why this bay’s western periphery is predominantly sheltered. It should be mentioned that some of the annual winter frontal depression systems pass the Cape Peninsula from the west to east, resulting in wave propagating towards the continent from much more southerly directions. This results in positive and negative wave exposure anomalies all around the peninsula.
 
 ## Drivers of kelp morphological characteristics
 
-Significant differences were found between cool temperate and warm temperate regimes for all *L. pallida* morphological differences with lamina length, number of digits and thallus mass the exceptions. Certian morphological characteristics such as stipe mass, stipe length, total length and stipe diameter had significanlty higher means for the cool temperate regimes when compared to the warm temperate regime. Conversely, lamina weight and lamina thickness has significantly lower means for the cool temperate regime compared to the warm temperate regime. When *L. pallida* morphological characteristics were grouped to wave exposure categories kruskal-wallis tests revealed significant differences amoungst categories for all morphological characteristics with lamina length, number of digits and thallus mass the exceptions. The morphological characteristics that were significantly different amoungst sites exibited similar patterns, with increasing mean values from the full sheltered to extremely sheltered categories and then a decrease in mean values for the remainder of the categories. Two morphological characteristics, namely lamina thickness and stipe diameter, both exibit higher variations for the exposed categories. 
+Significant differences were found between cool temperate and warm temperate regimes for all *L. pallida* morphological characteristics with lamina length, number of digits and thallus mass the exceptions. Certian morphological characteristics such as stipe mass, stipe length, total length and stipe diameter had significanlty higher means kelps in cool temperate regimes when compared to kelps for the warm temperate regime. Conversely, lamina weight and lamina thickness had significantly lower means for kelps in the cool temperate regime compared to kelps in the warm temperate regime. When *L. pallida* morphological characteristics were grouped to wave exposure categories kruskal-wallis tests revealed significant differences amoungst categories for all morphological characteristics with lamina length, number of digits and thallus mass the exceptions. The morphological characteristics that were significantly different amoungst sites exibited similar patterns, with increasing mean values from the full sheltered to extremely sheltered categories and a decrease in mean values for the remainder of the categories. Two morphological characteristics, namely lamina thickness and stipe diameter, both exibit higher variations for the exposed categories compared to other morphological characteristics. 
 
 ```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 #custom temperature categories position on x-axis
@@ -514,7 +558,7 @@ ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legen
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
-All deep *E. maxima* morphological characteristics showed differences between cool temperate and warm temperate regimes except for frond mass, frond length and stipe mass. Mean values for primary length, primary width and stipe circumference were all significantly higher for the cool temperate regime than the warm temperate regime. The remaining morphological characteristics which showed significant differences between regimes exhibited significanlty lower values for the cool temperate regime compared to the warm temperate regime. Significant differences amoungst wave exposure categories were found for all morphological characteristics of deep *E. maxima* populations. Certian morphological characteristics showed a gradual increase in mean value with inncreasing wave exposure. The remaining morphological characteristics exhibited decreased values for only the higher exposure categories and then a sharp increase in value for the highest wave exposure category. In all cases, mean values for the highest wave exposure level (very exposed) was greatest compared to other levels of exposure. 
+Six out of the ten deep *E. maxima* morphological characteristics showed differences between cool temperate and warm temperate regions except for frond mass, frond length, stipe mass and epiphyte length. Mean values for primary length, primary width and stipe circumference were significantly higher for kelps from cool temperate regions than for kelps from warm temperate regions. The remaining morphological characteristics, stipe length, number of tufts and total length had significanlty lower values for kelps from cool temperate compared to kelps from the warm temperate regime. Significant differences amoungst wave exposure categories were found for all morphological characteristics of deep *E. maxima* populations. Certian morphological characteristics showed a gradual increase in value with increasing degree of wave exposure. The remaining morphological characteristics exhibited decreased values for only the higher wave exposure categories and then a sharp increase in value for the highest wave exposure category. 
 
 ```{r deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 ## Preparing data
@@ -988,6 +1032,7 @@ ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = w
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
   stat_compare_means(method = "kruskal.test") + 
+ ylim(0,30) +
   xlab("") + 
   ylab("Stipe circumference (cm)") +
   theme(axis.title.x=element_blank(),
@@ -1039,16 +1084,16 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.'}
+```{r shallow ecklonia temp plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.',fig.height=8, fig.width=8, include=TRUE}
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
 ```
 
-```{r echo=FALSE, warning=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.'}
-ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = FALSE, legend = "bottom")
+```{r echo=FALSE, warning=FALSE, warning=FALSE, fig.cap ='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.',fig.height=8, fig.width=8, include=TRUE}
+ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom")
 ```
 
-```{r rda analysis lamanaria, eval=FALSE, include=FALSE}
-
+```{r rda analysis lamanaria, eval=FALSE, include=TRUE}
+#data processed in the temperature and wave sections will be used here eg. abio_clim
 # remove unnecessary columns
 lam_df <- subset(lam_data, select = -c(1,2,6))
 
@@ -1058,7 +1103,6 @@ lam_mean <- lam_df %>%
   group_by(site) %>% 
   summarise_all(funs(mean), na.rm = T) %>% 
   filter(site != "Roman Rock") %>% 
-  filter(site != "Miller's Point") %>%  #the scipt keeps dropping it when combing the site list with the metadata
   ungroup()
 
 #subset sites into seperate object for aligning data sets
@@ -1076,26 +1120,26 @@ bio_lam <- bio_lam %>%
   remove_rownames %>%
   column_to_rownames(var = "site")
 
-# merge temp and wave data to create environmental data-frame
-abio_clim <- merge(temp_ann, wave_ann, by = "site")
-
 #use site lam_site to align appropriate data
 abio_lam <- merge(lam_sites, abio_clim, by = "site")
 
-#remove date column and extra Betty's Bay
-abio_lam <- abio_lam[-c(5) , -c(2)]
+#remove date column 
+abio_lam <- abio_lam[ , -c(2)]
 
 # standardise all abiotic measurements
 abio_lam <- abio_lam %>%
   subset(select = -c(1)) %>% 
   decostand(method = "standardize")
 
-abio_lam <- cbind(lam_sites, abio_lam)
+#have an issue with Miller's Point not merging so removing for now. creating temp site list for this
+lam_sites_temp <- lam_sites[-c(9), ]
+abio_lam <- cbind(lam_sites_temp, abio_lam)
 
 abio_lam <- abio_lam %>%
   remove_rownames %>%
   column_to_rownames(var = "site")
-
+#remove Millers from bio_lam to match up sites as I am still having issues
+bio_lam <- bio_lam[-c(9), ]
 #run RDA for abiotic variables
 rda_all_lam <- rda(bio_lam ~ ., data = abio_lam)
 
@@ -1115,8 +1159,10 @@ cor_lam_abio <- round(cor(abio_lam, use = "pair"), 2)
 cor_lam_abio
 
 # Parsimonious RDA
-rda_lam <- rda(bio_lam ~ tp_sd + max_temp + hs_mean, data = abio_lam)
+rda_lam <- rda(bio_lam ~ tp_sd + hs_mean + mean_temp + dir_median, data = abio_lam)
 summary(rda_lam)
+anova.cca(rda_lam, step = 1000)
+anova.cca(rda_lam, step = 1000, by = "axis")
 
 #visual screenshot of rda axes to help determine which axes explain the most variation
 screeplot(rda_lam)
@@ -1125,12 +1171,14 @@ screeplot(rda_lam)
 R2adj <- RsquareAdj(rda_lam)$adj.r.squared
 R2adj 
 
-lam_meta_rda <- merge(lam_sites, kelp_sites, by = "site")
-lam_meta_rda <- lam_meta_rda[-c(1,9,11,14), ]
+meta_all <- read.csv("metadata/site_meta_complete.csv", sep = ";")
+meta_lam_rda <- merge(lam_sites, meta_all, by = "site")
+meta_lam_rda <- lam_meta_rda[-c(9), ] #remove Miller's point as it is dropping during processing
   
 # Plot RDA
-lam_rda <- ggord(rda_lam, lam_meta_rda$region, ellipse = TRUE, hull = FALSE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9) 
+lam_rda <- ggord(rda_lam, meta_lam_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9) 
 ```
+
 
 ```{r rda deep ecklonia processing, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -1315,8 +1363,8 @@ rda_eck_shallow <- ggord(rda_eck_shallow,ellipse = TRUE, hull = FALSE, grp_title
 
 ```
 
-```{r rda plots, eval=FALSE, include=FALSE}
-ggarrange(lam_rda, rda_eck_deep,rda_eck_shallow, common.legend = TRUE, labels = "AUTO", legend = "bottom")
+```{r rda plots, echo=FALSE, message=FALSE, warning=FALSE}
+lam_rda
 ```
 
 # Discussion
