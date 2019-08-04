@@ -174,7 +174,8 @@ temp_ann_meta$site <- as.character(temp_ann_meta$site)
 
 temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
   geom_boxplot() + 
-  scale_x_discrete(limit = c("Western", "Eastern")) + 
+  scale_x_discrete(limit = c("Western", "Eastern")) +
+  scale_fill_discrete(name="Region") +
   stat_compare_means() + 
   xlab("") + 
   ylab("")
@@ -308,10 +309,29 @@ wave_plot_B <- ggplot(data = wave_ann, aes(x = site, y = tp_mean)) +
   theme(legend.position = "none") + 
   theme(plot.title = element_text(hjust = 0)) + 
   coord_flip() 
+
+wave_ann_meta <- merge(meta_all, wave_ann, by = "site")
+wave_ann_meta$site <- as.character(wave_ann_meta$site)
+
+wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill  = region)) + 
+  geom_boxplot() + 
+  scale_x_discrete(limit = c("Western", "Eastern")) + 
+  scale_fill_discrete(name="Region") +
+  stat_compare_means() + 
+  xlab("") + 
+  ylab("")
+
+wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
+  geom_boxplot() + 
+  scale_x_discrete(limit = c("Western", "Eastern")) +
+  scale_fill_discrete(name="Region") +
+  stat_compare_means() + 
+  xlab("") + 
+  ylab("")
 ```
 
 ```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers.'}
-ggarrange(wave_plot_A, wave_plot_B, ncol = 2, nrow = 1)
+ggarrange(wave_plot_A,wave_boxplot_1, wave_plot_B, wave_boxplot_2, common.legend = TRUE, labels = c("AUTO"))
 ```
 
 Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual and seasonal scale. Annual mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay (Fig. 4). The annual maximum significant wave height ranged from 1.4 m at St. Helena Bay to 4.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side ranged from 2.6 m at Buffelsbaai to 4.2 m at Betty’s Bay. These wave heights and their variability are modulated by the relative sheltering against the predominant south-westerly swell direction and the size of the fetch for local wave generation. 
