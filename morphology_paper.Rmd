@@ -4,15 +4,15 @@ title: Temperature and wave exposure as drivers of morphology in two kelp specie
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
-  html_document:
-    df_print: paged
+  word_document:
+    reference_docx: frontiers_template.docx
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
-  word_document:
-    reference_docx: frontiers_template.docx
+  html_document:
+    df_print: paged
   html_notebook:
     fig_caption: yes
     fig_height: 7
@@ -1192,7 +1192,7 @@ lam_rda <- ggord(rda_lam, meta_lam_rda$region,ellipse = TRUE, hull = FALSE, grp_
 
 ### Abiotic drivers of *L. pallida* morphological characteristics
 
-Forward selection, assessment of VIF and an examination of pairwise Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of *L. pallida* morphological characteristics with an adjusted *R*2 of 0.49, explaining 72% of the variation (global permutation test on final model: d.f = 1, *F* = 8.51, *p* = 0.008). RDA1 was the only significant axis in the model and explained 48% of the variation while RDA2 was not significant and explained 63% of the variation. Total length, stipe length, stipe diameter and stipe mass were postivley influenced (i.e., increased size corresponding with the environmental driver) by *hs_mean* and *dir_median* and negativley influenced (i.e., decreased size corresponding with the environmental driver) by *tp_sd* and *mean_temp*. Study sites from the eastern region clustred close together while no clear clustering was evident for the western region. 
+Forward selection, assessment of VIF and an examination of pairwise Pearson correlation coefficients allowed us to retain the most parsimonious descriptors of *L. pallida* morphological characteristics with an adjusted *R*2 of 0.49, explaining 72% of the variation (global permutation test on final model: d.f = 1, *F* = 8.51, *p* = 0.008). RDA1 was the only significant axis in the model and explained 48% of the variation while RDA2 was not significant and explained 63% of the variation. Total length, stipe length, stipe diameter and stipe mass were postivley influenced (i.e., increased size corresponding with the environmental driver) by *hs_mean* and *dir_median* for kelps mostly from the western region and negativley influenced (i.e., decreased size corresponding with the environmental driver) by *tp_sd* and *mean_temp* for kelps from the eastern region. Although sites from from the western region did not cluster as closely as eastern region study sites, grouping according to region was still evident. 
 
 ```{r rda deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -1284,7 +1284,7 @@ rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = TRUE, hull = FALSE
 
 ### Abiotic drivers of *E. maxima* morphological characteristics
 
-Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of deep *E. maxima* morphological characteristics with an adjusted *R*2 of 0.39, explaining 67% of the variation (global permutation test on final model: d.f = 5, *F* = 2.4, *p* = 0.026). RDA1 was the only significant axis in the model (p = 0.03) and explained 72% of the variation. The non-significant axis for the model explained 17% of the variation. Primary length, primary width and stipe circumference were positivley influenced by *hs_mean*, *tp_mean* and *dir_median* for for kelps from the western region. The remaining morphological characteristics were postivley inlfuenced by *min_temp* and negatively influenced by *tp_sd* for kelps ffrom the eastern region. 
+Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of deep *E. maxima* morphological characteristics with an adjusted *R*2 of 0.39, explaining 67% of the variation (global permutation test on final model: d.f = 5, *F* = 2.4, *p* = 0.026). RDA1 was the only significant axis in the model (p = 0.03) and explained 72% of the variation. The non-significant axis for the model explained 17% of the variation. Primary length, primary width and stipe circumference were positivley influenced by *hs_mean*, *tp_mean* and *dir_median* for for kelps from the western region. The remaining morphological characteristics were postivley inlfuenced by *min_temp* and negatively influenced by *tp_sd* for kelps from the eastern region. 
 
 ```{r rda shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -1385,7 +1385,7 @@ rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE,
 
 ```
 
-Forward selection, assessment of VIF and pearson correlation coefficients retained *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 66% of the variation (global permutation test on final model: d.f = 3, *F* = 2.54, *p* = 0.027). bla bla bla
+Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
 
 ```{r rda plots, echo=FALSE, fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
 ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, common.legend = TRUE)
