@@ -1,18 +1,17 @@
 ---
-title: Temperature and wave exposure as drivers of morphology in two kelp species
-  along the coast of South Africa
+title: Using numerical modelling to investigate temperature and wave exposure as drivers of macroalgal characteristics
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
-  word_document:
-    reference_docx: frontiers_template.docx
+  html_document:
+    df_print: paged
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
-  html_document:
-    df_print: paged
+  word_document:
+    reference_docx: frontiers_template.docx
   html_notebook:
     fig_caption: yes
     fig_height: 7
@@ -105,6 +104,7 @@ meta_all <- read.csv("metadata/site_meta_complete.csv", sep = ";")
 ```
 
 ## Abiotic environment
+### Temperature
 
 The mean annual coastal water temperature for the study sites located on the western side of the peninsula ranged from 14.5 ± 0.9 ℃ (mean ± SD) at St. Helena Bay, the most northern site on the western side of the peninsula, to 14.6 ± 0.3 ℃ at Olifantsbos, the most southern site on the western side of the peninsula. For sites located on the eastern side of the peninsula (within False Bay), the annual mean coastal water temperatures ranged from 15.5 ± 0.9 ℃ at Buffelsbaai to 15.0 ± 0.9 ℃ at Betty’s Bay, the most eastern site on the coastline in this study. Oudekraal had the lowest annual mean coastal water temperature of 12.3 ± 0.9. Annual maximum coastal temperatures for study sites located on the western side of the peninsula ranged from 16.3 ℃ at St. Helena Bay to 15.1 ℃ at Olifantsbos. For sites located east of the peninsula, annual maximum coastal water temperatures ranged from 16 ℃ at Buffelsbaai to 16.5 ℃ at Betty’s Bay. Amongst all sites, Kalk Bay had the highest annual maximum temperature of 19 ℃. Annual minimum coastal water temperatures for the study sites on the western side of the peninsula ranged from 12.9 ℃ at St. Helena Bay to 14.1 ℃ at Olifantsbos, and on the western side of the peninsula ranged from 15.0 ℃ at Buffelsbaai to 13.6 ℃ at Betty’s Bay.  The annual range in temperature on the western side on the peninsula was 3.4 at St. Helena Bay to 0.9 at Olifantsbos, and on the eastern side on of the peninsula was 1.0 at Buffelsbaai to 2.9 at Betty’s Bay. As can be seen in Fig 3, the trend in the range of temperature decreases from St. Helena Bay to Miller’s point and then increases from Kalk Bay to Betty’s Bay. Also, annual range in temperatures within False Bay are larger in winter (August) compared to summer (February).
 
@@ -168,11 +168,24 @@ temp_plot <- ggplot(data = temp_ann, aes(x = site, y = mean_temp)) +
   theme(plot.title = element_text(hjust = 0)) +
   theme(legend.position = "none") + 
   coord_flip() 
+
+temp_ann_meta <- merge(meta_all, temp_ann, by = "site")
+temp_ann_meta$site <- as.character(temp_ann_meta$site)
+
+temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
+  geom_boxplot() + 
+  scale_x_discrete(limit = c("Western", "Eastern")) + 
+  stat_compare_means() + 
+  xlab("") + 
+  ylab("")
+
 ```
 
 ```{r Temperature variables plot, echo=FALSE, warning=FALSE, fig.cap='Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation.'}
-temp_plot
+ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"))
 ```
+
+### Wave environment
 
 Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual and seasonal scale. Annual mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay. Annual mean wave peak period for sites on the western side of the peninsula ranged from 10.3 ± 3.5 s at St. Helena Bay to 11.0 ± 2.0 s at Olifantsbos, and ranged from 10.6 ± 3.0 s at Buffelsbaai to 10.8 ± 2.2 s at Betty’s Bay. The data shows no trend in mean peak wave period for the coastline. Annual peak wave period was 10.0 ± 3.0 s and 9.2 ± 3.1 s in winter and summer respectively, Miller’s point and had the lowest peak wave period amongst all sites. These data show that the western side of the peninsula has a lower variation (SD) compared to the eastern side of the peninsula, with Miller’s point showing the highest variation across timescales.  Annual maximum peak wave period ranged from 18.9 s at St. Helena Bay to 18.4 s at Olifantsbos for the western side of the peninsula, and ranged from 18.0 s at Buffelsbaai to 18.0 s at Betty’s Bay on the eastern side of the peninsula. 
 
@@ -561,11 +574,11 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r laminaria temp plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
+```{r laminaria temp plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
 ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
-```{r lamanaria wave plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=7, fig.width=7, warning=FALSE}
+```{r lamanaria wave plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=6, fig.width=6, warning=FALSE}
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
@@ -833,11 +846,11 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
+```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
 ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = TRUE, legend = "bottom")
 ```
 
-```{r deep ecklonia wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=7, fig.width=7, warning=FALSE}
+```{r deep ecklonia wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=6, fig.width=6, warning=FALSE}
 ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom")
 ```
 
@@ -1095,11 +1108,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
+```{r shallow ecklonia temp plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
 ```
 
-```{r shallow rda wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=7, fig.width=7, warning=FALSE}
+```{r shallow rda wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=6, fig.width=6, warning=FALSE}
 ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom")
 ```
 
@@ -1385,12 +1398,11 @@ rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE,
 
 ```
 
-Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
-
-```{r rda plots, echo=FALSE, fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
+```{r rda plots, echo=FALSE, fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
 ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, common.legend = TRUE)
 ```
 
+Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of shallow *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
 # Discussion
 
 This study considered important drivers of kelp morphology that have been identified in previous research (Fowler-Walker et al. 2006; Miller et al. 2011; Fowler-Walker et al. 2005; Stewart et al. 2009; Wing et al. 2007; Molloy & Bolton 1996; Pedersen & Nejrup 2012; Wernberg & Thomsen 2005), namely temperature and wave exposure, around the Cape Peninsula on two prolific kelp species. Unlike previous research, this study used a numerical model to provide the various variables of wave exposure. We also considered wind in addition to temperature and wave variables, since wind has been shown to influence the extension capabilities of canopy kelp species (Denny et al. 1997). Furthermore, the protrusion of the primary blade of *E. maxima* out of the water may result in some direct effects of wind-drag on morphology. The results show that wave exposure the main driver of kelp morphology with temperature and wind playing only minor roles. Furthermore, the investigation of differences in morphological characteristics between shallow and deep populations of *E. maxima *suggests that in low wave exposure environments the role of temperature as a morphological driver increases. 
