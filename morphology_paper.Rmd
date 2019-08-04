@@ -3,13 +3,13 @@ title: Using numerical modelling to investigate temperature and wave exposure as
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
+  html_document:
+    df_print: paged
   word_document:
     reference_docx: frontiers_template.docx
   html_notebook:
@@ -181,7 +181,7 @@ temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill
 
 ```
 
-```{r Temperature variables plot, echo=FALSE, warning=FALSE, fig.cap='Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation.'}
+```{r Temperature variables plot, echo=FALSE, warning=FALSE,fig.height=7,fig.width=7, fig.cap='Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation.'}
 ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"))
 ```
 
@@ -284,6 +284,9 @@ abio_clim <- merge(temp_ann, clim, by = "site")
 ```{r wave variable processing, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 ### Plots for wave variables
 #Annual wave plots
+#combine with meta data for easier plotting
+wave_ann_meta <- merge(meta_all, wave_ann, by = "site")
+wave_ann_meta$site <- as.character(wave_ann_meta$site)#make character to ensure no issues arise for site and region names
 
 positions_wave <- c("Betty's Bay", "Roman Rock","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock",  "Batsata Rock","Bordjies Deep","Buffelsbaai","Buffelsbaai South","Olifantsbos","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","Sea Point","St Helena Bay")
 
@@ -309,9 +312,6 @@ wave_plot_B <- ggplot(data = wave_ann, aes(x = site, y = tp_mean)) +
   theme(plot.title = element_text(hjust = 0)) + 
   coord_flip() 
 
-wave_ann_meta <- merge(meta_all, wave_ann, by = "site")
-wave_ann_meta$site <- as.character(wave_ann_meta$site)
-
 wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill  = region)) + 
   geom_boxplot() + 
   scale_x_discrete(limit = c("Western", "Eastern")) + 
@@ -329,7 +329,7 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
   ylab("")
 ```
 
-```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers.'}
+```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE,fig.height=7,fig.width=7, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers.'}
 ggarrange(wave_plot_A,wave_boxplot_1, wave_plot_B, wave_boxplot_2, common.legend = TRUE, labels = c("AUTO"))
 ```
 
