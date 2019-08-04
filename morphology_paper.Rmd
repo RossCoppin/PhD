@@ -12,7 +12,7 @@ output:
     fig_height: 7
     fig_width: 7
   word_document:
-    reference_docx: morphology_paper_files/frontiers_template.docx
+    reference_docx: frontiers_template.docx
   html_notebook:
     fig_caption: yes
     fig_height: 7
@@ -53,13 +53,13 @@ Shallow water temperatures were sourced from The South African Coastal Temperatu
 
 ### Wave environment
 
-Wave model variable data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs (DEA) and produced by the Council for Scientific and Industrial Research (CSIR) (Rautenbach 2015). The South African wave climate was modeled via 20 spectral numerical wave models that simulated the offshore wave climate to the nearshore. The boundary conditions of these models were obtained by using the NOAA Wave Watch III (WWIII) model output, distributed via the National Centers for Environmental Prediction (NCEP) product (Office of the Director 2000; Environmental Modeling Center / Marine Modeling Branch 2005). The particular hindcast product utilised during the DEA-CSIR study spans 1994-2013 at a 3-hour resolution. These data were then used to model swell propagation into the coastal models while wind waves (seas) were generated via stationary computations in the Simulating Waves in the Nearshore SWAN model (Booij et al. 1997). The assumption of stationary computations are acceptable as the model domains were small enough so the temporal variation of the model boundary were slower than the time it takes for that boundary condition to propagate to the coast.  SWAN allows one to extract wave variables from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled and output produced at both the 7 meter and 15 meter isobaths. A 200 meter resolution was used as the False Bay computational grid was nested within a larger grid (1 kilometer resolution). This allowed for a computational effective wave resolution of increasing resolution, from the NCEP, low resolution output to nested, high resolution coastal output. For Table Bay and east of Cape Hangklip the resolution was 500 meters and also had output at the 7 meters and 15 meter isobaths. These contour outputs were chosen in the original study by the CSIR as most engineering run-up calculations require wave parameter information at these contour depths and were the main focus of the original study. For this study the 7 meter contours were used. These data were then used to calculate over all wave power (kW/m) as this was considered the best measure of overall wave exposure. Annual wave power was plotted and categorised into different wave exposure categories which ranged from fully sheltered to extremely exposed.
+Wave model variable data formed part of the South African Coastal Vulnerability Assessment, presented to the Department of Environmental Affairs (DEA) and produced by the Council for Scientific and Industrial Research (CSIR) (Rautenbach 2015). The South African wave climate was modeled via 20 spectral numerical wave models that simulated the offshore wave climate to the nearshore. The boundary conditions of these models were obtained by using the NOAA Wave Watch III (WWIII) model output, distributed via the National Centers for Environmental Prediction (NCEP) product (Office of the Director 2000; Environmental Modeling Center / Marine Modeling Branch 2005). The particular hindcast product utilised during the DEA-CSIR study spans 1994-2013 at a 3-hour resolution. These data were then used to model swell propagation into the coastal models while wind waves (seas) were generated via stationary computations in the Simulating Waves in the Nearshore SWAN model (Booij et al. 1997). The assumption of stationary computations are acceptable as the model domains were small enough so the temporal variation of the model boundary were slower than the time it takes for that boundary condition to propagate to the coast. SWAN allows one to extract wave variables from specific gridded locations in the nearshore. For False Bay, a resolution of 200 meters was modelled and output produced at both the 7 meter and 15 meter isobaths. A 200 meter resolution was used as the False Bay computational grid was nested within a larger grid (1 kilometer resolution). This allowed for a computational effective wave resolution of increasing resolution, from the NCEP, low resolution output to nested, high resolution coastal output. For Table Bay and east of Cape Hangklip the resolution was 500 meters and also had output at the 7 meters and 15 meter isobaths. These contour outputs were chosen in the original study by the CSIR as most engineering run-up calculations require wave parameter information at these contour depths and were the main focus of the original study. For this study the 7 meter contours were used. These data were then used to calculate over all wave power (kW/m) as this was considered the best measure of overall wave exposure. Annual wave power was plotted and categorised into different wave exposure categories which ranged from fully sheltered to extremely exposed.
 
 ### Collection of kelp morphological characteristics
 
 The morphological characteristics of both species are presented in Fig. 2. *Laminaria pallida* is characterised by a single smooth blade which is divided longitudinally into sections, and develops from a single meristematic region located at the junction between the blade and the stipe (Dyer 2018). This species has a solid stipe but develops a hollow stipe along the west coast northward and into Namibia (Rothman et al. 2017). *Ecklonia maxima* consists of a single primary blade which develops above a gas-filled float and a hollow stipe below. Secondary blades are produced laterally from the primary blade from several meristematic regions along the margins of the primary blade, known as digits (Dyer 2018). Both species are held to the substrate by finger-like haptera, collectively known as the holdfast. 
 
-```{r echo=FALSE, fig.cap='Schematic of *E. maxima* on the left and *L. pallida* on the right. (Dyer 2018)'}
+```{r schematic, echo=FALSE, fig.cap='Schematic of *L. pallida* and *E. maxima* morphology.'}
 library(png)
 library(grid)
 
@@ -122,7 +122,7 @@ load("data/temp_data/SACTNmonthly_v4.1.Rdata")
 load("data/temp_data/interp_sites.Rdata")
 
 # The patched Roman Rock temperatures
-load("data/rr_patch.Rdata")
+load("data/temp_data/rr_patch.Rdata")
 
 ## Subset temperatures for collection sites
 temps <- SACTNmonthly_v4.1 %>% 
@@ -303,9 +303,16 @@ ggarrange(wave_plot_A, wave_plot_B, ncol = 2, nrow = 1)
 
 Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual and seasonal scale. Annual mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay (Fig. 4). The annual maximum significant wave height ranged from 1.4 m at St. Helena Bay to 4.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side ranged from 2.6 m at Buffelsbaai to 4.2 m at Betty’s Bay. These wave heights and their variability are modulated by the relative sheltering against the predominant south-westerly swell direction and the size of the fetch for local wave generation. 
 
+```{r wave rose figure, echo=FALSE, eval= FALSE, fig.cap='Wave rose figure'}
+
+img_wave_rose <- readPNG("figures/wave_rose.png")
+grid.raster(wave rose)
+```
+**insert wave roses here**
 Annual mean wave peak period for sites on the western side of the peninsula ranged from 10.3 ± 3.5 s at St. Helena Bay to 11.0 ± 2.0 s at Olifantsbos, and ranged from 10.6 ± 3.0 s at Buffelsbaai to 10.8 ± 2.2 s at Betty’s Bay ([Fig. 4]. Annual peak wave period was 10.0 ± 3.0 s and 9.2 ± 3.1 s in winter and summer respectively, Miller’s point and had the lowest peak wave period amongst all sites. These data show that the western side of the peninsula has a lower variation (SD) compared to the eastern side of the peninsula, with Miller’s point showing the highest variation across timescales.  Annual maximum peak wave period ranged from 18.9 s at St. Helena Bay to 18.4 s at Olifantsbos for the western side of the peninsula, and ranged from 18.0 s at Buffelsbaai to 18.0 s at Betty’s Bay on the eastern side of the peninsula. Data for median wave direction showed no trend across timescales; however the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula [Fig. 4]. Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively. This phenomenon can be explained by the sheltering effect of the Cape Peninsula, resulting in a wave climate with a narrower directional spreading on the eastern side of the peninsula (refer to Fig. 7). 
 
-```{r wave power map, eval=FALSE, fig.cap='wave power map', include=FALSE}
+```{r wave power map, echo=FALSE, eval= FALSE, fig.cap='Wave power map'}
+
 library(png)
 library(grid)
 
@@ -313,8 +320,7 @@ img_wavepower <- readPNG("figures/CapePen_Total.PNG")
 legend_wave_power <- readPNG("figures/CapePen_Legend.PNG")
 grid.raster(img_wavepower,legend_wave_power)
 ```
-**insert wave exposure map here**
-
+**insert wave power map here**
 In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The directional sheltering effect of the Cape Peninsula, against the dominant swell direction is clearly observed in the wave exposures presented in [Fig. 6]. The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures [Fig. 6]. THere the marked seasonality, with higher energy waves during winter, may be clearly observed once more. To clarify the averaged wave exposure maps presented, the propagation of a typical offshore wave spectrum as produced from a single time-step in SWAN is presented in [Fig. 7]. Tracing the wave height contours into False Bay its clear why this bay’s western periphery is predominantly sheltered. It should be mentioned that some of the annual winter frontal depression systems pass the Cape Peninsula from the west to east, resulting in wave propagating towards the continent from much more southerly directions. This results in positive and negative wave exposure anomalies all around the peninsula.
 
 ## Drivers of kelp morphological characteristics
@@ -1097,7 +1103,7 @@ ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", c
 ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom")
 ```
 
-```{r rda analysis lamanaria, eval=TRUE, include=FALSE, message=FALSE, warning=FALSE}
+```{r rda analysis lamanaria, message=FALSE, warning=FALSE, include=FALSE}
 #data processed in the temperature and wave sections will be used here eg. abio_clim
 # remove unnecessary columns
 lam_df <- subset(lam_data, select = -c(1,2,6))
@@ -1184,7 +1190,11 @@ meta_lam_rda <- meta_lam_rda[-c(9), ] #remove Miller's point as it is dropping d
 lam_rda <- ggord(rda_lam, meta_lam_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9) 
 ```
 
-```{r rda deep ecklonia processing, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+### Abiotic drivers of *L. pallida* morphological characteristics
+
+Forward selection, assessment of VIF and an examination of pairwise Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of *L. pallida* morphological characteristics with an adjusted *R*2 of 0.49, explaining 72% of the variation (global permutation test on final model: d.f = 1, *F* = 8.51, *p* = 0.008). RDA1 was the only significant axis in the model and explained 48% of the variation while RDA2 was not significant and explained 63% of the variation. Total length, stipe length, stipe diameter and stipe mass were postivley influenced (i.e., increased size corresponding with the environmental driver) by *hs_mean* and *dir_median* and negativley influenced (i.e., decreased size corresponding with the environmental driver) by *tp_sd* and *mean_temp*. Study sites from the eastern region clustred close together while no clear clustering was evident for the western region. 
+
+```{r rda deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 
 #filter to select only deep population ecklonia
 eck_df <- eck_data %>% 
@@ -1271,6 +1281,10 @@ eck_meta_rda <- eck_meta_rda %>%
 # Plot RDA
 rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = TRUE, hull = FALSE, ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  # looking at the raw code, this is plotting the 'wa scores', the blue 
 ```
+
+### Abiotic drivers of *E. maxima* morphological characteristics
+
+Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of deep *E. maxima* morphological characteristics with an adjusted *R*2 of 0.39, explaining 67% of the variation (global permutation test on final model: d.f = 5, *F* = 2.4, *p* = 0.026). RDA1 was the only significant axis in the model (p = 0.03) and explained 72% of the variation. The non-significant axis for the model explained 17% of the variation. Primary length, primary width and stipe circumference were positivley influenced by *hs_mean*, *tp_mean* and *dir_median* for for kelps from the western region. The remaining morphological characteristics were postivley inlfuenced by *min_temp* and negatively influenced by *tp_sd* for kelps ffrom the eastern region. 
 
 ```{r rda shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -1370,14 +1384,6 @@ meta_shallow_rda <- merge(meta_shallow_rda, eck_sites_sh, by = "site")
 rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9, coord_fix = TRUE)  # looking at the raw code, this is plotting the 'wa scores', the blue 
 
 ```
-
-### Abiotic drivers of *L. pallida* morphological characteristics
-
-Forward selection, assessment of VIF and an examination of pairwise Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of *L. pallida* morphological characteristics with an adjusted *R*2 of 0.73, explaining 85% of the variation (global permutation test on final model: d.f = 4, *F* = 7.18, *p* = 0.001). The model consisted of two significant axes: RDA1 and RDA2 explained 66% and 24% of the variation, respectively. bla bla
-
-### Abiotic drivers of *E. maxima* morphological characteristics
-
-Forward selection, assessment of VIF and pearson correlation coefficients retained *E. maxima* morphological characteristics with an adjusted *R*2 of 0.77, explaining 92% of the variation (global permutation test on final model: d.f = 8, *F* = 6.08, *p* = 0.001). bla bla
 
 Forward selection, assessment of VIF and pearson correlation coefficients retained *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 66% of the variation (global permutation test on final model: d.f = 3, *F* = 2.54, *p* = 0.027). bla bla bla
 
