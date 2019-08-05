@@ -3,15 +3,15 @@ title: Using numerical modelling to investigate temperature and wave exposure as
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 geometry: margin=1in
 output:
+  word_document:
+    reference_docx: frontiers_template.docx
+  html_document:
+    df_print: paged
   pdf_document:
     fig_caption: yes
     fig_crop: no
     fig_height: 7
     fig_width: 7
-  html_document:
-    df_print: paged
-  word_document:
-    reference_docx: frontiers_template.docx
   html_notebook:
     fig_caption: yes
     fig_height: 7
@@ -173,16 +173,13 @@ temp_ann_meta$site <- as.character(temp_ann_meta$site)
 
 temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
   geom_boxplot() + 
-  scale_x_discrete(limit = c("Western", "Eastern")) +
-  scale_fill_discrete(name="Region") +
-  stat_compare_means() + 
+  scale_fill_discrete(breaks=c("Western","Eastern"), name = "Region") +
   xlab("") + 
-  ylab("")
-
+  ylab("") 
 ```
 
-```{r Temperature variables plot, echo=FALSE, warning=FALSE,fig.height=7,fig.width=7, fig.cap='Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation.'}
-ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"))
+```{r Temperature variables plot, echo=FALSE, warning=FALSE,fig.height=5,fig.width=6, fig.cap='Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation.'}
+ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 1, nrow = 2, labels = c("AUTO"))
 ```
 
 ### Wave environment
@@ -1422,13 +1419,14 @@ ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, common.legend = TRUE)
 ```
 
 Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of shallow *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
+
 # Discussion
 
 This study considered important drivers of kelp morphology that have been identified in previous research (Fowler-Walker et al. 2006; Miller et al. 2011; Fowler-Walker et al. 2005; Stewart et al. 2009; Wing et al. 2007; Molloy & Bolton 1996; Pedersen & Nejrup 2012; Wernberg & Thomsen 2005), namely temperature and wave exposure, around the Cape Peninsula on two prolific kelp species. Unlike previous research, this study used a numerical model to provide the various variables of wave exposure. We also considered wind in addition to temperature and wave variables, since wind has been shown to influence the extension capabilities of canopy kelp species (Denny et al. 1997). Furthermore, the protrusion of the primary blade of *E. maxima* out of the water may result in some direct effects of wind-drag on morphology. The results show that wave exposure the main driver of kelp morphology with temperature and wind playing only minor roles. Furthermore, the investigation of differences in morphological characteristics between shallow and deep populations of *E. maxima *suggests that in low wave exposure environments the role of temperature as a morphological driver increases. 
 
-The complex geomorphology of the western Cape coastline creates an ideal natural laboratory for studies of kelps in interaction with their environment. This complex coastal environment created by the coastal wind and wave climate creates an ideal opportunity to explore the effects of waves and the thermal regime on the morphological development of kelp. The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient rich water to coastal areas and therefore induces a decrease in temperature (Field et al. 1980; Andrews & Hutchings 1980; Gill & Clarke 1974; Cram 1970; Rouault et al. 2010; Blanke et al. 2002. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape peninsula, where southerly winds blow parallel to the coast and trigger upwelling (Field et al. 1980; Rouault et al. 2010). This is not the case for False Bay which is shielded from the dominating wind and swell the Cape Peninsula is subject to, with the exception being the winter months where upwelling becomes more favourable for the region due to the change in swell and wind direction, causing lower temperatures to dominate during this time (Rouault et al. 2010; Andrews & Hutchings 1980). Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events along the western side of the peninsula (Rouault et al. 2010; Field et al. 1980). We however see a possible lack of upwelling events for sites such as Betty’s Bay and Batsata Rock. 
+The complex geomorphology of the western Cape coastline creates an ideal natural laboratory for studies of kelps in interaction with their environment. The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient rich water to coastal areas and therefore induces a decrease in temperature (Field et al. 1980; Andrews & Hutchings 1980; Gill & Clarke 1974; Cram 1970; Rouault et al. 2010; Blanke et al. 2002. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape peninsula, where southerly winds blow parallel to the coast and trigger upwelling (Field et al. 1980; Rouault et al. 2010). This is not the case for False Bay which is shielded from the dominating wind and swell the Cape Peninsula is subject to, with the exception being the winter months where upwelling becomes more favourable for the region due to the change in swell and wind direction, causing lower temperatures to dominate during this time (Rouault et al. 2010; Andrews & Hutchings 1980). Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events along the western side of the peninsula (Rouault et al. 2010; Field et al. 1980). We however see a possible lack of upwelling events for sites such as Betty’s Bay and Batsata Rock. 
 
-We provide strong support for the idea that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment (Fowler-Walker et al. 2006; Wernberg & Thomsen 2005; Friedland & Denny 1995; Denny & Roberson 2002; Bekkby et al. 2014; Denny et al. 1997; Denny & Gaylord 2002) have been suggested in previous studies. Although this study did not measure force of attachment, other morphological responses to wave variables were evident. 
+We provide strong support for the idea that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment (Fowler-Walker et al. 2006; Wernberg & Thomsen 2005; Friedland & Denny 1995; Denny & Roberson 2002; Bekkby et al. 2014; Denny et al. 1997; Denny & Gaylord 2002) have been suggested in previous studies. Although this study did not measure force of attachment, other morphological responses to wave variables were evident. Higher temperatures tended to be assocaited with reduced measurements of stipe mass, stipe circumference/diameter and stipe length for the sub-canopy species *L. pallida*, which suggests that there is a reduction in overall surface area of the plant in warm temperate environments. The ecological consequence of this is unclear...The canopy species *E. maxima* exibits increased stipe length and decreased stipe circumference in warm temperate areas for both deep and shallow populations, which suggests a 'slender kelp' tactic and has been shown in previous work.**add examples here**. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. 
 
 # Conclusion
 
