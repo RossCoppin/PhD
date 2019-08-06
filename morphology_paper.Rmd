@@ -1458,7 +1458,7 @@ Thank you to AS and CR for their guidance, and the honours class of 2014-2015 th
 ```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE}
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point ", "Baboon Rock", 
                   "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Bordjies Deep","Olifantsbos", "Kommetjie", "Sea Point")
-eck_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave_exposure)) +
+lam_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1466,12 +1466,8 @@ eck_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_B <- ggplot(data = lam_data, aes(x = site, y = laminaLength, fill = wave_exposure)) +
+           xlab("")
+lam_all_B <- ggplot(data = lam_data, aes(x = site, y = laminaLength, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1479,12 +1475,8 @@ eck_all_B <- ggplot(data = lam_data, aes(x = site, y = laminaLength, fill = wave
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_C <- ggplot(data = lam_data, aes(x = site, y = laminaThickness, fill = wave_exposure)) +
+           xlab("")
+lam_all_C <- ggplot(data = lam_data, aes(x = site, y = laminaThickness, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1492,12 +1484,8 @@ eck_all_C <- ggplot(data = lam_data, aes(x = site, y = laminaThickness, fill = w
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_D <- ggplot(data = lam_data, aes(x = site, y = stipeMass, fill = wave_exposure)) +
+           xlab("") 
+lam_all_D <- ggplot(data = lam_data, aes(x = site, y = stipeMass, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1505,12 +1493,8 @@ eck_all_D <- ggplot(data = lam_data, aes(x = site, y = stipeMass, fill = wave_ex
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_E <- ggplot(data = lam_data, aes(x = site, y = stipeLength, fill = wave_exposure)) +
+           xlab("") 
+lam_all_E <- ggplot(data = lam_data, aes(x = site, y = stipeLength, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1518,12 +1502,8 @@ eck_all_E <- ggplot(data = lam_data, aes(x = site, y = stipeLength, fill = wave_
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_F <- ggplot(data = lam_data, aes(x = site, y = stipeDiameter, fill = wave_exposure)) +
+           xlab("") 
+lam_all_F <- ggplot(data = lam_data, aes(x = site, y = stipeDiameter, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1531,12 +1511,8 @@ eck_all_F <- ggplot(data = lam_data, aes(x = site, y = stipeDiameter, fill = wav
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_G <- ggplot(data = lam_data, aes(x = site, y = digits, fill = wave_exposure)) +
+           xlab("")
+lam_all_G <- ggplot(data = lam_data, aes(x = site, y = digits, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1544,12 +1520,8 @@ eck_all_G <- ggplot(data = lam_data, aes(x = site, y = digits, fill = wave_expos
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
-eck_all_H <- ggplot(data = lam_data, aes(x = site, y = thallusMass, fill = wave_exposure)) +
+           xlab("") 
+lam_all_H <- ggplot(data = lam_data, aes(x = site, y = thallusMass, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1557,12 +1529,8 @@ eck_all_H <- ggplot(data = lam_data, aes(x = site, y = thallusMass, fill = wave_
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
-eck_all_I <- ggplot(data = lam_data, aes(x = site, y = totalLength, fill = wave_exposure)) +
+           xlab("") 
+lam_all_I <- ggplot(data = lam_data, aes(x = site, y = totalLength, fill = wave_exposure)) +
            geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
@@ -1570,17 +1538,106 @@ eck_all_I <- ggplot(data = lam_data, aes(x = site, y = totalLength, fill = wave_
            scale_fill_brewer(palette="OrRd") +
            coord_flip() +
            guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") +
-        theme(axis.title.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+           xlab("") 
 
-ggarrange(eck_all_A,eck_all_B,eck_all_C,eck_all_D,eck_all_E,eck_all_F,eck_all_G,eck_all_H,eck_all_I, ncol = 3, nrow = 3, common.legend = TRUE)
+ggarrange(lam_all_A,lam_all_B,lam_all_C,lam_all_D,lam_all_E,lam_all_F,lam_all_G,lam_all_H,lam_all_I, ncol = 3, nrow = 3, common.legend = TRUE)
 
 ```
 
 
+```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE}
+# Order site names by location west to east
+
+positionsEck <- c("Betty's Bay", "Kalk Bay", "A-Frame", 
+                  "Miller's Point", "Baboon Rock", "Batsata Rock", 
+                  "Buffels Bay", "Scarborough", 
+                  "Soetwater","Kommetjie","Hout Bay", 
+                  "Oudekraal", "St. Helena Bay")
+
+eck_all_A <- ggplot(data = eck_data, aes(x = site, y = frond_mass, fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Frond mass (g)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_B <- ggplot(data = eck_data, aes(x = site, y = primary_length , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Primary Length  (cm)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_C <- ggplot(data = eck_data, aes(x = site, y = primary_width , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Primary Width (cm)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_D <- ggplot(data = eck_data, aes(x = site, y = frond_length , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Frond length (cm)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_E <- ggplot(data = eck_data, aes(x = site, y = stipe_mass , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Stipe mass (g)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_F <- ggplot(data = eck_data, aes(x = site, y = stipe_length , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Stipe length (cm)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_G <- ggplot(data = eck_data, aes(x = site, y = stipe_circ , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Stipe circ (cm)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_H <- ggplot(data = eck_data, aes(x = site, y = tufts , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("No. of tufts") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+eck_all_I <- ggplot(data = eck_data, aes(x = site, y = epi_length , fill = wave_exposure)) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           stat_compare_means(method = "kruskal.test", label.x = 5) + 
+           scale_x_discrete(limits = positionsEck) + 
+           ylab("Epi Length  (cm)") + 
+           scale_fill_brewer(palette="OrRd") +
+           coord_flip() +
+           guides(fill=guide_legend(title="Wave Exposure")) +
+           xlab("") 
+
+ggarrange(eck_all_A,eck_all_B,eck_all_C,eck_all_D,eck_all_E,eck_all_F,eck_all_G,eck_all_H,eck_all_I, ncol = 3, nrow = 3, common.legend = TRUE)
+```
 
 
 
