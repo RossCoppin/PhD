@@ -5,13 +5,9 @@ geometry: margin=1in
 output:
   word_document:
     reference_docx: frontiers_template.docx
+  pdf_document: 
   html_document:
     df_print: paged
-  pdf_document:
-    fig_caption: yes
-    fig_crop: no
-    fig_height: 7
-    fig_width: 7
   html_notebook:
     fig_caption: yes
     fig_height: 7
@@ -173,21 +169,24 @@ temp_plot <- ggplot(data = temp_ann, aes(x = site, y = mean_temp)) +
   ylab("") + 
   theme(plot.title = element_text(hjust = 0)) +
   theme(legend.position = "none") + 
-  coord_flip() 
+  coord_flip() + 
+  theme_bw()
 
 temp_ann_meta <- merge(meta_all, temp_ann, by = "site")
 temp_ann_meta$site <- as.character(temp_ann_meta$site)
 
 temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
   geom_boxplot() + 
-  stat_compare_means(label.y = 13) +
+  stat_compare_means(label.y = 14.5 ,label.x = 1.5, label = "p.format") +
   xlab("") + 
   ylab("") +
-  coord_flip()
+  coord_flip() + 
+  theme_bw()
+
 ```
 
-```{r Temperature variables plot, echo=FALSE, warning=FALSE,fig.height=5,fig.width=6, fig.cap='Temperature variables at the collection sites around the Cape Peninsula. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation.'}
-ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 1, nrow = 2, labels = c("AUTO"), align = c("h"), legend = c("bottom"))
+```{r Temperature variables plot, echo=FALSE, warning=FALSE,fig.height=5,fig.width=8, fig.cap='Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B. See appendix for significance level guide.'}
+ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"), align = c("h"), legend = FALSE)
 ```
 
 ### Wave environment
@@ -286,7 +285,7 @@ clim <- clim[-c(1,6,7,8,12,18,20), ]
 abio_clim <- merge(temp_ann, clim, by = "site")
 ```
 
-```{r wave variable processing, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r wave variable processing, message=FALSE, warning=FALSE, include=FALSE}
 ### Plots for wave variables
 #Annual wave plots
 #combine with meta data for easier plotting
@@ -294,55 +293,60 @@ wave_ann_meta <- merge(meta_all, wave_ann, by = "site")
 wave_ann_meta$site <- as.character(wave_ann_meta$site)#make character to ensure no issues arise for site and region names
 
 positions_wave <- c("Betty's Bay", "Roman Rock","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock",  "Batsata Rock","Bordjies Deep","Buffelsbaai","Buffelsbaai South","Olifantsbos","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","Sea Point","St Helena Bay")
+cols <- c("Betty's Bay" = "red", "Roman Rock"= "red","Kalk Bay"= "red", "A-Frame"= "red", "Miller's Point"= "red", "Baboon Rock"= "red",  "Batsata Rock"= "red","Bordjies Deep"= "red","Buffelsbaai"= "red","Buffelsbaai South"= "red","Olifantsbos"= "blue","Scarborough"= "blue", "Soetwater"= "blue", "Kommetjie"= "blue","Hout Bay"= "blue","Oudekraal"= "blue","Sea Point"= "blue","St Helena Bay"= "blue")
 
-wave_plot_A <- ggplot(data = wave_ann, aes(x = site, y = hs_mean)) +
-  geom_point() + 
+wave_plot_A <- ggplot(data = abio_clim, aes(x = site, y = hs_mean)) +
+  geom_point(aes(colour = factor(site)), show.legend = FALSE) + 
   scale_x_discrete(limits = positions_wave) + 
+  scale_colour_manual(values = cols) +
   theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
   geom_errorbar(aes(x = site, ymin = hs_mean - hs_sd, ymax = hs_mean + hs_sd)) + 
   xlab("") + 
   ylab("") + 
   theme(legend.position = "none") + 
   theme(plot.title = element_text(hjust = 0)) + 
-  coord_flip()  
+  coord_flip() + 
+  theme_bw()
 
-wave_plot_B <- ggplot(data = wave_ann, aes(x = site, y = tp_mean)) +
-  geom_point() + 
+wave_plot_B <- ggplot(data = abio_clim, aes(x = site, y = tp_mean)) +
+  geom_point(aes(colour = factor(site)), show.legend = FALSE) + 
   scale_x_discrete(limits = positions_wave) + 
+  scale_colour_manual(values = cols) +
   theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5)) +
   geom_errorbar(aes(x = site, ymin = tp_mean - tp_sd, ymax = tp_mean + tp_sd)) + 
   xlab("") + 
   ylab("") + 
   theme(legend.position = "none") + 
   theme(plot.title = element_text(hjust = 0)) + 
-  coord_flip() 
+  coord_flip() +
+  theme_bw()
 
 wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill  = region)) + 
-  geom_boxplot() + 
-  scale_fill_discrete(name="Region") +
-  stat_compare_means(label.y =1,label.x = 1.5) + 
+  geom_boxplot(show.legend = FALSE) + 
+  stat_compare_means(label.y =1.4,label.x = 1.5, label = "p.format") + 
   xlab("") + 
   ylab("") + 
-  coord_flip()
+  coord_flip() + 
+  theme_bw()
 
 wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
-  geom_boxplot() + 
-  stat_compare_means(label.y = 9, label.x = 1.5) + 
-  scale_fill_discrete(name="Region") +
+  geom_boxplot(show.legend = FALSE) + 
+  stat_compare_means(label.y = 10, label.x = 1.5, label = "p.format") + 
   xlab("") + 
   ylab("") +
   ylim(8,12) + 
-  coord_flip()
+  coord_flip() + 
+  theme_bw()
 
 ```
 
-```{r wave variable plot, warming = FALSE, echo=FALSE, message = FALSE, include= TRUE,fig.height=7,fig.width=7, fig.cap='Wave variables at each collection site around the Western Cape coast. Mean variables are represented by dots and standard deviation by whiskers.'}
+```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE,fig.height=7,fig.width=8, fig.cap='In plot A1 and A2 wave variables at each collection site around the Western Cape coast are presented. Mean variables are represented by dots and standard deviation by whiskers. Blue dots represent sites grouped to the western category and red dots represent sites grouped to the eastern category.'}
 ggarrange(wave_plot_A,wave_boxplot_1, wave_plot_B, wave_boxplot_2, common.legend = TRUE, labels = c("A1", "A2", "B1", "B2"))
 ```
 
 Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual and seasonal scale. Annual mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay (Fig. 4). The annual maximum significant wave height ranged from 1.4 m at St. Helena Bay to 4.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side ranged from 2.6 m at Buffelsbaai to 4.2 m at Betty’s Bay. These wave heights and their variability are modulated by the relative sheltering against the predominant south-westerly swell direction and the size of the fetch for local wave generation. 
 
-```{r wave rose figure, echo=FALSE, eval= FALSE, fig.cap='Wave rose figure'}
+```{r wave rose figure, echo=FALSE, warning = FALSE, eval= FALSE, fig.cap='Wave rose figure'}
 
 img_wave_rose <- readPNG("figures/wave_rose.png")
 grid.raster(wave rose)
@@ -1436,7 +1440,7 @@ This study considered important drivers of kelp morphology that have been identi
 
 The complex geomorphology of the western Cape coastline creates an ideal natural laboratory for studies of kelps in interaction with their environment. The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient rich water to coastal areas and therefore induces a decrease in temperature (Field et al. 1980; Andrews & Hutchings 1980; Gill & Clarke 1974; Cram 1970; Rouault et al. 2010; Blanke et al. 2002. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape peninsula, where southerly winds blow parallel to the coast and trigger upwelling (Field et al. 1980; Rouault et al. 2010). This is not the case for False Bay which is shielded from the dominating wind and swell the Cape Peninsula is subject to, with the exception being the winter months where upwelling becomes more favourable for the region due to the change in swell and wind direction, causing lower temperatures to dominate during this time (Rouault et al. 2010; Andrews & Hutchings 1980). Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events along the western side of the peninsula (Rouault et al. 2010; Field et al. 1980). We however see a possible lack of upwelling events for sites such as Betty’s Bay and Batsata Rock. 
 
-We provide strong support for the idea that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment (Fowler-Walker et al. 2006; Wernberg & Thomsen 2005; Friedland & Denny 1995; Denny & Roberson 2002; Bekkby et al. 2014; Denny et al. 1997; Denny & Gaylord 2002) have been suggested in previous studies. Although this study did not measure force of attachment, other morphological responses to wave variables were evident. Higher temperatures tended to be assocaited with reduced measurements of stipe mass, stipe circumference/diameter and stipe length for the sub-canopy species *L. pallida*, which suggests that there is a reduction in overall surface area of the plant in warm temperate environments. The ecological consequence of this is unclear...The canopy species *E. maxima* exibits increased stipe length and decreased stipe circumference in warm temperate areas for both deep and shallow populations, which suggests a 'slender kelp' tactic and has been shown in previous work.**add examples here**. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. 
+We provide strong support that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment (Fowler-Walker et al. 2006; Wernberg & Thomsen 2005; Friedland & Denny 1995; Denny & Roberson 2002; Bekkby et al. 2014; Denny et al. 1997; Denny & Gaylord 2002) have been suggested in previous studies. Although this study did not measure force of attachment, other morphological responses to wave variables were evident. Higher temperatures tended to be assocaited with reduced measurements of stipe mass, stipe circumference/diameter and stipe length for the sub-canopy species *L. pallida*, which suggests that there is a reduction in overall surface area of the plant in warm temperate environments. The ecological consequence of this is unclear...The canopy species *E. maxima* exibits increased stipe length and decreased stipe circumference in warm temperate areas for both deep and shallow populations, which suggests a 'slender kelp' tactic and has been shown in previous work.**add examples here**. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. 
 
 # Conclusion
 
@@ -1462,7 +1466,7 @@ Thank you to AS and CR for their guidance, and the honours class of 2014-2015 th
 
 # Appendix
 
-```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=7}
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point ", "Baboon Rock", 
                   "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Bordjies Deep","Olifantsbos", "Kommetjie", "Sea Point")
 lam_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave_exposure)) +
@@ -1552,7 +1556,7 @@ ggarrange(lam_all_A,lam_all_B,lam_all_C,lam_all_D,lam_all_E,lam_all_F,lam_all_G,
 ```
 
 
-```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=7}
 # Order site names by location west to east
 
 positionsEck <- c("Betty's Bay", "Kalk Bay", "A-Frame", 
@@ -1643,7 +1647,7 @@ eck_all_I <- ggplot(data = eck_data, aes(x = site, y = epi_length , fill = wave_
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 
-ggarrange(eck_all_A,eck_all_B,eck_all_C,eck_all_D,eck_all_E,eck_all_F,eck_all_G,eck_all_H,eck_all_I, ncol = 3, nrow = 3, common.legend = TRUE)
+ggarrange(eck_all_A,eck_all_B,eck_all_C,eck_all_D,eck_all_E,eck_all_F,eck_all_G,eck_all_H,eck_all_I, ncol = 3, nrow = 3, common.legend = TRUE, legend = FALSE)
 ```
 
 
