@@ -36,7 +36,7 @@ Measures of wave exposure in ecological studies often incorporate integrative me
 
 Sites were chosen to represent an array of environmental gradients, as indicated in Fig. 1. St. Helena Bay and Betty's Bay constituted the north western and south eastern boundary sites, respectively. These sites are roughly 300 km apart, and lie within separate marine provinces[3] and cover a cline in wave exposure and temperature. Study sites span across the majority of the south-west coast, in varying thermal and wave energy regimes. The region is dominated by kelp communities that persist in contrasting abiotic environments. The west coast region has been termed as a cool temperate region, which is defined as a region where mean monthly temperatures are always above 10°C and always below 15°C (Smit et al. 2013). East of Cape Point marks the beginning of an overlap or transition area, which is also referred to as the Benguela-Agulhas Transition Zone (Smit et al. 2013). The Agulhas Marine Province is characterised by a wide temperature range of up to 7°C difference between mean monthly temperatures between summer and winter and is classified as warm temperate region (Smit et al. 2013). Due to the Cape Peninsula temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean (Reason et al. 2006). These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter (Veitch et al. 2018). The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay (Shipley 1964). Conversely, the west coast of Cape Point is battered by these large swells. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity. 
 
-```{r map study sites, echo=FALSE, message=FALSE, warning=FALSE}
+```{r map study sites, echo=FALSE, fig.height=7, fig.width=6, message=FALSE, warning=FALSE}
 library(png)
 library(grid)
 
@@ -63,7 +63,7 @@ Wave model variable data formed part of the South African Coastal Vulnerability 
 
 The morphological characteristics of both species are presented in Fig. 2. *Laminaria pallida* is characterised by a single smooth blade which is divided longitudinally into sections, and develops from a single meristematic region located at the junction between the blade and the stipe (Dyer 2018). This species has a solid stipe but develops a hollow stipe along the west coast northward and into Namibia (Rothman et al. 2017). *Ecklonia maxima* consists of a single primary blade which develops above a gas-filled float and a hollow stipe below. Secondary blades are produced laterally from the primary blade from several meristematic regions along the margins of the primary blade, known as digits (Dyer 2018). Both species are held to the substrate by finger-like haptera, collectively known as the holdfast. 
 
-```{r schematic, echo=FALSE, fig.cap='Schematic of *L. pallida* and *E. maxima* morphology.'}
+```{r schematic, echo=FALSE, fig.cap='Schematic of *L. pallida* and *E. maxima* morphology.', fig.height=7, fig.width=7}
 
 img <- readPNG("figures/kelp_diagram.png")
 grid.raster(img)
@@ -378,110 +378,101 @@ pos_temp <- c("Cool temperate", "Warm temperate")
 LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina weight") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina length") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina thickness") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe length (cm)") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe diameter (cm)") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("No. of digits") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Thallus mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Total length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
+
 
 lam_data$wave_exposure <- factor(lam_data$wave_exposure, levels=c("Very sheltered", "Very exposed", "Moderately exposed","Fully sheltered","Extremely sheltered"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed"))#wave exposure levels for lamanaria
 pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed")#custom positions
@@ -489,126 +480,107 @@ pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered"
 LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Lamina weight (g)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level"))
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 
 LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Lamina length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level"))
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 
 LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Lamina thickness") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") 
 
 LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") 
 
 LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") 
 
 LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe diameter (cm)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") 
 
 LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("No. of digits") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 
 LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Thallus mass (kg)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
-
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test") + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Total length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level")) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ```
 
-```{r laminaria temp plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
+```{r laminaria temp plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
 ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
-```{r lamanaria wave plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=6, fig.width=6, warning=FALSE}
+```{r lamanaria wave plots, echo=FALSE, fig.cap='Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=7, fig.width=8, warning=FALSE}
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
@@ -630,114 +602,84 @@ pos_temp <- c("Cool temperate", "Warm temperate") #custom temperature categories
 #temperature plots made seperately for each morphological characteristic
 ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe circ (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank())
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("No. of tufts") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format") + 
   ylab("Total length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 
 eck_deep$wave_exposure <- factor(eck_deep$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"))
 
@@ -747,256 +689,205 @@ pos_exposure <- c("Fully sheltered", "Extremely sheltered", "Very sheltered","Mo
 EW1 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Frond mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Primary width (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Frond length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe circumference (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("No of Tufts") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Epi length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Total length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
-ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = TRUE, legend = "bottom")
+```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE}
+ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", legend = FALSE, ncol = 3, nrow = 4)
 ```
 
-```{r deep ecklonia wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=6, fig.width=6, warning=FALSE}
-ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom")
+```{r deep ecklonia wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=8, fig.width=8, warning=FALSE}
+ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
 ```{r shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) + 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") + 
   ylim(0, 20)
 EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe circ (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   ylim(0, 30)
 EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("No. of tufts") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
-  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "wilcox.test") + 
-  xlab("") + 
+  geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) 
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("")
 
 # morphology grouped by wave exposure
 eck_shall$wave_exposure <- factor(eck_shall$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"))
@@ -1006,144 +897,114 @@ pos_exposure_shall <- c("Fully sheltered", "Extremely sheltered", "Sheltered", "
 ESW1 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) + 
   ylim(0,25)
 ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
  ylim(0,30) +
-  xlab("") + 
   ylab("Stipe circumference (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("No of Tufts") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA)  + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) + 
-  stat_compare_means(method = "kruskal.test") + 
-  xlab("") + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) + 
+  xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 
 ```
 
-```{r shallow ecklonia temp plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=6, fig.width=6, message=FALSE, warning=FALSE}
-ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom")
+```{r shallow ecklonia temp plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
+ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
-```{r shallow rda wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=6, fig.width=6, warning=FALSE}
-ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom")
+```{r shallow rda wave plots, echo=FALSE, fig.cap='Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=7, fig.width=8, warning=FALSE}
+ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3,nrow = 3)
 ```
 
 ```{r rda analysis lamanaria, message=FALSE, warning=FALSE, include=FALSE}
@@ -1322,7 +1183,7 @@ eck_meta_rda <- eck_meta_rda %>%
   filter(population == "Deep")
 
 # Plot RDA
-rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = TRUE, hull = FALSE, ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  # looking at the raw code, this is plotting the 'wa scores', the blue 
+rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = TRUE, hull = FALSE, ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  
 ```
 
 ### Abiotic drivers of *E. maxima* morphological characteristics
@@ -1424,27 +1285,32 @@ meta_shallow_rda <- meta_all %>%
 meta_shallow_rda <- merge(meta_shallow_rda, eck_sites_sh, by = "site")
 
 # Plot RDA
-rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9, coord_fix = TRUE)  # looking at the raw code, this is plotting the 'wa scores', the blue 
+rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9, coord_fix = TRUE) 
 
 ```
 
-```{r rda plots, echo=FALSE, fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
-ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, common.legend = TRUE, ncol = 3, nrow = 1, legend = c("bottom"))
+```{r rda plots, echo=FALSE, fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
+ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, ncol = 1, nrow = 3, label = "AUTO")
+lam_rda
+rda_eck_deep
+rda_eck_shallow
 ```
 
 Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of shallow *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
 
 # Discussion
 
-This study considered important drivers of kelp morphology that have been identified in previous research (Fowler-Walker et al. 2006; Miller et al. 2011; Fowler-Walker et al. 2005; Stewart et al. 2009; Wing et al. 2007; Molloy & Bolton 1996; Pedersen & Nejrup 2012; Wernberg & Thomsen 2005), namely temperature and wave exposure, around the Cape Peninsula on two prolific kelp species. Unlike previous research, this study used a numerical model to provide the various variables of wave exposure. We also considered wind in addition to temperature and wave variables, since wind has been shown to influence the extension capabilities of canopy kelp species (Denny et al. 1997). Furthermore, the protrusion of the primary blade of *E. maxima* out of the water may result in some direct effects of wind-drag on morphology. The results show that wave exposure the main driver of kelp morphology with temperature and wind playing only minor roles. Furthermore, the investigation of differences in morphological characteristics between shallow and deep populations of *E. maxima *suggests that in low wave exposure environments the role of temperature as a morphological driver increases. 
+This study considered important drivers of kelp morphology that have been identified in previous research (Fowler-Walker et al. 2006; Miller et al. 2011; Fowler-Walker et al. 2005; Stewart et al. 2009; Wing et al. 2007; Molloy & Bolton 1996; Pedersen & Nejrup 2012; Wernberg & Thomsen 2005), namely temperature and wave exposure, around the Cape Peninsula on two prolific kelp species. Unlike previous research, this study used a numerical model to provide the various variables of wave exposure. We also considered wind in addition to temperature and wave variables, since wind is an important component of surface driven waves. The results show that specific variables of wave exposure are the main drivers of kelp morphology with temperature and wind playing only minor roles. Furthermore, the investigation of differences in morphological characteristics between shallow and deep populations of *E. maxima * suggests that in low wave exposure environments the role of temperature as a morphological driver increases, such as in False Bay. 
 
 The complex geomorphology of the western Cape coastline creates an ideal natural laboratory for studies of kelps in interaction with their environment. The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient rich water to coastal areas and therefore induces a decrease in temperature (Field et al. 1980; Andrews & Hutchings 1980; Gill & Clarke 1974; Cram 1970; Rouault et al. 2010; Blanke et al. 2002. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape peninsula, where southerly winds blow parallel to the coast and trigger upwelling (Field et al. 1980; Rouault et al. 2010). This is not the case for False Bay which is shielded from the dominating wind and swell the Cape Peninsula is subject to, with the exception being the winter months where upwelling becomes more favourable for the region due to the change in swell and wind direction, causing lower temperatures to dominate during this time (Rouault et al. 2010; Andrews & Hutchings 1980). Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events along the western side of the peninsula (Rouault et al. 2010; Field et al. 1980). We however see a possible lack of upwelling events for sites such as Betty’s Bay and Batsata Rock. 
 
-We provide strong support that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment (Fowler-Walker et al. 2006; Wernberg & Thomsen 2005; Friedland & Denny 1995; Denny & Roberson 2002; Bekkby et al. 2014; Denny et al. 1997; Denny & Gaylord 2002) have been suggested in previous studies. Although this study did not measure force of attachment, other morphological responses to wave variables were evident. Higher temperatures tended to be assocaited with reduced measurements of stipe mass, stipe circumference/diameter and stipe length for the sub-canopy species *L. pallida*, which suggests that there is a reduction in overall surface area of the plant in warm temperate environments. The ecological consequence of this is unclear...The canopy species *E. maxima* exibits increased stipe length and decreased stipe circumference in warm temperate areas for both deep and shallow populations, which suggests a 'slender kelp' tactic and has been shown in previous work.**add examples here**. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. 
+We provide strong support that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment (Fowler-Walker et al. 2006; Wernberg & Thomsen 2005; Friedland & Denny 1995; Denny & Roberson 2002; Bekkby et al. 2014; Denny et al. 1997; Denny & Gaylord 2002) have been suggested in previous studies. Although this study did not measure force of attachment, other morphological responses to temperature and wave variables were evident. Species-specific responses are evident to both wave exposure and temperature. In cool-temperate environments *L. pallida* tended to show increases in certain morphological characteristics (stipe mass, stipe length and stipe diameter) while in the warm-temperate environments these were significantly lower. This was also true for deep *E. maxima* populations, which were significantly taller and thinner for kelp in the warm-temperate compared to kelp in the cool-temperate. This has been documented previously by ?????, and show that the 'slender' kelp morphology is a response to warmer temperatures. In warmer environments kelp metabolism increases, using more nutrients than under cooler conditions causing the kelp to become slender **more needed here**. It should be noted however, that from these analyses that in general the cool-temperate region is more exposed to waves than that of the warm-temperate region. Therefore, the significantly larger morphological characteristics for kelp from the cool-temperate region may overlap with responses to wave exposure which was exhibited strongly in both species. When grouped by wave exposure category, *L. pallida* characteristics showed a significant increase in length for the 'Extremely sheltered' category (6-10 kW/m; figure ??) which maybe a 'go-with-the-flow' tactic. Kelp are able to increase flexibility by increasing stipe length which increases the extension capabilities of kelp to a passing wave. However, increasing stipe length is only beneficial under lower exposure levels as a long stipe actually increases overall drag on the plant under higher exposure levels. This is reflected in Figure ?? which shows an overall reduction of *L pallida* morphological characteristics suggesting a size reducing tactic to cope with higher levels of wave exposure. The morphological characteristics of *E. maxima* show similar patterns when grouped to wave exposure. The results suggest that deep *E. maxima* populations exhibit a different response as well as a higher wave exposure threshold. Unlike *L. pallida*, *E. maxima* exhibits a size reducing tactic with in an increase in exposure level by significantly decreasing stipe mass, stipe length, stipe circumference, total length and frond length. This size reduction tactic has been shown before (citations ???) and is regarded as strategy to reduce overall drag on the plant. However, *E. maxima* morphological characteristics changed significantly as wave exposure increases. When grouped to the higher wave exposure levels, *E. maxima* morphology exhibited a strength and flexibility increasing trait (see figure ??). Furthermore, the morphological response of *E. maxima* to wave exposure only occurs at the 'Moderately exposed' (20-30 kW/m) level compared to *L. pallida* which exhibits a response at a lower wave exposure level. This suggests that *E. maxima* can tolerate higher exposure levels before having to exhibit a morphological response. The redundancy analysis performed confirms the patterns and responses observed as well as identifying specific temperature and wave variables as drivers of kelp morphology. Kelp morphology characteristics are largely wave driven for both species but differ in terms of specific temperature and wave metrics. For instance, both species morphological characteristics are determined by swell direction (dir_median), standard deviation in peak period (tp_sd) and mean significant swell height (hs_mean), but *L. pallida* temperature driver is mean temperature (mean_temp) and *E. maxima* by minimum temperature (min_temp). Minimum temperature as an important metric for *E. maxima* may be related to nutrient availability. Low temperatures are often associated with upwelling events which bring cool, nutrient rich water into the nearshore. False Bay has comparativley little upwelling events compared to the western side of the peninsula, and so nutrients may be a limiting factor for *E. maxima* populations within False Bay (see figure ??). The kelp *L. pallida* is a sub-canopy species where more efficent mixing of water within the water column occurs (ref ??). The difference in canopy type between the species may also be the reason why *E. maxima* is driven by multiple wave metrics compared to *L. pallida*. Since *E. maxima* is a canopy-kelp, it is will be exposed to all components of a wave compared to *L. pallida* which occurs deeper in the water column. 
+
+Annual maximum and winter mean temperatures influence stipe length and frond length in shallow *E. maxima* individuals located at sites within False Bay. This was not the case for deeper *E. maxima* individuals as well as *L. pallida* which were largely driven by wave variables. The shallow *E. maxima* individuals may not experience the same amount of wave energy as do deeper populations. This may be due to wave dampening from deeper populations of *E. maxima*, which attenuate the wave energy entering coastal environments (Kobayashi et al. 1993; Jackson 1984; Mork 1996). The morphological variations in characteristics for deep *E. maxima* populations are not seen for shallow *E. maxima* populations. The lack of variation in shallow *E. maxima* populations was also found in previous research by (Rothman et al. 2017), who showed that light was a significant driver. This influence of light may suggest photosynthetic ability and nutrient uptake as important drivers in shallow environments. Wave exposure may be reduced in shallow environments due to the wave damping effect of deep kelp and seaweed populations (Kobayashi et al. 1993; Mork 1996; Jackson 1984), or rocky outcrops, thereby reducing the need to adapt morphological characteristics to reduce drag. Furthermore, the reduction in differences between deep and shallow *E. maxima *at wave exposed sites on the western of the peninsula compared to sites in False Bay provides further evidence that wave exposure is not an important driver of shallow *E. maxima *populations. Increased temperatures corresponded with a reduction in  stipe circumference, frond length, stipe length, total length and stipe mass resulting in slim or ‘skinny’ kelp individuals, which supports findings from previous research by (Mabin et al. 2013; Serisawa et al. 2002). 
 
 # Conclusion
 
-Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in shallow and deep populations of *E. maxima* may reflect small differences in wave and temperature variables as drivers of kelp morphological characteristics. 
+Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in shallow and deep populations of *E. maxima* may reflect small differences in wave and temperature variables as drivers of kelp morphological characteristics. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. Temperature variables were not a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution (Bolton et al. 2012; Miller et al. 2011; Rinde et al. 2014) of kelp and physiological functioning of adults and gametophytes (Mohring et al. 2014; Steneck et al. 2002; Gerard 1997; Bearham et al. 2013; Smale & Moore 2017), there is little evidence that temperature is an important driver of morphological variation. However, we suggest that temperature plays a larger role in determining kelp morphology in areas where wave energy does not exert large amounts of impact. 
 
 # Conflict of Interest Statement
 
