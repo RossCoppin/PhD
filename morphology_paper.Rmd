@@ -5,16 +5,10 @@ geometry: margin=1in
 output:
   word_document:
     reference_docx: frontiers_template.docx
-  pdf_document: 
-  html_document:
-    df_print: paged
-  html_notebook:
-    fig_caption: yes
-    fig_height: 7
-    fig_width: 7
 papersize: A4
 tables: yes
 fontsize: 10pt
+bibliography: morphology.bib
 ---
 
 ```{r include=FALSE}
@@ -23,7 +17,7 @@ knitr::opts_chunk$set(cache=FALSE)
 
 # Introduction
 
-Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres (Steneck et al. 2002). Their size and complex morphology provide a heterogeneous habitat structure (Steneck et al. 2002) that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck et al. 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & Roughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson 2003; Anderson et al. 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013), abundance (Cavanaugh et al. 2011; Dayton et al. 1998), diversity (Wing et al. 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton et al. 1998; Krumhansl & Scheibling 2012) of kelps. 
+Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; @Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & nRoughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson2003; Anderson 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013], abundance (Cavanaugh et al. 2011; Dayton 1998), diversity (Wing 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton 1998; Krumhansl & Scheibling 2012) of kelps. 
 
 Temperature and wave exposure have been shown to play a role in driving kelp morphology. For example, a study by Serisawa et al. (2002) compared the morphology of Ecklonia cava Kjellman growing in warm temperate and cool temperate morphologies. The results showed that wrinkles in the blade seem to be a characteristic of warm temperate regions. However this study did not take into account the interaction with other environmental variables such as wave exposure. Wave exposure has also been shown to be the main drivers of morphological adaptation across various kelp species. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility (Denny & Gaylord 2002). For example, a study by Wernberg & Thomsen (2005) examined the consistency of wave exposure as a driver of *Ecklonia radiata* (C. Agardh) J. Agardh across a broad geographic range, and  showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. The morphological adaptation to wave exposure must be kept in balance with other important processes, such as nutrient assimilation and light absorption, which are dependent on the amount of surface area of the blades. Therefore, there is a trade-off between reducing overall drag and maintaining nutrient and photosynthetic ability.  The morphological adapatibility of kelps is driven by a combination of environmental factors that in turn do not act independently of one another. A study by Wernberg et al. (2003) investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales (Wernberg et al. 2003). Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Wave exposure may be greater in shallower environments, or it may be reduced through damping effects of kelp further offshore and natural barriers such as rock outcrops; also, seawater temperature may be higher in shallow water environments due to higher solar irradiance. 
 
@@ -1098,6 +1092,10 @@ lam_rda <- ggord(rda_lam, meta_lam_rda$region,ellipse = TRUE, hull = FALSE, grp_
 
 Forward selection, assessment of VIF and an examination of pairwise Pearson correlation coefficients allowed us to retain the most parsimonious descriptors of *L. pallida* morphological characteristics with an adjusted *R*2 of 0.49, explaining 72% of the variation (global permutation test on final model: d.f = 1, *F* = 8.51, *p* = 0.008). RDA1 was the only significant axis in the model and explained 48% of the variation while RDA2 was not significant and explained 63% of the variation. Total length, stipe length, stipe diameter and stipe mass were postivley influenced (i.e., increased size corresponding with the environmental driver) by *hs_mean* and *dir_median* for kelps mostly from the western region and negativley influenced (i.e., decreased size corresponding with the environmental driver) by *tp_sd* and *mean_temp* for kelps from the eastern region. Although sites from from the western region did not cluster as closely as eastern region study sites, grouping according to region was still evident. 
 
+```{r rda lam plot, echo=FALSE, fig.height=4, fig.width=4, message=FALSE, warning=FALSE}
+lam_rda
+```
+
 ```{r rda deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
 
 #filter to select only deep population ecklonia
@@ -1289,13 +1287,10 @@ rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE,
 
 ```
 
-```{r rda plots, echo=FALSE, fig.height=7, fig.width=7, message=FALSE, warning=FALSE}
-ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, ncol = 1, nrow = 3, label = "AUTO")
-lam_rda
-rda_eck_deep
-rda_eck_shallow
-```
 
+```{r rda eck plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE}
+ggarrange(rda_eck_deep, rda_eck_shallow, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 1, nrow = 2)
+```
 Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of shallow *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
 
 # Discussion
@@ -1310,7 +1305,7 @@ Annual maximum and winter mean temperatures influence stipe length and frond len
 
 # Conclusion
 
-Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in shallow and deep populations of *E. maxima* may reflect small differences in wave and temperature variables as drivers of kelp morphological characteristics. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. Temperature variables were not a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution (Bolton et al. 2012; Miller et al. 2011; Rinde et al. 2014) of kelp and physiological functioning of adults and gametophytes (Mohring et al. 2014; Steneck et al. 2002; Gerard 1997; Bearham et al. 2013; Smale & Moore 2017), there is little evidence that temperature is an important driver of morphological variation. However, we suggest that temperature plays a larger role in determining kelp morphology in areas where wave energy does not exert large amounts of impact. 
+Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in shallow and deep populations of *E. maxima* may reflect small differences in wave and temperature variables as drivers of kelp morphological characteristics. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. Temperature variables were not a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution (Bolton et al. 2012; Miller et al. 2011; Rinde et al. 2014) of kelp and physiological functioning of adults and gametophytes (Mohring et al. 2014; Steneck et al. 2002; Gerard 1997; Bearham et al. 2013; Smale & Moore 2017), there is little evidence that temperature is an important driver of morphological variation. However, we suggest that temperature plays a larger role in determining kelp morphology at sites where wave energy is low enough not to elecit a response in morphological characteristics. 
 
 # Conflict of Interest Statement
 
@@ -1329,6 +1324,8 @@ Aside from funding provided, the funders had no role in the study design, data c
 # Acknowledgments
 
 Thank you to AS and CR for their guidance, and the honours class of 2014-2015 that aided in fieldwork. Carla Louise for making the GIS plot etc. 
+
+# References
 
 # Appendix
 
