@@ -56,7 +56,7 @@ Wave model variable data formed part of the South African Coastal Vulnerability 
 
 The morphological characteristics of both species are presented in Fig. 2. *Laminaria pallida* is characterised by a single smooth blade which is divided longitudinally into sections, and develops from a single meristematic region located at the junction between the blade and the stipe [@Dyer2018-rv]. This species has a solid stipe but develops a hollow stipe along the west coast northward and into Namibia [@Rothman2017-pn]. *Ecklonia maxima* consists of a single primary blade which develops above a gas-filled float and a hollow stipe below. Secondary blades are produced laterally from the primary blade from several meristematic regions along the margins of the primary blade, known as digits [@Dyer2018-rv]. Both species are held to the substrate by finger-like haptera, collectively known as the holdfast. 
 
-```{r schematic, echo=FALSE, fig.cap='Schematic of *L. pallida* and *E. maxima* morphology.', fig.height=6, fig.width=6}
+```{r schematic, echo=FALSE, fig.cap='Schematic of *L. pallida* and *E. maxima* morphology [@Dyer2018-rv].', fig.height=6, fig.width=6}
 
 img <- readPNG("figures/kelp_diagram.png")
 grid.raster(img)
@@ -1282,7 +1282,7 @@ rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE,
 
 ```
 
-```{r rda eck plots, echo=FALSE, fig.height=7, fig.width=9, message=FALSE, warning=FALSE}
+```{r rda eck plots, echo=FALSE, fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
 ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, common.legend = TRUE, legend = "bottom", labels = "AUTO",ncol = 2, nrow = 2)
 ```
 
