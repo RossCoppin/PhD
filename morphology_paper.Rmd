@@ -8,7 +8,7 @@ output:
 papersize: A4
 tables: yes
 fontsize: 10pt
-bibliography: morphology.bib
+bibliography: refs_morphology_paper.bib
 ---
 
 ```{r include=FALSE}
@@ -16,8 +16,8 @@ knitr::opts_chunk$set(cache=FALSE)
 ```
 
 # Introduction
-
-Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; @Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & nRoughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson2003; Anderson 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013], abundance (Cavanaugh et al. 2011; Dayton 1998), diversity (Wing 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton 1998; Krumhansl & Scheibling 2012) of kelps. 
+@Bolton2010
+Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera (Bolton 2010), nevertheless form the basis of one of the most productive ecosystems globally (Mann 1973). Kelps generally have a dependence on cool, temperate and arctic seawater temperatures (Bolton 2010; Mohring et al. 2014; Cavanaugh et al. 2011; Dayton 1985), and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres (Steneck et al. 2002). Their size and complex morphology provide a heterogeneous habitat structure (Steneck et al. 2002) that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates (Mann 1973; Steneck 2002), each depending on a wide suite of ecological services provided by the kelp forests (Gaines & nRoughgarden 1987; Paul & Steneck 1993; Levin 1994; Willis & Anderson2003; Anderson 1997; Dayton 1985). Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution (Gorman et al. 2013], abundance (Cavanaugh et al. 2011; Dayton 1998), diversity (Wing 2007; Wernberg & Goldberg 2008), composition (Leliaert et al. 2000; Dayton 1985; Norderhaug et al. 2012; Harley et al. 2012), growth (Cousens 1982) and productivity (Pedersen & Nejrup 2012; Dayton 1998; Krumhansl & Scheibling 2012) of kelps. 
 
 Temperature and wave exposure have been shown to play a role in driving kelp morphology. For example, a study by Serisawa et al. (2002) compared the morphology of Ecklonia cava Kjellman growing in warm temperate and cool temperate morphologies. The results showed that wrinkles in the blade seem to be a characteristic of warm temperate regions. However this study did not take into account the interaction with other environmental variables such as wave exposure. Wave exposure has also been shown to be the main drivers of morphological adaptation across various kelp species. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility (Denny & Gaylord 2002). For example, a study by Wernberg & Thomsen (2005) examined the consistency of wave exposure as a driver of *Ecklonia radiata* (C. Agardh) J. Agardh across a broad geographic range, and  showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. The morphological adaptation to wave exposure must be kept in balance with other important processes, such as nutrient assimilation and light absorption, which are dependent on the amount of surface area of the blades. Therefore, there is a trade-off between reducing overall drag and maintaining nutrient and photosynthetic ability.  The morphological adapatibility of kelps is driven by a combination of environmental factors that in turn do not act independently of one another. A study by Wernberg et al. (2003) investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales (Wernberg et al. 2003). Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Wave exposure may be greater in shallower environments, or it may be reduced through damping effects of kelp further offshore and natural barriers such as rock outcrops; also, seawater temperature may be higher in shallow water environments due to higher solar irradiance. 
 
@@ -1326,6 +1326,131 @@ Aside from funding provided, the funders had no role in the study design, data c
 Thank you to AS and CR for their guidance, and the honours class of 2014-2015 that aided in fieldwork. Carla Louise for making the GIS plot etc. 
 
 # References
+Anderson, R.J. et al., 1997. Holdfasts of adult kelp Ecklonia maxima provide refuges from grazing for recruitment of juvenile kelps. Marine ecology progress series, 159, pp.265–273.
+
+Andrews, W.R.H. & Hutchings, L., 1980. Upwelling in the Southern Benguela Current. Progress in oceanography, 9(1), pp.1–81.
+Atkins, G.R., 1970. Winds and Current Patterns in False Bay. Transactions of the Royal Society of South Africa, 39(2), pp.139–148.
+
+Bearham, D., Vanderklift, M.A. & Gunson, J.R., 2013. Temperature and light explain spatial variation in growth and productivity of the kelp Ecklonia radiata. Marine ecology progress series. Available at: http://www.int-res.com/abstracts/meps/v476/p59-70/.
+
+Bekkby, T. et al., 2014. Length, strength and water flow: Relative importance of wave and current exposure on morphology in kelp Laminaria hyperborea. Marine ecology progress series, 506, pp.61–70.
+
+Blanke, B. et al., 2002. Linking wind and interannual upwelling variability in a regional model of the southern Benguela. Geophysical research letters, 29(24), pp.41–41.
+
+Bolton, J.J. et al., 2012. South African kelp moving eastwards: the discovery of Ecklonia maxima (Osbeck) Papenfuss at De Hoop Nature Reserve on the south coast of South Africa. African journal of marine science, 34(1), pp.147–151.
+
+Bolton, J.J., 2010. The biogeography of kelps (Laminariales, Phaeophyceae): A global analysis with new insights from recent advances in molecular phylogenetics. Helgoland marine research, 64(4), pp.263–279.
+
+Booij, N., Holthuijsen, L.H. & Ris, R.C., 1997. The“ SWAN” wave model for shallow water. In Coastal Engineering 1996. ascelibrary.org, pp. 668–676.
+
+Borcard, D., Gillet, F. & Legendre, P., 2011. Numerical Ecology with R, Springer.
+Cavanaugh, K.C. et al., 2011. Environmental controls of giant-kelp biomass in the Santa Barbara Channel, California. Marine ecology progress series, 429, pp.1–17.
+
+Cousens, R., 1982. The Effect of Exposure to Wave Action on the Morphology and Pigmentation of Ascophyllum nodosum (L.) Le Jolis in South-Eastern Canada. Bontanica Marina, 25(4), pp.191–195.
+
+Cram, D.L., 1970. A suggested origin for the cold surface water in central False Bay. Transactions of the Royal Society of South Africa, 39(2), pp.129–137.
+
+Dayton, P.K., 1985. Ecology of Kelp Communities. Annual review of ecology and systematics, 16(1), pp.215–245.
+
+Dayton, P.K. et al., 1998. Sliding baselines, ghosts, and reduced expectations in kelp forest communities. Ecological Applications, 8(2), pp.309–322. Available at: http://dx.doi.org/10.1890/1051-0761(1998)008[0309:SBGARE]2.0.CO;2.
+
+Denny, M. & Gaylord, B., 2002. The mechanics of wave-swept algae. The Journal of experimental biology, 205(Pt 10), pp.1355–1362.
+
+Denny, M., Gaylord, B. & Cowen, E., 1997. Flow and Flexibility: II. The roles of size and shape In determining wave forces on the bull kelp Nereocystis Luetkeana. The Journal of experimental biology, 200, pp.3165–3183.
+Denny, M. & Roberson, L., 2002. Blade motion and nutrient flux to the kelp, Eisenia arborea. The Biological bulletin, 203(1), pp.1–13.
+
+Dufois, F. & Rouault, M., 2012. Sea surface temperature in False Bay (South Africa): Towards a better understanding of its seasonal and inter-annual variability. Continental shelf research, 43, pp.24–35.
+
+Dyer, D.C., 2018. Stable Isotope Ecology of South African Kelp Forests. Doctor of Philosophy. University of Cape Town.
+Environmental Modeling Center / Marine Modeling Branch, 2005. WAVEWATCH III® Model. Available at: https://polar.ncep.noaa.gov/waves/wavewatch/ [Accessed March 8, 2019].
+
+Field, J.G. et al., 1980. Upwelling in a nearshore marine ecosystem and its biological implications. Estuarine and Coastal Marine Science, 11(2), pp.133–150.
+
+Fowler-Walker, M.J., Connell, S.D. & Gillanders, B.M., 2005. To what extent do geographic and associated environmental variables correlate with kelp morphology across temperate Australia? Marine and Freshwater Research, 56(6), pp.877–887.
+Fowler-Walker, M.J., Wernberg, T. & Connell, S.D., 2006. Differences in kelp morphology between wave sheltered and exposed localities: Morphologically plastic or fixed traits? Marine biology, 148(4), pp.755–767.
+
+Friedland, M.T. & Denny, M.W., 1995. Surviving hydrodynamic forces in a wave-swept environment: consequences of morphology in the feather boa kelp, Egregia menziesii (Turner). Journal of experimental marine biology and ecology, 190, pp.109–133.
+Gaines, S.D. & Roughgarden, J., 1987. Fish in Offshore Kelp Forests Affect Recruitment to Intertidal Barnacle Populations. Science, 235(4787), pp.479–481.
+
+Gaylord, B. & Denny, M., 1997. Flow and flexibility. I. Effects Of size, shape and stiffness in determining wave forces on the stipitate kelps Eisenia arborea and Pterygophora californica. The Journal of experimental biology, 200 (Pt 24), pp.3141–3164.
+
+Gaylord, B., Denny, M.W. & Koehl, M.A.R., 2008. Flow forces on seaweeds: field evidence for roles of wave impingement and organism inertia. The Biological bulletin, 215(3), pp.295–308.
+
+Gerard, V.A., 1997. The role of nitrogen nutrition in high-temperature tolerance of the kelp Laminaria saccarina (Chromophyta). Journal of phycology, 33(5), pp.800–810.
+
+Gill, A.E. & Clarke, A.J., 1974. Wind-induced upwelling, coastal currents and sea-level changes. Deep Sea Research and Oceanographic Abstracts, 21(5), pp.325–345.
+
+Gorman, D. et al., 2013. Modeling kelp forest distribution and biomass along temperate rocky coastlines. Marine biology, 160(2), pp.309–325.
+
+Harley, C. et al., 2012. EFfects Of Climate Change On Global Seaweed Communities. Journal of phycology, 48(5), pp.1064–1078.
+
+Holthuijsen, L.H., 2010. Waves in Oceanic and Coastal Waters, Cambridge University Press.
+
+Jackson, G.A., 1984. Internal Wave Attenuation by Coastal Kelp Stands. Journal of Physical Oceanography, 14(8), pp.1300–1306. Available at: 2.0.CO;2">http://dx.doi.org/10.1175/1520-0485(1984)014<1300:IWABCK>2.0.CO;2.
+
+Jury, M.R., 1980. Characteristics of summer wind fields and air sea interactions over the Cape Peninsula upwelling region. Available at: http://nrfnexus.nrf.ac.za/handle/20.500.11892/52807.
+
+Jury, M.R., Kamstra, F. & Taunton-Clark, J., 1985. Synoptic summer wind cycles and upwelling off the southern portion of the Cape Peninsula. South African Journal of Marine Science/Suid-Afrikaanse Tydskrif vir Seewetenskap, 3(1), pp.33–42.
+
+Kain, J.M., 1982. Morphology and growth of the giant kelp Macrocystis pyrifera in New Zealand and California. Marine biology, 67(2), pp.143–157.
+
+Kobayashi, N., Raichle, A.W. & Asano, T., 1993. Wave attenuation by vegetation. Journal of Waterway, Port, Coastal and Ocean Engineering, 119(1), pp.30–48.
+
+Krumhansl, K.A. & Scheibling, R.E., 2012. Production and fate of kelp detritus. Marine ecology progress series, 467, pp.281–302.
+
+Leliaert, F. et al., 2000. Subtidal Understorey Algal Community Structure in Kelp Beds around the Cape Peninsula (Western Cape, South Africa). Botanica marina, 43(4), pp.359–366.
+
+Levin, P.S., 1994. Fine-scale temporal variation in recruitment of a temperate demersal fish: the importance of settlement versus post-settlement loss. Oecologia, 97(1), pp.124–133.
+
+Mabin, C.J.T. et al., 2013. Variation in the morphology, reproduction and development of the habitat-forming kelp Ecklonia radiata with changing temperature and nutrients. Marine ecology progress series, 483, pp.117–131.
+
+Mann, K.H., 1973. Seaweeds: Their Productivity and Strategy for Growth. Science, 182(4116), pp.975–981.
+
+Miller, S.M., Hurd, C.L. & Wing, S.R., 2011. Variations in growth, erosion, productivity, and morphology of Ecklonia Radiata (Alarlaceae; Laminarlales) along a fjord in southern New Zealand. Journal of phycology, 47(3), pp.505–516.
+
+Mohring, M.B. et al., 2014. Biogeographic variation in temperature drives performance of kelp gametophytes during warming. Marine ecology progress series, 513, pp.85–96.
+
+Molloy, F.J. & Bolton, J.J., 1996. The effects of wave exposure and depth on the morphology of inshore populations of the Namibian kelp, Laminaria schinzii Foslie. Botanica marina, 39, pp.525–531.
+
+Mork, M., 1996. The effect of kelp in wave damping. Sarsia, 80(4), pp.323–327.
+
+Norderhaug, K.M. et al., 2012. Does the diversity of kelp forest macrofauna increase with wave exposure? Journal of sea research, 69, pp.36–42.
+
+Office of the Director, 2000. National Centers for Environmental Prediction. Available at: https://www.ncep.noaa.gov/ [Accessed March 8, 2019].
+
+Oksanen, J. et al., 2016. Vegan: community ecology package. R package 2.3-3, p.Available at: https://cran.r–project.org/web/packa.
+
+Paul, A.X. & Steneck, R., 1993. Kelp Beds as Habitat for American Lobster Homarus americanus. Marine Ecology Progress Series, 100(40545), p.127.
+
+Pedersen, M.F. & Nejrup, L.B., 2012. Effects of wave exposure on population structure, demography, biomass and productivity of the kelp Laminaria hyperborea. Marine ecology progress series, 451, pp.45–60.
+Rautenbach, C., 2015. Southern African Coastal Vulnerability Assessment. In Csir, ed. Southern African Coastal Vulnerability Assessment.
+
+Rinde, E. et al., 2014. The influence of physical factors on kelp and sea urchin distribution in previously and still grazed areas in the NE Atlantic. PloS one, 9(6). Available at: http://dx.doi.org/10.1371/journal.pone.0100222.
+
+Rothman, M.D. et al., 2017. Geographical variation in morphology of the two dominant kelp species, Ecklonia maxima and Laminaria pallida (Phaeophyceae, Laminariales), on the west coast of Southern Africa. Journal of applied phycology, 29(5), pp.2627–2639.
+
+Rouault, M., Pohl, B. & Penven, P., 2010. Coastal oceanic climate change and variability from 1982 to 2009 around South Africa. African journal of marine science, 32(2), pp.237–246.
+
+Serisawa, Y. et al., 2002. Morphometric study of Ecklonia cava (Laminariales, Phaeophyta) sporophytes in two localities with different temperature conditions. Phycological research, 50(3), pp.193–199.
+
+Shipley, A.M., 1964. Some aspects of wave refraction in False Bay. South African journal of science, 60(6), pp.115–120.
+Smale, D.A. & Moore, P.J., 2017. Variability in kelp forest structure along a latitudinal gradient in ocean temperature. Journal of experimental marine biology and ecology, 486, pp.255–264.
+
+Smit, A.J. et al., 2013. A coastal seawater temperature dataset for biogeographical studies: large biases between in situ and remotely-sensed data sets around the coast of South Africa. PloS one, 8(12), p.e81944.
+
+Steneck, R.S. et al., 2002. Kelp forest ecosystems: biodiversity, stability, resilience and future. Environmental conservation, 29(04), pp.436–459.
+
+Stewart, H.L. et al., 2009. Differences in growth, morphology and tissue carbon and nitrogen of Macrocystis pyrifera within and at the outer edge of a giant kelp forest in California, USA. Marine ecology progress series, 375, pp.101–112.
+
+Wernberg, T. et al., 2003. Morphology of Ecklonia radiata (Phaeophyta: Laminarales) along its geographic distribution in south-western Australia and Australasia. Marine biology, 143(1), pp.47–55.
+
+Wernberg, T. & Goldberg, N., 2008. Short-term temporal dynamics of algal species in a subtidal kelp bed in relation to changes in environmental conditions and canopy biomass. Estuarine, coastal and shelf science, 76(2), pp.265–272.
+
+Wernberg, T. & Thomsen, M.S., 2005. The effect of wave exposure on the morphology of Ecklonia radiata. Aquatic botany, 83(1), pp.61–70.
+
+Willis, T.J. & Anderson, M.J., 2003. Structure of reef fish assemblages: relationship with habitat characteristics and predator density. Marine ecology progress series, 257(2000), pp.209–221.
+
+Wing, S.R. et al., 2007. Topographic shading and wave exposure influence morphology and ecophysiology of Ecklonia radiata (C. Agardh 1817) in Fiordland, New Zealand. Limnology and oceanography, 52(5), pp.1853–1864.
 
 # Appendix
 
