@@ -4,9 +4,9 @@ title: Using numerical modelling to investigate temperature and wave exposure as
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 fontsize: 10pt
 output:
+  pdf_document: default
   word_document:
     reference_docx: frontiers_template.docx
-  pdf_document: default
 geometry: margin=1in
 papersize: A4
 tables: yes
