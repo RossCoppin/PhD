@@ -348,7 +348,7 @@ grid.raster(img_wave_rose)
 
 Data for median wave direction showed no trend across timescales; however the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula (see figure \ref{fig:wave rose}). Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively. This phenomenon can be explained by the sheltering effect of the Cape Peninsula, resulting in a wave climate with a narrower directional spreading on the eastern side of the peninsula (refer to Fig. 7). 
 
-```{r wave power map, echo=FALSE, eval= FALSE, fig.cap='\\label{fig:wave power map}Wave power map'}
+```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}Wave power map'}
 
 library(png)
 library(grid)
