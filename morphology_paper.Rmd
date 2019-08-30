@@ -360,7 +360,7 @@ grid.raster(img_wavepower,legend_wave_power)
 
 In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
 
-```{r FB spectrum, echo=FALSE, eval= FALSE, fig.cap='\\label{fig:FB spectrum}Wave power map'}
+```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}Wave power map'}
 
 library(png)
 library(grid)
