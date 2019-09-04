@@ -4,9 +4,9 @@ title: Using numerical modelling to investigate temperature and wave exposure as
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 fontsize: 10pt
 output:
-  pdf_document: default
   word_document:
     reference_docx: frontiers_template.docx
+  pdf_document: default
 geometry: margin=1in
 papersize: A4
 tables: yes
@@ -348,7 +348,7 @@ grid.raster(img_wave_rose)
 
 Data for median wave direction showed no trend across timescales; however the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula (see figure \ref{fig:wave rose}). Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively. This phenomenon can be explained by the sheltering effect of the Cape Peninsula, resulting in a wave climate with a narrower directional spreading on the eastern side of the peninsula (refer to Fig. 7). 
 
-```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}Wave power map'}
+```{r wave power map, echo=FALSE, eval= FALSE, fig.cap='\\label{fig:wave power map}Wave power map'}
 
 library(png)
 library(grid)
@@ -360,7 +360,7 @@ grid.raster(img_wavepower,legend_wave_power)
 
 In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
 
-```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}Wave power map'}
+```{r FB spectrum, echo=FALSE, eval= FALSE, fig.cap='\\label{fig:FB spectrum}Wave power map'}
 
 library(png)
 library(grid)
