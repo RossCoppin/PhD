@@ -6,7 +6,8 @@ fontsize: 10pt
 output:
   word_document:
     reference_docx: frontiers_template.docx
-  pdf_document: default
+  pdf_document: 
+    fig_caption: yes
 geometry: margin=1in
 papersize: A4
 tables: yes
@@ -15,35 +16,37 @@ bibliography: refs_morphology_paper.bib
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(cache=FALSE)
+knitr::opts_chunk$set(fig.align = "center")
 ```
 
 # Introduction
 
-Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera [@Bolton2010], nevertheless form the basis of one of the most productive ecosystems globally [@Mann1973]. Kelps generally have a dependence on cool, temperate and arctic seawater temperatures [@Bolton2010; @Mohring2014-bk; @Cavanaugh2011-ib; @Dayton1985], and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates [@Mann1973; @Steneck2002], each depending on a wide suite of ecological services provided by the kelp forests [@Gaines1987-bg; @Paul1993-bm; @Levin1994-qf; @Willis2003-xo; @anderson1997; @Dayton1985]. Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution [@Gorman2013-nj], abundance [@Cavanaugh2011-ib; @Dayton1998-xw], diversity [@Wing2007-tv; @Wernberg2008], composition [@Leliaert2000a; @Dayton1985; @Norderhaug2012-ks; @Harley2012], growth [@Cousens1982-ck] and productivity [@Pedersen2012-vr; @Dayton1998-xw; @Krumhansl2012] of kelps. 
+Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera [@Bolton2010], form the basis of one of the most productive ecosystems globally [@Mann1973]. Kelps generally have a dependence on cool, temperate and arctic seawater temperatures [@Bolton2010; @Mohring2014-bk; @Cavanaugh2011-ib; @Dayton1985], and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude of turf and subcanopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates [@Mann1973; @Steneck2002], each depending on a wide suite of ecological services provided by the kelp forests [@Gaines1987-bg; @Paul1993-bm; @Levin1994-qf; @Willis2003-xo; @anderson1997; @Dayton1985]. Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in the distribution [@Gorman2013-nj], abundance [@Cavanaugh2011-ib; @Dayton1998-xw], diversity [@Wing2007-tv; @Wernberg2008], composition [@Leliaert2000a; @Dayton1985; @Norderhaug2012-ks; @Harley2012], growth [@Cousens1982-ck] and productivity [@Pedersen2012-vr; @Dayton1998-xw; @Krumhansl2012] of kelps. 
 
-Given kelps are cool/temperate organisms which are vulernable to dislodgment under high wave exposure scenarios, changes in ocean temperature and an increase in storm frequency and magnitude pose the biggest direct threats to their survival. Warmer temperatures reduces the resilience of kelp individuals to perbutations [@wernberg2010], causes fragmentation through weakening tissues [@simonson2015] and reduces growth and productivity [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]; while storms and high wave energy dislodge and break kelps [@byrnes2011; @graham2004; @seymour1989]. Despite these threats and disturbances kelps persist which across a broad range of environments which is largely due to their morphological plasticity [@fowler2006; @reed2003]. A study by @Wernberg2003-mp investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales [@Wernberg2003-mp].Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Deep and shallow water environments may differ in abiotic processes such as the degree of water column mixing [@Smit2013a], solar heating [@Dellatorre2012; @Dunne2001] and effects of wave dampening [@Kobayashi1993-os; Mia2013; @Dubi1995]. 
+Given kelps are cool/temperate organisms which are vulernable to dislodgment under high wave exposure scenarios, changes in ocean temperature and an increase in storm frequency and magnitude pose the biggest direct threats to their survival. Warmer temperatures reduces the resilience of kelp individuals to perbutations [@wernberg2010], causes fragmentation through weakening tissues [@Simonson2015] and reduces growth and productivity [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]; while storms and high wave energy dislodge and break kelps [@byrnes2011; @graham2004; @seymour1989]. Despite these threats and disturbances kelps persist across a broad range of environments which is largely due to their morphological plasticity [@FowlerWalker2006; @wernberg2010]. A study by @Wernberg2003-mp investigated the morphology of *E. radiata* in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australasian coast. They found no correlation between spatial distance and morphological similarity, and rather the morphology of kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales [@Wernberg2003-mp]. Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Deep and shallow water environments may differ in abiotic processes such as the degree of water column mixing [@Smit2013a], solar heating [@Dellatorre2012; @Dunne2001] and effects of wave dampening [@Kobayashi1993-os; Mia2013; @Dubi1995]. 
 
-Although other factors play a role in kelp morphological adaptation, wave exposure and temperature have been identified as the main drivers of morphological adaptation across various kelp species [@bekkby2014; @wernberg2005; @Denny2002-ob; @Hurd2000; @Fowler-Walker2005; @Thomsen2004-yd; @mabin2013]. For example, a study by @Serisawa2002-dc compared the morphology of *Ecklonia cava* Kjellman growing at warmer sites and cooler sites, and showed wrinkling of the blade and reduced size to be a characteristic of higher temperature ranges. Temperature affects important kelp physiological processes such as photosynthesis and respiration, which ultimately influences growth and productivity resulting in reduced size [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility [@Denny2002-ob; @Hurd2000; @Fowler-Walker2005; @Thomsen2004-yd]. For example, a study by @Wernberg2005c examined the consistency of wave exposure as a driver of *Ecklonia radiata*  (C. Agardh) J. Agardh. across a broad geographic range, and showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. 
+Although other factors play a role in kelp morphological adaptation, wave exposure and temperature have been identified as the main drivers of morphological adaptation across various kelp species [@bekkby2014; @Wernberg2005c; @Denny2002; @Hurd2000; @FowlerWalker2005; @Thomsen2004; @mabin2013]. For example, a study by @Serisawa2002-dc compared the morphology of *Ecklonia cava* Kjellman growing at warmer and cooler sites, and showed wrinkling of the blade and reduced size to be a characteristic of higher temperature ranges. Temperature affects important kelp physiological processes such as photosynthesis and respiration, which ultimately influences growth and productivity resulting in reduced size [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility [@Denny2002; @Hurd2000; @FowlerWalker2005; @Thomsen2004]. For example, a study by @Wernberg2005c examined the consistency of wave exposure as a driver of *Ecklonia radiata*  (C. Agardh) J. Agardh. across a broad geographic range, and showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites. 
 
 The kelps *Laminaria pallida* and *Ecklonia maxima* (Osbeck) Papenfuss are important habitat forming seaweeds that exist around the coast of South Africa and offer a unique opportunity to investigate the drivers of macroalgal morphological characteristics between canopy and sub-canopy species, as well as between deep and shallow water environments. Although both these species exist in the subtidal, *L. pallida* dominates deeper waters while *E. maxima* forms dense surface canopies in the subtidal to shallower waters. Therefore, *E. maxima* is exposed to variations in wind driven surface waves, swell and temperature, while *L. pallida* is exposed to variations in swell and temperature. @Molloy1996-la investigated the effect of depth and wave exposure on *L. pallida* at different depths and wave exposure and showed that depth had a greater effect than wave exposure when considering all the morphological characteristics (wave exposure alters with depth); when considering individual characteristics, however, wave exposure had the most significant effect on blade thickness. Another study by @Rothman2017-pn investigated the changes in morphology in shallow populations of *L. pallida* and *E. maxima* along the South African coastline and into Namibia; *E. maxima* exhibited no morphological changes along the coast but the stipes of *L. pallida* become increasingly hollow further north along the coastline. They suggested that turbidity in relation to light attenuation was the environmental driver responsible for this change. 
 
-Measures of wave exposure in ecological studies often incorporate integrative measures of hydrodynamic conditions at a particular site which are based on cartographical models of exposure. Cartographical models of wave exposure are 'fetch-based-models' which measure the length of open water associated with a particular site in a straight line, and are regarded as simple measures of wave exposure. Advances in numerical modelling based on physical/linear wave theory incorporate more complexity (wind forcing, wave-wave interactions, wave breaking, diffraction and variation in wave direction) into the models and allow for a quantitave, reproducible approach for quantifying wave exposure. Although @mabin2013 investigated kelp morphological characteristics using a 2 dimensional WAM model, currently no studies investigating macroalgal morphological characteristics in relation to the wave environment have incorporated 3D spectral numerical modelling. Furthermore no current studies have identified specific wave metrics in driving kelp morphological charactersitcs using advanced numerical model, which the current work will aim to achieve. Other considerations such as possible differences in morphology between sub-canopy and canopy species, shallow and deep water populations have not been considered using advanced numerical and statisical tools. The aim of this study is, therefore, to understand how temperature and wave exposure can influence the morphology in two species of kelps around South Africa, as well as between deep and shallow populations of the same species. This will be achieved by initially understanding the variation in temperature and waves using an advanced numerical model. The numerical model will then be used as a basis for investigating the consequences for morphological chracteristics of *E. maxima* and *L. pallida* using advanced statistical tools. 
+Measures of wave exposure in ecological studies often incorporate integrative measures of hydrodynamic conditions at a particular site which are based on cartographical models of exposure. Cartographical models of wave exposure are 'fetch-based-models' which measure the length of open water associated with a particular site in a straight line, and are regarded as simple measures of wave exposure. Advances in numerical modelling based on physical/linear wave theory incorporate more complexity (wind forcing, wave-wave interactions, wave breaking, diffraction and variation in wave direction) into the models and allow for a quantitave, reproducible approach for characterising the hydrodynamic environment. Although @mabin2013 investigated kelp morphological characteristics using a 2D WAM model, currently no studies investigating macroalgal morphological characteristics in relation to the wave environment have incorporated 3D spectral numerical modelling. Furthermore no current studies have identified specific wave metrics in driving kelp morphological charactersitcs using advanced numerical model, which the current work will aim to achieve. Other considerations such as possible differences in morphology between sub-canopy and canopy species, shallow and deep water populations have not been considered using advanced numerical and statisical tools. The aim of this study is, therefore, to understand how temperature and wave exposure can influence the morphology in two species of kelps around South Africa, as well as between deep and shallow populations of the same species. The current study will also aim to identify specific temperature and wave metrics which drive kelp morphological characteristics.  This will be achieved by initially understanding the variation in temperature and waves using an advanced numerical model. The numerical model will then be used as a basis for investigating the consequences for morphological chracteristics of *E. maxima* and *L. pallida* using advanced statistical tools. 
 
 # Materials and methods
 ## Site selection
 
-Sites were chosen to represent an array of environmental gradients, as indicated in figure \ref{fig:map study sites}. St. Helena Bay and Betty's Bay constituted the north western and south eastern boundary sites, respectively. These sites are roughly 300 km apart, and lie within separate marine provinces and cover a cline in wave exposure and temperature. Study sites span across the majority of the south-west coast, in varying thermal and wave energy regimes. The region is dominated by kelp communities that persist in contrasting abiotic environments. The west coast region has been termed as a cool temperate region, which is defined as a region where mean monthly temperatures are always above 10°C and always below 15°C [@Smit2013a]. East of Cape Point marks the beginning of an overlap or transition area, which is also referred to as the Benguela-Agulhas Transition Zone [@Smit2013a]. The Agulhas Marine Province is characterised by a wide temperature range of up to 7°C difference between mean monthly temperatures between summer and winter and is classified as warm temperate region [@Smit2013a]. 
+Sites were chosen to represent an array of environmental gradients, as indicated in figure \ref{fig:map study sites}. St. Helena Bay and Betty's Bay constituted the north western and south eastern boundary sites, respectively. These sites are roughly 300 km apart, lie within separate marine provinces, and span across the majority of the south-west coast, in varying thermal and wave energy regimes. The region is dominated by kelp communities that persist in contrasting abiotic environments. The west coast region has been termed as a cool temperate, which is defined as a region where mean monthly temperatures are always above 10°C and always below 15°C [@Smit2013a]. East of Cape Point marks the beginning of an overlap or transition area, which is also referred to as the Benguela-Agulhas Transition Zone [@Smit2013a]. The Agulhas Marine Province is characterised by a wide temperature range of up to 7°C difference between mean monthly temperatures between summer and winter and is classified as warm temperate region [@Smit2013a]. 
 
 ```{r map study sites, echo=FALSE, fig.height=5, fig.width=5, message=FALSE, warning=FALSE, fig.cap="\\label{fig:map study sites}Map of the study area and sampling sites. The red dot indicates the position of Cape Town for sake of reference."}
 
 library(png)
 library(grid)
+library(gridExtra)
 
 map <- readPNG("figures/sa_map.png")
 grid.raster(map)
 ```
 
-Due to the Cape Peninsula temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean [@Reason2006]. These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter [@Veitch2019]. The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay [@Shipley1964]. Conversely, the west coast of Cape Point is battered by these large swells. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity. The topography and elevation along the Cape Peninsula channel and shield winds along False Bay. This is however absent in winter, where strong northerly winds are prevalent from St. Helena Bay to Betty's Bay [@Field1980a; @Jury1985-nr; @Andrews1980; @Jury1980-ov]. Patterns are also evident in the wave data. Seasonal variations in significant wave height (Hs), peak period and wave direction are also present. The direction of the dominant swell changes to the south west in winter, generated by strong low pressures that originate from the southern ocean [@Reason2006], which False Bay is sheltered from [@Shipley1964; @Atkins1970-bx; @Dufois2012-vy]. In summer, these swells rotate anticlockwise and are able to enter False Bay, providing an increased variability of Hs and Tp in this region. It should be noted that what is classified as sheltered around the South African coastline (a high energy coastline) might be classified as exposed in other regions of the world [@Norderhaug2012-ks; @Leliaert2000a]. It is due to the near consistent south-westerly swell and the complex orography around the peninsula that the wave energy distribution around the Cape Peninsula varies significantly over a small geographical area.
+The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient rich water to coastal areas and therefore induces a decrease in temperature [@Field1980a; @Andrews1980; @Gill1974-nt; @Cram1970-jw; @Rouault2010-gi; @Blanke2002]. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape peninsula, where southerly winds blow parallel to the coast and trigger upwelling [@Field1980a; @Rouault2010-gi]. This is not the case for False Bay which is shielded from the dominating wind and swell the Cape Peninsula is subject to, with the exception being the winter months where upwelling becomes more favourable for the region due to the change in swell and wind direction, causing lower temperatures to dominate during this time [@Rouault2010-gi; @Andrews1980]. Due to the Cape Peninsula temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean [@Reason2006]. These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter [@Veitch2019]. The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay [@Shipley1964]. Conversely, the west coast of Cape Point is battered by these large swells. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity. The topography and elevation along the Cape Peninsula channel and shield winds along False Bay. This is however absent in winter, where strong northerly winds are prevalent from St. Helena Bay to Betty's Bay [@Field1980a; @Jury1985-nr; @Andrews1980; @Jury1980-ov]. 
 
 ## Abiotic environment
 
@@ -63,8 +66,8 @@ The morphological characteristics of both species are presented in figure \ref{f
 
 ```{r schematic, echo=FALSE, fig.cap='\\label{fig:schematic}Schematic of *L. pallida* and *E. maxima* morphology [@Dyer2018-rv].', fig.height=6, fig.width=6}
 
-img <- readPNG("figures/kelp_diagram.png")
-grid.raster(img)
+schematic <- readPNG("figures/kelp_diagram.png")
+grid.raster(schematic)
 ```
 
 Morphological measurements of *L. pallida* and *E. maxima* were collected at 18 sites along the Western Cape coast of South Africa (Fig. 1) between October 2014 and April 2015. In each instance only the largest individuals were sampled to ensure that only mature and fully grown sporophytes were measured. Thirteen samples were collected for each species at each of the sites. The morphological traits named in Tables 1 and 2 were measured for comparison between sites. Because the macroalgae differ in morphological features, species-specific morphological characteristics were included. This allowed comparison between adjacent and non-adjacent sites around the peninsula. Between February 2017 and November 2018, morphological measurements for *E. maxima* individuals in shallow water (<1m) at seven sites along the Western Cape coast of South Africa were also collected. The same morphological characteristic measurements were taken as for the deeper *E. maxima*, and this allowed comparison between morphological characteristics between deep and shallow individuals within sites. Measurements were not collected for *L. pallida* in the shallow depths, as this species is largely absent from the shallow in this portion of the South African coastline. 
@@ -108,7 +111,7 @@ meta_all <- read.csv("metadata/site_meta_complete.csv", sep = ";")
 
 The mean annual coastal water temperature for the study sites located on the western side of the peninsula ranged from 14.5 ± 0.9 ℃ (mean ± SD) at St. Helena Bay, the most northern site on the western side of the peninsula, to 14.6 ± 0.3 ℃ at Olifantsbos, the most southern site on the western side of the peninsula (see figure \ref{fig:Temperature variables plot}A). For sites located on the eastern side of the peninsula (within False Bay), the annual mean coastal water temperatures ranged from 15.5 ± 0.9 ℃ at Buffelsbaai to 15.0 ± 0.9 ℃ at Betty’s Bay, the most eastern site on the coastline in this study (see figure \ref{fig:Temperature variables plot}A). Oudekraal had the lowest annual mean coastal water temperature of 12.3 ± 0.9. Annual maximum coastal temperatures for study sites located on the western side of the peninsula ranged from 16.3 ℃ at St. Helena Bay to 15.1 ℃ at Olifantsbos. For sites located east of the peninsula, annual maximum coastal water temperatures ranged from 16 ℃ at Buffelsbaai to 16.5 ℃ at Betty’s Bay. Amongst all sites, Kalk Bay had the highest annual maximum temperature of 19 ℃. Annual minimum coastal water temperatures for the study sites on the western side of the peninsula ranged from 12.9 ℃ at St. Helena Bay to 14.1 ℃ at Olifantsbos, and on the western side of the peninsula ranged from 15.0 ℃ at Buffelsbaai to 13.6 ℃ at Betty’s Bay.  The annual range in temperature on the western side on the peninsula was 3.4 at St. Helena Bay to 0.9 at Olifantsbos, and on the eastern side on of the peninsula was 1.0 at Buffelsbaai to 2.9 at Betty’s Bay. As can be seen in figure \ref{fig:Temperature variables plot}A, the trend in the range of temperature decreases from St. Helena Bay to Miller’s point and then increases from Kalk Bay to Betty’s Bay. Also, annual range in temperatures within False Bay are larger in winter (August) compared to summer (February).
 
-```{r Temperature data prep, message=FALSE, warning=FALSE, include=FALSE}
+```{r Temperature data prep, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 ## Data wrangling and preparation
 ## Preparing data
 # Complete lon/lats
@@ -151,7 +154,7 @@ temp_ann <- temps %>%
   select(site, date, everything())
 ```
 
-```{r Temperature variable processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r Temperature variable processing, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 ### Plots for temperature variables 
 positions_temp <- c("Betty's Bay", "Roman Rock","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock", "Batsata Rock","Bordjies Deep","Buffelsbaai","Buffelsbaai South","Olifantsbos","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","Sea Point","St Helena Bay")
 
@@ -175,15 +178,14 @@ temp_ann_meta$site <- as.character(temp_ann_meta$site)
 
 temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
   geom_boxplot() + 
-  stat_compare_means(label.y = 14.5 ,label.x = 1.5, label = "p.format") +
+  stat_compare_means(label.x = 2.5, label.y = 12.5, label = "p.format") +
   xlab("") + 
   ylab("") +
   coord_flip() + 
   theme_bw()
-
 ```
 
-```{r Temperature variables plot, echo=FALSE, warning=FALSE,fig.height=5,fig.width=8, fig.cap='\\label{fig:Temperature variables plot}Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B. See appendix for significance level guide.'}
+```{r Temperature variables plot, echo=FALSE, warning=FALSE, eval=TRUE,fig.height=5,fig.width=8, fig.cap='\\label{fig:Temperature variables plot}Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by blue dots, mean represented by balc dots, maximum by red dots and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B. See appendix for significance level guide.'}
 ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"), align = c("h"), legend = FALSE)
 ```
 
@@ -191,7 +193,7 @@ ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, la
 
 Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual and seasonal scale (see figure \ref{fig:wave variable plot}).  Mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay (see figure \ref{fig:wave variable plot}A). The maximum significant wave height ranged from 1.4 m at St. Helena Bay to 4.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side ranged from 2.6 m at Buffelsbaai to 4.2 m at Betty’s Bay. Mean peak period for sites on the western side of the peninsula ranged from 10.3 ± 3.5 s at St. Helena Bay to 11.0 ± 2.0 s at Olifantsbos, and ranged from 10.6 ± 3.0 s at Buffelsbaai to 10.8 ± 2.2 s at Betty’s Bay (see figure \ref{fig:wave variable plot}B). The data shows no trend in mean peak period for the coastline. These data show that the western side of the peninsula has a lower variation (SD) compared to the eastern side of the peninsula, with Miller’s point showing the highest variation across timescales. Maximum peak period ranged from 18.9 s at St. Helena Bay to 18.4 s at Olifantsbos for the western side of the peninsula, and ranged from 18.0 s at Buffelsbaai to 18.0 s at Betty’s Bay on the eastern side of the peninsula. When wave variables were grouped by region significant differences were found for both mean significant swell height and mean peak period. The western region The western region experiences a significantly higher mean significant swell height (p < 0.05; see figure \ref{fig:wave variable plot}C) and mean peak period (p < 0.05; see figure \ref{fig:wave variable plot}D). These wave heights and their variability are modulated by the relative sheltering against the predominant south-westerly swell direction and the size of the fetch for local wave generation. 
 
-```{r wave data prep, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+```{r wave data prep, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=TRUE}
 ## Data wrangling and preparation
 # Wave data 
 # Load the loading functions
@@ -283,7 +285,7 @@ clim <- clim[-c(1,6,7,8,12,18,20), ]
 abio_clim <- merge(temp_ann, clim, by = "site")
 ```
 
-```{r wave variable processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r wave variable processing, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 ### Plots for wave variables
 #Annual wave plots
 #combine with meta data for easier plotting
@@ -321,7 +323,7 @@ wave_plot_B <- ggplot(data = abio_clim, aes(x = site, y = tp_mean)) +
 
 wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
-  stat_compare_means(label.y =1.4,label.x = 1.5, label = "p.format") + 
+  stat_compare_means(label.y =0.5 ,label.x = 2.5, label = "p.format") + 
   xlab("") + 
   ylab("") + 
   coord_flip() + 
@@ -329,7 +331,7 @@ wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill
 
 wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
-  stat_compare_means(label.y = 10, label.x = 1.5, label = "p.format") + 
+  stat_compare_means(label.y = 8.1, label.x = 2.5, label = "p.format") + 
   xlab("") + 
   ylab("") +
   ylim(8,12) + 
@@ -338,37 +340,46 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
 
 ```
 
-```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}In plot A1 and A2 wave variables at each collection site around the Western Cape coast are presented. Mean variables are represented by dots and standard deviation by whiskers. Blue dots represent sites grouped to the western category and red dots represent sites grouped to the eastern category.'}
+```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE, eval=TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}In plot A1 and A2 wave variables at each collection site around the Western Cape coast are presented. Mean variables are represented by dots and standard deviation by whiskers. Blue dots represent sites grouped to the western category and red dots represent sites grouped to the eastern category.'}
 ggarrange(wave_plot_A,wave_boxplot_1, wave_plot_B, wave_boxplot_2, common.legend = TRUE, labels = c("A", "C", "B", "D"))
 ```
 
 ```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.cap='\\label{fig:wave rose}Wave rose figure'}
 
+library(png)
+library(grid)
+library(gridExtra)
+
 img_wave_rose <- readPNG("figures/wave_rose.png")
 grid.raster(img_wave_rose)
+
 ```
 
-Data for median wave direction showed no trend across timescales; however the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula (see figure \ref{fig:wave rose}). Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively. This phenomenon can be explained by the sheltering effect of the Cape Peninsula, resulting in a wave climate with a narrower directional spreading on the eastern side of the peninsula (refer to Fig. 7). 
+Data for median wave direction showed no trend across timescales; however the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula (see figure \ref{fig:wave rose}). Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively. This phenomenon can be explained by the sheltering effect of the Cape Peninsula, resulting in a wave climate with a narrower directional spreading on the eastern side of the peninsula (refer to Fig. 7).
 
-```{r wave power map, echo=FALSE, eval= FALSE, fig.cap='\\label{fig:wave power map}Wave power map'}
+```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}Wave power map'}
 
 library(png)
 library(grid)
+library(gridExtra)
 
-img_wavepower <- readPNG("figures/CapePen_Total.PNG")
-legend_wave_power <- readPNG("figures/CapePen_Legend.PNG")
-grid.raster(img_wavepower,legend_wave_power)
+wp_1 <-  rasterGrob(as.raster(readPNG("figures/CapePen_Total.PNG")), interpolate = FALSE)
+wp_2 <-  rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")), interpolate = FALSE)
+grid.arrange(wp_1, wp_2, ncol = 2, widths = c(2,1))
+
 ```
 
 In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
 
-```{r FB spectrum, echo=FALSE, eval= FALSE, fig.cap='\\label{fig:FB spectrum}Wave power map'}
+```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}False Bay wave spectrum'}
 
 library(png)
 library(grid)
+library(jpeg)
 
-img_fb <- readPNG("figures/falsebay_spectrum.png")
+img_fb <- readJPEG("figures/falsebay_spectrum.jpg")
 grid.raster(img_fb)
+
 ```
 
 To clarify the averaged wave exposure maps presented, the propagation of a typical offshore wave spectrum as produced from a single time-step in SWAN is presented in figure \ref{fig:FB spectrum}. Tracing the wave height contours into False Bay its clear why this bay’s western periphery is predominantly sheltered. It should be mentioned that some of the annual winter frontal depression systems pass the Cape Peninsula from the west to east, resulting in wave propagating towards the continent from much more southerly directions. This results in positive and negative wave exposure anomalies all around the peninsula.
@@ -377,7 +388,7 @@ To clarify the averaged wave exposure maps presented, the propagation of a typic
 
 Significant differences were found between cool temperate and warm temperate regimes for most *L. pallida* morphological characteristics with lamina length, number of digits and thallus mass the exceptions (see figure \ref{fig:lamanaria temp plots}). Certian morphological characteristics such as stipe mass, stipe length, total length and stipe diameter had significanlty higher means for kelps in cool temperate regimes when compared to kelps for the warm temperate regime. Conversely, lamina weight and lamina thickness had significantly lower means for kelps in the cool temperate regime compared to kelps in the warm temperate regime. When *L. pallida* morphological characteristics were grouped to wave exposure categories kruskal-wallis tests revealed significant differences amoungst categories for most morphological characteristics with lamina length, number of digits and thallus mass the exceptions. The morphological characteristics that were significantly different amoungst sites exibited similar patterns, with increasing mean values from the full sheltered to extremely sheltered categories and a decrease in mean values for the remainder of the categories. Two morphological characteristics, namely lamina thickness and stipe diameter, both exibit higher variations for the exposed categories compared to other morphological characteristics. 
 
-```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+```{r laminaria processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=TRUE}
 #custom temperature categories position on x-axis
 pos_temp <- c("Cool temperate", "Warm temperate")
 
@@ -385,7 +396,7 @@ pos_temp <- c("Cool temperate", "Warm temperate")
 LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina weight") +
   scale_fill_discrete(name="Temperature regime") +
@@ -396,7 +407,7 @@ LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = tem
 LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina length") +
   scale_fill_discrete(name="Temperature regime") +
@@ -407,7 +418,7 @@ LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = tem
 LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina thickness") +
   scale_fill_discrete(name="Temperature regime") +
@@ -418,7 +429,7 @@ LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = 
 LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -429,7 +440,7 @@ LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_r
 LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe length (cm)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -440,7 +451,7 @@ LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp
 LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe diameter (cm)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -451,7 +462,7 @@ LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = te
 LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("No. of digits") +
   scale_fill_discrete(name="Temperature regime") +
@@ -462,7 +473,7 @@ LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regi
 LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Thallus mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -473,7 +484,7 @@ LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp
 LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Total length (cm)") +
   theme_bw() +
@@ -487,7 +498,7 @@ pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered"
 LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Lamina weight (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -498,7 +509,7 @@ LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = w
 LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Lamina length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -509,7 +520,7 @@ LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = w
 LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Lamina thickness") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -520,7 +531,7 @@ LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill 
 LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -531,7 +542,7 @@ LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave
 LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -542,7 +553,7 @@ LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wa
 LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Stipe diameter (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -553,7 +564,7 @@ LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = 
 LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("No. of digits") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -564,7 +575,7 @@ LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_ex
 LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Thallus mass (kg)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -574,7 +585,7 @@ LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wa
 LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Total length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -583,17 +594,17 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
   xlab("")
 ```
 
-```{r laminaria temp plots, echo=FALSE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
+```{r laminaria temp plots, echo=FALSE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
 ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
-```{r lamanaria wave plots, echo=FALSE, fig.cap='\\label{fig:lamanaria wave plots}Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=7, fig.width=8, warning=FALSE}
+```{r lamanaria wave plots, echo=FALSE, fig.cap='\\label{fig:lamanaria wave plots}Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=8, fig.width=8, warning=FALSE, eval=TRUE}
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom")
 ```
 
 Six out of the ten deep *E. maxima* morphological characteristics showed differences between cool temperate and warm temperate regime except for frond mass, frond length, stipe mass and epiphyte length. Mean values for primary length, primary width and stipe circumference were significantly higher for kelps from cool temperate regions than for kelps from warm temperate regions (see figure \ref{fig:lamanaria wave plots}. The remaining morphological characteristics, stipe length, number of tufts and total length had significanlty lower values for kelps from cool temperate compared to kelps from the warm temperate regime. Significant differences amoungst wave exposure categories were found for all morphological characteristics of deep *E. maxima* populations. Certian morphological characteristics showed a gradual increase in value with increasing degree of wave exposure. The remaining morphological characteristics exhibited decreased values for only the higher wave exposure categories and then a sharp increase in value for the highest wave exposure category. 
 
-```{r deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 ## Preparing data
 # Ecklonia
 # group_by(wave_exposure, frond_mass) %>% 
@@ -604,13 +615,13 @@ eck_deep <- eck_data %>%
 eck_shall <- eck_data %>% 
   filter(population == "Shallow") %>% 
   mutate(site = replace(site, site == "Bakoven", "Sea Point"))
-  
+   
 pos_temp <- c("Cool temperate", "Warm temperate") #custom temperature categories position on x-axis
 #temperature plots made seperately for each morphological characteristic
 ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -618,7 +629,7 @@ ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_
 ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -626,7 +637,7 @@ ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = t
 ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -634,7 +645,7 @@ ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = te
 ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -642,7 +653,7 @@ ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = tem
 ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -650,7 +661,7 @@ ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_
 ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -658,7 +669,7 @@ ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = tem
 ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe circ (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -666,7 +677,7 @@ ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_
 ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("No. of tufts") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -674,7 +685,7 @@ ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regim
 ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -682,7 +693,7 @@ ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_
 ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format") + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -804,19 +815,19 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE}
+```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
 ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", legend = FALSE, ncol = 3, nrow = 4)
 ```
 
-```{r deep ecklonia wave, echo=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=8, fig.width=8, warning=FALSE}
+```{r deep ecklonia wave, echo=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=8, fig.width=8, warning=FALSE, eval=TRUE}
 ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
-```{r shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+```{r shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=TRUE}
 EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -824,7 +835,7 @@ EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = tem
 EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -832,7 +843,7 @@ EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill =
 EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -841,7 +852,7 @@ EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = 
 EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -849,7 +860,7 @@ EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = t
 EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -857,7 +868,7 @@ EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = tem
 EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -865,7 +876,7 @@ EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = t
 EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe circ (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -874,7 +885,7 @@ EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = tem
 EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("No. of tufts") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -882,7 +893,7 @@ EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_reg
 EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -890,7 +901,7 @@ EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = tem
 EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1006,11 +1017,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp, echo=FALSE, fig.cap='\\label{fig:shallow ecklonia temp}Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
+```{r shallow ecklonia temp, echo=FALSE, fig.cap='\\label{fig:shallow ecklonia temp}Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=7, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
-```{r shallow ecklonia wave, echo=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=7, fig.width=8, warning=FALSE}
+```{r shallow ecklonia wave, echo=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=7, fig.width=8, warning=FALSE, eval=TRUE}
 ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3,nrow = 3)
 ```
 
@@ -1020,7 +1031,7 @@ Forward selection, assessment of VIF and an examination of pairwise Pearson corr
 
 ### Abiotic drivers of *E. maxima* morphological characteristics
 
-```{r rda analysis lamanaria, message=FALSE, warning=FALSE, include=FALSE}
+```{r rda analysis lamanaria, message=FALSE, warning=FALSE, include=FALSE, eval= TRUE}
 #data processed in the temperature and wave sections will be used here eg. abio_clim
 # remove unnecessary columns
 lam_df <- subset(lam_data, select = -c(1,2,6))
@@ -1104,10 +1115,10 @@ meta_lam_rda <- merge(lam_sites, meta_lam_rda, by = "site")
 meta_lam_rda <- meta_lam_rda[-c(9), ] #remove Miller's point as it is dropping during processing
   
 # Plot RDA
-lam_rda <- ggord(rda_lam, meta_lam_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9) 
+lam_rda <- ggord(rda_lam, meta_lam_rda$region,ellipse = FALSE, hull = TRUE, grp_title = "Region", ptslab = TRUE, parse = TRUE, addsize = 3.5, repel = TRUE, ylims = c(-1.1,1.1), xlims = c(-1.1,1.1)) 
 ```
 
-```{r rda deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r rda deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 
 #filter to select only deep population ecklonia
 eck_df <- eck_data %>% 
@@ -1192,10 +1203,10 @@ eck_meta_rda <- eck_meta_rda %>%
   filter(population == "Deep")
 
 # Plot RDA
-rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = TRUE, hull = FALSE, ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.95)  
+rda_eck_deep <- ggord(rda_eck, eck_meta_rda$region ,ellipse = FALSE, hull = TRUE, ptslab = TRUE, parse = TRUE, addsize = 3.5, repel = TRUE, ylims = c(-1.1,1.1), xlims = c(-1.1,1.1))  
 ```
 
-```{r rda shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r rda shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 
 #filter to select only deep population ecklonia and remove Millers B and C for now...
 eck_df_sh <- eck_data %>%
@@ -1290,33 +1301,33 @@ meta_shallow_rda <- meta_all %>%
 meta_shallow_rda <- merge(meta_shallow_rda, eck_sites_sh, by = "site")
 
 # Plot RDA
-rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = TRUE, hull = FALSE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, ext = 0.9, coord_fix = TRUE) 
-
+rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = FALSE, hull = TRUE, grp_title = "Sites", ptslab = TRUE, parse = TRUE, addsize = 3.5, coord_fix = TRUE, repel = TRUE, facet = FALSE, ylims = c(-1.1,1.1), xlims = c(-1.1,1.1))
 ```
 
 Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of deep *E. maxima* morphological characteristics with an adjusted *R*2 of 0.39, explaining 67% of the variation (global permutation test on final model: d.f = 5, *F* = 2.4, *p* = 0.026). RDA1 was the only significant axis in the model (p = 0.03) and explained 72% of the variation. The non-significant axis for the model explained 17% of the variation. Primary length, primary width and stipe circumference were positivley influenced by *hs_mean*, *tp_mean* and *dir_median* for for kelps from the western region. The remaining morphological characteristics were postivley inlfuenced by *min_temp* and negatively influenced by *tp_sd* for kelps from the eastern region. 
 
-```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C)."}
-ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, common.legend = TRUE, legend = "bottom", labels = "AUTO", ncol = 2, nrow = 2)
+```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C)."}
+ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, legend = "none", labels = "AUTO", ncol = 2, nrow = 2)
 ```
 
 Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retian the most parsimonious descriptors of shallow *E. maxima* morphological characteristics with an adjusted *R*2 of 0.36, explaining 61% of the variation (global permutation test on final model: d.f = 4, *F* = 2.41, *p* = 0.013). The model consisted of one significant axis, RDA1 (p = 0.02) and explained 62% of the variation. Stipe length, stipe mass and stipe circumference were positivley influenced by *max_temp* and *mean_temp* along RDA1, and explained 50% and 55% of the variation respectivley. The remaining morphological characteristics were positivley influenced by by *tp_max* and negativley inlfuenced by *dirw_median* along RDA2 and explained 86% and 94% of the variation respectivley. There was overlapping of clusters according to region with no clear patterns in sites evident. 
 
 # Discussion
 
-This study considered important drivers of kelp morphology that have been identified in previous research [@FowlerWalker2006; @Miller2011-pm; @Fowler-Walker2005; @Stewart2009; @Wing2007-tv; @Molloy1996-la; @Pedersen2012-vr; @Wernberg2005c; @Thomsen2004-yd], namely temperature and wave exposure, around the Cape Peninsula on two prolific kelp species. The complex geomorphology of the western Cape coastline creates an ideal natural laboratory for studies of kelps in interaction with their environment. Unlike previous research, this study used a numerical model to provide the various variables of wave exposure. We also considered wind in addition to temperature and wave variables, since wind is an important component of wind-driven surface gravity waves [@Holthuijsen2010-vl]. The results show that specific variables of wave exposure are the main drivers of kelp morphology with temperature only playing a minor role. Furthermore, the investigation of differences in morphological characteristics between shallow and deep populations of *E. maxima * suggests that in low wave exposure environments the role of temperature as a morphological driver increases, such as in False Bay. 
+This study considered important drivers of kelp morphology that have been identified in previous research [@FowlerWalker2006; @Miller2011-pm; @FowlerWalker2005; @Stewart2009; @Wing2007-tv; @Molloy1996-la; @Pedersen2012-vr; @Wernberg2005c; @Thomsen2004], namely temperature and wave exposure, around the Cape Peninsula on two prolific kelp species. The complex geomorphology of the western Cape coastline creates an ideal natural laboratory for studies of kelps in interaction with their environment. Unlike previous research, this study used a numerical model to provide the various variables of wave exposure. We also considered wind in addition to temperature and wave variables, since wind is an important component of wind-driven surface gravity waves [@Holthuijsen2010-vl]. The results show that specific variables of wave exposure are the main drivers of kelp morphology with temperature only playing a minor role. Furthermore, the investigation of differences in morphological characteristics between shallow and deep populations of *E. maxima * suggests that in low wave exposure environments the role of temperature as a morphological driver increases, such as in False Bay. 
 
-The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient rich water to coastal areas and therefore induces a decrease in temperature [@Field1980a; @Andrews1980; @Gill1974-nt; @Cram1970-jw; @Rouault2010-gi; @Blanke2002]. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape peninsula, where southerly winds blow parallel to the coast and trigger upwelling [@Field1980a; @Rouault2010-gi]. This is not the case for False Bay which is shielded from the dominating wind and swell the Cape Peninsula is subject to, with the exception being the winter months where upwelling becomes more favourable for the region due to the change in swell and wind direction, causing lower temperatures to dominate during this time [@Rouault2010-gi; @Andrews1980]. The directional sheltering effect of the Cape Peninsula, against the dominant swell direction is clearly observed in the wave exposures presented in figure \ref{fig:wave power map}. Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events along the western side of the peninsula [@Rouault2010-gi; @Field1980a]. In general, the western side of the peninsula is more exposed than the eastern side (False Bay) and experiences significanlty higher significant swell height and significant peak period. This was also reflected in the wave exposure categories which show a trend of decreasing wave exposure (wave power) around the peninsula and into False Bay. There are also differences between the types of waves that each side of the peninsula experiences. The ???? analysis shows the western side of the peninsula is not only more exposed but the hydrodynamics are largely swell driven, while on the eastern side most of the wave energy is driven by a combination of swell and wind with the latter being the predominant driver. 
+There were clear patterns and clines in both the temperature and wave exposure data. The thermal and wave exposure regimes around the Cape Peninsula are driven by a complex interaction between wind, temperature and wave metrics, which do not act independently but instead influence one another. The direction of the dominant swell changes to the south west in winter, generated by strong low pressures that originate from the southern ocean [@Reason2006], which False Bay is sheltered from [@Shipley1964; @Atkins1970-bx; @Dufois2012-vy]. In summer, these swells rotate anticlockwise and are able to enter False Bay, providing an increased variability of Hs and Tp in this region. It should be noted that what is classified as sheltered around the South African coastline (a high energy coastline) might be classified as exposed in other regions of the world [@Norderhaug2012-ks; @Leliaert2000a]. It is due to the near consistent south-westerly swell and the complex orography around the peninsula that the wave energy distribution around the Cape Peninsula varies significantly over a small geographical area.
+The directional sheltering effect of the Cape Peninsula, against the dominant swell direction is clearly observed in the wave exposures presented in figure \ref{fig:wave power map}. Increased wind speed at sites along the west side of the peninsula in a southerly direction trigger upwelling events along the western side of the peninsula [@Rouault2010-gi; @Field1980a]. In general, the western side of the peninsula is more exposed than the eastern side (False Bay) and experiences significanlty higher significant swell height and significant peak period. This was also reflected in the wave exposure categories which show a trend of decreasing wave exposure (wave power) around the peninsula and into False Bay. There are also differences between the types of waves that each side of the peninsula experiences. The wave analysis shows the western side of the peninsula is not only more exposed but the hydrodynamics are largely swell driven, while on the eastern side most of the wave energy is driven by a combination of swell and wind with the latter being the predominant driver. 
 
-We provide strong support that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment [@FowlerWalker2006; @Wernberg2005c; @Friedland1995-vi; @Denny2002; @Bekkby2014; @Denny1997; @Denny2002-ob] have been identified in previous studies. Although this study did not measure force of attachment, other morphological responses to temperature and wave variables were evident. Species-specific responses are evident in both wave exposure and temperature. In cool-temperate environments *L. pallida* tended to show increases in certain morphological characteristics (stipe mass, stipe length and stipe diameter) while in the warm-temperate environments these were significantly lower. This was also true for deep *E. maxima* populations, which had longer, thinner stipes for kelp in the warm-temperate compared to kelp in the cool-temperate. Reduction in certian morphological charateristics has been attributed to temperature by @Serisawa2002-dc in the kelp *E. cava*, which was smaller and shorter in warmer sites compared to cooler sites. The reduction in size of adult may be a response to low nutrient conditions, which has been shown to reduce growth rate and overall morphology [@Simonson2015]. Warmer temperatures are associated with low nutrient concentrations [@Waldron1992] and the low frequency of upwelling conditions in False Bay (low nutrient supply) coupled with warmer temperatures may be a contributing factor. It should be noted however, that from these analyses that in general the cool-temperate region is more exposed to waves than that of the warm-temperate region. Therefore, the significantly larger morphological characteristics for kelp from the cool-temperate region may overlap with responses to wave exposure which was exhibited strongly in both species. When grouped by wave exposure category, *L. pallida* characteristics showed a significant increase in length for the 'Extremely sheltered' category (6-10 kW/m; figure \ref{fig:wave power map}) compared to the fully sheltered category (<5 kW/m; see figure \ref{fig:wave power map}), which maybe a 'go-with-the-flow' tactic. Kelp are able to increase flexibility by increasing stipe length which increases the extension capabilities of kelp to a passing wave [@Denny2002-ob; @Hurd2000]. However, increasing stipe length is only beneficial under lower exposure levels as a long stipe actually increases overall drag on the plant under higher exposure levels [@Denny2002-ob; @Denny1997]. This is reflected in Figure ?? which shows an overall reduction of *L pallida* morphological characteristics suggesting a size reducing tactic to cope with higher levels of wave exposure. The morphological characteristics of *E. maxima* show similar patterns when grouped to wave exposure. The results suggest that deep *E. maxima* populations exhibit a different response as well as a higher wave exposure threshold. Unlike *L. pallida*, *E. maxima* exhibits a size reducing tactic with in an increase in exposure level by significantly decreasing stipe mass, stipe length, stipe circumference, total length and frond length. A magnitude related reponse has been suggested by @Wernberg2010 who investigated the temporal and spatial variations of various environmental drivers of the kelp *E. radiata*. The authors identified wave exposure as the most important driver of kelp morphological characteristics and that the type of response elicited is dependent on the magnitude of wave exposure. 
+We provide strong support that variations in the environmental variables, particularly wave exposure variables, are driving kelp morphological characteristics around the Cape Peninsula. Morphological adaptation due to water motion may manifest in a number of ways in high wave energy environments. For instance, reduction of blade thickness, blade elongation, increase of stipe length, increase in stipe circumference and force of attachment [@FowlerWalker2006; @Wernberg2005c; @Friedland1995-vi; @Denny2002; @bekkby2014; @Denny1997] have been identified in previous studies. Although this study did not measure force of attachment, other morphological responses to temperature and wave variables were evident. Species-specific responses are evident in both wave exposure and temperature. In cool-temperate environments *L. pallida* tended to show increases in certain morphological characteristics (stipe mass, stipe length and stipe diameter) while in the warm-temperate environments these were significantly lower. This was also true for deep *E. maxima* populations, which had longer, thinner stipes for kelp in the warm-temperate compared to kelp in the cool-temperate. Reduction in certian morphological charateristics has been attributed to temperature by @Serisawa2002-dc in the kelp *E. cava*, which was smaller and shorter in warmer sites compared to cooler sites. The reduction in size of adult may be a response to low nutrient conditions, which has been shown to reduce growth rate and overall morphology [@Simonson2015]. Warmer temperatures are associated with low nutrient concentrations [@Waldron1992] and the low frequency of upwelling conditions in False Bay (low nutrient supply) coupled with warmer temperatures may be a contributing factor. It should be noted however, that from these analyses that in general the cool-temperate region is more exposed to waves than that of the warm-temperate region. Therefore, the significantly larger morphological characteristics for kelp from the cool-temperate region may overlap with responses to wave exposure which was exhibited strongly in both species. When grouped by wave exposure category, *L. pallida* characteristics showed a significant increase in length for the 'Extremely sheltered' category (6-10 kW/m; figure \ref{fig:wave power map}) compared to the fully sheltered category (<5 kW/m; see figure \ref{fig:wave power map}), which maybe a 'go-with-the-flow' tactic. Kelp are able to increase flexibility by increasing stipe length which increases the extension capabilities of kelp to a passing wave [@Denny2002; @Hurd2000]. However, increasing stipe length is only beneficial under lower exposure levels as a long stipe actually increases overall drag on the plant under higher exposure levels [@Denny2002; @Denny1997]. This is reflected in Figure ?? which shows an overall reduction of *L pallida* morphological characteristics suggesting a size reducing tactic to cope with higher levels of wave exposure. The results suggest that deep *E. maxima* populations exhibit a different response, as well as a higher wave exposure threshold. Unlike *L. pallida*, *E. maxima* exhibits a size reducing tactic with in an increase in exposure level by significantly decreasing stipe mass, stipe length, stipe circumference, total length and frond length. A magnitude related reponse has been suggested by @wernberg2010 who investigated the temporal and spatial variations of various environmental drivers of the kelp *E. radiata*. The authors identified wave exposure as the most important driver of kelp morphological characteristics and that the type of response elicited is dependent on the magnitude of wave exposure. 
 
-A size reduction tactic has been shown before [@FowlerWalker2006; @Denny2002-ob; @Hurd2000; @Fowler-Walker2005] and is regarded as strategy to reduce overall drag on the plant. However, *E. maxima* morphological characteristics changed significantly as wave exposure increases. When grouped to the higher wave exposure levels, *E. maxima* morphology exhibited a strength and flexibility increasing trait (see figure \ref{fig:deep ecklonia wave}). Furthermore, the morphological response of *E. maxima* to wave exposure only occurs at the 'Moderately exposed' (20-30 kW/m) level compared to *L. pallida* which exhibits a response at a lower wave exposure level. This suggests that *E. maxima* can tolerate higher exposure levels before having to exhibit a morphological response. The redundancy analysis performed confirms the patterns and responses observed as well as identifying specific temperature and wave variables as drivers of kelp morphology. Kelp morphology characteristics are largely wave driven for both species but differ in terms of specific temperature and wave metrics. For instance, both species morphological characteristics are determined by swell direction (*dir_median*), standard deviation in peak period (*tp_sd*) and mean significant swell height (*hs_mean*), but *L. pallida* temperature driver is mean temperature (*mean_temp*) and *E. maxima* by minimum temperature (*min_temp*). Minimum temperature as an important metric for *E. maxima* may be related to nutrient availability. Low temperatures are often associated with upwelling events which bring cool, nutrient rich water into the nearshore. False Bay has comparativley little upwelling events compared to the western side of the peninsula, and so nutrients may be a limiting factor for *E. maxima* populations within False Bay, hence the identification of minimum temperature (*min_temp*) as a driver. Vertical mixing of the water coloumn for inshore regions are driven by several abiotic processes: (1) Turbulence of breaking waves inside or outside of the surf zone (2) convective mixing through a combination of cooling and evaporation (3) wind driven currents and (4) tidal mixing [@Smit2013a]. These abiotic processes cause effective vertical mixing of surface and deeper water stratifications which leads to a homogeneous thermal environment, which in this study may be interpreted as the mean temperature. Therefore, the homogenious thermal regime of inshore regions may be a reason why mean temperature is driver of *L. pallida* morphological characteristics. The difference in canopy type between the species may be the reason why *E. maxima* is driven by multiple wave metrics compared to *L. pallida*. Since *E. maxima* is a canopy-kelp, it is  exposed to all components of a wave compared to *L. pallida* which occurs deeper in the water column. Mean temperature identified as a driver for *L. pallida* may be related to diurnal temperature fluctuations in the water column. Solar heating of the water surface in combination with wind-driven transport causes fluctuations within the water coloumn, which can occur daily or seasonally [@Kaplan2003]. 
+A size reduction tactic has been shown before [@FowlerWalker2006; @Denny2002; @Hurd2000; @FowlerWalker2005] and is regarded as strategy to reduce overall drag on the plant. However, *E. maxima* morphological characteristics changed significantly as wave exposure increases. When grouped to the higher wave exposure levels, *E. maxima* morphology exhibited a strength and flexibility increasing trait (see figure \ref{fig:deep ecklonia wave}). Furthermore, the morphological response of *E. maxima* to wave exposure only occurs at the 'Moderately exposed' (20-30 kW/m) level compared to *L. pallida* which exhibits a response at a lower wave exposure level. This suggests that *E. maxima* can tolerate higher exposure levels before having to exhibit a morphological response. The redundancy analysis performed confirms the patterns and responses observed as well as identifying specific temperature and wave variables as drivers of kelp morphology. Kelp morphology characteristics are largely wave driven for both species but differ in terms of specific temperature and wave metrics. For instance, both species morphological characteristics are determined by swell direction (*dir_median*), standard deviation in peak period (*tp_sd*) and mean significant swell height (*hs_mean*), but *L. pallida* temperature driver is mean temperature (*mean_temp*) and *E. maxima* by minimum temperature (*min_temp*). Minimum temperature as an important metric for *E. maxima* may be related to nutrient availability. Low temperatures are often associated with upwelling events which bring cool, nutrient rich water into the nearshore. False Bay has comparativley little upwelling events compared to the western side of the peninsula, and so nutrients may be a limiting factor for *E. maxima* populations within False Bay, hence the identification of minimum temperature (*min_temp*) as a driver. Vertical mixing of the water coloumn for inshore regions are driven by several abiotic processes: (1) Turbulence of breaking waves inside or outside of the surf zone (2) convective mixing through a combination of cooling and evaporation (3) wind driven currents and (4) tidal mixing [@Smit2013a]. These abiotic processes cause effective vertical mixing of surface and deeper water stratifications which leads to a homogeneous thermal environment, which in this study may be interpreted as the mean temperature. Therefore, the homogenious thermal regime of inshore regions may be a reason why mean temperature is driver of *L. pallida* morphological characteristics. The difference in canopy type between the species may be the reason why *E. maxima* is driven by multiple wave metrics compared to *L. pallida*. Since *E. maxima* is a canopy-kelp, it is  exposed to all components of a wave compared to *L. pallida* which occurs deeper in the water column. Mean temperature identified as a driver for *L. pallida* may be related to diurnal temperature fluctuations in the water column. Solar heating of the water surface in combination with wind-driven transport causes fluctuations within the water coloumn, which can occur daily or seasonally [@Kaplan2003]. 
 
-Annual maximum and winter mean temperatures influence stipe length and frond length in shallow *E. maxima* individuals located at sites within False Bay; which was not the case for deeper *E. maxima* individuals as well as *L. pallida* which were largely driven by wave variables. The shallow *E. maxima* individuals may not experience the same amount of wave energy as do deeper populations. This may be due to wave dampening from deeper populations of *E. maxima*, which attenuate the wave energy entering coastal environments [@Kobayashi1993-os; @Jackson1984; @Mork1996-md]. The morphological variations in characteristics for deep *E. maxima* populations are not seen for shallow *E. maxima* populations. The lack of variation in shallow *E. maxima* populations was also found in previous research by [@Rothman2017-pn] who showed that light was a significant driver. This influence of light may suggest photosynthetic ability and nutrient uptake as important drivers in shallow environments. Wave exposure may be reduced in shallow environments due to the wave damping effect of deep kelp and seaweed populations [@Kobayashi1993-os; @Mork1996-md; @Jackson1984] thereby reducing the need to adapt morphological characteristics to reduce drag. Furthermore, the reduction in differences between deep and shallow *E. maxima * at wave exposed sites on the western of the peninsula compared to sites in False Bay provides further evidence that wave exposure is not an important driver of shallow *E. maxima* populations. Increased temperatures corresponded with a reduction in stipe circumference, frond length, stipe length, total length and stipe mass resulting in slim or ‘skinny’ kelp individuals, which supports findings from previous research by [@Mabin2013-zs; @Serisawa2002-dc]. These findings were confirmed by the redundancy analysis which showed the contribution of wave variables as a driver of kelp morphological characterstics was lower compared to temperature variables. The sites do cluster by region but almost overlap entirely, further indicating wave variables are not the main driver. Although wave variables were not identified as an important driver, it is important to note the wave variables identified in the RDA differ to deep *E. maxima*. The identification of median wind direction (*dirw_median*) suggests that surface gravity waves as a driver compared to swell waves (*dir_median*) identifiend for *L. pallida* and *E. maxima*. The identification of maximum temperature as a driver of kelp morphological characteristics may be due heating of shallow coastal waters due to solar heating. 
+Annual maximum and winter mean temperatures influence stipe length and frond length in shallow *E. maxima* individuals located at sites within False Bay; which was not the case for deeper *E. maxima* individuals as well as *L. pallida* which were largely driven by wave variables. The shallow *E. maxima* individuals may not experience the same amount of wave energy as do deeper populations. This may be due to wave dampening from deeper populations of *E. maxima*, which attenuate the wave energy entering coastal environments [@Kobayashi1993-os; @Jackson1984; @Mork1996-md]. The morphological variations in characteristics for deep *E. maxima* populations are not seen for shallow *E. maxima* populations. The lack of variation in shallow *E. maxima* populations was also found in previous research by [@Rothman2017-pn] who showed that light was a significant driver. This influence of light may suggest photosynthetic ability and nutrient uptake as important drivers in shallow environments. Wave exposure may be reduced in shallow environments due to the wave damping effect of deep kelp and seaweed populations [@Kobayashi1993-os; @Mork1996-md; @Jackson1984] thereby reducing the need to adapt morphological characteristics to reduce drag. Furthermore, the reduction in differences between deep and shallow *E. maxima * at wave exposed sites on the western of the peninsula compared to sites in False Bay provides further evidence that wave exposure is not an important driver of shallow *E. maxima* populations. Increased temperatures corresponded with a reduction in stipe circumference, frond length, stipe length, total length and stipe mass resulting in slim or ‘skinny’ kelp individuals, which supports findings from previous research by [@mabin2013; @Serisawa2002-dc]. These findings were confirmed by the redundancy analysis which showed the contribution of wave variables as a driver of kelp morphological characterstics was lower compared to temperature variables. The sites do cluster by region but almost overlap entirely, further indicating wave variables are not the main driver. Although wave variables were not identified as an important driver, it is important to note the wave variables identified in the RDA differ to deep *E. maxima*. The identification of median wind direction (*dirw_median*) suggests that surface gravity waves as a driver compared to swell waves (*dir_median*) identifiend for *L. pallida* and *E. maxima*. The identification of maximum temperature as a driver of kelp morphological characteristics may be due heating of shallow coastal waters due to solar heating. 
 
 # Conclusion
 
-Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in shallow and deep populations of *E. maxima* may reflect small differences in wave and temperature variables as drivers of kelp morphological characteristics. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Furthermore, the results suggest that in the absence of wave exposure, temperatre becomes the dominant morphological driver. This is evident from the redundancy analysis for each species and deep populations of *E. maxima* which show clustering of study sites according to the region; wave variables drive morphological characteristics for kelps from the western region and temperature variables for kelps from the eastern region. Clustering of sites according to region overlapped almost completey for the RDA analysis of shallow *E. maxima* suggesting that for shallow kelp the effect of wave exposure is less variable. Temperature variables were not a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution (Bolton et al. 2012; Miller et al. 2011; Rinde et al. 2014) of kelp and physiological functioning of adults and gametophytes (Mohring et al. 2014; Steneck et al. 2002; Gerard 1997; Bearham et al. 2013; Smale & Moore 2017), there is little evidence that temperature is an important driver of morphological variation. However, we suggest that temperature plays a larger role in determining kelp morphology at sites where wave energy is low enough not to elecit a response in morphological characteristics. 
+Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in shallow and deep populations of *E. maxima* may reflect small differences in wave and temperature variables as drivers of kelp morphological characteristics. The response of kelp morphological characteristics to wave exposure was evident and both species show a tactics based on the magnitde of wave exposure. Strength increasing traits were exibited for lower exposure levels while a 'go-with-the-flow' tactic for moderate levels of wave exposure. Denny and Galord ??? showed that increased flexiblity or a 'go-with-the-flow' tactic has a threshold value, where increased stipe length actaully increase drag under high wave exposure scenarios. Therefore, under high wave exposure scenarios size reducing traits, such as reduced surface area of the overall plant should be favoured instead. This was evident in the results which showed that stipe length decreases under high wave exposure categories. This suggests that how morphological characteristcs manifest themselves is dependent on the magnitude of wave exposure. Temperature variables were not a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution (Bolton et al. 2012; Miller et al. 2011; Rinde et al. 2014) of kelp and physiological functioning of adults and gametophytes (Mohring et al. 2014; Steneck et al. 2002; Gerard 1997; Bearham et al. 2013; Smale & Moore 2017), there is little evidence that temperature is an important driver of morphological variation. However, we suggest that temperature plays a larger role in determining kelp morphology at sites where wave energy is low enough not to elecit a response in morphological characteristics. 
 
 # Conflict of Interest Statement
 
@@ -1338,11 +1349,16 @@ Thank you to AS and CR for their guidance, and the honours class of 2014-2015 th
 
 # Appendix
 
+```{r}
+
+```
+
+
 ```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=7}
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point ", "Baboon Rock", 
                   "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Bordjies Deep","Olifantsbos", "Kommetjie", "Sea Point")
 lam_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Lamina Weight (cm)") + 
@@ -1351,7 +1367,7 @@ lam_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("")
 lam_all_B <- ggplot(data = lam_data, aes(x = site, y = laminaLength, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Lamina Length (cm)") + 
@@ -1360,7 +1376,7 @@ lam_all_B <- ggplot(data = lam_data, aes(x = site, y = laminaLength, fill = wave
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("")
 lam_all_C <- ggplot(data = lam_data, aes(x = site, y = laminaThickness, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Lamina Thickness (cm)") + 
@@ -1369,7 +1385,7 @@ lam_all_C <- ggplot(data = lam_data, aes(x = site, y = laminaThickness, fill = w
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 lam_all_D <- ggplot(data = lam_data, aes(x = site, y = stipeMass, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Stipe Mass (cm)") + 
@@ -1378,7 +1394,7 @@ lam_all_D <- ggplot(data = lam_data, aes(x = site, y = stipeMass, fill = wave_ex
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 lam_all_E <- ggplot(data = lam_data, aes(x = site, y = stipeLength, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Stipe Length (cm)") + 
@@ -1387,7 +1403,7 @@ lam_all_E <- ggplot(data = lam_data, aes(x = site, y = stipeLength, fill = wave_
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 lam_all_F <- ggplot(data = lam_data, aes(x = site, y = stipeDiameter, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Stipe Diameter (cm)") + 
@@ -1396,7 +1412,7 @@ lam_all_F <- ggplot(data = lam_data, aes(x = site, y = stipeDiameter, fill = wav
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("")
 lam_all_G <- ggplot(data = lam_data, aes(x = site, y = digits, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("No. of Digits") + 
@@ -1405,7 +1421,7 @@ lam_all_G <- ggplot(data = lam_data, aes(x = site, y = digits, fill = wave_expos
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 lam_all_H <- ggplot(data = lam_data, aes(x = site, y = thallusMass, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Thallus Mass (g)") + 
@@ -1414,7 +1430,7 @@ lam_all_H <- ggplot(data = lam_data, aes(x = site, y = thallusMass, fill = wave_
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 lam_all_I <- ggplot(data = lam_data, aes(x = site, y = totalLength, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsLam) + 
            ylab("Total length (cm)") + 
@@ -1427,7 +1443,6 @@ ggarrange(lam_all_A,lam_all_B,lam_all_C,lam_all_D,lam_all_E,lam_all_F,lam_all_G,
 
 ```
 
-
 ```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=7}
 # Order site names by location west to east
 
@@ -1438,7 +1453,7 @@ positionsEck <- c("Betty's Bay", "Kalk Bay", "A-Frame",
                   "Oudekraal", "St. Helena Bay")
 
 eck_all_A <- ggplot(data = eck_data, aes(x = site, y = frond_mass, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Frond mass (g)") + 
@@ -1447,7 +1462,7 @@ eck_all_A <- ggplot(data = eck_data, aes(x = site, y = frond_mass, fill = wave_e
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_B <- ggplot(data = eck_data, aes(x = site, y = primary_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Primary Length  (cm)") + 
@@ -1456,7 +1471,7 @@ eck_all_B <- ggplot(data = eck_data, aes(x = site, y = primary_length , fill = w
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_C <- ggplot(data = eck_data, aes(x = site, y = primary_width , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Primary Width (cm)") + 
@@ -1465,7 +1480,7 @@ eck_all_C <- ggplot(data = eck_data, aes(x = site, y = primary_width , fill = wa
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_D <- ggplot(data = eck_data, aes(x = site, y = frond_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Frond length (cm)") + 
@@ -1474,7 +1489,7 @@ eck_all_D <- ggplot(data = eck_data, aes(x = site, y = frond_length , fill = wav
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_E <- ggplot(data = eck_data, aes(x = site, y = stipe_mass , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Stipe mass (g)") + 
@@ -1483,7 +1498,7 @@ eck_all_E <- ggplot(data = eck_data, aes(x = site, y = stipe_mass , fill = wave_
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_F <- ggplot(data = eck_data, aes(x = site, y = stipe_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Stipe length (cm)") + 
@@ -1492,7 +1507,7 @@ eck_all_F <- ggplot(data = eck_data, aes(x = site, y = stipe_length , fill = wav
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_G <- ggplot(data = eck_data, aes(x = site, y = stipe_circ , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Stipe circ (cm)") + 
@@ -1501,7 +1516,7 @@ eck_all_G <- ggplot(data = eck_data, aes(x = site, y = stipe_circ , fill = wave_
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_H <- ggplot(data = eck_data, aes(x = site, y = tufts , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("No. of tufts") + 
@@ -1510,7 +1525,7 @@ eck_all_H <- ggplot(data = eck_data, aes(x = site, y = tufts , fill = wave_expos
            guides(fill=guide_legend(title="Wave Exposure")) +
            xlab("") 
 eck_all_I <- ggplot(data = eck_data, aes(x = site, y = epi_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
+           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
            stat_compare_means(method = "kruskal.test", label.x = 5) + 
            scale_x_discrete(limits = positionsEck) + 
            ylab("Epi Length  (cm)") + 
