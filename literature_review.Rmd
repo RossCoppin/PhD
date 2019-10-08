@@ -2,10 +2,10 @@
 title: A Transdiciplinary approach to developing a 3D spectral numerical coastal-flow model based on passive macroalgal rafting phenenomea to shed light on ambient and stochastic dispersal and connectivity of nearshore and offshore marine communities  around the coast of South Africa
 author: "Ross Coppin"
 output:
+  pdf_document:
+    toc: yes
   word_document:
     fig_caption: yes
-    toc: yes
-  pdf_document:
     toc: yes
 bibliography: ref_lit_review.bib
 ---
@@ -13,7 +13,6 @@ bibliography: ref_lit_review.bib
 ```{r include=FALSE}
 library(png)
 library(grid)
-library(rticles)
 ```
 
 # Summary
