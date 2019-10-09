@@ -170,10 +170,10 @@ temp_plot <- ggplot(data = temp_ann, aes(x = site, y = mean_temp)) +
   geom_point(data = temp_ann, aes(x = site, y = min_temp), show.legend = FALSE, shape = 6, size =2) + 
   xlab("") + 
   ylab("") + 
-  theme(plot.title = element_text(hjust = 0)) +
   theme(legend.position = "none") + 
   coord_flip() + 
-  theme_bw()
+  theme_bw() + 
+  theme(axis.text.y=element_text(vjust=0.3)) 
 
 temp_ann_meta <- merge(meta_all, temp_ann, by = "site")
 temp_ann_meta$site <- as.character(temp_ann_meta$site)
@@ -185,7 +185,8 @@ temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill
   ylab("") +
   coord_flip() + 
   theme_bw() +
-  scale_fill_grey(start = 0.4, end = 0.8)
+  scale_fill_grey(start = 0.4, end = 0.8) + 
+  theme(axis.text.y=element_text(vjust=0.3)) 
 ```
 
 ```{r Temperature variables plot, echo=FALSE, warning=FALSE, eval=TRUE,fig.height=5,fig.width=8, fig.cap='\\label{fig:Temperature variables plot}Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by inverted triangles, mean represented by balck dots, maximum by black triangles, and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B. See appendix for significance level guide.'}
