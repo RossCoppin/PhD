@@ -349,7 +349,7 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
 ggarrange(wave_plot_1,wave_boxplot_1, wave_plot_2, wave_boxplot_2, common.legend = TRUE, labels = c("A", "B", "C", "D"), align = "hv")
 ```
 
-```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}Wave rose figure. Wave variables divided into Annual (top), Austral summer (middle) and Austral winter (bottom) respectively'}
+```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}The total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). Annual (top left), Austral summer (top right) and Austral winter (bottom) respectively'}
 
 library(png)
 library(grid)
