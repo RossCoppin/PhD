@@ -368,15 +368,20 @@ library(png)
 library(grid)
 library(gridExtra)
 
-wp_1 <-  rasterGrob(as.raster(readPNG("figures/CapePen_Total.PNG")), interpolate = FALSE)
-wp_2 <-  rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")), interpolate = FALSE)
-grid.arrange(wp_1, wp_2, ncol = 2, widths = c(2,1))
+wp_1 <- rasterGrob(as.raster(readPNG("figures/CapePen_Total.PNG")), interpolate = FALSE)
+wp_2 <- rasterGrob(as.raster(readPNG("figures/CapePen_Summer.PNG")), interpolate = FALSE)
+wp_3 <- rasterGrob(as.raster(readPNG("figures/CapePen_Winter.PNG")), interpolate = FALSE)
+wp_4 <- rasterGrob(as.raster(readPNG("figures/CapePen_Spring.PNG")), interpolate = FALSE)
+wp_5 <- rasterGrob(as.raster(readPNG("figures/CapePen_Autumn.PNG")), interpolate = FALSE)
+wp_6 <- rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")), interpolate = FALSE)
+
+grid.arrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2)
 
 ```
 
-In Figure 5 the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
+In Figure \ref{fig:wave power map} the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
 
-```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}False Bay wave spectrum'}
+```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}The propagation of a typical offshore wave spectrum is given as produced from a single time-step in SWAN'}
 
 library(png)
 library(grid)
