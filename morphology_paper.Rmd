@@ -345,7 +345,7 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
 
 ```
 
-```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE, eval=TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}In plot A1 and A2 wave variables at each collection site around the Western Cape coast are presented. Mean variables are represented by dots and standard deviation by whiskers. Blue dots represent sites grouped to the western category and red dots represent sites grouped to the eastern category.'}
+```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE, eval=TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}Mean significant wave height and mean significant peak period across sites and by region. Mean significant wave height across sites is presented in plot A and is represented by solid triangles and standard deviation by the whiskers. Differences in mean significant wave height between regions are presented in plot B. Mean significant peak period across sites is presented in plot C and is represented by solid dots and standard deviation by whiskers. Differences in mena significant peak period between regions are presented in plot D.'}
 ggarrange(wave_plot_1,wave_boxplot_1, wave_plot_2, wave_boxplot_2, common.legend = TRUE, labels = c("A", "B", "C", "D"), align = "hv")
 ```
 
