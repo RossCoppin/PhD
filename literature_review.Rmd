@@ -7,7 +7,7 @@ output:
   word_document:
     fig_caption: yes
     toc: yes
-bibliography: ref_lit_review.bib
+bibliography: references.bib
 ---
 
 ```{r include=FALSE}
@@ -149,10 +149,6 @@ Dispersal is recognised as important driver of biodiveristy, composition and str
 
 Kelp-raft abundance has been shown to vary temporally and spatially in the ocean and around coastlines. The temporal variability is dependent on seasonal growth patterns. For example, studies investigating the dispersal patterns of *Sargassum* in the West Pacific show increased abundance during growth seasons (spring and summer) as more biomass is available to fragment [@deysher1981; @kingsford1992]. Temporal variability may also be related to seasonal storm frequency where more storms in a particluar season relate to an increase in kelp-raft abundance. For example a study by @kingsford1995 investigated the contribution of *Macrosystis pyrifera* rafts to habitat conplexity in pelagic environments. The authors found that the abundance of *M. pyrifera* rafts increased during seasons where storms occured more frequently. 
 
-
-
-
-
 # Kelp-drag dynamics
 
 
@@ -173,6 +169,16 @@ Once the fractions of submerged and non-submerged portions of the object have be
 
 The weight of the additional liquid displaced can now be calculated by substituting the density and volume of the additional displaced liquid along with the gravitational constant $g$ which is expressed as: $$W_{AL} = \rho_{l}V_{AL}g$$
 where the subscript $AL$ represents the components of *additional liquid displaced*. The $V$ can also represent the change in volume ($\Delta V$) and so the expression can be expanded to: $$W_{AL} = \rho(\Delta V) g$$} where $\Delta V$ represents the change in volume of the object, i.e $y$.
+
+# Particle dispersion modelling
+
+A study by @lebreton2012 proposed a methododology to track floating debris from source to sink based on discriptions of global waste production and ocean surface currents, using a combination of hydrodynamic and particle dispersion modelling. The particle tracking model applied uses a two stage process, (1) a hydrodynamic model solves the equations of motion to characterise the movement of water within the domain of the model, (2) virtual particles are released into the flow field established in the first step, and particles are allowed to move through hydrodynamic forcing. The authors extracted sea surface currents from the  HYCOM/NCODA ocean circulation modelling system. The HYCOM model is forced by the US Navy's Operational Global Atmospheric Prediction System (NOGAPS). The model also takes into account wind stress, wind speed, heat flux, and precipitation; and was looped five times to accuratley represent ocean circulation patterns for 30 years. The authors used the velocity data aquired from HYCOM and coupled it to the Lagrangian particle tracking model Pol3DD which was used to simulate dispersion. 
+
+## Particle dispersion models
+
+The Pol3DD model is able to track virtual particles to simulate water borne dispersion of material. Examples include neutrally buoyant anthropogenic material, larvae, oil spills, outfall discharges and sediment transport [@lebreton2012]. The model uses a second-order accurate advection scheme [@black1990] described as follows: 
+
+
 
 # Kelps in South Africa
 
