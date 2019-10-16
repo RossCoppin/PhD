@@ -4,9 +4,9 @@ author: "Ross Coppin"
 output:
   word_document:
     fig_caption: yes
-    toc: yes
+    toc: no
   pdf_document:
-    toc: yes
+    toc: no
 bibliography: references.bib
 ---
 
@@ -178,7 +178,10 @@ A study by @lebreton2012 proposed a methododology to track floating debris from 
 
 The Pol3DD model is able to track virtual particles to simulate water borne dispersion of material. Examples include neutrally buoyant anthropogenic material, larvae, oil spills, outfall discharges and sediment transport [@lebreton2012]. The model uses a second-order accurate advection scheme [@black1990] described as follows: $$\delta\chi=\frac{({u'+ \frac{(u_y\upsilon'-\upsilon_yu')\delta t}{2} )\delta t}}{(1-\frac{u_x\delta t}{2})(1-\frac{\upsilon_y\delta t}{2})-\frac{u_y\upsilon_\chi\delta t^2}{4}}$$
 
+$$\delta y=\frac{({\upsilon' + \frac{(\upsilon_\chi u'-u_\chi\upsilon) \delta t}{2})\delta t}}{(1-\frac{u_y\delta t}{2})(1-\frac{\upsilon_\chi\delta t)}{2}) - \frac{u_\chi\upsilon_y\delta t^2}{4}}$$
+where
 
+$$u'= u + \frac{\delta tu_t}{2}$$ $$\upsilon'=\upsilon + \frac{\delta t\upsilon_t}{2}$$
 
 # Kelps in South Africa
 
