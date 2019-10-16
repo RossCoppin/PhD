@@ -1,6 +1,6 @@
 ---
 title: Using numerical modelling to investigate temperature and wave exposure as drivers
-  of macroalgal characteristics
+  of macroalgal morphological characteristics
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 fontsize: 10pt
 output:
@@ -11,7 +11,7 @@ output:
 geometry: margin=1in
 papersize: A4
 tables: yes
-bibliography: refs_morphology_paper.bib
+bibliography: references.bib
 ---
 
 ```{r include=FALSE}
@@ -352,7 +352,7 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
 ```
 
 ```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE, eval=TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}Mean significant wave height and mean significant peak period across sites and by region. Mean significant wave height across sites is presented in plot A and is represented by solid triangles and standard deviation by the whiskers. Differences in mean significant wave height between regions are presented in plot B. Mean significant peak period across sites is presented in plot C and is represented by solid dots and standard deviation by whiskers. Differences in mena significant peak period between regions are presented in plot D.'}
-ggarrange(wave_plot_1,wave_boxplot_1, wave_plot_2, wave_boxplot_2, common.legend = TRUE, labels = c("A", "B", "C", "D"), align = "hv")
+ggarrange(wave_plot_1,wave_boxplot_1, wave_plot_2, wave_boxplot_2, common.legend = FALSE, labels = c("A", "B", "C", "D"), align = "hv")
 ```
 
 ```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}The total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). Annual (top left), Austral summer (top right) and Austral winter (bottom) respectively'}
@@ -1582,7 +1582,6 @@ ggarrange(eck_all_A,eck_all_B,eck_all_C,eck_all_D,eck_all_E,eck_all_F,eck_all_G,
 ```
 
 # References
-
 
 
 
