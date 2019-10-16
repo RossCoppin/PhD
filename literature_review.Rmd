@@ -182,6 +182,9 @@ $$\delta y=\frac{({\upsilon' + \frac{(\upsilon_\chi u'-u_\chi\upsilon) \delta t}
 where
 
 $$u'= u + \frac{\delta tu_t}{2}$$ $$\upsilon'=\upsilon + \frac{\delta t\upsilon_t}{2}$$
+and $u$, $\upsilon$ are orthogonal velocity components, $t$ is time, $\delta t$ is the model time step, $u_\chi$, $u_y$, $\upsilon_y$ are the $u$ and $\upsilon$ spatial velocity gradients, and $u_t$, $\upsilon_t$ are temporal gradients. Horizontal diffusion was modelled as a random walk with seperate longitudinal and lateral coefficients set to simulate random turbulence. The distance increments moved by the particle at each time step is calculated as:
+$$\Delta X = R_N \sqrt{6E_1\delta t}$$ $$\Delta y = R_N\sqrt{6E_2\delta t}$$
+where $R_N$ is a random number in the uniform range (-1,1) and $E_1,E_2$ are the longitudinal and lateral eddy diffusivities, respectivley. No additional wind stress terms were applied to the motion of particles, as this factor was already expressed in the HYCOM hydrodynamic data. Potential extra stress for emerged parts of debris was considered negligible as all floating debris are assumed to be fully submerged. The Pol3DD model was also modified so provide additional information on individual particles such as origin, age, and trajectory information of individual particles. Since the model considered a spherical earth, particles were allowed to re-enter the simulation if the passed around the 'globe'. In this study only the surface layer was considered as the prinicple layer which determines the fate of floating particles i.e anthorpogenic debris.  
 
 # Kelps in South Africa
 
