@@ -2,6 +2,7 @@
 title: Using numerical modelling to investigate temperature and wave exposure as drivers
   of macroalgal morphological characteristics
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
+abstract: "*Abstract*: Macroalgae morphological characteristics are determined by a combination of environmental factors with wave exposure and temperature being identified as the main drivers of morphological adaptation. Macroalgae have shown to exhibit different responses to different magnitudes of exposure, such as reduction in overall size and strength increasing traits. In terms of temperature, warmer environments have been shown to reduce the overall size of resident and transplanted species. However, none of the past studies have identified specific wave and temperature metrics responsible for the morphological adaptation macroalgae exhibit. Past research has often used simple or two dimensional models of wave exposure which does not take into account important aspects of the nearshore environment such as wave breaking, refraction and diffraction. Furthermore, past studies have often used satellite as sources for temperature data which has been shown to have large bias when measuring the nearshore environment. This study used *in situ* temperature data and wave power calculated from a 3D-numerical model to identify specific temperature and wave metrics responsible for morphological adaptation.  The results identify wave exposure as the main driver of morphological adaptation while identifying specific wave metrics. Furthermore, the results show differences in wave metrics between species; and between deep and shallow populations."
 fontsize: 10pt
 output:
   word_document:
@@ -180,7 +181,6 @@ temp_ann_meta$site <- as.character(temp_ann_meta$site)
 
 temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
   geom_boxplot(show.legend = FALSE, width = 0.5) + 
-  geom_jitter(width = 0.2) + 
   stat_compare_means(label.x = 2.5, label.y = 12.5, label = "p.format") +
   xlab("") + 
   ylab("") +
@@ -190,7 +190,7 @@ temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill
   theme(axis.text.y=element_text(vjust=0.3)) 
 ```
 
-```{r Temperature variables plot, echo=FALSE, warning=FALSE, eval=TRUE,fig.height=5,fig.width=8, fig.cap='\\label{fig:Temperature variables plot}Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by inverted triangles, mean represented by balck dots, maximum by black triangles, and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B. See appendix for significance level guide.'}
+```{r Temperature variables plot, echo=FALSE, warning=FALSE, eval=TRUE,fig.height=5,fig.width=8, fig.cap='\\label{fig:Temperature variables plot}Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by inverted triangles, mean represented by black dots, maximum by black triangles, and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B. See appendix for significance level guide.'}
 ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"), align = c("hv"), legend = FALSE)
 ```
 
@@ -328,7 +328,6 @@ wave_plot_2 <- ggplot(data = abio_clim, aes(x = site, y = tp_mean)) +
 
 wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
-  geom_jitter(width = 0.2) +
   stat_compare_means(label.y =0.6 ,label.x = 2.5, label = "p.format") + 
   xlab("") + 
   ylab("") + 
@@ -339,7 +338,6 @@ wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill
 
 wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
-  geom_jitter(width = 0.2) +
   stat_compare_means(label.y = 8.2, label.x = 2.5, label = "p.format") + 
   xlab("") + 
   ylab("") +
@@ -380,14 +378,16 @@ wp_3 <- rasterGrob(as.raster(readPNG("figures/CapePen_Winter.PNG")), interpolate
 wp_4 <- rasterGrob(as.raster(readPNG("figures/CapePen_Spring.PNG")), interpolate = FALSE)
 wp_5 <- rasterGrob(as.raster(readPNG("figures/CapePen_Autumn.PNG")), interpolate = FALSE)
 wp_6 <- rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")), interpolate = FALSE)
-
 grid.arrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2)
+
+#wave_power_map <- readPNG("figures/wave_power_all_labels.png")
+#grid.raster(wave_power_map)
 
 ```
 
 In Figure \ref{fig:wave power map} the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
 
-```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}The propagation of a typical offshore wave spectrum is given as produced from a single time-step in SWAN'}
+```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}The propagation of a typical offshore wave spectrum is given as produced from a single time-step in SWAN.'}
 
 library(png)
 library(grid)
@@ -619,11 +619,11 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
   xlab("")
 ```
 
-```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots of *L. pallida* morphological characteristics group by temperature regime.', fig.height=8, fig.width=8}
+```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots representing *L. pallida* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The “whiskers” represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8}
 ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legend = TRUE, legend = "none", align ='hv')
 ```
 
-```{r lamanaria wave plots, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:lamanaria wave plots}Boxplots of *L. pallida* morphological characteristics group by wave exposure category.', fig.height=8, fig.width=8}
+```{r lamanaria wave plots, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.height=8, fig.width=8, fig.cap='\\label{fig:lamanaria wave plots}Boxplots representing *L. pallida* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.'}
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom", align = "hv")
 ```
 
@@ -850,11 +850,11 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplot of morphological characteristics for deep population *E. maxima* grouped by temperature.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
+```{r deep ecklonia temp plot, echo=FALSE, fig.cap='Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The “whiskers” represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
 ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = TRUE, legend = c("none"), ncol = 3, nrow = 4)
 ```
 
-```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplot of morphological characteristics for deep population *E. maxima* grouped by wave exposure.', fig.height=8, fig.width=8}
+```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplots representing deep *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The “whiskers” represent the range, solid black lines represent the median and black dots are outliers.', fig.height=8, fig.width=8}
 ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
@@ -1062,11 +1062,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp}Boxplot of morphological characteristics for shallow population *E. maxima* grouped by temperature regime.', fig.height=7, fig.width=8}
+```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp} Boxplots representing shallow *E. maxima* morphological characteristics  grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The “whiskers” represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=7, fig.width=8}
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
-```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplot of morphological characteristics for shallow population *E. maxima* grouped by wave exposure.', fig.height=7, fig.width=8}
+```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplots representing shallow *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The “whiskers” represent the range, solid black lines represent the median and black dots are outliers.', fig.height=7, fig.width=8}
 ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3,nrow = 3)
 ```
 
@@ -1351,7 +1351,7 @@ rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = FALSE
 
 Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of deep *E. maxima* morphological characteristics with an adjusted *R*2 of 0.39, explaining 67% of the variation (global permutation test on final model: d.f = 5, *F* = 2.4, *p* = 0.026). RDA1 was the only significant axis in the model (p = 0.03) and explained 72% of the variation. Primary length, primary width and stipe circumference were positivley influenced by *hs_mean*, *tp_mean* and *dir_median* for for kelps from the western region. The remaining morphological characteristics were postivley inlfuenced by *min_temp* and negatively influenced by *tp_sd* for kelps from the eastern region. 
 
-```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C)."}
+```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C). The blue cluster represnts sites from the western region and the red represents sites from the eastern region."}
 ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, legend = "none", labels = "AUTO", ncol = 2, nrow = 2, align = "hv")
 ```
 
@@ -1398,7 +1398,7 @@ Thank you to AS and CR for their guidance, and the honours class of 2014-2015 th
 ```
 
 
-```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=7}
+```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point ", "Baboon Rock", 
                   "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Bordjies Deep","Olifantsbos", "Kommetjie", "Sea Point")
 lam_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave_exposure)) +
@@ -1487,7 +1487,7 @@ ggarrange(lam_all_A,lam_all_B,lam_all_C,lam_all_D,lam_all_E,lam_all_F,lam_all_G,
 
 ```
 
-```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=7}
+```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
 # Order site names by location west to east
 
 positionsEck <- c("Betty's Bay", "Kalk Bay", "A-Frame", 
