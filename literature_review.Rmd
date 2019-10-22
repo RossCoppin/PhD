@@ -163,6 +163,15 @@ Once the fractions of submerged and non-submerged portions of the object have be
 where the subscript $AL$ represents the components of *additional liquid displaced*. The $V$ can also represent the change in volume ($\Delta V$) and so the expression can be expanded to: $$W_{AL} = \rho(\Delta V) g$$} where $\Delta V$ represents the change in volume of the object, i.e $y$. To estimate the amount of input into the model the authors used a scaled approach to define the release of particles, and where based on previous research performed by @halpern2008.
 
 ## Wind effects on drifting objects in the oceans
+ 
+The effects that wind produce on floating objects is sometimes referred to as "windage factors", and is difficult to accuratley and emprically describe. The diffuclty is due to accurate and measurements needed for the current velocity, wind velocity, wave height and wave direction. Furthermore, these factors do not act independently and instead influence one another which compounds the complexity of calculating wind effects on drifting objects. To overcome this challenge, measurents of current and wind velocity, and wave height and direction; need to be measured along the objects trajectory for a wide range of conditions. 
+
+Wind effects or windage factors can be calculated using the approach by @griffin2017, and can be expressed as $$V = V_c + V_l + V_w$$
+
+where $V$ is the velocity of the drifting object, $V_c$ is surface current velocity, $V_l$ is the 'leeway' velocity and $V_w$ is the velocity due to wave forces. As stated, $V_c$ is the velocity of the surface current and is averaged over the vertical extend of the drifting object. Velocity of the surface current is expressed as $$V_c = V_5 + V_s$$
+where $V_5$ is the average velcoity for the the top 5m of the ocean (estimated by an ocean model) and $V_s$ is the velocity effect of Stokes drift due to wave action. It is important to note that the approximation of Stokes drift does not take into account finer-scale vertical differences of the velocity field, such as Coriolis-Stokes forcing. Stokes drift generally manifests in hydrodynamic environmnets with short-wavelengths and locally-generated waves. @griffin2017 mitigated the exclusion of finer-scale drivers of Stokes Drift by comparing modelled surface velocities with those of *in situ* drifters. 
+
+$V_l$ is the velocity of the object relative to the water due to effects of wind force directly on the object and by expressed by $$V_l = w U_10$$
 
 
 # Particle dispersion modelling
