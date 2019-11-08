@@ -2,17 +2,36 @@
 title: Using numerical modelling to investigate temperature and wave exposure as drivers
   of macroalgal morphological characteristics
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
-abstract: "**Abstract**: Macroalgae morphological characteristics are determined by a combination of environmental factors with wave exposure and temperature being identified as the main drivers of morphological adaptation. Macroalgae have shown to exhibit different responses to different magnitudes of exposure, such as reduction in overall size and strength increasing traits. In terms of temperature, warmer environments have been shown to reduce the overall size of resident and transplanted species. However, none of the past studies have identified specific wave and temperature metrics responsible for the morphological adaptation macroalgae exhibit. Past research has often used simple or two dimensional models of wave exposure which does not take into account important aspects of the nearshore environment such as wave breaking, refraction and diffraction. Furthermore, past studies have often used satellite as sources for temperature data which has been shown to have large bias when measuring the nearshore environment. This study used *in situ* temperature data and wave power calculated from a 3D-numerical model to identify specific temperature and wave metrics responsible for morphological adaptation.  The results identify wave exposure as the main driver of morphological adaptation while identifying specific wave metrics. Furthermore, the results show differences in wave metrics between species; and between deep and shallow populations."
-fontsize: 10pt
+bibliography: references.bib
 output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    fig_caption: yes
   word_document:
     reference_docx: frontiers_template.docx
-  pdf_document: 
-    fig_caption: yes
 geometry: margin=1in
+fontsize: 10pt
 papersize: A4
 tables: yes
-bibliography: references.bib
+abstract: 'Macroalgae morphological characteristics are determined by
+  a combination of environmental factors with wave exposure and temperature being
+  identified as the main drivers of morphological adaptation. Macroalgae have shown
+  to exhibit different responses to different magnitudes of exposure, such as reduction
+  in overall size and strength increasing traits. In terms of temperature, warmer
+  environments have been shown to reduce the overall size of resident and transplanted
+  species. However, none of the past studies have identified specific wave and temperature
+  metrics responsible for the morphological adaptation macroalgae exhibit. Past research
+  has often used simple or two dimensional models of wave exposure which does not
+  take into account important aspects of the nearshore environment such as wave breaking,
+  refraction and diffraction. Furthermore, past studies have often used satellite
+  as sources for temperature data which has been shown to have large bias when measuring
+  the nearshore environment. This study used *in situ* temperature data and wave power
+  calculated from a 3D-numerical model to identify specific temperature and wave metrics
+  responsible for morphological adaptation.  The results identify wave exposure as
+  the main driver of morphological adaptation while identifying specific wave metrics.
+  Furthermore, the results show differences in wave metrics between species; and between
+  deep and shallow populations.'
 ---
 
 ```{r include=FALSE}
