@@ -2,16 +2,14 @@
 title: Using numerical modelling to investigate temperature and wave exposure as drivers
   of macroalgal morphological characteristics
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
-bibliography: references.bib
 output:
-  html_document:
-    df_print: paged
-  pdf_document:
-    fig_caption: yes
   word_document:
     reference_docx: frontiers_template.docx
-geometry: margin=1in
-fontsize: 10pt
+  pdf_document:
+    fig_caption: yes
+  html_document:
+    df_print: paged
+bibliography: references.bib
 papersize: A4
 tables: yes
 abstract: 'Macroalgal morphological variation is determined to a large extent by
@@ -129,7 +127,7 @@ meta_all <- read.csv("metadata/site_meta_complete.csv", sep = ";")
 ## Abiotic environment
 ### Temperature
 
-The mean annual coastal water temperature for the study sites located on the western side of the peninsula ranged from 14.5 ± 0.9 ℃ (mean ± SD) at St. Helena Bay, the most northern site on the western side of the peninsula, to 14.6 ± 0.3 ℃ at Olifantsbos, the most southern site on the western side of the peninsula (see figure \ref{fig:Temperature variables plot}A). For sites located on the eastern side of the peninsula (within False Bay), the annual mean coastal water temperatures ranged from 15.5 ± 0.9 ℃ at Buffelsbaai to 15.0 ± 0.9 ℃ at Betty’s Bay, the most eastern site on the coastline in this study (see figure \ref{fig:Temperature variables plot}A). Oudekraal had the lowest annual mean coastal water temperature of 12.3 ± 0.9. Annual maximum coastal temperatures for study sites located on the western side of the peninsula ranged from 16.3 ℃ at St. Helena Bay to 15.1 ℃ at Olifantsbos. For sites located east of the peninsula, annual maximum coastal water temperatures ranged from 16 ℃ at Buffelsbaai to 16.5 ℃ at Betty’s Bay. Amongst all sites, Kalk Bay had the highest annual maximum temperature of 19 ℃. Annual minimum coastal water temperatures for the study sites on the western side of the peninsula ranged from 12.9 ℃ at St. Helena Bay to 14.1 ℃ at Olifantsbos, and on the western side of the peninsula ranged from 15.0 ℃ at Buffelsbaai to 13.6 ℃ at Betty’s Bay.  The annual range in temperature on the western side on the peninsula was 3.4 at St. Helena Bay to 0.9 at Olifantsbos, and on the eastern side on of the peninsula was 1.0 at Buffelsbaai to 2.9 at Betty’s Bay. 
+The mean annual coastal water temperature for the study sites located on the western side of the peninsula ranged from 14.5 ± 0.9 ℃ (mean ± SD) at St. Helena Bay, the most northern site on the western side of the peninsula, to 14.6 ± 0.3 ℃ at Olifantsbos, the most southern site on the western side of the peninsula (see figure \ref{fig:Temperature variables plot}A). For sites located on the eastern side of the peninsula (within False Bay), the annual mean coastal water temperatures ranged from 15.5 ± 0.9 ℃ at Buffelsbaai to 15.0 ± 0.9 ℃ at Betty’s Bay, the most eastern site on the coastline in this study (see figure\ref{fig:Temperature variables plot}A). Oudekraal had the lowest annual mean coastal water temperature of 12.3 ± 0.9. Annual maximum coastal temperatures for study sites located on the western side of the peninsula ranged from 16.3 ℃ at St. Helena Bay to 15.1 ℃ at Olifantsbos. For sites located east of the peninsula, annual maximum coastal water temperatures ranged from 16 ℃ at Buffelsbaai to 16.5 ℃ at Betty’s Bay. Amongst all sites, Kalk Bay had the highest annual maximum temperature of 19 ℃. Annual minimum coastal water temperatures for the study sites on the western side of the peninsula ranged from 12.9 ℃ at St. Helena Bay to 14.1 ℃ at Olifantsbos, and on the western side of the peninsula ranged from 15.0 ℃ at Buffelsbaai to 13.6 ℃ at Betty’s Bay.  The annual range in temperature on the western side on the peninsula was 3.4 at St. Helena Bay to 0.9 at Olifantsbos, and on the eastern side on of the peninsula was 1.0 at Buffelsbaai to 2.9 at Betty’s Bay. 
 
 ```{r Temperature data prep, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 ## Data wrangling and preparation
@@ -198,24 +196,25 @@ temp_ann_meta$site <- as.character(temp_ann_meta$site)
 
 temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill  = region)) + 
   geom_boxplot(show.legend = FALSE, width = 0.5) + 
-  stat_compare_means(label.x = 2.5, label.y = 12.5, label = "p.format") +
+  stat_compare_means(label.x = 2.5, label.y = 12.5, label = "p.signif") +
   xlab("") + 
   ylab("") +
   coord_flip() + 
   theme_bw() +
   scale_fill_grey(start = 0.4, end = 0.8) + 
   theme(axis.text.y=element_text(vjust=0.3)) 
+
 ```
 
 ```{r Temperature variables plot, echo=FALSE, warning=FALSE, eval=TRUE,fig.height=5,fig.width=8, fig.cap='\\label{fig:Temperature variables plot}Temperature variables at the collection sites around the Cape Peninsula are represented in plot A. Temperature variables include minimum represented by inverted triangles, mean represented by black dots, maximum by black triangles, and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in plot B.'}
 ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"), align = c("hv"), legend = FALSE)
 ```
 
-In general, the mean temperature increases for sites located within False Bay with less variation around the mean temperature compared to sites on the western side of the peninsula(\ref{fig:Temperature variables plot}A). This is verified by \ref{fig:Temperature variables plot}B, which shows a significantly lower (p < 0.05, figure \ref{fig:Temperature variables plot}B) mean temperature and less variation in temperature for sites located on the western side of the peninsula compared to sites on the eastern side. 
+In general, the mean temperature increases for sites located within False Bay with less variation around the mean temperature compared to sites on the western side of the peninsula(\ref{fig:Temperature variables plot}A). This is verified by figure\ref{fig:Temperature variables plot}B, which shows a significantly lower (*p* < 0.05, figure \ref{fig:Temperature variables plot}B) mean temperature and less variation in temperature for sites located on the western side of the peninsula compared to sites on the eastern side. 
 
 ### Wave environment
 
-Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual scale (see figure \ref{fig:wave variable plot}). Mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay (see figure \ref{fig:wave variable plot}A). The maximum significant wave height ranged from 1.4 m at St. Helena Bay to 4.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side ranged from 2.6 m at Buffelsbaai to 4.2 m at Betty’s Bay. Mean peak period for sites on the western side of the peninsula ranged from 10.3 ± 3.5 s at St. Helena Bay to 11.0 ± 2.0 s at Olifantsbos, and ranged from 10.6 ± 3.0 s at Buffelsbaai to 10.8 ± 2.2 s at Betty’s Bay (see figure \ref{fig:wave variable plot}B). The data show no trend in mean peak period for the coastline. These data show that the western side of the peninsula has a lower variation (SD) compared to the eastern side, with Miller’s Point showing the highest variation across timescales. Maximum peak period ranged from 18.9 s at St. Helena Bay to 18.4 s at Olifantsbos for the western side of the peninsula, and ranged from 18.0 s at Buffelsbaai to 18.0 s at Betty’s Bay on the eastern side of the peninsula. When wave variables were grouped by region significant differences were found for both mean significant swell height and mean peak period. The western region experiences a significantly higher mean significant swell height (p < 0.05; see figure \ref{fig:wave variable plot}C) and mean peak period (*p* < 0.05; see figure \ref{fig:wave variable plot}D).
+Our data show the western side of the peninsula experiences higher significant wave heights and variation in wave heights compared to the eastern side of the peninsula on both an annual scale (see figure \ref{fig:wave variable plot}). Mean significant wave height ranged from 0.5 ± 0.2 m (mean ± SD) at St. Helena Bay to 2.3  ± 0.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side of the peninsula it ranged from 0.9 ± 0.4 m at Buffelsbaai to 1.9 ± 0.6 m at Betty’s Bay (see figure \ref{fig:wave variable plot}A). The maximum significant wave height ranged from 1.4 m at St. Helena Bay to 4.7 m at Olifantsbos on the western side of the peninsula, and on the eastern side ranged from 2.6 m at Buffelsbaai to 4.2 m at Betty’s Bay. Mean peak period for sites on the western side of the peninsula ranged from 10.3 ± 3.5 s at St. Helena Bay to 11.0 ± 2.0 s at Olifantsbos, and ranged from 10.6 ± 3.0 s at Buffelsbaai to 10.8 ± 2.2 s at Betty’s Bay (see figure \ref{fig:wave variable plot}B). The data show no trend in mean peak period for the coastline. These data show that the western side of the peninsula has a lower variation (SD) compared to the eastern side, with Miller’s Point showing the highest variation across timescales. Maximum peak period ranged from 18.9 s at St. Helena Bay to 18.4 s at Olifantsbos for the western side of the peninsula, and ranged from 18.0 s at Buffelsbaai to 18.0 s at Betty’s Bay on the eastern side of the peninsula. When wave variables were grouped by region significant differences were found for both mean significant swell height and mean peak period. The western region experiences a significantly higher mean significant swell height (*p* < 0.05; see figure \ref{fig:wave variable plot}C) and mean peak period (*p* < 0.05; see figure \ref{fig:wave variable plot}D).
 
 ```{r wave data prep, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=TRUE}
 ## Data wrangling and preparation
@@ -345,7 +344,7 @@ wave_plot_2 <- ggplot(data = abio_clim, aes(x = site, y = tp_mean)) +
 
 wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
-  stat_compare_means(label.y =0.6 ,label.x = 2.5, label = "p.format") + 
+  stat_compare_means(label.y =0.6 ,label.x = 2.5, label = "p.signif") + 
   xlab("") + 
   ylab("") + 
   coord_flip() + 
@@ -355,7 +354,7 @@ wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill
 
 wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
-  stat_compare_means(label.y = 8.2, label.x = 2.5, label = "p.format") + 
+  stat_compare_means(label.y = 8.2, label.x = 2.5, label = "p.signif") + 
   xlab("") + 
   ylab("") +
   ylim(8,12) + 
@@ -402,7 +401,7 @@ grid.arrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2)
 
 ```
 
-In Figure \ref{fig:wave power map} the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape Peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
+In figure \ref{fig:wave power map} the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape Peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
 
 ```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}The propagation of a typical offshore wave spectrum is given as produced from a single time-step in SWAN.'}
 
@@ -429,7 +428,7 @@ pos_temp <- c("Cool temperate", "Warm temperate")
 LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.62, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.62, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina weight") +
   scale_fill_discrete(name="Temperature regime") +
@@ -441,7 +440,7 @@ LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = tem
 LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina length") +
   scale_fill_discrete(name="Temperature regime") +
@@ -453,7 +452,7 @@ LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = tem
 LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Lamina thickness") +
   scale_fill_discrete(name="Temperature regime") +
@@ -465,7 +464,7 @@ LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = 
 LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.65, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.65, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -477,7 +476,7 @@ LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_r
 LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.65, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.65, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe length (cm)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -489,7 +488,7 @@ LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp
 LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.65, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.65, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe diameter (cm)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -501,7 +500,7 @@ LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = te
 LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("No. of digits") +
   scale_fill_discrete(name="Temperature regime") +
@@ -513,7 +512,7 @@ LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regi
 LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Thallus mass (g)") +
   scale_fill_discrete(name="Temperature regime") +
@@ -525,7 +524,7 @@ LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp
 LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.65, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.65, label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Total length (cm)") +
   theme_bw() +
@@ -540,7 +539,7 @@ pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered"
 LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.85, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.85, label.y.npc = c('top')) + 
   ylab("Lamina weight (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -551,7 +550,7 @@ LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = w
 LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Lamina length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -562,7 +561,7 @@ LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = w
 LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("Lamina thickness") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -573,7 +572,7 @@ LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill 
 LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.9, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.9, label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -584,7 +583,7 @@ LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave
 LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.9, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.9, label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -595,7 +594,7 @@ LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wa
 LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.9, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.9, label.y.npc = c('top')) + 
   ylab("Stipe diameter (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -606,7 +605,7 @@ LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = 
 LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.82, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.82, label.y.npc = c('top')) + 
   ylab("No. of digits") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -617,7 +616,7 @@ LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_ex
 LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.9, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.9, label.y.npc = c('top')) + 
   ylab("Thallus mass (kg)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -627,7 +626,7 @@ LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wa
 LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.x  = 0.9, label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x  = 0.9, label.y.npc = c('top')) + 
   ylab("Total length (cm)") + 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) +
@@ -663,7 +662,7 @@ pos_temp <- c("Cool temperate", "Warm temperate") #custom temperature categories
 ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -672,7 +671,7 @@ ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_
 ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -681,7 +680,7 @@ ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = t
 ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -690,7 +689,7 @@ ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = te
 ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -699,7 +698,7 @@ ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = tem
 ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -708,7 +707,7 @@ ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_
 ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -717,7 +716,7 @@ ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = tem
 ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe circ (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -726,7 +725,7 @@ ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_
 ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("No. of tufts") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -735,7 +734,7 @@ ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regim
 ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -744,7 +743,7 @@ ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_
 ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = TRUE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x  = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x  = 0.6, label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -759,7 +758,7 @@ pos_exposure <- c("Fully sheltered", "Extremely sheltered", "Very sheltered","Mo
 EW1 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Frond mass (g)") +
   theme_bw() +
@@ -770,7 +769,7 @@ EW1 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wav
 EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -780,7 +779,7 @@ EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill =
 EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Primary width (cm)") +
   theme_bw() +
@@ -791,7 +790,7 @@ EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = 
 EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Frond length (cm)") +
   theme_bw() +
@@ -802,7 +801,7 @@ EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = w
 EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe mass (g)") +
   theme_bw() +
@@ -813,7 +812,7 @@ EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wav
 EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe length (cm)") +
   theme_bw() +
@@ -824,7 +823,7 @@ EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = w
 EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Stipe circumference (cm)") +
   theme_bw() +
@@ -835,7 +834,7 @@ EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wav
 EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("No of Tufts") +
   theme_bw() +
@@ -846,7 +845,7 @@ EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exp
 EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Epi length (cm)") +
   theme_bw() +
@@ -857,7 +856,7 @@ EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wav
 EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
   ylab("Total length (cm)") +
   theme_bw() +
@@ -867,11 +866,11 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   guides(fill=guide_legend(title="Wave exposure level")) 
 ```
 
-```{r deep ecklonia temp plot, echo=FALSE, fig.cap='\\label{fig:deep eck temp plot}Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
+```{r deep ecklonia temp plot, echo=FALSE, fig.cap='\\label{fig:deep eck temp plot}Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
 ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = TRUE, legend = c("none"), ncol = 3, nrow = 4)
 ```
 
-```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplots representing deep *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=8, fig.width=8}
+```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplots representing deep *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=8, fig.width=8}
 ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
@@ -879,7 +878,7 @@ ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.lege
 EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -888,7 +887,7 @@ EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = tem
 EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -897,7 +896,7 @@ EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill =
 EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -907,7 +906,7 @@ EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = 
 EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -916,7 +915,7 @@ EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = t
 EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -925,7 +924,7 @@ EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = tem
 EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -934,7 +933,7 @@ EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = t
 EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Stipe circ (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -944,7 +943,7 @@ EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = tem
 EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("No. of tufts") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -953,7 +952,7 @@ EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_reg
 EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -962,7 +961,7 @@ EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = tem
 EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
-  stat_compare_means(method = "wilcox.test", label = "p.format", label.x = 0.6, label.y.npc = c('top')) + 
+  stat_compare_means(method = "wilcox.test", label = "p.signif", label.x = 0.6, label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -977,7 +976,7 @@ pos_exposure_shall <- c("Fully sheltered", "Extremely sheltered", "Sheltered", "
 ESW1 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Frond mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -987,7 +986,7 @@ ESW1 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_mass, fill = w
 ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Primary length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -997,7 +996,7 @@ ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill
 ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Primary width (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1008,7 +1007,7 @@ ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill 
 ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Frond length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1018,7 +1017,7 @@ ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill =
 ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Stipe mass (g)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1028,7 +1027,7 @@ ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = w
 ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Stipe length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1038,7 +1037,7 @@ ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill =
 ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
  ylim(0,30) +
   ylab("Stipe circumference (cm)") +
   theme_bw() +
@@ -1049,7 +1048,7 @@ ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = w
 ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("No of Tufts") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1059,7 +1058,7 @@ ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_e
 ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Epi length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1069,7 +1068,7 @@ ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = w
 ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) + 
-  stat_compare_means(method = "kruskal.test", label = "p.format", label.y.npc = c('top')) + 
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   ylab("Total length (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
@@ -1079,11 +1078,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp} Boxplots representing shallow *E. maxima* morphological characteristics  grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=7, fig.width=8}
+```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp} Boxplots representing shallow *E. maxima* morphological characteristics  grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=7, fig.width=8}
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom", ncol = 3, nrow = 4)
 ```
 
-```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplots representing shallow *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=7, fig.width=8}
+```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplots representing shallow *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=7, fig.width=8}
 ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 3,nrow = 3)
 ```
 
@@ -1411,11 +1410,6 @@ Aside from funding provided, the funders had no role in the study design, data c
 Thank you to AS and CR for their guidance, and the honours class of 2014-2015 that aided in fieldwork. Carla Louise for making the GIS plot etc. 
 
 # Appendix
-
-```{r}
-
-```
-
 
 ```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
 positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point ", "Baboon Rock", 
