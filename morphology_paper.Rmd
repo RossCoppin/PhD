@@ -12,7 +12,7 @@ output:
 bibliography: references.bib
 papersize: A4
 tables: yes
-abstract: 'Macroalgal morphological variation is determined to a large extent by
+abstract:  '**Abstract**: Macroalgal morphological variation is determined to a large extent by
   a combination of environmental factors, with wave exposure and temperature
   perhaps the main influences as they are key environmental properties to which a species becomes locally adapted.                Macroalgae have shown to exhibit different responses to different magnitudes of exposure to waves, such as reduction
   in overall size and strength increasing traits. In terms of temperature, warmer
@@ -28,6 +28,9 @@ abstract: 'Macroalgal morphological variation is determined to a large extent by
   responsible for morphological adaptation of the kelp, *Ecklonia maxima* and *Laminaria pallida*. The results identify wave      exposure as the main driver of morphological adaptation while identifying specific wave metrics.
   Furthermore, the results show differences in wave metrics between species; and between
   deep and shallow populations.'
+  
+nocite:  |
+  @Algaebase
 ---
 
 ```{r include=FALSE}
@@ -351,6 +354,7 @@ wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill
   theme_bw() +
   scale_fill_grey(start = 0.4, end = 0.8) + 
   theme(axis.text.y=element_text(vjust=0.3)) 
+ggsave("hs_plot.jpeg", plot = wave_boxplot_1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
@@ -361,7 +365,9 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
   coord_flip() + 
   theme_bw() +
   scale_fill_grey(start = 0.4, end = 0.8) + 
-  theme(axis.text.y=element_text(vjust=0.3)) 
+  theme(axis.text.y=element_text(vjust=0.3))
+ggsave("tp_plot.jpeg", plot = wave_boxplot_2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 
 ```
 
@@ -437,6 +443,8 @@ LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = tem
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
+ggsave("fig8A.jpeg", plot = LT1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -448,6 +456,8 @@ LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig8B.jpeg", plot = LT2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -461,6 +471,8 @@ LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
+ggsave("fig8C.jpeg", plot = LT3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -472,6 +484,8 @@ LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_r
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig8D.jpeg", plot = LT4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
@@ -485,6 +499,8 @@ LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
+ggsave("fig8E.jpeg", plot = LT5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -495,7 +511,9 @@ LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = te
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") +
-  scale_fill_grey(start = 0.8, end = 0.4)
+  scale_fill_grey()
+
+ggsave("fig8F.jpeg", plot = LT6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
@@ -509,6 +527,8 @@ LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regi
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
+ggsave("fig8G.jpeg", plot = LT7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -521,6 +541,8 @@ LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
+ggsave("fig8H.jpeg", plot = LT8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -532,6 +554,7 @@ LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
+ggsave("fig8I.jpeg", plot = LT9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 lam_data$wave_exposure <- factor(lam_data$wave_exposure, levels=c("Very sheltered", "Very exposed", "Moderately exposed","Fully sheltered","Extremely sheltered"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed"))#wave exposure levels for lamanaria
 pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed")#custom positions
@@ -547,6 +570,8 @@ LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = w
   theme(axis.text.x = element_blank()) + 
   xlab("") 
 
+ggsave("fig9A.jpeg", plot = LW1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -557,6 +582,8 @@ LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = w
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("")
+
+ggsave("fig9B.jpeg", plot = LW2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
@@ -569,6 +596,8 @@ LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill 
   theme(axis.text.x = element_blank()) + 
   xlab("") 
 
+ggsave("fig9C.jpeg", plot = LW3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -579,6 +608,8 @@ LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") 
+
+ggsave("fig9D.jpeg", plot = LW4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
@@ -591,6 +622,8 @@ LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wa
   theme(axis.text.x = element_blank()) + 
   xlab("") 
 
+ggsave("fig9E.jpeg", plot = LW5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -601,6 +634,8 @@ LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = 
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") 
+
+ggsave("fig9F.jpeg", plot = LW6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
@@ -613,6 +648,8 @@ LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_ex
   theme(axis.text.x = element_blank()) + 
   xlab("")
 
+ggsave("fig9G.jpeg", plot = LW7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -623,6 +660,9 @@ LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wa
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("")
+
+ggsave("fig9H.jpeg", plot = LW8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -633,6 +673,9 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("")
+
+ggsave("fig9I.jpeg", plot = LW9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ```
 
 ```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots representing *L. pallida* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8}
@@ -668,6 +711,9 @@ ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10A.jpeg", plot = ET1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -677,6 +723,9 @@ ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = t
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10B.jpeg", plot = ET2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -686,6 +735,9 @@ ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = te
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10C.jpeg", plot = ET3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -695,6 +747,9 @@ ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10D.jpeg", plot = ET4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -704,6 +759,9 @@ ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10E.jpeg", plot = ET5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -713,6 +771,9 @@ ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10F.jpeg", plot = ET6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -722,6 +783,9 @@ ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10G.jpeg", plot = ET7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -731,6 +795,9 @@ ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regim
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10H.jpeg", plot = ET8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -740,6 +807,9 @@ ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig10I.jpeg", plot = ET9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = TRUE) + 
@@ -749,6 +819,8 @@ ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = te
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4) 
+
+ggsave("fig10J.jpeg", plot = ET10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 eck_deep$wave_exposure <- factor(eck_deep$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"))
 
@@ -766,6 +838,9 @@ EW1 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wav
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig11A.jpeg", plot = EW1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -776,6 +851,9 @@ EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill =
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig11B.jpeg", plot = EW2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -787,6 +865,9 @@ EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig11C.jpeg", plot = EW3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -797,7 +878,10 @@ EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = w
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level"))  
+  guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig11D.jpeg", plot = EW4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -808,7 +892,10 @@ EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wav
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level"))  
+  guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig11E.jpeg", plot = EW5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -820,17 +907,23 @@ EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = w
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig11F.jpeg", plot = EW6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
   stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
   xlab("") + 
-  ylab("Stipe circumference (cm)") +
+  ylab("Stipe circ (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig11G.jpeg", plot = EW7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -842,6 +935,9 @@ EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exp
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig11H.jpeg", plot = EW8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -852,7 +948,10 @@ EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wav
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level")) 
+  guides(fill=guide_legend(title="Wave exposure level"))
+
+ggsave("fig11I.jpeg", plot = EW9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) + 
@@ -864,6 +963,9 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig11J.jpeg", plot = EW10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ```
 
 ```{r deep ecklonia temp plot, echo=FALSE, fig.cap='\\label{fig:deep eck temp plot}Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
@@ -884,6 +986,9 @@ EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12A.jpeg", plot = EST1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -893,6 +998,9 @@ EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill =
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12B.jpeg", plot = EST2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -903,6 +1011,9 @@ EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = 
   xlab("") + 
   ylim(0, 20) +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12C.jpeg", plot = EST3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -912,6 +1023,9 @@ EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = t
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12D.jpeg", plot = EST4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -921,6 +1035,9 @@ EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12E.jpeg", plot = EST5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -930,6 +1047,9 @@ EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = t
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12F.jpeg", plot = EST6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -940,6 +1060,9 @@ EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = tem
   xlab("") +
   ylim(0, 30) +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12G.jpeg", plot = EST7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -949,6 +1072,9 @@ EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_reg
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12H.jpeg", plot = EST8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -958,6 +1084,9 @@ EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12I.jpeg", plot = EST9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -967,6 +1096,8 @@ EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = 
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
+
+ggsave("fig12J.jpeg", plot = EST10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 # morphology grouped by wave exposure
 eck_shall$wave_exposure <- factor(eck_shall$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"))
@@ -983,6 +1114,9 @@ ESW1 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_mass, fill = w
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig13A.jpeg", plot = ESW1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -993,6 +1127,9 @@ ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig13B.jpeg", plot = ESW2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1004,6 +1141,9 @@ ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) + 
   ylim(0,25)
+
+ggsave("fig13C.jpeg", plot = ESW3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1014,6 +1154,9 @@ ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill =
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig13D.jpeg", plot = ESW4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1024,6 +1167,9 @@ ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = w
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig13E.jpeg", plot = ESW5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1034,17 +1180,23 @@ ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill =
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
+
+ggsave("fig13F.jpeg", plot = ESW6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
   stat_compare_means(method = "kruskal.test", label = "p.signif", label.y.npc = c('top')) + 
  ylim(0,30) +
-  ylab("Stipe circumference (cm)") +
+  ylab("Stipe circ (cm)") +
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level"))  
+  guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig13G.jpeg", plot = ESW7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1054,7 +1206,10 @@ ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_e
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
-  guides(fill=guide_legend(title="Wave exposure level"))  
+  guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig13H.jpeg", plot = ESW8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1065,6 +1220,9 @@ ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = w
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig13I.jpeg", plot = ESW9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
+
 ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) + 
@@ -1075,6 +1233,8 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
+
+ggsave("fig13J.jpeg", plot = ESW10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ```
 
