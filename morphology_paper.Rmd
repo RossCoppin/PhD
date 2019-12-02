@@ -37,12 +37,11 @@ nocite:  |
 knitr::opts_chunk$set(cache=FALSE)
 knitr::opts_chunk$set(fig.align = "center")
 ```
-
 # Introduction
 
 Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera [@Bolton2010], form the basis of one of the most productive ecosystems globally [@Mann1973].  Kelps generally have a dependence on cool-temperate and arctic seawater temperatures [@Bolton2010; @Mohring2014-bk; @Cavanaugh2011-ib; @Dayton1985], and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude of turf and sub-canopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates [@Mann1973; @Steneck2002], each depending on a wide suite of ecological services provided by kelp forests [@Gaines1987-bg; @Paul1993-bm; @Levin1994-qf; @Willis2003-xo; @anderson1997; @Dayton1985]. Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in their distribution [@Gorman2013-nj], abundance [@Cavanaugh2011-ib; @Dayton1998-xw], diversity [@Wing2007-tv; @Wernberg2008], composition [@Leliaert2000a; @Dayton1985; @Norderhaug2012-ks; @Harley2012], growth [@Cousens1982-ck] and productivity [@Pedersen2012-vr; @Dayton1998-xw; @Krumhansl2012].
 
-Given that kelps are cool-temperate organisms which are vulnerable to dislodgement under high wave exposure scenarios, increases in storm frequency and magnitude, and changes in ocean temperature, changes in these influences pose a direct threat to their survival; which is a concern considering that these variables are known to be affected by climate change[@Russo2014; @Reguero2019; @Weisse2010; @Rose2012; @Rummukainen2012]. Warmer temperatures reduces the resilience of kelp individuals to storm disturbance [@wernberg2010], causes fragmentation through weakening tissues [@Simonson2015] and reduces growth and productivity [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]; while storms and high wave energy dislodge and break kelps [@byrnes2011; @graham2004; @seymour1989]. Despite these threats and disturbances kelps persist across a broad range of environments which is largely due to their morphological plasticity [@FowlerWalker2006; @wernberg2010]. A study by @Wernberg2003-mp investigated the morphology of *Ecklonia radiata* (C. Agardh) J. Agardh. in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australian coast. They found no correlation between spatial distance and morphological similarity; rather the morphology of the kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales [@Wernberg2003-mp]. Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Deep and shallow water environments may differ in abiotic processes such as the degree of water column mixing [@Smit2013a], solar heating [@Dellatorre2012; @Dunne2001] and effects of wave dampening [@Kobayashi1993-os; @Mia2013; @Dubi1995]. 
+Given that kelps are cool-temperate organisms which are vulnerable to dislodgement under high wave exposure scenarios, increases in storm frequency and magnitude, and changes in ocean temperature, changes in these influences pose a direct threat to their survival; which is a concern considering that these variables are known to be affected by climate change[@Russo2014; @Reguero2019; @Weisse2010; @Rose2012; @Rummukainen2012]. Warmer temperatures reduces the resilience of kelp individuals to storm disturbance [@Wernberg2010b], causes fragmentation through weakening tissues [@Simonson2015] and reduces growth and productivity [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]; while storms and high wave energy dislodge and break kelps [@byrnes2011; @graham2004; @seymour1989]. Despite these threats and disturbances kelps persist across a broad range of environments which is largely due to their morphological plasticity [@FowlerWalker2006; @Wernberg2010a]. A study by @Wernberg2003-mp investigated the morphology of *Ecklonia radiata* (C. Agardh) J. Agardh. in order to quantify the morphological variation and whether it was dependent on spatial differences along the Australian coast. They found no correlation between spatial distance and morphological similarity; rather the morphology of the kelps was representative of multiple environmental forcings on different morphological characters at different spatial scales [@Wernberg2003-mp]. Due to the complex effects of environmental drivers on kelp morphology, one can also expect differences in morphology between deep and shallow water populations of the same species. Deep and shallow water environments may differ in abiotic processes such as the degree of water column mixing [@Smit2013a], solar heating [@Dellatorre2012; @Dunne2001] and effects of wave dampening [@Kobayashi1993-os; @Mia2013; @Dubi1995]. 
 
 Although multiple environmental factors play a role in kelp morphological adaptation, wave exposure and temperature have been identified as the main drivers across various kelp species [@bekkby2014; @Wernberg2005c; @Denny2002; @Hurd2000; @FowlerWalker2005; @Thomsen2004; @mabin2013]. For example, a study by @Serisawa2002-dc compared the morphology of *Ecklonia cava* Kjellman growing at warmer and cooler sites, and showed wrinkling of the blade and reduced size to be a characteristic of higher temperature ranges. Warmer temperature affects important kelp physiological processes such as photosynthesis and respiration, which influences growth and productivity and ultimately leads to a reduction in size [@bearham2013; @gerard1997; @gao2013; @zimmerman1986]. Past research has shown that in highly wave exposed areas kelp morphology tends to take on characteristics which reduce drag, increase strength and increase flexibility [@Denny2002; @Hurd2000; @FowlerWalker2005; @Thomsen2004]. For example, a study by @Wernberg2005c examined the consistency of wave exposure as a driver of *E. radiata* across a broad geographic range, and showed trends towards drag-reducing (small size, narrow laterals and blades, low spinosity) and increased strength (large holdfast, thick stipe and thick blades and lamina) at high wave exposure sites.
 
@@ -354,7 +353,6 @@ wave_boxplot_1 <- ggplot(data = wave_ann_meta, aes(x = region, y = hs_mean, fill
   theme_bw() +
   scale_fill_grey(start = 0.4, end = 0.8) + 
   theme(axis.text.y=element_text(vjust=0.3)) 
-ggsave("hs_plot.jpeg", plot = wave_boxplot_1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill  = region)) + 
   geom_boxplot(show.legend = FALSE) + 
@@ -366,8 +364,6 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
   theme_bw() +
   scale_fill_grey(start = 0.4, end = 0.8) + 
   theme(axis.text.y=element_text(vjust=0.3))
-ggsave("tp_plot.jpeg", plot = wave_boxplot_2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 
 ```
 
@@ -375,36 +371,39 @@ ggsave("tp_plot.jpeg", plot = wave_boxplot_2, dpi = 300, device = "jpeg", path =
 ggarrange(wave_plot_1,wave_boxplot_1, wave_plot_2, wave_boxplot_2, common.legend = FALSE, labels = c("A", "B", "C", "D"), align = "hv")
 ```
 
-```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}The total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). Annual (top left), Austral summer (top right) and Austral winter (bottom) respectively'}
+```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}The total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). Total (A), Austral winter (B) and Austral summer (C) respectively'}
 
 library(png)
+library(jpeg)
 library(grid)
 library(gridExtra)
 
-img_wave_rose <- readPNG("figures/wave_rose.png")
-grid.raster(img_wave_rose)
+img_wave_rose_A <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_5A.jpg")))
+img_wave_rose_B <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_5B.jpg")))
+img_wave_rose_C <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_5C.jpg")))
 
+ggarrange(img_wave_rose_A, img_wave_rose_B, img_wave_rose_C, ncol = 2, nrow = 2, labels = "AUTO")
 ```
 
 Data for median wave direction showed no trend across timescales; however, the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula (see figure \ref{fig:wave rose}).
 
-```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}The total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length. Annual total (A), summer (B), winter (C), spring (D) and autumn (D).'}
+```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}The total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length. Total (A), summer (B), winter (C), spring (D) and autumn (E).'}
 
 library(png)
 library(grid)
 library(gridExtra)
 
-wp_1 <- rasterGrob(as.raster(readPNG("figures/CapePen_Total.PNG")), interpolate = FALSE)
-wp_2 <- rasterGrob(as.raster(readPNG("figures/CapePen_Summer.PNG")), interpolate = FALSE)
-wp_3 <- rasterGrob(as.raster(readPNG("figures/CapePen_Winter.PNG")), interpolate = FALSE)
-wp_4 <- rasterGrob(as.raster(readPNG("figures/CapePen_Spring.PNG")), interpolate = FALSE)
-wp_5 <- rasterGrob(as.raster(readPNG("figures/CapePen_Autumn.PNG")), interpolate = FALSE)
-wp_6 <- rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")), interpolate = FALSE)
-grid.arrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2)
+wp_1 <- rasterGrob(as.raster(readPNG("figures/CapePen_Total.PNG")))
+wp_2 <- rasterGrob(as.raster(readPNG("figures/CapePen_Summer.PNG")))
+wp_3 <- rasterGrob(as.raster(readPNG("figures/CapePen_Winter.PNG")))
+wp_4 <- rasterGrob(as.raster(readPNG("figures/CapePen_Spring.PNG")))
+wp_5 <- rasterGrob(as.raster(readPNG("figures/CapePen_Autumn.PNG")))
+wp_6 <- rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")))
+
+ggarrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2, labels = "AUTO", align = "hv")
 
 #wave_power_map <- readPNG("figures/wave_power_all_labels.png")
 #grid.raster(wave_power_map)
-
 ```
 
 In figure \ref{fig:wave power map} the total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length). The classification from fully sheltered to extremely exposed is based on the total wave energy upper and lower limits. The western periphery of the Cape Peninsula is almost continuously exposed to high wave exposures while the eastern periphery of the peninsula (western coastline of False Bay) revealed sheltered wave exposures (see figure \ref{fig:wave power map}). There the marked seasonality, with higher energy waves during winter, may be clearly observed once more. 
@@ -443,8 +442,6 @@ LT1 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaWeight, fill = tem
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig8A.jpeg", plot = LT1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -456,8 +453,6 @@ LT2 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaLength, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig8B.jpeg", plot = LT2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -471,8 +466,6 @@ LT3 <- ggplot(data = lam_data, aes(x = temp_regime, y = laminaThickness, fill = 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig8C.jpeg", plot = LT3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -484,8 +477,6 @@ LT4 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeMass, fill = temp_r
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig8D.jpeg", plot = LT4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
@@ -499,8 +490,6 @@ LT5 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeLength, fill = temp
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig8E.jpeg", plot = LT5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -512,8 +501,6 @@ LT6 <- ggplot(data = lam_data, aes(x = temp_regime, y = stipeDiameter, fill = te
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey()
-
-ggsave("fig8F.jpeg", plot = LT6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp)  + 
@@ -527,8 +514,6 @@ LT7 <- ggplot(data = lam_data, aes(x = temp_regime, y = digits, fill = temp_regi
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig8G.jpeg", plot = LT7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -541,8 +526,6 @@ LT8 <- ggplot(data = lam_data, aes(x = temp_regime, y = thallusMass, fill = temp
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig8H.jpeg", plot = LT8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -553,8 +536,6 @@ LT9 <- ggplot(data = lam_data, aes(x = temp_regime, y = totalLength, fill = temp
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig8I.jpeg", plot = LT9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 lam_data$wave_exposure <- factor(lam_data$wave_exposure, levels=c("Very sheltered", "Very exposed", "Moderately exposed","Fully sheltered","Extremely sheltered"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed"))#wave exposure levels for lamanaria
 pos_exposure_lam <- c("Fully sheltered", "Extremely sheltered", "Very sheltered", "Moderately exposed", "Very exposed")#custom positions
@@ -570,8 +551,6 @@ LW1 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaWeight, fill = w
   theme(axis.text.x = element_blank()) + 
   xlab("") 
 
-ggsave("fig9A.jpeg", plot = LW1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -582,8 +561,6 @@ LW2 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaLength, fill = w
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("")
-
-ggsave("fig9B.jpeg", plot = LW2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
@@ -596,8 +573,6 @@ LW3 <- ggplot(data = lam_data, aes(x = wave_exposure, y = laminaThickness, fill 
   theme(axis.text.x = element_blank()) + 
   xlab("") 
 
-ggsave("fig9C.jpeg", plot = LW3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -608,8 +583,6 @@ LW4 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeMass, fill = wave
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") 
-
-ggsave("fig9D.jpeg", plot = LW4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
@@ -622,8 +595,6 @@ LW5 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeLength, fill = wa
   theme(axis.text.x = element_blank()) + 
   xlab("") 
 
-ggsave("fig9E.jpeg", plot = LW5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -634,8 +605,6 @@ LW6 <- ggplot(data = lam_data, aes(x = wave_exposure, y = stipeDiameter, fill = 
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("") 
-
-ggsave("fig9F.jpeg", plot = LW6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam)  + 
@@ -648,8 +617,6 @@ LW7 <- ggplot(data = lam_data, aes(x = wave_exposure, y = digits, fill = wave_ex
   theme(axis.text.x = element_blank()) + 
   xlab("")
 
-ggsave("fig9G.jpeg", plot = LW7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -661,8 +628,6 @@ LW8 <- ggplot(data = lam_data, aes(x = wave_exposure, y = thallusMass, fill = wa
   theme(axis.text.x = element_blank()) + 
   xlab("")
 
-ggsave("fig9H.jpeg", plot = LW8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_lam) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) +
@@ -673,8 +638,6 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
   theme_bw() +
   theme(axis.text.x = element_blank()) + 
   xlab("")
-
-ggsave("fig9I.jpeg", plot = LW9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ```
 
@@ -712,8 +675,6 @@ ET1 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_mass, fill = temp_
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig10A.jpeg", plot = ET1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -723,8 +684,6 @@ ET2 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_length, fill = t
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig10B.jpeg", plot = ET2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -736,8 +695,6 @@ ET3 <- ggplot(data = eck_deep, aes(x = temp_regime, y = primary_width, fill = te
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig10C.jpeg", plot = ET3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -747,8 +704,6 @@ ET4 <- ggplot(data = eck_deep, aes(x = temp_regime, y = frond_length, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig10D.jpeg", plot = ET4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -760,8 +715,6 @@ ET5 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_mass, fill = temp_
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig10E.jpeg", plot = ET5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -771,8 +724,6 @@ ET6 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_length, fill = tem
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig10F.jpeg", plot = ET6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -784,8 +735,6 @@ ET7 <- ggplot(data = eck_deep, aes(x = temp_regime, y = stipe_circ, fill = temp_
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig10G.jpeg", plot = ET7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -795,8 +744,6 @@ ET8 <- ggplot(data = eck_deep, aes(x = temp_regime, y = tufts, fill = temp_regim
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig10H.jpeg", plot = ET8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -808,8 +755,6 @@ ET9 <- ggplot(data = eck_deep, aes(x = temp_regime, y = epi_length, fill = temp_
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig10I.jpeg", plot = ET9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = TRUE) + 
@@ -819,8 +764,6 @@ ET10 <- ggplot(data = eck_deep, aes(x = temp_regime, y = total_length, fill = te
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4) 
-
-ggsave("fig10J.jpeg", plot = ET10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 eck_deep$wave_exposure <- factor(eck_deep$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Very sheltered","Moderately exposed", "Exposed", "Very exposed"))
 
@@ -839,8 +782,6 @@ EW1 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_mass, fill = wav
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 
-ggsave("fig11A.jpeg", plot = EW1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -851,8 +792,6 @@ EW2 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_length, fill =
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-
-ggsave("fig11B.jpeg", plot = EW2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
@@ -866,8 +805,6 @@ EW3 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = primary_width, fill = 
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 
-ggsave("fig11C.jpeg", plot = EW3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -879,8 +816,6 @@ EW4 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = frond_length, fill = w
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-
-ggsave("fig11D.jpeg", plot = EW4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
@@ -894,8 +829,6 @@ EW5 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_mass, fill = wav
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 
-ggsave("fig11E.jpeg", plot = EW5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -907,8 +840,6 @@ EW6 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_length, fill = w
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-
-ggsave("fig11F.jpeg", plot = EW6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
@@ -922,8 +853,6 @@ EW7 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = stipe_circ, fill = wav
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 
-ggsave("fig11G.jpeg", plot = EW7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -935,8 +864,6 @@ EW8 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = tufts, fill = wave_exp
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-
-ggsave("fig11H.jpeg", plot = EW8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
@@ -950,8 +877,6 @@ EW9 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = epi_length, fill = wav
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))
 
-ggsave("fig11I.jpeg", plot = EW9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) + 
@@ -963,8 +888,6 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-
-ggsave("fig11J.jpeg", plot = EW10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ```
 
@@ -987,8 +910,6 @@ EST1 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_mass, fill = tem
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig12A.jpeg", plot = EST1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -998,8 +919,6 @@ EST2 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_length, fill =
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig12B.jpeg", plot = EST2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -1012,8 +931,6 @@ EST3 <- ggplot(data = eck_shall, aes(x = temp_regime, y = primary_width, fill = 
   ylim(0, 20) +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig12C.jpeg", plot = EST3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -1023,8 +940,6 @@ EST4 <- ggplot(data = eck_shall, aes(x = temp_regime, y = frond_length, fill = t
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig12D.jpeg", plot = EST4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -1036,8 +951,6 @@ EST5 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_mass, fill = tem
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig12E.jpeg", plot = EST5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -1047,8 +960,6 @@ EST6 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_length, fill = t
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig12F.jpeg", plot = EST6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -1061,8 +972,6 @@ EST7 <- ggplot(data = eck_shall, aes(x = temp_regime, y = stipe_circ, fill = tem
   ylim(0, 30) +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig12G.jpeg", plot = EST7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -1072,8 +981,6 @@ EST8 <- ggplot(data = eck_shall, aes(x = temp_regime, y = tufts, fill = temp_reg
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig12H.jpeg", plot = EST8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
@@ -1085,8 +992,6 @@ EST9 <- ggplot(data = eck_shall, aes(x = temp_regime, y = epi_length, fill = tem
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
 
-ggsave("fig12I.jpeg", plot = EST9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = temp_regime)) +
   scale_x_discrete(limits = pos_temp) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE, show.legend = FALSE) + 
@@ -1096,8 +1001,6 @@ EST10 <- ggplot(data = eck_shall, aes(x = temp_regime, y = total_length, fill = 
   theme(axis.text.x = element_blank()) + 
   xlab("") +
   scale_fill_grey(start = 0.8, end = 0.4)
-
-ggsave("fig12J.jpeg", plot = EST10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 # morphology grouped by wave exposure
 eck_shall$wave_exposure <- factor(eck_shall$wave_exposure, levels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"), labels=c("Fully sheltered", "Extremely sheltered", "Sheltered", "Exposed", "Very exposed"))
@@ -1115,8 +1018,6 @@ ESW1 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_mass, fill = w
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 
-ggsave("fig13A.jpeg", plot = ESW1, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1127,8 +1028,6 @@ ESW2 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_length, fill
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-
-ggsave("fig13B.jpeg", plot = ESW2, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
@@ -1142,8 +1041,6 @@ ESW3 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = primary_width, fill 
   guides(fill=guide_legend(title="Wave exposure level")) + 
   ylim(0,25)
 
-ggsave("fig13C.jpeg", plot = ESW3, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1154,8 +1051,6 @@ ESW4 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = frond_length, fill =
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-
-ggsave("fig13D.jpeg", plot = ESW4, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
@@ -1168,8 +1063,6 @@ ESW5 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_mass, fill = w
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
 
-ggsave("fig13E.jpeg", plot = ESW5, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1180,8 +1073,6 @@ ESW6 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_length, fill =
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level"))  
-
-ggsave("fig13F.jpeg", plot = ESW6, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
@@ -1195,8 +1086,6 @@ ESW7 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = stipe_circ, fill = w
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 
-ggsave("fig13G.jpeg", plot = ESW7, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE)  + 
@@ -1207,8 +1096,6 @@ ESW8 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = tufts, fill = wave_e
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-
-ggsave("fig13H.jpeg", plot = ESW8, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
@@ -1221,8 +1108,6 @@ ESW9 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = epi_length, fill = w
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
 
-ggsave("fig13I.jpeg", plot = ESW9, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
-
 ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill = wave_exposure)) +
   scale_x_discrete(limits = pos_exposure_shall) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE) + 
@@ -1233,8 +1118,6 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
   xlab("") +
   scale_fill_brewer(palette="OrRd") +
   guides(fill=guide_legend(title="Wave exposure level")) 
-
-ggsave("fig13J.jpeg", plot = ESW10, dpi = 300, device = "jpeg", path = "extra/morphology_paper_prep/")
 
 ```
 
@@ -1547,6 +1430,8 @@ A size reduction tactic has been shown before [@FowlerWalker2006; @Denny2002; @H
 
 Temperature variables were not a significant driver of kelp morphology in this study. Although temperature plays an important role in distribution [@Bolton2010; @Miller2011-pm; @Rinde2014] of kelp and physiological functioning of adults and gametophytes [@Mohring2014-bk; @Steneck2002; @gerard1997; @bearham2013; @Smale2017], there is little evidence in this study that temperature is an important driver of morphological variation. However, we suggest that temperature plays a larger role in determining kelp morphology at sites where wave energy is low enough not to elicit a response in morphological characteristics. Temperature metrics influence stipe length and frond length in shallow *E. maxima* individuals located at sites within False Bay; which was not the case for deeper *E. maxima* individuals as well as *L. pallida* which were largely driven by wave variables. The shallow *E. maxima* individuals may not experience the same amount of wave energy as do deeper populations. This may be due to wave dampening from deeper populations of *E. maxima*, which attenuate the wave energy entering coastal environments [@Kobayashi1993-os; @Jackson1984; @Mork1996-md]. The morphological variations in characteristics for deep *E. maxima* populations are not seen for shallow *E. maxima* populations. The lack of variation in shallow *E. maxima* populations was also found in previous research by [@Rothman2017-pn] who identified light as a significant driver. This influence of light may suggest photosynthetic ability and nutrient uptake as important drivers in shallow environments. Wave exposure may be reduced in shallow environments due to the wave damping effect of deep kelp and seaweed populations [@Kobayashi1993-os; @Mork1996-md; @Jackson1984] thereby reducing the need to adapt morphological characteristics to reduce drag. Furthermore, the reduction in differences between deep and shallow *E. maxima * at wave exposed sites on the western of the peninsula compared to sites in False Bay provides further evidence that wave exposure is not an important driver of shallow *E. maxima* populations. Increased temperatures corresponded with a reduction in stipe circumference, frond length, stipe length, total length and stipe mass resulting in slim or ‘skinny’ kelp individuals, which supports findings from previous research by [@mabin2013; @Serisawa2002-dc]. These findings were confirmed by the redundancy analysis which showed the contribution of wave variables as a driver of kelp morphological characteristics was lower compared to temperature variables. The sites do cluster by region but almost overlap entirely, further indicating wave variables are not the main driver. Although wave variables were not identified as an important driver, it is important to note the wave variables identified in the RDA differ to deep *E. maxima*. The identification of median wind direction (*dirw_median*) suggests that surface gravity waves as a driver compared to swell waves (*dir_median*) identified for *L. pallida* and *E. maxima*. 
 
+Kelps living in warmer environments have been shown to have a lower resilience to purbutation, such as storms [@Wernberg2010b]. The kelps in False Bay, may therefore be more vulnerable to dislodgment under high wave exposure scenarios compared to kelps on the western side of the Cape Peninsula, which experiences higher wave energy on a regular basis. In South Africa, the main contributing factors to the hydrodynamic environment are the Southern Annular Node (SAM) and El Nino Southern Oscillation (ENSO), while the latter is also the main source of variability [@Veitch2019]. These climate systems are expected to alter storm frequency and magnitude under future climate scenarios, which may increase the overall wave power around the Cape Peninsula. The magnitude-specific response of the kelp species to wave exposure in this study suggests there is a limit to morphological adaption in reducing the probability of dislodgement. Therefore, if this limit is reached and exceeded in future climate scenarios, kelp populations may risk being reduced over time. Furthermore, although recent studies suggest a cooling trend of coastal waters around South Africa [@Rouault2010-gi; @Smit2013a], the impact of marine heat waves may reduce the resilience of kelps to storms and high wave energy. Although this study identifies specific wave and temperature metrics that drive morphological adaptation and suggests a possible wave exposure threshold, it does not identify the metrics or magnitude of wave exposure required to dislodge kelp. Therefore, future studies should consider using advanced numerical methods to investigate the specific wave power needed to dislodge kelp, and ideally, given a specific set of morphological measures. These types of studies in conjunction with forecasting studies can be used to determine the vulnerability of kelp populations to future climate scenarios. 
+
 # Conclusion
 
 Past research shows that macroalgal morphological characteristics are largely driven by a wave exposure while others have suggested a complex interaction between various environmental variables. We confirm that wave variables are the main driver of kelp morphological characteristics in both *E. maxima *and *L. pallida* populations around the Cape Peninsula, and differences in morphological characteristics between shallow and deep populations of *E. maxima* may reflect differences in hydrodynamic and temperature regimes. This study also confirms the findings of previous research which shows morphological adaptation is dependent on the magnitude of wave exposure, but provides quantitative, reproducible measure of wave exposure while identifying the specific wave metrics and wave energy thresholds involved. Furthermore, the current study highlights the need to understand how kelp populations, which are not exposed to high wave energy and morphological characteristics are largely driven by temperature, are vulnerable to changes in storm frequency and magnitude. Kelp populations located in low wave energy environments, such as False Bay, may be more vulnerable to increased storm frequency and magnitude in future climate scenarios. 
@@ -1557,11 +1442,11 @@ The authors declare that the research was conducted in the absence of any commer
 
 # Author Contributions
 
-RC conceptualised the scope of the research reported in this paper, collected samples, undertook the majority of numerical and statistical analyses, made the first round of interpretation, and did the majority of the writing. AS and CR provided guidance in terms of  writing, statistical analyses, and the final draft of the paper, as well some writing in the relevant sections. RS aided in fieldwork and statistical analyses for the temperature data. TP performed the initial analyses and interpretation of the data.
+RC conceptualised the scope of the research reported in this paper, collected samples, undertook the majority of numerical and statistical analyses, made the first round of interpretation, and did the majority of the writing. AS and CR provided guidance in terms of  writing, statistical analyses, and the final draft of the paper. 
 
 # Funding 
 
-The research was funded by the South African National Research Foundation ([http://www.nrf.ac.za](http://www.nrf.ac.za)) programme "Thermal characteristics of the South African nearshore:implications for biodiversity" (CPRR14072378735).
+The research was funded by the South African National Research Foundation ([http://www.nrf.ac.za](http://www.nrf.ac.za)). Funding number is CSRP170430229220
 
 Aside from funding provided, the funders had no role in the study design, data collection and analysis, decision to publish, or preparation of the manuscript. 
 
