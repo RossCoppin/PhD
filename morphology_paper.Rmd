@@ -1,6 +1,6 @@
 ---
 title: Using numerical modelling to investigate temperature and wave exposure as drivers
-  of macroalgal morphological characteristics
+  of morphological characteristics of the kelps, Ecklonia maxima and Laminaria pallida
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 output:
   word_document:
@@ -56,14 +56,69 @@ The aim of this study is, therefore, to understand how temperature and wave expo
 
 Sites were chosen to represent an array of temperature and wave gradients, as indicated in figure \ref{fig:map study sites}. St. Helena Bay and Betty's Bay constituted the north-western and south-eastern boundary sites, respectively. These sites are roughly 300 km apart, lie within separate marine provinces @Smit2017, and span the majority of the south-west coast, in varying thermal and wave energy regimes. The region is dominated by kelp communities that persist in contrasting abiotic environments. The west coast region has been termed cool-temperate, which is defined as a region where mean monthly temperatures are always above 10°C and below 15°C [@Smit2013a]. East of Cape Point marks the beginning of an overlap or transition area, which is also referred to as the Benguela-Agulhas Transition Zone [@Smit2013a]. The Agulhas Marine Province is characterised by a wide temperature range of up to 7°C difference between mean monthly temperatures between summer and winter and is classified as warm-temperate [@Smit2013a]. 
 
-```{r map study sites, echo=FALSE, fig.height=5, fig.width=5, message=FALSE, warning=FALSE, fig.cap="\\label{fig:map study sites}Map of the study area and sampling sites. The red dot indicates the position of Cape Town for sake of reference."}
-
-library(png)
-library(grid)
+```{r map processing, message=FALSE, warning=FALSE, include=FALSE}
+## Load software:
+library(ggplot2)
+library(rgdal)
+library(tidyverse)
+library(viridis)
 library(gridExtra)
+source("map/scaleBarFunc.R")
+## Coastline of Southern Africa
+load("map/south_africa_coast_hi_res.Rdata")
+## Read in metadata
+study_sites <- read.csv("map/metadata_map.csv", sep = ";")
 
-map <- readPNG("figures/sa_map.png")
-grid.raster(map)
+study_sites_edit <- study_sites %>%
+  filter(site == "St Helena Bay"|site == "Betty's Bay")
+
+## Make first map of whole study area
+map_A <- ggplot() +
+geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+            size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = study_sites, aes(x = lon, y = lat), color = "red") +
+  geom_text(data = study_sites_edit, aes(x = lon, y = lat, label = site), nudge_x = -0.1, nudge_y = -0.01) +
+  annotate("text", label = "WARM\nTEMPERATE", x = 19.0, y = -34.5, size = 4.0, angle = 0, colour = "black") +
+  annotate("text", label = "COOL\nTEMPERATE", x =17.8, y = -33.5, size = 4.0, angle = 0, colour = "black") +
+  annotate("text", label = "Cape\nPeninsula", x = 18.4, y = -34.5, size = 3.0, angle = 0, colour = "black") +
+  scaleBar(lon = 17.8, lat = -34.45, distanceLon = 10, distanceLat = 10, distanceLegend = -10, dist.unit = "km",
+  arrow.length = 10, arrow.distance = 15, arrow.North.size = 3) +
+  coord_cartesian(xlim = c(17.75, 19.15), ylim = c(-32.50, -34.55)) +
+  theme(axis.ticks = element_blank()) + # Remove tick marks
+  xlab("Latitude") +
+  ylab("Longitude")
+ggsave(filename = "map_A.jpg", plot = last_plot(), device = "jpeg", path = "map/")
+## Make 2nd map of just the peninsula
+map_B <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = study_sites, aes(x = lon, y = lat, colour = "red"), show.legend = FALSE) +
+  geom_text(data = study_sites, aes(x = lon, y = lat, label = site), nudge_x = 0.02, nudge_y = 0) +
+  coord_cartesian(xlim = c(18.275, 18.525), ylim = c(-34.375, -34.100)) +
+  theme(axis.ticks = element_blank(), # Remove tick marks
+        axis.text = element_blank(), # Remove lat/ lon numbers
+        axis.title = element_blank()) # Remove lat/ lon labels
+ggsave(filename = "map_B.jpg", plot = last_plot(), device = "jpeg", path = "map/")
+
+# Convert the figures to grobs
+grob_A <- ggplotGrob(map_A)
+grob_B <- ggplotGrob(map_B)
+
+## Create combined map
+map_combined <- ggplot() +
+  # First set the x and y axis limits so we know what the ranges are
+  coord_equal(xlim = c(1, 10), ylim = c(1, 10), ratio = 1, expand = TRUE, clip = "on") +
+  # Then we place our facetsover one another using the coordinates we created
+  annotation_custom(grob_A,
+                    xmin = 1, xmax = 10, ymin = 1, ymax = 10) +
+  annotation_custom(grob_B,
+                    xmin = 4, xmax = 10, ymin = 4.5, ymax = 10)
+ggsave(filename = "map_combined.jpg", plot = last_plot(), device = "jpeg", path = "map/", width = 8, height = 8)
+```
+
+
+```{r map study sites, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, fig.cap="\\label{fig:map study sites}Map of the study area and sampling sites. The red dot indicates the position of Cape Town for sake of reference."}
+map_combined
 ```
 
 The annual and seasonal patterns in both wind influence the thermal regime around the coastline by inducing upwelling. Upwelling brings deep, cool nutrient-rich water to coastal areas which causes a decrease in temperature [@Field1980a; @Andrews1980; @Gill1974-nt; @Cram1970-jw; @Rouault2010-gi; @Blanke2002]. The wind speed and wind direction help drive upwelling in summer on the western side of the Cape Peninsula, where southerly winds blow parallel to the coast and trigger upwelling events [@Field1980a; @Rouault2010-gi]. This is not the case for False Bay, which is shielded from the dominating wind and swell that the Cape Peninsula is subjected to. In the winter months, upwelling becomes more favourable in False Bay due to the change in swell and wind direction, causing lower temperatures to dominate during this time [@Rouault2010-gi; @Andrews1980]. Due to the Cape Peninsula temperate latitude, winter months bring an increased frequency of frontal depressions that originate from the Southern Ocean [@Reason2006]. These low pressures are joined by large swells with increased wave energy. The nearshore environment, with the accompanied biota, therefore experiences high wave energy events, with increased frequency in winter [@Veitch2019]. The large peninsula acts as an obstruction for large south westerly swells, providing decreased wave energy along the west side of False Bay [@Shipley1964]. Conversely, the west coast of Cape Point is battered by these large swells. Multiple sites, therefore, exist where kelps grow in diverse temperature and wave energy climates, in close proximity and on the same side. The topography and elevation along the Cape Peninsula channel and shield winds along False Bay. This is, however, absent in winter, when strong northerly winds are prevalent from St. Helena Bay to Betty's Bay [@Field1980a; @Jury1985-nr; @Andrews1980; @Jury1980-ov]. 
@@ -85,8 +140,11 @@ Wave model variable data formed part of the South African Coastal Vulnerability 
 The morphological characteristics of both species are presented in figure \ref{fig:schematic}. *Laminaria pallida* is characterised by a single smooth blade which is divided longitudinally into sections, and develops from a single meristematic region located at the junction between the blade and the stipe [@Dyer2018-rv]. This species has a solid stipe along the south-west coast but develops a hollow stipe along the west coast northward and into Namibia [@Rothman2017-pn]. *Ecklonia maxima* consists of a single primary blade which develops above a gas-filled float and a hollow stipe below. Secondary blades are produced laterally from the primary blade from several meristematic regions along the margins of the primary blade [@Dyer2018-rv]. Both species are held to the substrate by finger-like haptera, collectively known as the holdfast. 
 
 ```{r schematic, echo=FALSE, fig.cap='\\label{fig:schematic}Schematic of *Laminaria pallida* and *Ecklonia maxima* morphology [@Dyer2018-rv].', fig.height=6, fig.width=6}
+library(jpeg)
+library(grid)
+library(gridExtra)
 
-schematic <- readPNG("figures/kelp_diagram.png")
+schematic <- readJPEG("figures/kelp_diagram.jpg")
 grid.raster(schematic)
 ```
 
@@ -389,16 +447,17 @@ Data for median wave direction showed no trend across timescales; however, the v
 
 ```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}The total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length. Total (A), summer (B), winter (C), spring (D) and autumn (E).'}
 
-library(png)
+library(jpeg)
 library(grid)
 library(gridExtra)
+library(ggpubr)
 
-wp_1 <- rasterGrob(as.raster(readPNG("figures/CapePen_Total.PNG")))
-wp_2 <- rasterGrob(as.raster(readPNG("figures/CapePen_Summer.PNG")))
-wp_3 <- rasterGrob(as.raster(readPNG("figures/CapePen_Winter.PNG")))
-wp_4 <- rasterGrob(as.raster(readPNG("figures/CapePen_Spring.PNG")))
-wp_5 <- rasterGrob(as.raster(readPNG("figures/CapePen_Autumn.PNG")))
-wp_6 <- rasterGrob(as.raster(readPNG("figures/CapePen_Legend.PNG")))
+wp_1 <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_6A.jpg")))
+wp_2 <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_6B.jpg")))
+wp_3 <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_6C.jpg")))
+wp_4 <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_6D.jpg")))
+wp_5 <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_6E.jpg")))
+wp_6 <- rasterGrob(as.raster(readJPEG("figures/frontiers_fig_prep/fig_6_legend.jpg")))
 
 ggarrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2, labels = "AUTO", align = "hv")
 
