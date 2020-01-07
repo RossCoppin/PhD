@@ -1,0 +1,45 @@
+---
+title: 'Hydrodynamic and particle dispersion modelling of floating solitary kelp:
+  An experimental approach'
+author: "Ross Coppin"
+date: "16/10/2019"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+Importance of kelp rafting as a dispersal mechanism
+
+Discuss previous rafting studies and the gaps within them
+Identify important coeffients
+
+> Bouyancy (Net)
+> Drag and resistance
+> Effect of wind on surface currents/waves 
+> Stokes drift
+> Wind and swell direction
+> Direct effect of wind on kelp
+> Dispersal scale
+
+Highlight the gaps and explain how current study will address gaps
+
+Aims and objectives
+
+# Methods
+## Study species
+## Study site
+## Calculating coefficents
+## Dispersal model
+
+# Results
+## Coeffients
+## Dispersal model
+
+# Discussion
+
