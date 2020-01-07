@@ -7,7 +7,7 @@ author:
 output:
   word_document:
     fig_caption: yes
-    reference_docx: chapter_1_template.docx
+    reference_docx: markdown/thesis_template.docx
     toc: yes
   html_document:
     df_print: paged

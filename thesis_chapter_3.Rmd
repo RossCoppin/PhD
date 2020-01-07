@@ -2,10 +2,14 @@
 title: 'Hydrodynamic and particle dispersion modelling of floating solitary kelp:
   An experimental approach'
 author: "Ross Coppin"
-date: "16/10/2019"
 output:
+  word_document:
+    reference_docx: markdown/thesis_template.docx
   html_document:
     df_print: paged
+  pdf_document:
+    fig_caption: yes
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
