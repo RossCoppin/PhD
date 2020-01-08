@@ -3,10 +3,10 @@ title: Using numerical modelling to investigate temperature and wave exposure as
   of morphological characteristics of the kelps, Ecklonia maxima and Laminaria pallida
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 output:
-  word_document:
-    reference_docx: markdown/frontiers_template.docx
   html_document:
     df_print: paged
+  word_document:
+    reference_docx: markdown/frontiers_template.docx
   pdf_document:
     fig_caption: yes
 bibliography: references.bib

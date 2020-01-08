@@ -1,18 +1,22 @@
 ---
-title: "Quantifying passive kelp rafting phenomena and connectivity of nearshore communities around the coast of South Africa:Development of a 3D spectral numerical coastal-flow model"
-author: 
+title: Quantifying passive kelp rafting phenomena and connectivity of nearshore communities
+  model
+  around the coast of South Africa:Development of a 3D spectral numerical coastal-flow
+author:
 - RM Coppin^[University of the Western Cape]
 - C Rautenbach^[South African Weather Service]
 - AJ Smit^[University of the Western Cape]
 output:
+  html_document:
+    df_print: paged
+    theme: simplex
+    toc: yes
   word_document:
     fig_caption: yes
     reference_docx: markdown/thesis_template.docx
     toc: yes
-  html_document:
-    df_print: paged
+  pdf_document:
     toc: yes
-    theme:  simplex
 bibliography: references.bib
 ---
 
