@@ -3,10 +3,10 @@ title: Using numerical modelling to investigate temperature and wave exposure as
   of morphological characteristics of the kelps, Ecklonia maxima and Laminaria pallida
 author: "R. Coppin, C. Rautenbach, T. Ponton and A.J Smit"
 output:
-  html_document:
-    df_print: paged
   word_document:
     reference_docx: markdown/frontiers_template.docx
+  html_document:
+    df_print: paged
   pdf_document:
     fig_caption: yes
 bibliography: references.bib
@@ -98,7 +98,7 @@ map_B <- ggplot() +
   theme(axis.ticks = element_blank(), # Remove tick marks
         axis.text = element_blank(), # Remove lat/ lon numbers
         axis.title = element_blank()) # Remove lat/ lon labels
-ggsave(filename = "map_B.jpg", plot = last_plot(), device = "jpeg", path = "map/")
+#ggsave(filename = "map_B.jpg", plot = last_plot(), device = "jpeg", path = "map/")
 
 # Convert the figures to grobs
 grob_A <- ggplotGrob(map_A)
@@ -113,7 +113,7 @@ map_combined <- ggplot() +
                     xmin = 1, xmax = 10, ymin = 1, ymax = 10) +
   annotation_custom(grob_B,
                     xmin = 4, xmax = 10, ymin = 4.5, ymax = 10)
-ggsave(filename = "map_combined.jpg", plot = last_plot(), device = "jpeg", path = "map/", width = 8, height = 8)
+#ggsave(filename = "map_combined.jpg", plot = last_plot(), device = "jpeg", path = "map/", width = 8, height = 8)
 ```
 
 
