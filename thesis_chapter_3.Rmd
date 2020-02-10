@@ -37,12 +37,23 @@ Aims and objectives
 
 # Methods
 ## Study species
-## Study site
-## Calculating coefficents
+## Study sites
+## Experimental work
+### Kelp bouyancy
+
+The aim of this experiment as to determine the epibiont load required to cause a floating kelp individual to become negatively buoyant, i.e to sink. Since epibiont load may be in the form of epiphytes and bryozoans, estimated percentage cover for each case was recorded for the whole sporophyte as well as locations along the plant. Before the experiments took place, a weighted net bag was suspended by a string from a spring balance so that the bag was submersed in water, and the weight recorded. A plant was then inserted into the bag, and the new weight was measured and recorded. The difference between weights recorded with and without the plant was considered the plants *net submerged buoyancy*. The plant was then placed in a tidal pool and allowed to float freely. The percentage of the whole plant, head (primary blade and fronds), stipe and holdfast which was submerged was recorded. In addition, photos using a setsquare for scale were also taken for each case. Finally, various morphological characteristics were measured (see table ??) based on methods by @rothman2017 and @coppin2020. For for each location along the sporophyte, epiphytes were carefully scrapped off into a bag and weighed. 
+
+### Kelp drift characteristcs
+
+The aim of this experiment was to determine drift characteristics and drift rate of an *E. maxima* individual floating at the surface. In each case, a beach-cast or *in situ* individual was collected and the same morphological characteristics as per the buoyancy experiment were collected, however the various mass measurements were recorded after the experiment was complete as this requires the individual to be cut and divided into sections, thereby compromising buoyancy. The kelp individual was released from behind the breakwater and allowed to float freely. The percentage of the kelp plant submerged for each part of the plant was recorded, and a GPS coordinate recorded. The floating kelp was then followed by a small inflatable or kayak and a GPS location of both the kelp and observer was recorded. When recording the GPS location of the kelp from a boat, a diver swam to the location of the kelp and recorded its coordinates with a GPS. This was done to ensure the boat wake did not interfere with the natural drift characteristics of the kelp individual. 
+
+Wind and wave data were collected by means of hind-cast numerical modelling to provide quantitative estimates.
+
+## Calculating coefficients
 ## Dispersal model
 
 # Results
-## Coeffients
+## Coefficients
 ## Dispersal model
 
 # Discussion
