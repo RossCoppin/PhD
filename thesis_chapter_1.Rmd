@@ -1,21 +1,19 @@
 ---
-title: Quantifying passive kelp rafting phenomena and connectivity of nearshore communities
-  model
-  around the coast of South Africa:Development of a 3D spectral numerical coastal-flow
+title: Quantifying passive kelp rafting phenomena and connectivity of nearshore communities around the coast of South Africa through development of a 3D spectral numerical coastal-flow model
 author:
-- RM Coppin^[University of the Western Cape]
+- R Coppin^[University of the Western Cape]
 - C Rautenbach^[South African Weather Service]
 - AJ Smit^[University of the Western Cape]
 output:
-  word_document:
-    fig_caption: yes
-    reference_docx: markdown/thesis_template.docx
-    toc: yes
   html_document:
     df_print: paged
     theme: simplex
     toc: yes
   pdf_document:
+    toc: yes
+  word_document:
+    fig_caption: yes
+    reference_docx: markdown/thesis_template.docx
     toc: yes
 bibliography: references.bib
 ---
@@ -198,6 +196,8 @@ Important to note is that the effects of wind and waves on the trajectory of a d
 
 ## Buoyancy of drifting objects in the oceans
 
+The buoyancy of objects at sea has been shown to be influeced by epibiont load [@hobday2000b; @rotha2011; @graiff2016; @macaya2016], which reduces drift times by reducing buoyancy with increasing biomass, which ultimatley leads to the object sinking. The bouyancy of the drifting object is determined by the growth rate of epiphytic species while drifting, which in turn will be depndent on environmental factors such as temperature and light which will vary along the objects trajectory Therefore, buoyancy should be parameterised by temporal epibiont biomass load.
+
 In order to determine the fraction of the kelp raft submerged the *Buoyancy Force* (BF) must be calculated. A theoretical example using a object of a regular shape (see figure \ref{fig:BF_1}) will be used to demonstrate the theory that will be applied to this component of the study. First, the fraction of the object submerged can be calculated, which in this case is represented by $x$ (see figure \ref{fig:BF_1}).
 
 ```{r BF_1, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 3, fig.height = 3, fig.align="center", fig.cap='\\label{fig:BF_1}Conceptual model of bouyancy characteristics.'}
@@ -212,10 +212,6 @@ It is important to note that this equation is only applicable to objects that ar
 
 Once the fractions of submerged and non-submerged portions of the object have been calculated the next calculation relevant to this study would be to calculate the weight needed to cause the object to sink or as least be completely submerged. This will relate to epiphyte loading on kelp rafts in order to determine raft longevity. If a weight is placed on the object in the conceptual model that has enough weight to fully submerge (but not sink) the object then an addition buoyancy force is needed, which will be represented by $BF_2$ which is equal to the additional mass that has been added which can be expressed as $mg$. Based on the previous calculations and the laws of physics we know that: $$W_{object} = mg = BF_2 = W_{add-liq-displaced}$$ The weight of the additional liquid displaced can now be calculated by substituting the density and volume of the additional displaced liquid along with the gravitational constant $g$ which is expressed as: $$W_{AL} = \rho_{l}V_{AL}g$$
 where the subscript $AL$ represents the components of *additional liquid displaced*. The $V$ can also represent the change in volume ($\Delta V$) and so the expression can be expanded to: $$W_{AL} = \rho(\Delta V) g$$} where $\Delta V$ represents the change in volume of the object, i.e $y$. 
-
-## Buoyancy factors
-
-The buoyancy of objects at sea has been shown to be influeced by epibiont load [@hobday2000b; @rotha2011; @graiff2016; @macaya2016], which reduces drift times by reducing buoyancy with increasing biomass, which ultimatley leads to the object sinking. The bouyancy of the drifting object is determined by the growth rate of epiphytic species while drifting, which in turn will be depndent on environmental factors such as temperature and light which will vary along the objects trajectory Therefore, buoyancy should be parameterised by temporal epibiont biomass load.
 
 # Particle dispersion modelling
 ## Particle dispersion models
