@@ -117,6 +117,11 @@ Waves are complex and various approaches, techniques and devices have been devel
 
 The wave spectrum is based on several spectra, namely the amplitude spectrum, variance spectrum, variance density spectrum (discontinuous) and the variance density spectrum (continuous). A wave spectrum can be used to describe the sea surface as a stochastic process, however two conditions (assumptions) must first be met 1) the observation must be stationary and 2) the surface elevations must be Gaussian distributed. As mentioned previously, the random-phase/amplitude model  characterises waves as harmonic and the time-record can be reproduced by the sum of a large number of harmonic waves using a *Fourier analysis*. A Fourier analysis allows values of the amplitude and phase for each frequency to be characterised, which in turn provides the amplitude and phase spectrum for a single time-record. The amplitude spectrum is calculated by averaging many time-records which determines the *average amplitude spectrum*. This approach allows the entire wave record to be characterised but is not statistically relevant and so is not applicable to hydrodynamic modelling. In order for to attain a statistically relevant value, the variance of each wave component must be calculated. The variance is regarded as statistically relevant, as the sum of the variances (i.e. random surface elevation) of the wave components is equal to the variance of the sum of the wave components. In addition, LWT dictates that the energy of waves is proportional to the variance and is therefore an indirect measure of wave energy. This indirect measurement can also be used to determine other important wave components such as wave-induced particle velocity and pressure variations. Important to note that the measurement of variance are discrete and is therefore limited in characterising waves. A continuous scale is more applicable for hydrodynamic modelling purposes and is also closer to representing ocean waves and can be calculated by allowing the frequency interval () to approach zero. 
 
+# Linear wave theory
+
+
+
+
 # Currents
 ## Ocean currents
 
