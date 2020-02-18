@@ -1,5 +1,5 @@
 ---
-title: 'Hydrodynamic and particle dispersion modelling of floating solitary kelp:
+title: 'Hydrodynamic and particle dispersion modelling of floating solitary kelp
   An experimental approach'
 author: "Ross Coppin"
 output:
@@ -20,8 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Importance of kelp rafting as a dispersal mechanism
 
-Discuss previous rafting studies and the gaps within them
-Identify important coeffients
+The aim of this experiment was to determine the effects of epibiont growth and tissue fragmentation on the longevity of solitary rafting kelp. The growth rate of epiphytes has been shown to influence kelp raft longevity, with warmer temperatures favoring increased growth rate of epiphytes [@graiff2016; @macaya2016; @rothäusler2011; @tala2013; @hernández2006; @thiel2005; @hobday2000a] and thereby decreasing raft longevity. Therefore, increased sea surface temperatures could reduce the dispersal potential of kelp as the increase of epiphyte biomass reduces the buoyancy of kelp rafts, causing them to sink. In addition, tissue fragmentation leads to failure in the structural components of the plant, such as the stipe or pneumatocyst, which become filled with water and sink. Other factors such as herbivory and solar radiation have also been identified as important in determining the persistence of kelp rafts in the ocean. Finally, previous work has shown epiphytic species differ in their distributions along the kelp plant. For example, in South Africa Gelidium vittatum (Linnaeus) Kützing grows on the stipe or on the limpet Cymbula compressa (Linnaeus, 1758) that in turn inhabits kelp stipes, while Carpoblepharis flaccida (J.V.Lamouroux) Kützing grows on the fronds [@Anderson2006]. This experiment will also help characterise the distribution of epiphytic algae species along E. maxima sporophytes.
 
 > Bouyancy (Net)
 > Drag and resistance
@@ -38,7 +37,20 @@ Aims and objectives
 # Methods
 ## Study species
 ## Study sites
-## Experimental work
+## Experimental design
+
+Kelp sporophytes were collected from a kelp forest close to the study site. A total of 10 adult sporophytes were sampled, with the holdfast intact, with varying morphological characteristics. Before kelp are tethered, various morphological characteristics were measured and all fauna and flora removed if present. Individual sporophytes were tethered to separate floats approximately 1-2m apart in a row along the the breadth of the tidal-pool, with the holdfasts facing towards the shore. Surgical tubing was used to attach individual kelp to the float to reduce the risk of physical damage over the course of the experiment, and floats were anchored down within the tidal-pool using weights. Each kelp will be tagged with an ID relating to the experiment and a UWC ID tag which has contact details engraved on.  After the first week, the kelp were checked daily to ensure the exact day of sinking was identified. Environmental data such as temperature and light was collected by means of HOBO loggers that were attached to a separate float in the study area.
+
+## Epibiont load
+
+The tethered kelp individuals were monitored for epibiont load in the form of epiphytes and bryozoans, which may colonise the kelp, every 7 days over the course of the experiment. Three secondary blades were photographed in situ using a floating board with a tape measure for reference. Photographs were cataloged and the bryozoan cover was expressed as a percentage total bryozoan cover. Total biomass of bryozoan cover was determined indirectly since bryozoans are inseparable from the plant, and so bryozoan biomass was calculated from the percentage cover estimate, using the following equation: $BrM = 4.5516 × BrC0.524$
+
+where $$BrM$$ is the bryozoan proportional mass (%) and $$BrC$$ is the bryozoan cover (%) (cite??). Epiphyte cover will also be estimated every 7 days using the same methods as per bryozoan cover, however epiphyte biomass on the day of sinking was directly measured by scraping off the biomass and weighing it using a spring balance. Epiphytes were identified until species and the part of the plant where it was removed from was also recorded.
+
+### Morphological characteristics
+
+Before the start of the experiment and day of sinking, multiple morphological characteristics will be measured (see table ??).  Most of the morphological characteristics will be measured using a tape measure and calipers will be used to measure features of thickness. Multiple measurements will be taken for the stipe and pneumatocyst, to determine overall volume. To determine the amount of ‘hollowness’, each individual will be cut open and the thickness of the stipe and pneumatocyst will be measured using digital calipers. In each case, the thickest part of the plant was measured. The volume of hollowness will be subtracted from the overall  sporophyte volume to determine the actual volume of air present in the plant, which in turn will be used to determine buoyancy. Biomass for the whole kelp will be measured using a spring scale bothe before and after the experiment, however biomass of the head, stipe and holdfast will only measured after sinking, as this requires cutting the plant into the relevant sections. Epiphytes will be scraped off and weighed before the weight of the sporophyte is measured.  In the case of bryozoans, the previously calculated indirect bryozoan biomass will be subtracted from the sporophyte measured to determine the actual sporophyte biomass.
+
 ### Kelp bouyancy
 
 The aim of this experiment as to determine the epibiont load required to cause a floating kelp individual to become negatively buoyant, i.e to sink. Since epibiont load may be in the form of epiphytes and bryozoans, estimated percentage cover for each case was recorded for the whole sporophyte as well as locations along the plant. Before the experiments took place, a weighted net bag was suspended by a string from a spring balance so that the bag was submersed in water, and the weight recorded. A plant was then inserted into the bag, and the new weight was measured and recorded. The difference between weights recorded with and without the plant was considered the plants *net submerged buoyancy*. The plant was then placed in a tidal pool and allowed to float freely. The percentage of the whole plant, head (primary blade and fronds), stipe and holdfast which was submerged was recorded. In addition, photos using a setsquare for scale were also taken for each case. Finally, various morphological characteristics were measured (see table ??) based on methods by @rothman2017 and @coppin2020. For for each location along the sporophyte, epiphytes were carefully scrapped off into a bag and weighed. 
