@@ -43,9 +43,9 @@ Kelp sporophytes were collected from a kelp forest close to the study site. A to
 
 ## Epibiont load
 
-The tethered kelp individuals were monitored for epibiont load in the form of epiphytes and bryozoans, which may colonise the kelp, every 7 days over the course of the experiment. Three secondary blades were photographed in situ using a floating board with a tape measure for reference. Photographs were cataloged and the bryozoan cover was expressed as a percentage total bryozoan cover. Total biomass of bryozoan cover was determined indirectly since bryozoans are inseparable from the plant, and so bryozoan biomass was calculated from the percentage cover estimate, using the following equation: $BrM = 4.5516 × BrC0.524$
+The tethered kelp individuals were monitored for epibiont load in the form of epiphytes and bryozoans, which may colonise the kelp, every 7 days over the course of the experiment. Three secondary blades were photographed in situ using a floating board with a tape measure for reference. Photographs were cataloged and the bryozoan cover was expressed as a percentage total bryozoan cover. Total biomass of bryozoan cover was determined indirectly since bryozoans are inseparable from the plant, and so bryozoan biomass was calculated from the percentage cover estimate, using the following equation: $$BrM = 4.5516 × BrC0.524$$
 
-where $$BrM$$ is the bryozoan proportional mass (%) and $$BrC$$ is the bryozoan cover (%) (cite??). Epiphyte cover will also be estimated every 7 days using the same methods as per bryozoan cover, however epiphyte biomass on the day of sinking was directly measured by scraping off the biomass and weighing it using a spring balance. Epiphytes were identified until species and the part of the plant where it was removed from was also recorded.
+where $BrM$ is the bryozoan proportional mass (%) and $BrC$ is the bryozoan cover (%) (cite??). Epiphyte cover will also be estimated every 7 days using the same methods as per bryozoan cover, however epiphyte biomass on the day of sinking was directly measured by scraping off the biomass and weighing it using a spring balance. Epiphytes were identified until species and the part of the plant where it was removed from was also recorded.
 
 ### Morphological characteristics
 
