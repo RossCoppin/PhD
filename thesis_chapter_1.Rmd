@@ -205,8 +205,8 @@ The buoyancy is often a fixed value within a model and does not alter over time,
 
 Archimedes principles dictates that the buoyant force exerted on a small object is equal to the weight of the displaced fluid and acts in the opposite direction to the acceleraton vector. The net wieght is the weight of the object less the weight of a equal volume of fluid. A similar result can be achieved by using density of a object such that the "net density" is the density of the object less the density of the of the fluid. This can be expressed as:
 
-$$weight=/deltapgV_s$$
-$/deltap=p_s-p_f$
+$$weight=pgV_s$$
+$Density=p_s-p_f$
 
 This approach can also be applied to  acclerating objects submerged in a fluid, in which case, the angular velocity must be considered. Acceleration is usually considered in short-term forecasts for large objects such as shipping containers or airplane debris. This does not fall within the scope of this thesis and therefore will not be considered. 
 
