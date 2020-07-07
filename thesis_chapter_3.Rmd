@@ -29,9 +29,7 @@ Most of the past studies have focused on aspects of raft longevity, with various
 
 Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @plourde1999 and @breivik2008 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. 
 
-Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulae to calculate drag based on shape. 
-
-
+Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulae to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is the ratio of the surface area of a sphere having the volume as the irregular shaped particle (s) to the actualo surface area of the particle (s_d) such that $$\psi=s/s_d$$. The values are dependent on the shape of the object and a range of values have been determined based on numerous experimental work. A table of various shapes and the associated spherecity factor is provided in the appendix.
 
 
 There are considerable gaps in the literature with regards to macroalgae trajectory such as buoyancy, air form drag, water form drag, epibiont load, growth, fragmentation, size, shape and orientation which have not been investigated numerically in the past.  In order to determine the coefficients needed for the transport model, a series of experiments are proposed. These experiments will aim to determine aspects of buoyancy, epiphyte growth rates and transport rate, all of which have been regarded as important coefficients needed for an accurate model. The experiments will be perfomred numerically to determine the main influencers of passive solitary kelp dispersal. 
@@ -66,4 +64,8 @@ $$V = \pi r^2 l$$
 # Results
 
 # Discussion
+
+# Appendix
+
+Insert table of spherecity factors. 
 
