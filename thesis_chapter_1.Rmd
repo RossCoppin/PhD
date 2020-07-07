@@ -203,6 +203,13 @@ Important to note is that the effects of wind and waves on the trajectory of a d
 
 The buoyancy is often a fixed value within a model and does not alter over time, such as @?? and @?? as examples. This may be because the effects of epibiont biomass on ships and wreckage is not regarded as a significant influencer. However, for smaller objects this may not be the case. This may be particulary true for living drifters such as macroalgae which are able to grow themselves, as well as provide a habitat for epiphytes and bryozoans which increase in biomass overtime. The buoyancy of objects at sea has been shown to be influeced by epibiont load [@hobday2000b; @rotha2011; @graiff2016; @macaya2016], which reduces drift times by reducing buoyancy with increasing biomass, which ultimatley leads to the object sinking. The bouyancy of the drifting object is determined by the growth rate of epiphytic species while drifting, which in turn will be depndent on environmental factors such as temperature and light which will vary along the objects trajectory Therefore, buoyancy should be parameterised by temporal epibiont biomass load.
 
+Archimedes principles dictates that the buoyant force exerted on a small object is equal to the weight of the displaced fluid and acts in the opposite direction to the acceleraton vector. The net wieght is the weight of the object less the weight of a equal volume of fluid. A similar result can be achieved by using density of a object such that the "net density" is the density of the object less the density of the of the fluid. This can be expressed as:
+
+$$weight=/deltapgV_s$$
+$/deltap=p_s-p_f$
+
+This approach can also be applied to  acclerating objects submerged in a fluid, in which case, the angular velocity must be considered. Acceleration is usually considered in short-term forecasts for large objects such as shipping containers or airplane debris. This does not fall within the scope of this thesis and therefore will not be considered. 
+
 In order to determine the fraction of the kelp raft submerged the *Buoyancy Force* (BF) must be calculated. A theoretical example using a object of a regular shape (see figure \ref{fig:BF_1}) will be used to demonstrate the theory that will be applied to this component of the study. First, the fraction of the object submerged can be calculated, which in this case is represented by $x$ (see figure \ref{fig:BF_1}).
 
 ```{r BF_1, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 3, fig.height = 3, fig.align="center", fig.cap='\\label{fig:BF_1}Conceptual model of bouyancy characteristics.'}
