@@ -1,0 +1,37 @@
+---
+title: "Notes"
+author: "Ross Coppin"
+date: "20/03/2020"
+output: word_document
+---
+
+###
+
+Drift forecasting models have been developed for different applications such as predicting conditions in search areas for search and rescue operations and objects containg harardous material [@Breivik2011; @Hacket2006; @Eide2007; @Breivik2008; @Davidson2009]. These models make use of Monte Carlo (stochasic) techniques to numerically output a probability of trajectories from an ensemble of trajectory models. These models include near-surface currents and  wind field, as well as drift characteristics specific to the object. Near- or surface-currents can be estimated from tidal consistutents or from observations from high-resolution ocean models [@Breivik2011]. Surface drifters and high-frequency radar can also be used for currents bewteen 0.3 and 1.0 m depth, with the latter providing real-time measurements for short-term forecasts [@Breivik2011]. 
+
+Wind has been shown to be an important influencer on passive drifting objects in the ocean and much research has gone into understanding how to properly predict the effect of wind on an objects drift trajectory. Small objects respond almost linearly to changes in the wind speed [@Breivik2008]. The rule of thumb in trajectory modelling is to assume a linear relation between 10m wind speed and the objects motion relative to the water. In general, an object's motion through the ambient water masses (referred to as its slip, windage or leeway) is roughly inversely proportional to the immersion ratio. The inverse relationship to windage and immersion ration has been shown previously by @Geyer1989 and @oDonnel1997, and has been used in modelling shipping container trajectories. However, objects with complex shapes can be influenced substantially by crosswind motion. In addition, the relation between the crosswind motion and immersion ratio is not well understood and can vary greatly between objects [@Breivik2011]. 
+
+###
+
+The position of a floating object is computed by numerically by intergrating the total drift velcoity
+
+Inertia is defined here as an object's resistence to changes in velocity. Largrangian objects which are dispersed in the ocean by means of currents can have their trajectory altered by inertial forces, which are depedent on the physical properties of the object. For instance, differences in density can cause objects to become entrained or expelled from eddies [@Brooks; @Beron-Vera2015], and objects less dense than the surrounding water tend to deflect left of the mean flow [@Brooks]. Other factors such as leeway and drag are additional examples. Therefore, incorprating the aforementioned influencers into numerical investigations into *E. maxima* trajectory will shed light on the role these organisms play in marine connectvity as well as ecological function of nearhsore and offshore ecological communities. Macroalgae have been shown to be important vectors of dispersal in the marine environment as well as an important source of organic material for near and distant ecosystems. 
+
+Due to the potential changes in overall biomass that the kelp individal will undergo during its trajectory is the underlying physiological model that will be nested within the trajectory model. 
+
+The overall density of floating *E. maxima* is a function of mass which is determined by growth rate, erosion rate and epibiont growth. In turn growth rate, erosion rate and epibiont growth are determined by the environmental conditions the floating *E. maxima* individual is exposed to while adrift, namely temperature and light. 
+
+There is very little data available within the literature to determine continuous growth rates for both the kelp and epibionts. For this reason, estimates will be used based on the limited literature available. For growth rate, a constant of ??g/day will be used and a constant of ??/day will be used based of work by @ 
+
+
+The epibiont component will determine overall float time. The growth of epibionts will increase the overall mass of the kelp individial over time causing it to be come negativley buoyant and sink. The epibiont growth will consist of threshold levels that will determine if growth rate increases or decreases above or below a constant value. 
+
+
+
+
+
+
+
+
+
+ 
