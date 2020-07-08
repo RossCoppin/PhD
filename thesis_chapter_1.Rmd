@@ -5,15 +5,15 @@ author:
 - C Rautenbach^[South African Weather Service]
 - AJ Smit^[University of the Western Cape]
 output:
-  html_document:
-    df_print: paged
-    theme: simplex
-    toc: yes
-  pdf_document:
-    toc: yes
   word_document:
     fig_caption: yes
     reference_docx: markdown/thesis_template.docx
+    toc: yes
+  pdf_document:
+    toc: yes
+  html_document:
+    df_print: paged
+    theme: simplex
     toc: yes
 bibliography: references.bib
 ---
@@ -99,7 +99,7 @@ There are a variety of waves that form in the ocean and all differ in terms of p
 
 Waves are often thought of as an elevation of the sea surface from a specific point over a period of time but this is obviously not he case. This is known as *surface elevation* and is the instantaneous elevation of the sea surface above a specific point in a time record (see figure \ref{fig:surface elevation figures}). Although surface elevation does not represent a wave, it can be used to create a wave profile. This is achieved by profiling the the surface elevation between two successive *downward zero-crossings* or *upwardward zero-crossings* (see figure \ref{fig:surface elevation figures}). Both zero-crossings are symmetrical and essentially the same statistically. However, in practice the downward zero-crossings are preferred as it takes steepness of a approaching wave into account (the front, see figure \ref{fig:surface elevation figures}) which is relevant to characterising breaking waves. It is important to note that surface elevation can be negative while a wave profile cannot. 
 
-```{r surface elevation figures, echo=FALSE, warning=FALSE, fig.align="center", fig.cap="\\label{fig:surface elevation figures}The definition of a wave in a time record of the surface elevation with downward zero-crossings (upper panel) and upward zero-crossings (lower panel)."}
+```{r surface elevation figures, echo=FALSE, warning=FALSE, fig.cap="\\label{fig:surface elevation figures}The definition of a wave in a time record of the surface elevation with downward zero-crossings (upper panel) and upward zero-crossings (lower panel)."}
 
 surface_elevation <- readPNG("figures/chapter_1/surface_elevation_waves.png")
 grid.raster(surface_elevation)
@@ -107,7 +107,7 @@ grid.raster(surface_elevation)
 
 Characterising waves in a wave record requires compromise both in the statistical sense and the practical, as it is a balance between keeping the record short enough to remain stationary and long enough for a reasonable averages to be calculated. The waves are characterised in terms of wave heights and wave periods for individual waves in the record and then averaged over that specific time. For example, a time record of 15-20 minutes is standard when calculating a wave profile.   
 
-```{r Hs_Tp_surface_elevation figure, echo=FALSE, warning=FALSE, fig.align="center", fig.cap="The definition of wave height and wave period in a time record of the surface elevation (the wave is defined with downwrd zero-crossings."}
+```{r Hs_Tp_surface_elevation figure, echo=FALSE, warning=FALSE, fig.cap="The definition of wave height and wave period in a time record of the surface elevation (the wave is defined with downwrd zero-crossings."}
 
 Hs_Tp_elevation <- readPNG("figures/chapter_1/Hs_Tp_surface_elevation.png")
 grid.raster(Hs_Tp_elevation)
@@ -212,7 +212,7 @@ This approach can also be applied to  acclerating objects submerged in a fluid, 
 
 In order to determine the fraction of the kelp raft submerged the *Buoyancy Force* (BF) must be calculated. A theoretical example using a object of a regular shape (see figure \ref{fig:BF_1}) will be used to demonstrate the theory that will be applied to this component of the study. First, the fraction of the object submerged can be calculated, which in this case is represented by $x$ (see figure \ref{fig:BF_1}).
 
-```{r BF_1, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 3, fig.height = 3, fig.align="center", fig.cap='\\label{fig:BF_1}Conceptual model of bouyancy characteristics.'}
+```{r BF_1, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 3, fig.height = 3, fig.cap='\\label{fig:BF_1}Conceptual model of bouyancy characteristics.'}
 
 BF_1 <- readPNG("figures/chapter_1/bf_cube.png")
 grid.raster(BF_1)
