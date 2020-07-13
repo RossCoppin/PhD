@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.27)  27 JAN 2020 13:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.27)  13 JUL 2020 15:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -552,7 +552,8 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip51
 \thanksmargin=\skip52
 \droptitle=\skip53
-) (./thesis_chapter_1.aux)
+)
+No file thesis_chapter_1.aux.
 \openout1 = `thesis_chapter_1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
@@ -697,9 +698,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 l.95 \maketitle
                 
 Here is how much of TeX's memory you used:
- 11374 strings out of 494106
- 161308 string characters out of 6172416
- 226298 words of memory out of 5000000
+ 11372 strings out of 494106
+ 161266 string characters out of 6172416
+ 226353 words of memory out of 5000000
  15291 multiletter control sequences out of 15000+600000
  40649 words of font info for 44 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
