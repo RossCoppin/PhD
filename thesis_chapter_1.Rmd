@@ -5,11 +5,11 @@ author:
 - C Rautenbach^[South African Weather Service]
 - AJ Smit^[University of the Western Cape]
 output:
+  pdf_document:
+    toc: yes
   word_document:
     fig_caption: yes
     reference_docx: markdown/thesis_template.docx
-    toc: yes
-  pdf_document:
     toc: yes
   html_document:
     df_print: paged
