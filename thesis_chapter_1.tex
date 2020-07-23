@@ -36,8 +36,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Quantifying passive kelp rafting phenomena and connectivity of nearshore communities model around the coast of South Africa:Development of a 3D spectral numerical coastal-flow},
-  pdfauthor={RM Coppin; C Rautenbach; AJ Smit},
+  pdftitle={Quantifying passive kelp rafting phenomena and connectivity of nearshore communities around the coast of South Africa through development of a 3D spectral numerical coastal-flow model},
+  pdfauthor={R Coppin; C Rautenbach; AJ Smit},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -86,9 +86,9 @@
 \postdate{\par}
 
 \title{Quantifying passive kelp rafting phenomena and connectivity of nearshore
-communities model around the coast of South Africa:Development of a 3D
-spectral numerical coastal-flow}
-\author{RM Coppin\footnote{University of the Western Cape} \and C Rautenbach\footnote{South African Weather Service} \and AJ Smit\footnote{University of the Western Cape}}
+communities around the coast of South Africa through development of a 3D
+spectral numerical coastal-flow model}
+\author{R Coppin\footnote{University of the Western Cape} \and C Rautenbach\footnote{South African Weather Service} \and AJ Smit\footnote{University of the Western Cape}}
 \date{}
 
 \begin{document}
@@ -694,12 +694,11 @@ characterising breaking waves. It is important to note that surface
 elevation can be negative while a wave profile cannot.
 
 \begin{figure}
-
-{\centering \includegraphics{thesis_chapter_1_files/figure-latex/surface elevation figures-1} 
-
-}
-
-\caption{\label{fig:surface elevation figures}The definition of a wave in a time record of the surface elevation with downward zero-crossings (upper panel) and upward zero-crossings (lower panel).}\label{fig:surface elevation figures}
+\centering
+\includegraphics{thesis_chapter_1_files/figure-latex/surface elevation figures-1.pdf}
+\caption{\label{fig:surface elevation figures}The definition of a wave
+in a time record of the surface elevation with downward zero-crossings
+(upper panel) and upward zero-crossings (lower panel).}
 \end{figure}
 
 Characterising waves in a wave record requires compromise both in the
@@ -711,12 +710,11 @@ record and then averaged over that specific time. For example, a time
 record of 15-20 minutes is standard when calculating a wave profile.
 
 \begin{figure}
-
-{\centering \includegraphics{thesis_chapter_1_files/figure-latex/Hs_Tp_surface_elevation figure-1} 
-
-}
-
-\caption{The definition of wave height and wave period in a time record of the surface elevation (the wave is defined with downwrd zero-crossings.}\label{fig:Hs_Tp_surface_elevation figure}
+\centering
+\includegraphics{thesis_chapter_1_files/figure-latex/Hs_Tp_surface_elevation figure-1.pdf}
+\caption{The definition of wave height and wave period in a time record
+of the surface elevation (the wave is defined with downwrd
+zero-crossings.}
 \end{figure}
 
 Waves are complex and various approaches, techniques and devices have
@@ -776,6 +774,9 @@ discrete and is therefore limited in characterising waves. A continuous
 scale is more applicable for hydrodynamic modelling purposes and is also
 closer to representing ocean waves and can be calculated by allowing the
 frequency interval () to approach zero.
+
+\hypertarget{linear-wave-theory}{%
+\section{Linear wave theory}\label{linear-wave-theory}}
 
 \hypertarget{currents}{%
 \section{Currents}\label{currents}}
@@ -1150,50 +1151,60 @@ The trajectory of passively drifting objects on the sea surface is
 influenced by multiple factors, such as water currents, atmospheric
 wind, wave motion, wave induced currents, gravitational force and
 buoyancy force. To complicate matters, the previously mentioned factors
-do not act independently of one another but instead influence one
-another. Furthermore, the gravitational and buoyancy forces on the
-object are determined by the objects shape. Therefore, all these factors
-need to be taken into account when modelling trajectory of drifting
-objects. Given the local wind, surface current, and the shape and
-buoyancy of the object is known, it is possible to estimate trajectory
-by the equation \[V_{drift}=V_{curr} + V_{rel}\]
+do not act independently but instead influence one another. Furthermore,
+the gravitational and buoyancy forces on the object are determined by
+the objects shape. Therefore, all these factors need to be taken into
+account when modelling trajectory of drifting objects. Given the local
+wind, surface current, and the shape and buoyancy of the object are
+known, it is possible to estimate trajectory by the equation
+\[V_{drift}=V_{curr} + V_{rel}\]
 
 where \(V_{curr}\) represents the current velocity relative to the
 earth, and \(V_{rel}\) represents the object drift velocity relative to
-the ambient water. Ocean currents are determined by two components: the
-surface current (including the effects of Ekman drift, baroclinic
-motion, tidal and inertial currents) and Stokes drift induced by waves.
-The assumption made is \(V_{curr}\) influences all floating objects in
-the same manner, regardless of shape or size. Therefore, \(V_{curr}\) is
-equated with the surface current obtained from a numerical ocean model
-which has been parameterised by wind velocity. The effects of
+the ambient water (Hackett, Breivik, and Wettre 2006). Ocean currents
+are determined by two components: the surface current (including the
+effects of Ekman drift, baroclinic motion, tidal and inertial currents)
+and Stokes drift induced by waves. The assumption made is \(V_{curr}\)
+influences all floating objects in the same manner, regardless of shape
+or size. Therefore, \(V_{curr}\) is equated with the surface current
+obtained from a numerical ocean model which has been parameterised on
+the wind velocity (Hackett, Breivik, and Wettre 2006). The effects of
 \(V_{rel}\) on a floating object is driven by wind and wave forces which
-is dependent on the shape and size of the floating object. Previous
-research has shown that the effects of waves on drifting objects are
-negligible when the length of the object is less than the wave length;
-and increase significantly when the lengths are approximately the same
-(Grue and Biberg 1993; Hodgins and Hodgins 1998). Furthermore, current
-velocity \(V_{curr}\) affects on drifting objects is considered to be
-negligible in this approach and ideally should be taken into account.
-Studies investigating kelp rafts have identified surface current
-velocity (as a function of wind velocity) as an important influence in
-determine trajectory (Harrold and Lisin 1989; Macaya et al. 2005; Hobday
-2000a, 2000b). Therefore, the objects motion/trajectory relative to the
-wind must be taken into account.
+is dependent on the shape and size of the floating object. In some cases
+the effects of wind or wave forces may be neglibible and only one aspect
+needs to be included or investigated seperately. Therefore, \(V_{rel}\)
+can be seperated into wind and waves into two sub-components which
+allows the equation to be adpated to suite the particluar situation
+(Hackett, Breivik, and Wettre 2006). For example, previous research has
+shown that the effects of waves on drifting objects are negligible when
+the length of the object is less than the wave length; and increase
+significantly when the lengths are approximately the same (Grue and
+Biberg 1993; Hodgins and Hodgins 1998). Furthermore, current velocity
+\(V_{curr}\) affects on drifting objects is considered to be negligible
+in this approach and ideally should be taken into account. The
+literature identifies waves as the primary influencer of trajectory for
+larger objects while wind is regarded as the primary influencer for
+smaller objects. The effects of wind on object drift trajectory is
+complex and is ofcourse dependent on the exposed portion of the object
+to the wind. The effect of wind on trajectory is often referred to as
+leeway.
 
-\hypertarget{windage-factors}{%
-\subsection{Windage factors}\label{windage-factors}}
+\hypertarget{leeway}{%
+\subsection{Leeway}\label{leeway}}
 
 An objects motion relative to the wind is sometimes referred to as
-``windage factors'' or "leeway drift, and is difficult to accurately and
-empirically describe. The difficulty is due to accurate measurements
+``windage factors'' or ``leeway drift'', and is difficult to accurately
+and empirically describe. The difficulty is due to accurate measurements
 needed for the current velocity, wind velocity, wave height and wave
-direction. Furthermore, these factors do not act independently and
-instead influence one another, which compounds the complexity of
-calculating wind effects on drifting objects. To overcome this
-challenge, measurements of current and wind velocity, and wave height
-and direction are measured along the objects trajectory for a wide range
-of conditions.
+direction. The appropriate approaches to measuring the afprmentioned
+parameters have been detailed by ({\textbf{???}}) and is dependent on
+the objects size and shape as well as the quality and quantity of data
+available to the modeler. Additionally, these factors do not act
+independently and instead influence one another, which compounds the
+complexity of calculating wind effects on drifting objects. To overcome
+this challenge, measurements of current and wind velocity, and wave
+height and direction are measured along the objects trajectory for a
+wide range of conditions.
 
 Wind effects or windage factors can be calculated using the approach by
 Griffin, Oke, and Jones (2017), and can be expressed as
@@ -1247,13 +1258,50 @@ Griffin, Oke, and Jones (2017) recommend incorporating an effective
 windage factor which would represent the combined effects of Stokes
 Drift, leeway drift and wave forces. Although a common approach, this
 may not be necessary in all circumstances particularly if individual
-effects of factors. As mentioned previously, the magnitude of effects of
-waves and wind on a drifting object is dependent on its shape, size and
-buoyancy.
+effects of factors are being investigated. As mentioned previously, the
+magnitude of effects of wind and waves on an objects trajectory is
+depedent on the surface area/volume exposed to either influencer, which
+in turn is dependent on the bouyancy of the object. The object's
+buoyancy may also change over time due to other influencers such as
+erosion and epibiont biomass.
 
 \hypertarget{buoyancy-of-drifting-objects-in-the-oceans}{%
 \subsection{Buoyancy of drifting objects in the
 oceans}\label{buoyancy-of-drifting-objects-in-the-oceans}}
+
+The buoyancy is often a fixed value within a model and does not alter
+over time, such as @?? and @?? as examples. This may be because the
+effects of epibiont biomass on ships and wreckage is not regarded as a
+significant influencer. However, for smaller objects this may not be the
+case. This may be particulary true for living drifters such as
+macroalgae which are able to grow themselves, as well as provide a
+habitat for epiphytes and bryozoans which increase in biomass overtime.
+The buoyancy of objects at sea has been shown to be influeced by
+epibiont load (Hobday 2000b; {\textbf{???}}; Graiff et al. 2016; Macaya
+et al. 2016), which reduces drift times by reducing buoyancy with
+increasing biomass, which ultimatley leads to the object sinking. The
+bouyancy of the drifting object is determined by the growth rate of
+epiphytic species while drifting, which in turn will be depndent on
+environmental factors such as temperature and light which will vary
+along the objects trajectory Therefore, buoyancy should be parameterised
+by temporal epibiont biomass load.
+
+Archimedes principles dictates that the buoyant force exerted on a small
+object is equal to the weight of the displaced fluid and acts in the
+opposite direction to the acceleraton vector. The net wieght is the
+weight of the object less the weight of a equal volume of fluid. A
+similar result can be achieved by using density of a object such that
+the ``net density'' is the density of the object less the density of the
+of the fluid. This can be expressed as:
+
+\[weight=pgV_s\] \(Density=p_s-p_f\)
+
+This approach can also be applied to acclerating objects submerged in a
+fluid, in which case, the angular velocity must be considered.
+Acceleration is usually considered in short-term forecasts for large
+objects such as shipping containers or airplane debris. This does not
+fall within the scope of this thesis and therefore will not be
+considered.
 
 In order to determine the fraction of the kelp raft submerged the
 \emph{Buoyancy Force} (BF) must be calculated. A theoretical example
@@ -1264,12 +1312,9 @@ calculated, which in this case is represented by \(x\) (see figure
 \ref{fig:BF_1}).
 
 \begin{figure}
-
-{\centering \includegraphics{thesis_chapter_1_files/figure-latex/BF_1-1} 
-
-}
-
-\caption{\label{fig:BF_1}Conceptual model of bouyancy characteristics.}\label{fig:BF_1}
+\centering
+\includegraphics{thesis_chapter_1_files/figure-latex/BF_1-1.pdf}
+\caption{\label{fig:BF_1}Conceptual model of bouyancy characteristics.}
 \end{figure}
 
 An object will only float if the object density (\(\rho\)) is less than
@@ -1347,103 +1392,35 @@ represent the change in volume (\(\Delta V\)) and so the expression can
 be expanded to: \[W_{AL} = \rho(\Delta V) g\]\} where \(\Delta V\)
 represents the change in volume of the object, i.e \(y\).
 
-\hypertarget{buoyancy-factors}{%
-\subsection{Buoyancy factors}\label{buoyancy-factors}}
+\hypertarget{drag-parameters}{%
+\subsection{Drag parameters}\label{drag-parameters}}
 
-The buoyancy of objects at sea has been shown to be influeced by
-epibiont load (Hobday 2000b; Rothä usler et al. 2011; Graiff et al.
-2016; Macaya et al. 2016), which reduces drift times by reducing
-buoyancy with increasing biomass, which ultimatley leads to the object
-sinking. The bouyancy of the drifting object is determined by the growth
-rate of epiphytic species while drifting, which in turn will be depndent
-on environmental factors such as temperature and light which will vary
-along the objects trajectory Therefore, buoyancy should be parameterised
-by temporal epibiont biomass load.
+Drag is the force an object experiences when moving in a fluid due to
+the rate in change of momentum (Vogel 2020). The drag around the surface
+of an object due to the viscosity of the fluid is known as `surface
+drag'. The drag induced by a quantity of fluid moving around the object
+is known as pressure drag/form drag/inertial drag. In general, large
+objects moving quickly tend to induce larger drag forces, however, this
+is not always the case. In some instances, the flow around the object
+changes from laminar to turbulent which ultimately reduces overall drag.
+(Maybe insert small section on why turbulent flow reduces overall drag
+on an object).
 
-\hypertarget{particle-dispersion-modelling}{%
-\section{Particle dispersion
-modelling}\label{particle-dispersion-modelling}}
-
-\hypertarget{particle-dispersion-models}{%
-\subsection{Particle dispersion
-models}\label{particle-dispersion-models}}
-
-The Pol3DD model is able to track virtual particles to simulate water
-borne dispersion of material. Examples include neutrally buoyant
-anthropogenic material, larvae, oil spills, outfall discharges and
-sediment transport (Lebreton, Greer, and Borrero 2012). The model uses a
-second-order accurate advection scheme (Black and Gay 1990) described as
-follows:
-\[\delta\chi=\frac{({u'+ \frac{(u_y\upsilon'-\upsilon_yu')\delta t}{2} )\delta t}}{(1-\frac{u_x\delta t}{2})(1-\frac{\upsilon_y\delta t}{2})-\frac{u_y\upsilon_\chi\delta t^2}{4}}\]
-
-\[\delta y=\frac{({\upsilon' + \frac{(\upsilon_\chi u'-u_\chi\upsilon) \delta t}{2})\delta t}}{(1-\frac{u_y\delta t}{2})(1-\frac{\upsilon_\chi\delta t)}{2}) - \frac{u_\chi\upsilon_y\delta t^2}{4}}\]
-where
-
-\[u'= u + \frac{\delta tu_t}{2}\]
-\[\upsilon'=\upsilon + \frac{\delta t\upsilon_t}{2}\] and \(u\),
-\(\upsilon\) are orthogonal velocity components, \(t\) is time,
-\(\delta t\) is the model time step, \(u_\chi\), \(u_y\), \(\upsilon_y\)
-are the \(u\) and \(\upsilon\) spatial velocity gradients, and \(u_t\),
-\(\upsilon_t\) are temporal gradients. Horizontal diffusion was modeled
-as a random walk with separate longitudinal and lateral coefficients set
-to simulate random turbulence. The distance increments moved by the
-particle at each time step is calculated as:
-\[\Delta X = R_N \sqrt{6E_1\delta t}\]
-\[\Delta y = R_N\sqrt{6E_2\delta t}\] where \(R_N\) is a random number
-in the uniform range (-1,1) and \(E_1,E_2\) are the longitudinal and
-lateral eddy diffusivities, respectively. To estimate the amount of
-input into the model the authors used a scaled approach to define the
-release of particles, and where based on previous research performed by
-Halpern et al. (2008).
-
-\hypertarget{application-of-particle-dispersion-models}{%
-\section{Application of particle dispersion
-models}\label{application-of-particle-dispersion-models}}
-
-A study by Lebreton, Greer, and Borrero (2012) proposed a methodology to
-track floating debris from source to sink based on descriptions of
-global waste production and ocean surface currents, using a combination
-of hydrodynamic and particle dispersion modelling. The particle tracking
-model applied uses a two stage process, (1) a hydrodynamic model solves
-the equations of motion to characterise the movement of water within the
-domain of the model, (2) virtual particles are released into the flow
-field established in the first step, and particles are allowed to move
-through hydrodynamic forcing. The authors extracted sea surface currents
-from the HYCOM/NCODA ocean circulation modelling system, which is forced
-by the US Navy's Operational Global Atmospheric Prediction System
-(NOGAPS). The model also took into account wind stress, wind speed, heat
-flux, and precipitation and was looped five times to accurately
-represent ocean circulation patterns for a 30 year period. The authors
-used the velocity data aquired from HYCOM and coupled it to the
-Lagrangian particle tracking model Pol3DD which was used to simulate
-dispersion. No additional wind stress terms were applied to the motion
-of particles, as this factor had already been incorporated in the HYCOM
-hydrodynamic data. Potential extra stress for emerged parts of debris
-was considered negligible as all floating debris are assumed to be fully
-submerged. The Pol3DD model was also modified so provide additional
-information on individual particles such as origin, age, and trajectory
-information of individual particles. Since the model considered a
-spherical earth, particles were allowed to re-enter the simulation if
-they passed around the `globe'. Important to note is only the surface
-layer was modelled in this study, as much of the evidence identifies
-surface currents as the main dispersal vector of anthropogenic debris.
-
-Griffin, Oke, and Jones (2017) added to the search for flight MH370 by
-providing estimates of the trajectory of the debris. This was achieved
-through a combination of an advanced ocean model calibrated with oceanic
-drifters, and drifters in the form of aircraft parts. Unlike previous
-work regarding the recovery of MH370 wreckage, this study incorporated
-windage factors into the trajectory model as well as providing better
-estimates of Stokes Drift.
+The type of flow, laminar or turbulent, is determined by fluid density
+(p), flow speed (U), object size (l) and fluid viscosity (v). These
+factors can be used to calculate the Reynolds number which is used to
+determine the type of flow. The expression used can be dependent on
+factors used such as whether the fluid is Newtonian or non-Newtonian and
+object shape.
 
 \hypertarget{kelp-rafting}{%
 \section{Kelp-rafting}\label{kelp-rafting}}
 
 Dispersal is recognised as important driver of biodiversity, composition
 and structure of ecological systems in the marine environment (Bernardes
-Batista et al. 2018; {\textbf{???}}; Highsmith 1985; MacArthur and
-Wilson 2001; Jackson and Sax 2010). These processes are largely
-dependent on currents for dispersal of migrant populations which
+Batista et al. 2018; Helmuth, Veit, and Holberton 1994; Highsmith 1985;
+MacArthur and Wilson 2001; Jackson and Sax 2010). These processes are
+largely dependent on currents for dispersal of migrant populations which
 ultimately promote connectivity of marine ecosystems (Bernardes Batista
 et al. 2018; Mackas, Denman, and Abbott 1985, 1985; Zakas et al. 2009).
 This is particularly true for organisms which lack pelagic larvae, and
@@ -1452,22 +1429,23 @@ passive modes of dispersal from anthropogenic and natural sources.
 Anthropogenic sources include marine litter and structural debris while
 examples of organic sources include pumice and macroalgae in the form of
 kelp-rafts. Kelp-rafts have been identified as an important mode of
-passive dispersal of marine organisms, such as invertebrates
-{[}({\textbf{???}}); whichmann2012{]}, epiphytes {[}@{]}, grazers
-(Nikula et al. 2010), invasive species (Lewis, Riddle, and Smith 2005)
-and macroalgae themselves (Macaya et al. 2005) which either make
-landfall or are transported offshore where they eventually sink. A
-kelp-raft consists of an entanglement of macroalgae (one or multiple
-species) which have been dislodged from the benthic environment through
-hydrodynamic forces (mostly storms) and are positively buoyant by means
-of gas-filled pneumatocysts and/or reproductive organs. Kelp-rafts are
-capable of travelling vast distances {[}@{]} and are considered
-important dispersal vectors in temperate latitudes, such as the Southern
-California Bight (Hobday 2000a) and the Northern Baltic Sea {[}@{]}.
+passive dispersal of marine organisms, such as invertebrates {[}Helmuth,
+Veit, and Holberton (1994); whichmann2012{]}, epiphytes (Macaya et al.
+2016), grazers (Nikula et al. 2010), invasive species (Lewis, Riddle,
+and Smith 2005) and macroalgae themselves (Macaya et al. 2005) which
+either make landfall or are transported offshore where they eventually
+sink. A kelp-raft consists of an entanglement of macroalgae (one or
+multiple species) which have been dislodged from the benthic environment
+through hydrodynamic forces (mostly storms) and are positively buoyant
+by means of gas-filled pneumatocysts and/or reproductive organs. Kelps
+are capable of travelling vast distances (Fraser, Nikula, and Waters
+2011) and are considered important dispersal vectors in temperate
+latitudes, such as the Southern California Bight (Hobday 2000a, 2000b).
 
 Kelp-raft abundance has been shown to vary temporally and spatially in
 the ocean and around coastlines, which is dependent on seasonal growth
-patterns. For example, studies investigating the dispersal patterns of
+patterns which ultimatley influences overall biomass of seaweed. For
+example, studies investigating the dispersal patterns of
 \emph{Sargassum} in the West Pacific show increased abundance during
 growth seasons (spring and summer) as more biomass is available to
 fragment (Deysher and Norton 1981; Kingsford 1992). Temporal variability
@@ -1479,20 +1457,22 @@ environments. The authors found that the abundance of \emph{M. pyrifera}
 rafts increased during seasons where storms occurred more frequently.
 
 The trajectory of kelp rafts are determined by a combination of
-oceanographic conditions and biological processes. Since kelp rafts
-float, evidence points largely to wind driven surface currents as the
-main driver, although the relative importance of wind versus surface
-currents is largely unknown. For example a study by Harrold and Lisin
-(1989) used radio-trackers on both natural and artificial
-\emph{Macrocystis pyrifera} kelp rafts to investigate seasonal
-trajectory patterns. The results showed that tracked kelp rafts were
-mostly deposited nearby the source population and that seasonal wind
-direction was the primary driver of trajectory for kelp rafts submerged
-roughly \textasciitilde0.5 - 1m below the surface Harrold and Lisin
-(1989). However, the authors did note the influence of surface currents
-for some of their experiments when winds relaxed; which suggests that
-surface currents may play a larger role in determining trajectory for
-kelp rafts less exposed to wind or when prevailing winds are low.
+oceanographic conditions and biological processes. Since kelp float,
+evidence points largely to wind driven surface currents as the main
+driver, although the relative importance of wind versus surface currents
+is largely unknown. For example a study by Harrold and Lisin (1989) used
+radio-trackers on both natural and artificial \emph{Macrocystis
+pyrifera} kelp rafts to investigate seasonal trajectory patterns. The
+results showed that tracked kelp rafts were mostly deposited nearby the
+source population and that seasonal wind direction was the primary
+driver of trajectory for kelp rafts submerged roughly \textasciitilde0.5
+- 1m below the surface Harrold and Lisin (1989). However, the authors
+did note the influence of surface currents for some of their experiments
+when winds relaxed; which suggests that surface currents may play a
+larger role in determining trajectory for kelp rafts less exposed to
+wind or when prevailing winds are low. Other authors have identified the
+West Wind Drift as important driver of trajectory of floating \emph{M.
+pyrifera} {[}Fraser, Nikula, and Waters (2011); {]}
 
 \hypertarget{kelps-in-south-africa}{%
 \section{Kelps in South Africa}\label{kelps-in-south-africa}}
@@ -1594,10 +1574,6 @@ Velez-Rubio, Fabrizio Scarabino, et al. 2018. ``Kelps' Long-Distance
 Dispersal: Role of Ecological/Oceanographic Processes and Implications
 to Marine Forest Conservation.'' \emph{Diversity} 10 (1): 11.
 
-\leavevmode\hypertarget{ref-black1990}{}%
-Black, Kerry P, and Stephen L Gay. 1990. ``A Numerical Scheme for
-Determining Trajectories in Particle Models,'' 151--56.
-
 \leavevmode\hypertarget{ref-Blamey2012}{}%
 Blamey, Laura K, and George M Branch. 2012. ``Regime Shift of a
 Kelp-Forest Benthic Community Induced by an `Invasion'of the Rock
@@ -1632,6 +1608,11 @@ Doney, Scott C, Mary Ruckelshaus, J Emmett Duffy, James P Barry, Francis
 Chan, Chad A English, Heather M Galindo, et al. 2011. ``Climate Change
 Impacts on Marine Ecosystems.''
 
+\leavevmode\hypertarget{ref-Fraser2011}{}%
+Fraser, C I, R Nikula, and J M Waters. 2011. ``Oceanic rafting by a
+coastal community.'' \emph{Proceedings of the Royal Society B:
+Biological Sciences} 278 (1706): 649--55.
+
 \leavevmode\hypertarget{ref-graiff2016}{}%
 Graiff, Angelika, Jose F Pantoja, Fadia Tala, and Martin Thiel. 2016.
 ``Epibiont Load Causes Sinking of Viable Kelp Rafts: Seasonal Variation
@@ -1652,12 +1633,6 @@ Research} 15 (3): 121--35.
 Hackett, Bruce, Øyvind Breivik, and Cecilie Wettre. 2006. ``Forecasting
 the Drift of Objects and Substances in the Ocean,'' 507--23.
 
-\leavevmode\hypertarget{ref-halpern2008}{}%
-Halpern, Benjamin S, Shaun Walbridge, Kimberly A Selkoe, Carrie V
-Kappel, Fiorenza Micheli, Caterina D'agrosa, John F Bruno, et al. 2008.
-``A Global Map of Human Impact on Marine Ecosystems.'' \emph{Science}
-319 (5865): 948--52.
-
 \leavevmode\hypertarget{ref-Harley2012}{}%
 Harley, C, K M Anderson, K W Demes, J P Jorve, R L Kordas, T Coyle, and
 M H Graham. 2012. ``EFfects of Climate Change on Global Seaweed
@@ -1674,6 +1649,12 @@ Coastal Marine Systems.'' \emph{Ecology Letters} 9 (2): 228--41.
 Harrold, Christopher, and Susan Lisin. 1989. ``Radio-Tracking Rafts of
 Giant Kelp: Local Production and Regional Transport.'' \emph{Journal of
 Experimental Marine Biology and Ecology} 130 (3): 237--51.
+
+\leavevmode\hypertarget{ref-helmuth1994}{}%
+Helmuth, B, R R Veit, and R Holberton. 1994. ``Long-distance dispersal
+of a subantarctic brooding bivalve (Gaimardia trapesina) by
+kelp-rafting.'' \emph{Marine Biology} 120 (3): 421--26.
+\url{https://doi.org/10.1007/BF00680216}.
 
 \leavevmode\hypertarget{ref-highsmith1985}{}%
 Highsmith, Raymond C. 1985. ``Floating and Algal Rafting as Potential
@@ -1734,11 +1715,6 @@ Patterns of Kelp Forest Change over the Past Half-Century.''
 \emph{Proceedings of the National Academy of Sciences} 113 (48):
 13785--90.
 
-\leavevmode\hypertarget{ref-lebreton2012}{}%
-Lebreton, LC-M, SD Greer, and Jose Carlos Borrero. 2012. ``Numerical
-Modelling of Floating Debris in the World's Oceans.'' \emph{Marine
-Pollution Bulletin} 64 (3): 653--61.
-
 \leavevmode\hypertarget{ref-lewis2005}{}%
 Lewis, Patrick N, Martin J Riddle, and Stephen DA Smith. 2005.
 ``Assisted Passage or Passive Drift: A Comparison of Alternative
@@ -1790,12 +1766,9 @@ Polovina, Jeffrey J. 2005. ``Climate Variation, Regime Shifts, and
 Implications for Sustainable Fisheries.'' \emph{Bulletin of Marine
 Science} 76 (2): 233--44.
 
-\leavevmode\hypertarget{ref-rotha2011}{}%
-Rothä usler, Eva, Iván Gómez, Iván A Hinojosa, Ulf Karsten, Leonardo
-Miranda, Fadia Tala, and Martin Thiel. 2011. ``Kelp Rafts in the
-Humboldt Current: Interplay of Abiotic and Biotic Factors Limit Their
-Floating Persistence and Dispersal Potential.'' \emph{Limnology and
-Oceanography} 56 (5): 1751--63.
+\leavevmode\hypertarget{ref-Vogel2020}{}%
+Vogel, Steven. 2020. ``Life in Moving Fluids: The Physical Biology of
+Flow-Revised and Expanded Second Edition.''
 
 \leavevmode\hypertarget{ref-zakas2009}{}%
 Zakas, C, J Binford, SA Navarrete, and JP Wares. 2009. ``Restricted Gene
