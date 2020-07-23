@@ -59,6 +59,9 @@ and so,
 $$m = (V_{stipesail}+V_{stipekeel})p_{ice} =(1 + \frac{p_w}{p_w -p{ice}})V_{stipesail}p_{ice}$$
 To calculate the volume of the stipe a idealised cyliderical form is used with height being subsituted for height such that:
 $$V = \pi r^2 l$$
+# Raft-longevity
+
+Raft-longevity refers to the time a macroalgae raft remians afloat at the surface of the ocean after detachment. Raft-longevity was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
 
 # Results
 
