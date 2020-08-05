@@ -59,9 +59,13 @@ and so,
 $$m = (V_{stipesail}+V_{stipekeel})p_{ice} =(1 + \frac{p_w}{p_w -p{ice}})V_{stipesail}p_{ice}$$
 To calculate the volume of the stipe a idealised cyliderical form is used with height being subsituted for height such that:
 $$V = \pi r^2 l$$
-# Raft-longevity
+# Shape-based drag estimates
 
-Raft-longevity refers to the time a macroalgae raft remians afloat at the surface of the ocean after detachment. Raft-longevity was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
+The software used to simulate the drifting of *E. maxima* individuals assumes the objects are spherical in shape. In order to account for variation in drag based on kelp morphology, the drag for the seperate structural components of the plant are calculated and converted to a sphereical object quivalent before each simulation takes place. The calculated drag estimates were then incorportaed into each simulaton run and were assumed to remain constant over the duration of the estimated raft-time.
+
+# Raft-time
+
+Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remians afloat at the surface of the ocean after detachment. Raft-time was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
 
 # Results
 
