@@ -34,38 +34,27 @@ To accurately determine the trajectory of marine macroalgae these aspects need t
 There are considerable gaps in the literature with regards to macroalgae trajectory such as buoyancy, air form drag, water form drag, epibiont load, growth, fragmentation, size, shape and orientation which have not been investigated numerically in the past.  In order to determine the coefficients needed for the transport model, a series of experiments are proposed. These experiments will aim to determine aspects of buoyancy, epiphyte growth rates and transport rate, all of which have been regarded as important coefficients needed for an accurate model. The experiments will be perfomred numerically to determine the main influencers of passive solitary kelp dispersal. 
 
 # Methods
-## Model and parameterisation
+
+## Hydrodynamic model
+
+## Particle tracking model
+
+The model is based on parameterisations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Furthermore, some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. In addition, large kelp rafts are not a characteristics around the coast of the Cape Peninsula but rather solitary kelp are (Pers. Obs). Therefore, the trajectory of solitary *E. maxima* individuals will be considered. Previous studies have made the assumption that kelp rafts move with the same velocity as the ocean current, and instead model a ensemble of particles which trajectories are determined by a combination of ocean currents and/or the effects of winds on currents. In addition, these studies assume the particle is fully buoyant. 
 
 Numerical calculations of particle trajectory with a Lagrangian method [@delandmeter2019], and be described by the equation
 
 $$X(t+\Delta t) = X(t) + \int_{t}^{t+\Delta t} v(x, \tau)d \tau + \Delta X_b(t)$$
-where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model, $X_b(t)$ is a change in position due to 'behaviour' of the particle. This can range from swimming in fish to sinking or beaching. 
+where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model, $X_b(t)$ is a change in position due to 'behaviour' of the particle. This can range from swimming in fish to sinking or beaching. IN order to investigate the effects of drag components of trajectory of floating macroalgae, this study incorporated drag as the custom behaviour. This study simulated two scenarious; one where the plant is fully submerged and only exposed to seawater drag and the other where parts of the plants are partially exposed resulting in a combination of seawater and air form drag. Unlike previous studies, drag based on shape based coefficients was used in the calculations. 
 
-The model is based on parameterisations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Furthermore, some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. In addition, large kelp rafts are not a characteristics around the coast of the Cape Peninsula but rather solitary kelp are (Pers. Obs). Therefore, the trajectory of solitary *E. maxima* individuals will be considered. Previous studies have made the assumption that kelp rafts move with the same velocity as the ocean current, and instead model a ensemble of particles which trajectories are determined by a combination of ocean currents and/or the effects of winds on currents. In addition, these studies assume the particle is fully buoyant and does not vary with time.   
+## Hydrodynamic drag
 
-The the velocity of the kelp sporophyte is a function of mass and time, as the mass of the individual will vary temporarily with changes in growth rate, erosion and epibiont load (mass), which in turn will effect buoyancy and thereby the surface area exposed to wind drag and seawater drag. 
+## Air-form drag
 
-A momentum equation can be used to describe how the mass of the kelp individual changes temporarily. A previous study by @Andersson2017 who used this approach to describe the change in velocity of an iceberg over time which has been adapted to suite the current project; and taking into account the additional parameterisitions:
-$$m\frac{du_i}{dt} = F_{corr} + F_{a} + F_{c} + F_{r} + F_{e}$$
-where $m$ is the overall kelp mass, $u_{i}$ is the starting kelp velocity, $d$ is the distance, $F_{corr}$ is Coriolis Force, $F_{a}$ is the air drag force, $F_c$ is the seawater drag force, $F_r$ is the effect of waves on the kelp, $F_{e}$ is the epibiont load force.
-
-The holdfast, stipe and kelp-head (fronds, primary blade and pneomatocyst) will the the focus of calculating the overall seawater drag force. Past studies refer to the surface area of the object exposed to wind forces as the "sail" area/volume, and the surface area exposed to the waves as the "keel" area/volume. The volume of the objects is required to calculate the seawater drag force and is expressed as,
-
-$$F_{c} = F_{kelphead} +  F_{holdfast} + F_{stipekeel}$$
-where $F_{c}$ is overall seawater drag force, $F_{kelphead}$ is the estimated drag coefficient for the top portion of the plant (fronds, primary blade, pnuematocyst), $V_{holdfast}$ is the estimated drag coefficient for the holdfast, $V_{stipekeel}$ is the estimated drag coefficient for the volume of the stipe submerged. The assumption made is that the kelp-head and holdfast will not change in volume while floating and that the entire holdfast will be submerged. Provided the exposed volume of the kelp exposed to the air is know the submerged portion $V_{stipekeel}$ and overall mass can be calculated based on Archimedes law [@Andersson2017]:
-$$V_{stipekeel} = V_{stipesail}\frac{p_{ice}}{p_w-p_{ice}}$$
-
-and so,
-$$m = (V_{stipesail}+V_{stipekeel})p_{ice} =(1 + \frac{p_w}{p_w -p{ice}})V_{stipesail}p_{ice}$$
-To calculate the volume of the stipe a idealised cyliderical form is used with height being subsituted for height such that:
-$$V = \pi r^2 l$$
-# Shape-based drag estimates
-
-The software used to simulate the drifting of *E. maxima* individuals assumes the objects are spherical in shape. In order to account for variation in drag based on kelp morphology, the drag for the seperate structural components of the plant are calculated and converted to a sphereical object quivalent before each simulation takes place. The calculated drag estimates were then incorportaed into each simulaton run and were assumed to remain constant over the duration of the estimated raft-time.
-
-# Raft-time
+## Raft-time
 
 Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remians afloat at the surface of the ocean after detachment. Raft-time was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
+
+## Simulations
 
 # Results
 
