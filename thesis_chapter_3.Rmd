@@ -48,7 +48,7 @@ where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three
 
 ## Hydrodynamic drag
 
-## Air-form drag
+The use of shape coefficients was used as a novel approach to simulating biological drifting debris. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of the virtual kelp parts was determined and used in the calculation of hydrodynamic drag. 
 
 ## Raft-time
 
