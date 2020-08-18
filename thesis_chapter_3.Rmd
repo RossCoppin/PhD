@@ -2,13 +2,14 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
+  word_document:
+    reference_docx: markdown/thesis_template.docx
   html_document:
     df_print: paged
   pdf_document:
     fig_caption: yes
-  word_document:
-    reference_docx: markdown/thesis_template.docx
 bibliography: references.bib
+csl: markdown/frontiers.csl.txt
 ---
 
 ```{r setup, include=FALSE}
@@ -66,4 +67,6 @@ Raft-time or sometimes referred to as raft-longevity is the time a macroalgae ra
 # Appendix
 
 Insert table of spherecity factors. 
+
+# References
 
