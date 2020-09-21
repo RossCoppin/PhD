@@ -29,7 +29,8 @@ Other aspects such as buoyancy and drag also play a role in determining the traj
 
 Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modelling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
 
-To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulas to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is the ratio of the surface area of a sphere having the volume as the irregular shaped particle (s) to the actual surface area of the particle (s_d) such that $$\psi=s/s_d$$. The values are dependent on the shape of the object and a range of values have been determined based on numerous experimental work. A table of various shapes and the associated spherecity factor is provided in the appendix.
+To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulas to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is the ratio of the surface area of a sphere having the volume as the irregular shaped particle (s) to the actual surface area of the particle (s_d) such that $$\psi=s/s_d$$. The values are dependent on the shape of the object and a range of values have been 
+determined based on numerous experimental work. A table of various shapes and the associated spherecity factor is provided in the appendix.
 
 There are considerable gaps in the literature with regards to macroalgae trajectory such as buoyancy, air form drag, water form drag, epibiont load, growth, fragmentation, size, shape and orientation which have not been investigated numerically in the past. In this study, a hypothetical approach was used to shed light on the role of drag on macroalgal drift trajectory by means of Langrangian based trajectory simulations. These simulations aimed to determine the role that hydrodynamic and wind drag might play in drift trajectory of macroalgae. In terms of wind drag, the direct effect of wind on the kelp was estimated rather than its affect on surface-currents.  
 
@@ -37,7 +38,7 @@ There are considerable gaps in the literature with regards to macroalgae traject
 
 ## Study site
 
-```{r map}
+```{r map, message=FALSE, warning=FALSE, include=FALSE}
 
 ## Load software:
 library(ggplot2)
@@ -85,14 +86,13 @@ release_map <- ggplot() +
 
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 library(ggpubr)
 
 ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, nrow = 1)
 
 ```
-
 
 ## Hydrodynamic model
 
@@ -174,13 +174,31 @@ plot_A <- ggplot(data = p_particle, aes(x = lon, y = lat)) +
   geom_point() + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  theme_bw()
+  theme_bw() 
 
 plot_B <- ggplot(data = k_particle, aes(x = lon, y = lat)) + 
   geom_point() + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
   theme_bw()
+
+trac_map_passive <- ggplot(data = south_africa_coast_hi_res) +
+geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+            size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = p_particle, aes(x = lon, y = lat), color = "red") +
+  #geom_label(data = study_sites_edit, aes(x = lon, y = lat, label = site), nudge_x = 0, nudge_y = 0) +
+  geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.10, xmax=18.50, ymin=-33.70, ymax=-34.50), inherit.aes = FALSE, fill = "blue", alpha = 0.01) +
+  geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.40, xmax=18.90, ymin=-34.00, ymax=-34.50), inherit.aes = FALSE, fill = "red", alpha = 0.01) +
+  #annotate("text", label = "Warm\nTemperate", x = 18.7, y = -34.5, size = 4.0, angle = 0, colour = "black") +
+  #annotate("text", label = "Cool\nTemperate", x = 18.0, y = -34.0, size = 4.0, angle = 0, colour = "black") +
+  annotate("text", label = "FALSE\nBAY", x =18.65, y = -34.25, size = 4.0, angle = 0, colour = "black") +
+  scaleBar(lon = 17.8, lat = -34.45, distanceLon = 10, distanceLat = 10, distanceLegend = -10, dist.unit = "km",
+  arrow.length = 10, arrow.distance = 15, arrow.North.size = 3) +
+  coord_cartesian(xlim = c(17.75, 19.15), ylim = c(-32.50, -34.55)) +
+  #theme(axis.ticks = element_blank()) + # Remove tick marks
+  xlab("Latitude") +
+  ylab("Longitude")
+
 
 ```
 
