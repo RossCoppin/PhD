@@ -1,5 +1,6 @@
-This folder contains the script needed for all trajectory simulations. The file/s located within this
-folder contain the latest working script. 
+This folder contains the script needed for all trajectory simulations and a subfolder with outputs from
+the simulations called "trajectory_data". Please see the "trajectory_data" subfolder for details
+about the contents. The file/s located within this  folder contain the latest working script and outputs. 
 
 The file "kelp.float.ipynb" is the python project file containing the script to run the current
 version of the langrangian based simulations incorporating drag aspects into trajectory simulations.
