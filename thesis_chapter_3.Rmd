@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  html_document:
   word_document:
     reference_docx: markdown/thesis_template.docx
+  html_document:
   pdf_document:
     fig_caption: yes
 bibliography: references.bib
@@ -98,6 +98,10 @@ ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, n
 
 The characteristics of the underlying numerical flow model will be explained here...
 
+## Wind model
+
+The characteristics of the underlying numerical wind model will be explained here...
+
 ## Particle tracking model
 
 The model is based on parameterisations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Furthermore, some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. In addition, large kelp rafts are not a characteristics around the coast of the Cape Peninsula but rather solitary kelp are (Pers. Obs). Therefore, the trajectory of solitary *E. maxima* individuals will be considered. Previous studies have made the assumption that kelp rafts move with the same velocity as the ocean current, and instead model a ensemble of particles which trajectories are determined by a combination of ocean currents and/or the effects of winds on currents. In addition, these studies assume the particle is fully buoyant. 
@@ -113,6 +117,165 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_c$ the hydr
 ## Cross-sectional area
 
 In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image ???. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin] and estimated from figure \ref{fig:morphology}.
+
+## Hydrodynamic drag
+
+The use of shape coefficients was used as a novel approach to simulating biological drifting debris. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of the virtual kelp parts was determined and used in the calculation of hydrodynamic drag. The hydrodynamic/form drag can be calculated by: $$ F_d = 0.5 \rho A_c C_d U^2$$
+
+## Wind drag
+
+The total wind drag effect was calculated for the hypothetical cross-sectional area of the kelp particle which was exposed above the water surface, which in this study, was estimated as 10% of the total cross-sectional area. 
+
+## Raft-time
+
+Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment. Raft-time was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
+
+
+## Simulations
+
+# Results
+
+
+```{r data, message=FALSE, warning=FALSE, include=FALSE}
+
+# Read in data and data wrangling
+
+library(tidync)
+library(tidyverse)
+
+p_RK4 <- tidync("OceanParcels/trajectory_data/PassiveFloat.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
+
+p_RK4_mean <- p_RK4 %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'passive' label
+
+k_app1 <- tidync("OceanParcels/trajectory_data/KelpFloatApp1.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
+
+k_app1_mean <- k_app1 %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+k_app1$type <- "Approach 1" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+k_app2 <- tidync("OceanParcels/trajectory_data/KelpFloatApp2.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
+
+k_app1_mean <- k_app2 %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+k_app2$type <- "Approach 2" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+total_data <- rbind(p_RK4, k_app1, k_app2)
+
+```
+
+
+```{r plots, message=FALSE, warning=FALSE, include=FALSE}
+
+## 2D histogram plots of number of particles
+
+bin_RK4 <- ggplot(p_RK4, aes(x=lon, y=lat)) +
+  geom_bin2d(bins = 20) +
+  scale_fill_continuous(type = "viridis") +
+  coord_fixed() +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw()
+
+bin_APP1 <- ggplot(k_app1, aes(x=lon, y=lat)) +
+  geom_bin2d(bins = 20) +
+  scale_fill_continuous(type = "viridis") +
+  coord_fixed() +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw()
+
+bin_APP2 <- ggplot(k_app2, aes(x=lon, y=lat)) +
+  geom_bin2d(bins = 20) +
+  scale_fill_continuous(type = "viridis") +
+  coord_fixed() +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw()
+
+## Heatmaps of study domain, use previous data for study site map and histograms
+
+heatmap_RK4 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_APP1 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_APP2 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+## Scatterplots
+
+total_traj <- ggplot(data = total_data, aes(x = lon, y = lat, colour = type)) + 
+  geom_point() + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  theme_bw() +
+  guides(colour=guide_legend(title="Particle type"))
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+library(ggpubr)
+plot(total_traj)
+ggarrange(heatmap_RK4,heatmap_APP1, heatmap_APP2, labels = c("A","B","C"), common.legend = TRUE, legend = c("right"))
+
+```
+
+# Discussion
+
+# Appendix
+
+Insert table of spherecity factors. 
 
 ```{r morphology_wrangling, message=FALSE, warning=FALSE, include=FALSE}
 # Investigate morphology data to assist in estimating surface area
@@ -237,94 +400,6 @@ ggarrange(frond_length, frond_mass,primary_length, primary_width, stipe_circ, st
 ```
 
 
-
-
-## Hydrodynamic drag
-
-The use of shape coefficients was used as a novel approach to simulating biological drifting debris. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of the virtual kelp parts was determined and used in the calculation of hydrodynamic drag. The hydrodynamic/form drag can be calculated by: $$ F_d = 0.5 \rho A_c C_d U^2$$
-
-## Windage
-
-In order to calculate the direct effect of wind-drag on the kelp the wind velcocity is needed, which can be estimated by the surface-current velocity. 
-
-The total wind drag effect was calculated for the hypothetical cross-sectional area of the kelp particle which was exposed above the water surface, which in this study, was estimated as 10% of the total cross-sectional area. 
-
-## Raft-time
-
-Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment. Raft-time was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
-
-
-## Simulations
-
-# Results
-
-
-```{r}
-
-# Read in data and data wrangling
-
-library(tidync)
-library(tidyverse)
-
-p_particle <- tidync("OceanParcels/trajectory_data/PassiveFloat.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))  
-
-p_particle_mean <- p_particle %>% 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
-
-p_particle$type <- "passive" # add extra column 'type' to dataframe and assigned 'passive' label
-
-k_particle <- tidync("OceanParcels/trajectory_data/KelpFloat.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
-
-k_particle_mean <- k_particle %>% 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
-
-k_particle$type <- "kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
-
-total_data <- rbind(p_particle, k_particle)
-
-```
-
-
-## Simulations
-
-```{r}
-
-plot_A <- ggplot(data = p_particle, aes(x = lon, y = lat)) + 
-  geom_point() + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  theme_bw() 
-
-plot_B <- ggplot(data = k_particle, aes(x = lon, y = lat)) + 
-  geom_point() + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  theme_bw()
-
-```
-
-```{r}
-
-library(ggpubr)
-ggarrange(plot_A,plot_B, labels = c("A","B"))
-
-```
-
-# Discussion
-
-# Appendix
-
-Insert table of spherecity factors. 
-
 # References
+
 
