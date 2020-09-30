@@ -153,7 +153,19 @@ p_RK4_mean <- p_RK4 %>% # summarise data based on time
    group_by(t) %>% 
    summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
 
-p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'passive' label
+p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
+
+p_EE <- tidync("OceanParcels/trajectory_data/PassiveFloat.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
+
+p_EE_mean <- p_EE %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+p_EE$type <- "EE" # add extra column 'type' to dataframe and assigned 'EE' label
 
 k_app1 <- tidync("OceanParcels/trajectory_data/KelpFloatApp1.nc") %>%
   hyper_tibble() %>%
