@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
+  html_document:
   word_document:
     reference_docx: markdown/thesis_template.docx
-  html_document:
   pdf_document:
     fig_caption: yes
 bibliography: references.bib
@@ -136,14 +136,14 @@ Raft-time or sometimes referred to as raft-longevity is the time a macroalgae ra
 # Results
 
 
-```{r data, message=FALSE, warning=FALSE, include=FALSE}
+```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
 # Read in data and data wrangling
 
 library(tidync)
 library(tidyverse)
 
-p_RK4 <- tidync("OceanParcels/trajectory_data/PassiveFloat.nc") %>%
+p_RK4 <- tidync("OceanParcels/trajectory_data/PassiveFloatRK4.nc") %>%
   hyper_tibble() %>%
   dplyr::select(lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
@@ -155,7 +155,7 @@ p_RK4_mean <- p_RK4 %>% # summarise data based on time
 
 p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
 
-p_EE <- tidync("OceanParcels/trajectory_data/PassiveFloat.nc") %>%
+p_EE <- tidync("OceanParcels/trajectory_data/PassiveFloatEE.nc") %>%
   hyper_tibble() %>%
   dplyr::select(lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
@@ -186,14 +186,27 @@ k_app2 <- tidync("OceanParcels/trajectory_data/KelpFloatApp2.nc") %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
 
-k_app1_mean <- k_app2 %>% # summarise data based on time 
+k_app2_mean <- k_app2 %>% # summarise data based on time 
    group_by(t) %>% 
    summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
 
 k_app2$type <- "Approach 2" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 
-total_data <- rbind(p_RK4, k_app1, k_app2)
+total_data <- rbind(p_RK4, p_EE, k_app1, k_app2)
+
+```
+
+
+```{r scatter advection, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
+
+total_traj <- ggplot(data = total_data, aes(x = lon, y = lat, colour = type)) + 
+  geom_point(aes(alpha = 0.2)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  theme_bw() +
+  guides(colour=guide_legend(title="Particle type"))
+total_traj
 
 ```
 
@@ -203,6 +216,15 @@ total_data <- rbind(p_RK4, k_app1, k_app2)
 ## 2D histogram plots of number of particles
 
 bin_RK4 <- ggplot(p_RK4, aes(x=lon, y=lat)) +
+  geom_bin2d(bins = 20) +
+  scale_fill_continuous(type = "viridis") +
+  coord_fixed() +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw()
+
+bin_RK4 <- ggplot(p_EE, aes(x=lon, y=lat)) +
   geom_bin2d(bins = 20) +
   scale_fill_continuous(type = "viridis") +
   coord_fixed() +
@@ -231,10 +253,24 @@ bin_APP2 <- ggplot(k_app2, aes(x=lon, y=lat)) +
 
 ## Heatmaps of study domain, use previous data for study site map and histograms
 
+## Coastline of Southern Africa
+load("map/south_africa_coast_hi_res.Rdata")
+
 heatmap_RK4 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
-  geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_EE <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -263,23 +299,12 @@ heatmap_APP2 <- ggplot() +
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() 
-
-## Scatterplots
-
-total_traj <- ggplot(data = total_data, aes(x = lon, y = lat, colour = type)) + 
-  geom_point() + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  theme_bw() +
-  guides(colour=guide_legend(title="Particle type"))
-
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 library(ggpubr)
-plot(total_traj)
-ggarrange(heatmap_RK4,heatmap_APP1, heatmap_APP2, labels = c("A","B","C"), common.legend = TRUE, legend = c("right"))
+ggarrange(heatmap_RK4, heatmap_EE, heatmap_APP1, heatmap_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"))
 
 ```
 
