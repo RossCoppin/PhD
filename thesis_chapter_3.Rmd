@@ -38,7 +38,9 @@ There are considerable gaps in the literature with regards to macroalgae traject
 
 ## Study site
 
-```{r map, message=FALSE, warning=FALSE, include=FALSE}
+The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (see figure \ref{fig:map}A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (see figure \ref{fig:map}B). The hydrodynamics between the two domains are driven by a complex interaction of wind and hydrodynamic vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these two domains are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean.
+
+```{r map data, message=FALSE, warning=FALSE, include=FALSE}
 
 ## Load software:
 library(ggplot2)
@@ -86,7 +88,7 @@ release_map <- ggplot() +
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r map,echo=FALSE, message=FALSE, warning=FALSE, fig.cap='\\label{fig:map}Map of the study area and sampling sites. The blue shaded area is the Atlantic region and the red shaded region is the False Bay region.'}
 
 library(ggpubr)
 
@@ -111,208 +113,13 @@ Numerical calculations of particle trajectory with a Lagrangian method [@delandm
 $$X(t+\Delta t) = X(t) + \int_{t}^{t+\Delta t} v(x, \tau)d \tau + \Delta X_b(t)$$
 where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model, $X_b(t)$ is a change in position due to 'behavior' of the particle. This can range from swimming in fish to sinking or beaching. IN order to investigate the effects of drag components of trajectory of floating macroalgae, this study incorporated drag as the custom behavior. 
 
-This study simulated two scenarios; one where the plant is fully submerged and only exposed to seawater drag and the other where parts of the plants are partially exposed resulting in a combination of seawater and air form drag. Unlike previous studies, drag based on shape based coefficients was used in the calculations for determining the reduction in velocity as a result of drag. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this particular study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_c + F_a + F_f$$
-where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_c$ the hydrodynamic drag, $F_a$ is the wind drag, and $F_f$ the surface-current flow. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag and surface current-flow are two-dimensional vector quantities and were calculated before input into the model. 
+This study simulated two scenarios; one where the plant is fully submerged and only exposed to seawater drag and the other where parts of the plants are partially exposed resulting in a combination of seawater and air form drag. Unlike previous studies, drag based on shape based coefficients was used in the calculations for determining the reduction in velocity as a result of drag. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this particular study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_d + F_a + F_f$$
+where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, and $F_f$ the surface-current flow. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag and surface current-flow are two-dimensional vector quantities and were calculated before input into the model. 
 
-## Cross-sectional area
+## Model inputs
+### Cross-sectional area
 
-In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image ???. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin] and estimated from figure \ref{fig:morphology}.
-
-## Hydrodynamic drag
-
-The use of shape coefficients was used as a novel approach to simulating biological drifting debris. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of the virtual kelp parts was determined and used in the calculation of hydrodynamic drag. The hydrodynamic/form drag can be calculated by: $$ F_d = 0.5 \rho A_c C_d U^2$$
-
-## Wind drag
-
-The total wind drag effect was calculated for the hypothetical cross-sectional area of the kelp particle which was exposed above the water surface, which in this study, was estimated as 10% of the total cross-sectional area. 
-
-## Raft-time
-
-Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment. Raft-time was estimated from past studies by @graiff2016 and @graiff2013; which found mean raft times of approximately 30 days in moderate conditions. 
-
-
-## Simulations
-
-# Results
-
-
-```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
-
-# Read in data and data wrangling
-
-library(tidync)
-library(tidyverse)
-
-p_RK4 <- tidync("OceanParcels/trajectory_data/PassiveFloatRK4.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
-
-p_RK4_mean <- p_RK4 %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
-
-p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
-
-p_EE <- tidync("OceanParcels/trajectory_data/PassiveFloatEE.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
-
-p_EE_mean <- p_EE %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
-
-p_EE$type <- "EE" # add extra column 'type' to dataframe and assigned 'EE' label
-
-k_app1 <- tidync("OceanParcels/trajectory_data/KelpFloatApp1.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
-
-k_app1_mean <- k_app1 %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
-
-k_app1$type <- "Approach 1" # add extra column 'type' to dataframe and assigned 'kelp' label
-
-
-k_app2 <- tidync("OceanParcels/trajectory_data/KelpFloatApp2.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
-
-k_app2_mean <- k_app2 %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
-
-k_app2$type <- "Approach 2" # add extra column 'type' to dataframe and assigned 'kelp' label
-
-
-total_data <- rbind(p_RK4, p_EE, k_app1, k_app2)
-
-```
-
-
-```{r scatter advection, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
-
-total_traj <- ggplot(data = total_data, aes(x = lon, y = lat, colour = type)) + 
-  geom_point(aes(alpha = 0.2)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  theme_bw() +
-  guides(colour=guide_legend(title="Particle type"))
-total_traj
-
-```
-
-
-```{r plots, message=FALSE, warning=FALSE, include=FALSE}
-
-## 2D histogram plots of number of particles
-
-bin_RK4 <- ggplot(p_RK4, aes(x=lon, y=lat)) +
-  geom_bin2d(bins = 20) +
-  scale_fill_continuous(type = "viridis") +
-  coord_fixed() +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw()
-
-bin_RK4 <- ggplot(p_EE, aes(x=lon, y=lat)) +
-  geom_bin2d(bins = 20) +
-  scale_fill_continuous(type = "viridis") +
-  coord_fixed() +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw()
-
-bin_APP1 <- ggplot(k_app1, aes(x=lon, y=lat)) +
-  geom_bin2d(bins = 20) +
-  scale_fill_continuous(type = "viridis") +
-  coord_fixed() +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw()
-
-bin_APP2 <- ggplot(k_app2, aes(x=lon, y=lat)) +
-  geom_bin2d(bins = 20) +
-  scale_fill_continuous(type = "viridis") +
-  coord_fixed() +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw()
-
-## Heatmaps of study domain, use previous data for study site map and histograms
-
-## Coastline of Southern Africa
-load("map/south_africa_coast_hi_res.Rdata")
-
-heatmap_RK4 <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
-
-heatmap_EE <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
-
-heatmap_APP1 <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
-
-heatmap_APP2 <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-
-library(ggpubr)
-ggarrange(heatmap_RK4, heatmap_EE, heatmap_APP1, heatmap_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"))
-
-```
-
-# Discussion
-
-# Appendix
-
-Insert table of spherecity factors. 
+In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020] and estimated from figure \ref{fig:morphology}.
 
 ```{r morphology_wrangling, message=FALSE, warning=FALSE, include=FALSE}
 # Investigate morphology data to assist in estimating surface area
@@ -431,11 +238,217 @@ total_length <- ggplot(data = eck_data, aes(x = site, y = epi_length, fill = sit
            theme_bw()
 ```
 
-```{r morphology, echo=FALSE, , fig.height=7, fig.width=8, message=FALSE, warning=FALSE, fig.cap='\\label{fig:morphology}Boxplots representing *E. pallida* morphological characteristics grouped by site around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured and with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.'}
+```{r morphology, echo=FALSE, , fig.height=7, fig.width=8, message=FALSE, warning=FALSE, fig.cap='\\label{fig:morphology}Boxplots representing *E.maxima* morphological characteristics by site around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured and with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.'}
 # Plot the morphology data based on site (see previous section)
 ggarrange(frond_length, frond_mass,primary_length, primary_width, stipe_circ, stipe_length, stipe_mass, total_length, tufts, common.legend = TRUE, legend = c("none"), align = c("hv"))
 ```
 
+### Hydrodynamic drag
+
+The use of a sphererical shape coefficient was used in the approach to simulate the trajectory of solitary floating *E. maxima*. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of each virtual plant was converted to the equivalent cross-sectional area for that of a sphere in the equation for calculating hyrdrodynamic drag: $$ F_d = 0.5 \rho A_c C_d U^2$$
+
+### Wind drag
+
+The total wind drag effect was calculated for the hypothetical cross-sectional area of the kelp particle which was exposed above the water surface, which in this study, was estimated as 10% of the total cross-sectional area. 
+
+### Raft-time
+
+Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 25 days, winter was 38 days, and autumn was 41 days respectivley. 
+
+## Simulations
+
+In order to determine the influence of morphology on drag components, simulations were performed for the minimum, median and maximum cross-sectional areas for one site on the Atlantic side and one site within False Bay (see figure \ref{fig:map})
+
+## Statisical analysis
+
+# Results
+
+
+```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
+
+# Read in data and data wrangling
+
+library(tidync)
+library(tidyverse)
+
+p_RK4 <- tidync("OceanParcels/trajectory_data/PassiveFloatRK4.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
+
+p_RK4_mean <- p_RK4 %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
+
+p_EE <- tidync("OceanParcels/trajectory_data/PassiveFloatEE.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
+
+p_EE_mean <- p_EE %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+p_EE$type <- "EE" # add extra column 'type' to dataframe and assigned 'EE' label
+
+k_app1 <- tidync("OceanParcels/trajectory_data/KelpFloatApp1.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
+
+k_app1_mean <- k_app1 %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+k_app1$type <- "Approach 1" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+k_app2 <- tidync("OceanParcels/trajectory_data/KelpFloatApp2.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
+
+k_app2_mean <- k_app2 %>% # summarise data based on time 
+   group_by(t) %>% 
+   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+
+k_app2$type <- "Approach 2" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+total_data <- rbind(p_RK4, p_EE, k_app1, k_app2)
+
+```
+
+
+```{r plots, message=FALSE, warning=FALSE, include=FALSE}
+
+library(hexbin)
+
+## Heatmaps of study domain, use previous data for study site map and histograms
+
+## Coastline of Southern Africa
+load("map/south_africa_coast_hi_res.Rdata")
+
+heatmap_RK4 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_EE <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = p_EE, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_APP1 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = k_app1, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_APP2 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.'}
+
+library(ggpubr)
+ggarrange(heatmap_RK4, heatmap_EE, heatmap_APP1, heatmap_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 2)
+
+```
+
+
+```{r scatter plot processing, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+
+age_RK4 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = p_RK4, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Age of particles")) +
+  theme_bw() 
+
+age_EE <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = p_EE, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Age of particles")) +
+  theme_bw() 
+
+age_APP1 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = k_app1, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Age of particles")) +
+  theme_bw()
+
+age_APP2 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = k_app2, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Age of particles")) +
+  theme_bw()
+
+```
+
+
+```{r age plots, warning=FALSE, echo=FALSE, include=TRUE, message=FALSE}
+
+ggarrange(age_RK4, age_EE, age_APP1, age_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 2)
+```
+
+# Discussion
+
+# Appendix
+
+Insert table of spherecity factors. 
 
 # References
 
