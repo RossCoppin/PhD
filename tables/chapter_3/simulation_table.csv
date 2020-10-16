@@ -1,0 +1,5 @@
+Scenario;Site;Time Range;Season;Release Lon;Release Lat;Cross-sectional Area;Hydrodynamic model;Wind Model;Particle behaviour
+1;Kommetjie;;;18.31648;-34.13173;none;GlobCurrent 2D;none;5 minute time-steps, RK4, no drag 
+2;Buffelsbaai;;;18.470217;-34.332867;none;GlobCurrent 2D;none;5 minute time-steps, RK4, no drag 
+3;Kommetjie;;;18.31648;-34.13173;none;GlobCurrent 2D;none;5 minute time-steps, EE, no drag 
+4;Buffelsbaai;;;18.470217;-34.332867;none;GlobCurrent 2D;none;5 minute time-steps, EE, no drag 
