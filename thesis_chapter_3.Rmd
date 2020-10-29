@@ -6,18 +6,13 @@ output:
   pdf_document:
     fig_caption: yes
   word_document:
-    reference_docx: markdown/thesis_template.docx
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Introduction
 
-There is a range of objects, both natural and anthropogenic, floating in the ocean of which macroalgae are regarded as one of the most important passive dispersal mechanisms of marine taxa. Floating kelp  acts as a passive dispersal mechanism for a range of marine taxa and is sometimes referred to as the 'tumble-weed' of the ocean [@edgar1987; @bushing1994; @norton1992; @helmuth1994; @holmquist1994; @smith2002; @McCormick2008]. Considerable research has been performed investigating macroalgae as a passive dispersal mechanism in the ocean, however, in recent years much of the focus has shifted towards microplastics. 
+There is a range of objects, both natural and anthropogenic, floating in the ocean of which macroalgae are regarded as one of the most important passive dispersal mechanisms of marine taxa. Floating kelp acts as a passive dispersal mechanism for a range of marine taxa and is sometimes referred to as the 'tumble-weed' of the ocean [@edgar1987; @bushing1994; @norton1992; @helmuth1994; @holmquist1994; @smith2002; @McCormick2008]. Considerable research has been performed investigating macroalgae as a passive dispersal mechanism in the ocean, however, in recent years much of the focus has shifted towards microplastics. 
 
 Some macroalgae species are negatively buoyant and sink to the seafloor when detached from the substrate, while other species of macroalgae have air-filled pneumatocysts or stipes which allow the plants to reach the surface where light is more abundant. In turn, the positively buoyant pneumatocysts cause plants to float to the surface when dislodged from the substratum. The structure and number of pneumatocysts varies between species. For example species from the genera *Macrocystis*, *Sargassum*, *Ascophyllum*, and *Fucus* have thalli with many small pneumatocysts, while other kelp species such as *Nereocystis luetkeana*, *Pelagophycus porra*, *Ecklonia radiata*, *Ecklonia maxima* have a single, large pneumatocysts [@dayton1985; @smith2002; @thiel2005; @graiff2016; @batista2018]. In some cases the stipe itself is air-filled, such as with *E. maxima* and *E. radiata*. Although there have been reports of floating Chlorophyta species and some Rhodophyta species, Phaeophyceae species are the most commonly reported forms of floating algae. This is most likely because the green and red species reported floating are not actually positively buoyant, but instead are kept at the surface by gas trapped inbetween or in the thalli [@dromgoole1982; @back2000]. The giant kelp *Macrocystis pyrifera* [@helmuth1994; @kingsford1995; @hobday2000; @macaya2005; @graiff2016; @batista2018] and the bull kelp *Durvillaea antarctica* [@collins2010; @tala2013 ; @tala2017; @saunders2014; @smith2002; @wichmann2012; @batista2018] have been the focus of much of the research regarding spatial and temporal dispersal patterns, the ecological role of rafting, marine connectivity and raft-time.
 
@@ -29,10 +24,9 @@ Other aspects such as buoyancy and drag also play a role in determining the traj
 
 Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modelling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
 
-To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulas to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is the ratio of the surface area of a sphere having the volume as the irregular shaped particle (s) to the actual surface area of the particle (s_d) such that $$\psi=s/s_d$$. The values are dependent on the shape of the object and a range of values have been 
-determined based on numerous experimental work. A table of various shapes and the associated spherecity factor is provided in the appendix.
+To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulas to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is expressed mathematically by $\psi=s/s_d$, and the ratio of the surface area of a sphere having the volume as the irregular shaped particle ($s$) to the actual surface area of the particle ($s_d$). The values are dependent on the shape of the object and a range of values have been determined based on numerous experimental work. 
 
-There are considerable gaps in the literature with regards to macroalgae trajectory such as buoyancy, air form drag, water form drag, epibiont load, growth, fragmentation, size, shape and orientation which have not been investigated numerically in the past. In this study, a hypothetical approach was used to shed light on the role of drag on macroalgal drift trajectory by means of Langrangian based trajectory simulations. These simulations aimed to determine the role that hydrodynamic and wind drag might play in drift trajectory of macroalgae. In terms of wind drag, the direct effect of wind on the kelp was estimated rather than its affect on surface-currents.  
+In this study, a hypothetical approach was used to shed light on the role of drag on macroalgal drift trajectory by means of Langrangian based trajectory simulations. These simulations aimed to determine the role that hydrodynamic and wind drag might play in drift trajectory of macroalgae. In terms of wind drag, the direct effect of wind on the kelp was estimated rather than its affect on surface-currents.  
 
 # Methods
 
@@ -42,12 +36,21 @@ The region of interest for this study was the Cape Peninsula in the Western Cape
 
 ```{r map data, message=FALSE, warning=FALSE, include=FALSE}
 
-## Load software:
+## Load software need for entire script
+
 library(ggplot2)
 library(rgdal)
 library(tidyverse)
 library(viridis)
 library(gridExtra)
+library(ggpubr)
+#library(ggord)
+library(vegan)
+library(dplyr)
+library(ggpubr)
+library(maps)
+
+
 source("map/scaleBarFunc.R")
 
 load("map/south_africa_coast_hi_res.Rdata")
@@ -90,8 +93,6 @@ release_map <- ggplot() +
 
 ```{r map,echo=FALSE, message=FALSE, warning=FALSE, fig.cap='\\label{fig:map}Map of the study area and sampling sites. The blue shaded area is the Atlantic region and the red shaded region is the False Bay region.'}
 
-library(ggpubr)
-
 ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, nrow = 1)
 
 ```
@@ -114,15 +115,27 @@ $$X(t+\Delta t) = X(t) + \int_{t}^{t+\Delta t} v(x, \tau)d \tau + \Delta X_b(t)$
 where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model, $X_b(t)$ is a change in position due to 'behavior' of the particle. This can range from swimming in fish to sinking or beaching. IN order to investigate the effects of drag components of trajectory of floating macroalgae, this study incorporated drag as the custom behavior. 
 
 This study simulated two scenarios; one where the plant is fully submerged and only exposed to seawater drag; and the other where parts of the plants are partially exposed resulting in a combination of seawater and air form drag. Drag based on shape based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this particular study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_d + F_a + F_f$$
-where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, and $F_f$ the surface-current flow. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag and surface current-flow are two-dimensional vector quantities and were calculatedfor each time step of each simulation. 
+where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, and $F_f$ the surface-current flow. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag and surface current-flow are two-dimensional vector quantities and were calculated for each time step of each simulation. 
 
 ## Model inputs
 ### Cross-sectional area
 
-In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for simulations where the inclusion of the holdfast was considered.  
+In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for simulations where the inclusion of the holdfast was considered. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, maximum and mean were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, maximum and mean cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, maximum and mean overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
+```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
 
-The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, maximum and mean were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, maximum and mean cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, maximum and mean overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory.   
+library(flextable)
+library(officer)
+
+sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
+
+sim_table <- flextable(data = sim_table)
+sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
+sim_table <- set_header_labels(sim_table, Particle.behaviour = "Particle behaviour", Cross.sectional.area = "Cross-sectional area", Time.Range = "Time Range", Release.Lon = "Release longitude", Release.Lat = "Release Latitude", Hydrodynamic.model = "Hydrodynamic model", Wind.Model = "Wind model")
+sim_table <- align(x= sim_table, align = "center", part = "all")
+sim_table
+
+```
 
 ### Hydrodynamic drag
 
@@ -143,7 +156,6 @@ In order to determine the influence of morphology on drag components, simulation
 ## Statistical analysis
 
 # Results
-
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -205,7 +217,6 @@ k_app2$type <- "Approach 2" # add extra column 'type' to dataframe and assigned 
 total_data <- rbind(p_RK4, p_EE, k_app1, k_app2)
 
 ```
-
 
 ```{r plots, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -270,7 +281,6 @@ ggarrange(heatmap_RK4, heatmap_EE, heatmap_APP1, heatmap_APP2, labels = c("A","B
 
 ```
 
-
 ```{r scatter plot processing, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 
 age_RK4 <- ggplot() +
@@ -319,7 +329,6 @@ age_APP2 <- ggplot() +
 
 ```
 
-
 ```{r age plots, warning=FALSE, echo=FALSE, include=TRUE, message=FALSE}
 
 ggarrange(age_RK4, age_EE, age_APP1, age_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 2)
@@ -329,32 +338,25 @@ ggarrange(age_RK4, age_EE, age_APP1, age_APP2, labels = c("A","B","C","D"), comm
 
 # Appendix
 
-```{r morphology_wrangling, message=FALSE, warning=FALSE, include=FALSE}
+```{r morphology_wrangling, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 # Investigate morphology data to assist in estimating surface area
-
 # Load software
 library(tidyverse)
 library(ggpubr)
 library(gridExtra)
 library(ggplot2)
-library(ggord)
 library(vegan)
 library(dplyr)
-
 # Read in morphology data
 eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
   filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
   filter(site!= "De Hoop") 
-
 eck_df$site <- as.character(eck_df$site)
 eck_df <- eck_df %>% 
   filter(population == "Deep") 
-
 eck_long_df <- gather(eck_df, Morphology, measurement, frond_mass:total_length, factor_key=TRUE)
 # Summary stats to make it easier to refer to later, these will not be used any analysis.
-
 site_list <- c("Kommetjie")
-
 eck_stats <- eck_long_df %>% 
   group_by(site, Morphology) %>% 
   summarise(mean = mean(measurement, na.rm = T),
@@ -367,45 +369,14 @@ eck_stats <- eck_long_df %>%
   rename(Minimum = minimum) %>% 
   rename(Maximum = maximum)
 
-#df <- eck_stats
-#rownames(df)[rownames(df) == "frond_mass"] <- "Frond mass"
-#
-#  eck_stats <- eck_stats %>% 
-#  column_to_rownames(var = "Morphology") %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "epi_length", "Epiphyte length (cm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "frond_length", "Frond length (cm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "frond_mass", "Frond mass (kg)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "primary_length", "Primary length (cm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "primary_width", "Primary width (cm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "stipe_circ", "Stipe circumference (mm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "stipe_length", "Stipe length (cm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "stipe_mass", "Stipe mass (kg)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "total_length", "Total length (cm)")) %>% 
-#  mutate(Morphology = replace(Morphology, 
-#                              Morphology == "tufts", "Number of tufts"))
+eck_stats <- flextable(data = eck_stats)
+eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "transparent")
+eck_stats <- align(x= eck_stats, align = "center", part = "all")
+eck_stats
+
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-
-library(knitr)
-library(kableExtra)
-
-knitr::kable(eck_stats, format = "html") %>%
-  kable_styling()
-
-```
-
-Insert table of spherecity factors. 
 
 # References
 
