@@ -122,21 +122,6 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for simulations where the inclusion of the holdfast was considered. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, maximum and mean were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, maximum and mean cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, maximum and mean overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
-```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
-
-library(flextable)
-library(officer)
-
-sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
-
-sim_table <- flextable(data = sim_table)
-sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
-sim_table <- set_header_labels(sim_table, Particle.behaviour = "Particle behaviour", Cross.sectional.area = "Cross-sectional area", Time.Range = "Time Range", Release.Lon = "Release longitude", Release.Lat = "Release Latitude", Hydrodynamic.model = "Hydrodynamic model", Wind.Model = "Wind model")
-sim_table <- align(x= sim_table, align = "center", part = "all")
-sim_table
-
-```
-
 ### Hydrodynamic drag
 
 The use of a spherical shape coefficient was used in the approach to simulate the trajectory of solitary floating *E. maxima*. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of each virtual plant was converted to the equivalent cross-sectional area for that of a sphere in the equation for calculating hydrodynamic drag: $$ F_d = 0.5 \rho A_c C_d U^2$$
@@ -152,6 +137,21 @@ Raft-time or sometimes referred to as raft-longevity is the time a macroalgae ra
 ## Simulations
 
 In order to determine the influence of morphology on drag components, simulations were performed for the minimum, median and maximum cross-sectional areas for one site on the Atlantic side and one site within False Bay (see figure \ref{fig:map})
+
+```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(flextable)
+library(officer)
+
+sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
+
+sim_table <- flextable(data = sim_table)
+sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
+sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Time.Range = "Time Range", Drag.Exposure = "Drag Exposure level")
+sim_table <- align(x= sim_table, align = "center", part = "all")
+sim_table
+
+```
 
 ## Statistical analysis
 
