@@ -374,7 +374,11 @@ eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "t
 eck_stats <- align(x= eck_stats, align = "center", part = "all")
 eck_stats
 
-
+area_table <- read.csv("tables/chapter_3/area_table.csv", sep = ";")
+area_table <- flextable(data = area_table)
+area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = "transparent")
+area_table <- align(x= area_table, align = "center", part = "all")
+area_table
 ```
 
 
