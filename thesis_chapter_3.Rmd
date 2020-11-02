@@ -99,11 +99,11 @@ ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, n
 
 ## Hydrodynamic model
 
-The characteristics of the underlying numerical flow model will be explained here...
+Both passive and kelp particles were simulated around the South African coastline within hind-cast outputs from the Copernicus Marine Environment Monitoring Service. The Copernicus outputs used in this study contains 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 1/12$^\circ$ and is interpolated on a Arakawa C native grid.
 
 ## Wind model
 
-The characteristics of the underlying numerical wind model will be explained here...
+In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (WIND_L4_NRT_OBSERVATIONS_012_004). The outputs from the model is composed of 6-hourly avergaed fields of surface 10m wind velocity vectors with a spatial resolution of 1/4$^\circ$. 
 
 ## Particle tracking model
 
