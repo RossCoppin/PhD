@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  html_document:
   pdf_document:
     fig_caption: yes
+  html_document:
   word_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
@@ -32,7 +32,7 @@ In this study, a hypothetical approach was used to shed light on the role of dra
 
 ## Study site
 
-The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (see figure \ref{fig:map}A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (see figure \ref{fig:map}B). The hydrodynamics between the two domains are driven by a complex interaction of wind and wave vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these regions are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean.
+The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (see figure \ref{fig:map}A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (see figure \ref{fig:map}B). The hydrodynamics between the two domains are driven by a complex interaction of wind and wave vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these regions are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean. 
 
 ```{r map data, message=FALSE, warning=FALSE, include=FALSE}
 
