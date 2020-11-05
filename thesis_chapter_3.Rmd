@@ -439,59 +439,6 @@ ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_K
 
 ```
 
-```{r scatter plot processing, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
-
-age_RK4 <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_point(data = p_RK4, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Age of particles")) +
-  theme_bw() 
-
-age_EE <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_point(data = p_EE, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Age of particles")) +
-  theme_bw() 
-
-age_APP1 <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_point(data = k_app1, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Age of particles")) +
-  theme_bw()
-
-age_APP2 <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_point(data = k_app2, aes(x = lon, y = lat, alpha = 0.2, color = age)) + 
-  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Age of particles")) +
-  theme_bw()
-
-```
-
-```{r age plots, warning=FALSE, echo=FALSE, include=TRUE, message=FALSE, eval=FALSE}
-
-ggarrange(age_RK4, age_EE, age_APP1, age_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 2)
-```
-
 # Discussion
 
 # Appendix
