@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
+  html_document:
   pdf_document:
     fig_caption: yes
-  html_document:
   word_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
@@ -164,57 +164,48 @@ sim_table
 library(tidync)
 library(tidyverse)
 
-p_RK4 <- tidync("OceanParcels/trajectory_data/PassiveFloatRK4.nc") %>%
+p_RK4 <- tidync("OceanParcels/trajectory_data/RK4_PFloat.nc") %>%
   hyper_tibble() %>%
   dplyr::select(lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
-
-p_RK4_mean <- p_RK4 %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
 
 p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
 
-p_EE <- tidync("OceanParcels/trajectory_data/PassiveFloatEE.nc") %>%
+Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
   dplyr::select(lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00")) 
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
-p_EE_mean <- p_EE %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 
-p_EE$type <- "EE" # add extra column 'type' to dataframe and assigned 'EE' label
 
-k_app1 <- tidync("OceanParcels/trajectory_data/KelpFloatApp1.nc") %>%
+Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
   dplyr::select(lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
-k_app1_mean <- k_app1 %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 
-k_app1$type <- "Approach 1" # add extra column 'type' to dataframe and assigned 'kelp' label
-
-
-k_app2 <- tidync("OceanParcels/trajectory_data/KelpFloatApp2.nc") %>%
+Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
   dplyr::select(lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2002-01-01 00:00:00"))
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
-k_app2_mean <- k_app2 %>% # summarise data based on time 
-   group_by(t) %>% 
-   summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T)
+Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 
-k_app2$type <- "Approach 2" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W15.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
+Mean_KFloat_H085_W15$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 
-total_data <- rbind(p_RK4, p_EE, k_app1, k_app2)
+total_data <- rbind(p_RK4, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15)
 
 ```
 
@@ -238,33 +229,45 @@ heatmap_RK4 <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() 
 
-heatmap_EE <- ggplot() +
+heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_EE, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() 
 
-heatmap_APP1 <- ggplot() +
+heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = k_app1, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() 
 
-heatmap_APP2 <- ggplot() +
+heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+heatmap_Mean_KFloat_H085_W15 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -277,11 +280,11 @@ heatmap_APP2 <- ggplot() +
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.'}
 
 library(ggpubr)
-ggarrange(heatmap_RK4, heatmap_EE, heatmap_APP1, heatmap_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 2)
+ggarrange(heatmap_RK4, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, labels = c("A","B","C","D", "E"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 3)
 
 ```
 
-```{r scatter plot processing, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+```{r scatter plot processing, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 age_RK4 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -329,7 +332,7 @@ age_APP2 <- ggplot() +
 
 ```
 
-```{r age plots, warning=FALSE, echo=FALSE, include=TRUE, message=FALSE}
+```{r age plots, warning=FALSE, echo=FALSE, include=TRUE, message=FALSE, eval=FALSE}
 
 ggarrange(age_RK4, age_EE, age_APP1, age_APP2, labels = c("A","B","C","D"), common.legend = TRUE, legend = c("right"), ncol = 2, nrow = 2)
 ```
@@ -338,7 +341,7 @@ ggarrange(age_RK4, age_EE, age_APP1, age_APP2, labels = c("A","B","C","D"), comm
 
 # Appendix
 
-```{r morphology_wrangling, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r morphology_wrangling, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
 # Investigate morphology data to assist in estimating surface area
 # Load software
 library(tidyverse)
