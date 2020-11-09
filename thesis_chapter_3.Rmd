@@ -10,6 +10,30 @@ bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
 
+```{r software, message=FALSE, warning=FALSE, include=FALSE}
+## Load software need for entire script
+
+library(ggplot2)
+library(rgdal)
+library(tidyverse)
+library(viridis)
+library(gridExtra)
+library(ggpubr)
+#library(ggord)
+library(vegan)
+library(dplyr)
+library(ggpubr)
+library(maps)
+library(flextable)
+library(officer)
+library(tidync)
+library(tidyverse)
+library(hexbin)
+library(ggpubr)
+
+```
+
+
 # Introduction
 
 There is a range of objects, both natural and anthropogenic, floating in the ocean of which macroalgae are regarded as one of the most important passive dispersal mechanisms of marine taxa. Floating kelp acts as a passive dispersal mechanism for a range of marine taxa and is sometimes referred to as the 'tumble-weed' of the ocean [@edgar1987; @bushing1994; @norton1992; @helmuth1994; @holmquist1994; @smith2002; @McCormick2008]. Considerable research has been performed investigating macroalgae as a passive dispersal mechanism in the ocean, however, in recent years much of the focus has shifted towards microplastics. 
@@ -35,21 +59,6 @@ In this study, a hypothetical approach was used to shed light on the role of dra
 The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (see figure \ref{fig:map}A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (see figure \ref{fig:map}B). The hydrodynamics between the two domains are driven by a complex interaction of wind and wave vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these regions are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean. 
 
 ```{r map data, message=FALSE, warning=FALSE, include=FALSE}
-
-## Load software need for entire script
-
-library(ggplot2)
-library(rgdal)
-library(tidyverse)
-library(viridis)
-library(gridExtra)
-library(ggpubr)
-#library(ggord)
-library(vegan)
-library(dplyr)
-library(ggpubr)
-library(maps)
-
 
 source("map/scaleBarFunc.R")
 
@@ -140,9 +149,6 @@ In order to determine the influence of morphology on drag components, simulation
 
 ```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
 
-library(flextable)
-library(officer)
-
 sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
 
 sim_table <- flextable(data = sim_table)
@@ -161,12 +167,9 @@ sim_table
 
 # Read in data and data wrangling
 
-library(tidync)
-library(tidyverse)
-
 p_RK4 <- tidync("OceanParcels/trajectory_data/RK4_PFloat.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
 
@@ -174,7 +177,7 @@ p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' la
 
 Min_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -182,7 +185,7 @@ Min_Kfloat_H100_W00$type <- "Min_Kfloat_H100_W00" # add extra column 'type' to d
 
 Min_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -190,7 +193,7 @@ Min_Kfloat_H095_W05$type <- "Min_Kfloat_H095_W05" # add extra column 'type' to d
 
 Min_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -198,7 +201,7 @@ Min_Kfloat_H090_W10$type <- "Min_Kfloat_H090_W10" # add extra column 'type' to d
 
 Min_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -206,7 +209,7 @@ Min_Kfloat_H085_W15$type <- "Min_Kfloat_H085_W15" # add extra column 'type' to d
 
 Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -214,7 +217,7 @@ Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to
 
 Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -222,7 +225,7 @@ Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to
 
 Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -230,7 +233,7 @@ Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to
 
 Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -238,7 +241,7 @@ Mean_KFloat_H085_W15$type <- "Mean_KFloat_H085_W15" # add extra column 'type' to
 
 Max_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -246,7 +249,7 @@ Max_Kfloat_H100_W00$type <- "Max_KFloat_H100_W00" # add extra column 'type' to d
 
 Max_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -254,7 +257,7 @@ Max_Kfloat_H095_W05$type <- "Max_KFloat_H095_W05" # add extra column 'type' to d
 
 Max_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -262,7 +265,7 @@ Max_Kfloat_H090_W10$type <- "Max_KFloat_H090_W10" # add extra column 'type' to d
 
 Max_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 
@@ -272,9 +275,63 @@ total_data <- rbind(p_RK4, Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat
 
 ```
 
-```{r plots, message=FALSE, warning=FALSE, include=FALSE}
+```{r summary wrangle, message= FALSE, warning = FALSE, echo = FALSE}
 
-library(hexbin)
+p_RK4_mean <- p_RK4 %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+  
+Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))  
+
+Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+```
+
+```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
 
 ## Heatmaps of study domain, use previous data for study site map and histograms
 
@@ -434,24 +491,55 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.'}
 
-library(ggpubr)
 ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("right"))
+```
 
+
+```{r path plots, warning=FALSE, message=FALSE, echo=FALSE}
+
+min_area_path <- ggplot() + 
+  geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'blue'), show.legend = FALSE) +
+  geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'yellow'), show.legend = FALSE) +
+  geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'pink'), show.legend = FALSE) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  ggtitle("Minimum cross-sectional area") + 
+  theme_bw() 
+
+mean_area_path <- ggplot() + 
+  geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'blue'), show.legend = FALSE) +
+  geom_path(data = Mean_KFloat_H090_W10_mean,aes(x = lon, y = lat, color = 'yellow'), show.legend = FALSE) +
+  geom_path(data = Mean_KFloat_H085_W15_mean,aes(x = lon, y = lat, color = 'pink'), show.legend = FALSE) +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  ggtitle("Mean cross-sectional area") + 
+  theme_bw() 
+
+max_area_path <- ggplot() + 
+  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_path(data = Max_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'blue'), show.legend = FALSE) +
+  geom_path(data = Max_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'yellow'), show.legend = FALSE) +
+  geom_path(data = Max_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'pink'), show.legend = FALSE) +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  ggtitle("Maximum cross-sectional area") + 
+  theme_bw() 
+
+ggarrange(min_area_path, mean_area_path, max_area_path, labels = "AUTO")
 ```
 
 # Discussion
 
 # Appendix
 
-```{r morphology_wrangling, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE}
 # Investigate morphology data to assist in estimating surface area
-# Load software
-library(tidyverse)
-library(ggpubr)
-library(gridExtra)
-library(ggplot2)
-library(vegan)
-library(dplyr)
+
 # Read in morphology data
 eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
   filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
@@ -483,9 +571,12 @@ area_table <- read.csv("tables/chapter_3/area_table.csv", sep = ";")
 area_table <- flextable(data = area_table)
 area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = "transparent")
 area_table <- align(x= area_table, align = "center", part = "all")
-area_table
+
 ```
 
+```{r area table, echo=FALSE, message=FALSE, warning=FALSE}
+area_table
+```
 
 # References
 
