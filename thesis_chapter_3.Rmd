@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
+  html_document:
   pdf_document:
     fig_caption: yes
-  html_document:
   word_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
@@ -494,7 +494,6 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("right"))
 ```
 
-
 ```{r path plots, warning=FALSE, message=FALSE, echo=FALSE}
 
 min_area_path <- ggplot() + 
@@ -506,7 +505,8 @@ min_area_path <- ggplot() +
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("Minimum cross-sectional area") + 
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 mean_area_path <- ggplot() + 
   geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -517,7 +517,8 @@ mean_area_path <- ggplot() +
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("Mean cross-sectional area") + 
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 max_area_path <- ggplot() + 
   geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -528,10 +529,14 @@ max_area_path <- ggplot() +
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("Maximum cross-sectional area") + 
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 ggarrange(min_area_path, mean_area_path, max_area_path, labels = "AUTO")
+
 ```
+
+
 
 # Discussion
 
