@@ -165,13 +165,62 @@ sim_table
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
-# Read in data and data wrangling
+# load and data wrangle for eddy simulation 
+
+p_eddy <- tidync("OceanParcels/trajectory_data/PassiveEddy.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+p_eddy_mean <- p_eddy %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+p_eddy$type <- "Passive Eddy" # add extra column 'type' to dataframe 
+
+Min_KFloat_Eddy <- tidync("OceanParcels/trajectory_data/Min_KFloat_Eddy.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+Min_K_Eddy_mean <- Min_KFloat_Eddy %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_KFloat_Eddy$type <- "Min_KFloat_Eddy" # add extra column 'type' to dataframe 
+
+Mean_KFloat_Eddy <- tidync("OceanParcels/trajectory_data/Mean_KFloat_Eddy.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+Mean_KFloat_Eddy_mean <- Mean_KFloat_Eddy %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_Eddy$type <- "Mean_KFloat_Eddy" # add extra column 'type' to dataframe
+
+Max_KFloat_Eddy <- tidync("OceanParcels/trajectory_data/Max_KFloat_Eddy.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+Max_KFloat_Eddy_mean <- Max_KFloat_Eddy %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_KFloat_Eddy$type <- "Max_KFloat_Eddy" # add extra column 'type' to dataframe
+
+# Read in simulation data and data wrangling
 
 p_RK4 <- tidync("OceanParcels/trajectory_data/RK4_PFloat.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+p_RK4_mean <- p_RK4 %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
 
@@ -180,6 +229,9 @@ Min_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H100_W00.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H100_W00$type <- "Min_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -188,6 +240,9 @@ Min_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H095_W05.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H095_W05$type <- "Min_Kfloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -196,6 +251,9 @@ Min_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H090_W10.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H090_W10$type <- "Min_Kfloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -204,6 +262,9 @@ Min_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H085_W15.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H085_W15$type <- "Min_Kfloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -212,6 +273,9 @@ Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W0
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -220,6 +284,9 @@ Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W0
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -228,6 +295,9 @@ Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W1
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -236,6 +306,9 @@ Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W1
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE)) 
 
 Mean_KFloat_H085_W15$type <- "Mean_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -244,6 +317,9 @@ Max_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H100_W00$type <- "Max_KFloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -252,6 +328,9 @@ Max_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H095_W05$type <- "Max_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -260,6 +339,9 @@ Max_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H090_W10.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H090_W10$type <- "Max_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -268,6 +350,9 @@ Max_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H085_W15.
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H085_W15$type <- "Max_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 
@@ -275,60 +360,45 @@ total_data <- rbind(p_RK4, Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat
 
 ```
 
-```{r summary wrangle, message= FALSE, warning = FALSE, echo = FALSE}
+```{r eddy plots, message=FALSE, warning=FALSE, include=FALSE}
 
-p_RK4_mean <- p_RK4 %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
+passive_eddy <- ggplot() + 
+  geom_point(data = p_eddy, aes(x = lon, y = lat)) +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Passive") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
-Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
+min_eddy <- ggplot() + 
+  geom_point(data = Min_K_Eddy, aes(x = lon, y = lat)) +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Minimum Ac") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
-Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
+mean_eddy <- ggplot() + 
+  geom_point(data = Mean_KFloat_Eddy, aes(x = lon, y = lat)) +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Mean Ac") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
-Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
 
-Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
+max_eddy <- ggplot() + 
+  geom_point(data = Max_KFloat_Eddy, aes(x = lon, y = lat)) +
+  xlab("Longtitude") + 
+  ylab("Latitude") +
+  ggtitle("Maximum Ac") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
-Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
+```
 
-Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-  
-Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))  
-
-Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory 
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ggarrange(passive_eddy, min_eddy, mean_eddy, max_eddy)
 ```
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
