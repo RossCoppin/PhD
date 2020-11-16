@@ -386,7 +386,6 @@ mean_eddy <- ggplot() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-
 max_eddy <- ggplot() + 
   geom_point(data = Max_KFloat_Eddy, aes(x = lon, y = lat)) +
   xlab("Longtitude") + 
