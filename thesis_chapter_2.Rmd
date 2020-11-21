@@ -165,7 +165,7 @@ library(tidyverse)
 library(ggpubr)
 library(gridExtra)
 library(ggplot2)
-library(ggord)
+#library(ggord)
 library(vegan)
 
 # Ecklonia
@@ -485,7 +485,7 @@ library(grid)
 library(gridExtra)
 library(ggpubr)
 
-wp_1 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6A.jpg")))
+wp_1 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6A.jpg"))) #figure missing, copy of fig_6B used
 wp_2 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6B.jpg")))
 wp_3 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6C.jpg")))
 wp_4 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6D.jpg")))
