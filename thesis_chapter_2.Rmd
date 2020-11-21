@@ -467,8 +467,6 @@ img_wave_rose_C <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_5C.jpg")
 ggarrange(img_wave_rose_A, img_wave_rose_B, img_wave_rose_C, ncol = 2, nrow = 2, labels = "AUTO")
 ```
 
-Data for median wave direction showed no trend across timescales; however, the variation (SD) in wave direction is lower on the western side of the peninsula compared to the eastern side both annually and for winter. Summer data were the exception and showed lower variation for the eastern side of the peninsula (see figure \ref{fig:wave rose}).
-
 ```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}The total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length. Total (A), summer (B), winter (C), spring (D) and autumn (E).'}
 
 library(jpeg)
