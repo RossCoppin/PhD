@@ -29,8 +29,7 @@ library(officer)
 library(tidync)
 library(tidyverse)
 library(hexbin)
-library(ggpubr)
-
+s
 ```
 
 
