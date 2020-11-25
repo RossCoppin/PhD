@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  html_document:
   pdf_document:
     fig_caption: yes
+  html_document:
   word_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
@@ -29,7 +29,7 @@ library(officer)
 library(tidync)
 library(tidyverse)
 library(hexbin)
-s
+
 ```
 
 
@@ -359,44 +359,17 @@ total_data <- rbind(p_RK4, Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat
 
 ```
 
-```{r eddy plots, message=FALSE, warning=FALSE, include=FALSE}
+```{r eddy plots, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
 
-passive_eddy <- ggplot() + 
-  geom_point(data = p_eddy, aes(x = lon, y = lat)) +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Passive") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+total_eddy <- rbind(p_eddy, Min_KFloat_Eddy, Mean_KFloat_Eddy, Max_KFloat_Eddy)
 
-min_eddy <- ggplot() + 
-  geom_point(data = Min_K_Eddy, aes(x = lon, y = lat)) +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Minimum Ac") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-mean_eddy <- ggplot() + 
-  geom_point(data = Mean_KFloat_Eddy, aes(x = lon, y = lat)) +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Mean Ac") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-max_eddy <- ggplot() + 
-  geom_point(data = Max_KFloat_Eddy, aes(x = lon, y = lat)) +
-  xlab("Longtitude") + 
+ggplot() + 
+  geom_point(data = total_eddy, aes(x = lon, y = lat, color = type)) +
+  xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Maximum Ac") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
 
-```
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-ggarrange(passive_eddy, min_eddy, mean_eddy, max_eddy)
 ```
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
@@ -562,7 +535,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("right"))
 ```
 
-```{r path plots, warning=FALSE, message=FALSE, echo=FALSE}
+```{r path plots, warning=FALSE, message=FALSE, echo=FALSE, include=TRUE}
 
 min_area_path <- ggplot() + 
   geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -601,6 +574,31 @@ max_area_path <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 ggarrange(min_area_path, mean_area_path, max_area_path, labels = "AUTO")
+
+```
+
+```{r trajectory plots, echo=FALSE, message=FALSE, warning=FALSE}
+
+total_mean_traj <- total_data %>% #calculate mean trajectory 
+  group_by(t, type) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+lon_plot <- ggplot() +
+  geom_point(data = total_mean_traj, aes(x = t, y = lon, color = type)) +
+  xlab("Time") +
+  ylab("Longitude") +
+  theme_bw() +
+  guides(fill=guide_legend(title="Type")) 
+
+
+lat_plot <- ggplot() +
+  geom_point(data = total_mean_traj, aes(x = t, y = lat, color = type)) +
+  xlab("Time") +
+  ylab("Latitude") +
+  theme_bw() +
+  guides(fill=guide_legend(title="Type"))
+
+ggarrange(lon_plot, lat_plot, labels = "AUTO", common.legend = TRUE, ncol = 1, nrow = 2, legend = "right")
 
 ```
 
