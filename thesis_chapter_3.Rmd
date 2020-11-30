@@ -651,4 +651,37 @@ area_table
 
 # References
 
+```{r}
+
+p_single <- tidync("OceanParcels/trajectory_data/RK4_Single.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+
+Min_Single_H100<- tidync("OceanParcels/trajectory_data/Min_Single_H100_W00.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+
+Min_Single_H095_H05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+
+Min_Single_H090_H10 <- tidync("OceanParcels/trajectory_data/Min_Single_H090_W10.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+
+Min_Single_H085_H15 <- tidync("OceanParcels/trajectory_data/Min_Single_H085_W15.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+
+```
 
