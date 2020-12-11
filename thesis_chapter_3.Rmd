@@ -2,10 +2,10 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  pdf_document:
-    fig_caption: yes
   html_document:
   word_document:
+  pdf_document:
+    fig_caption: yes
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
@@ -13,6 +13,7 @@ csl: markdown/frontiers.csl.txt
 ```{r software, message=FALSE, warning=FALSE, include=FALSE}
 ## Load software need for entire script
 
+#library(computeMSD)
 library(ggplot2)
 library(rgdal)
 library(tidyverse)
@@ -39,17 +40,15 @@ There is a range of objects, both natural and anthropogenic, floating in the oce
 
 Some macroalgae species are negatively buoyant and sink to the seafloor when detached from the substrate, while other species of macroalgae have air-filled pneumatocysts or stipes which allow the plants to reach the surface where light is more abundant. In turn, the positively buoyant pneumatocysts cause plants to float to the surface when dislodged from the substratum. The structure and number of pneumatocysts varies between species. For example species from the genera *Macrocystis*, *Sargassum*, *Ascophyllum*, and *Fucus* have thalli with many small pneumatocysts, while other kelp species such as *Nereocystis luetkeana*, *Pelagophycus porra*, *Ecklonia radiata*, *Ecklonia maxima* have a single, large pneumatocysts [@dayton1985; @smith2002; @thiel2005; @graiff2016; @batista2018]. In some cases the stipe itself is air-filled, such as with *E. maxima* and *E. radiata*. Although there have been reports of floating Chlorophyta species and some Rhodophyta species, Phaeophyceae species are the most commonly reported forms of floating algae. This is most likely because the green and red species reported floating are not actually positively buoyant, but instead are kept at the surface by gas trapped inbetween or in the thalli [@dromgoole1982; @back2000]. The giant kelp *Macrocystis pyrifera* [@helmuth1994; @kingsford1995; @hobday2000; @macaya2005; @graiff2016; @batista2018] and the bull kelp *Durvillaea antarctica* [@collins2010; @tala2013 ; @tala2017; @saunders2014; @smith2002; @wichmann2012; @batista2018] have been the focus of much of the research regarding spatial and temporal dispersal patterns, the ecological role of rafting, marine connectivity and raft-time.
 
-The raft-time is the amount of time macroalgae floats at the surface before becoming negatively buoyant and begins to sink to the ocean-floor. Raft-time, also referred to as raft longevity, is determined by epibiont load, macroalgal growth rate and the loss of kelp biomass over time through fragmentation. Epibiont load consists of epiphytic and bryozoan species which tend to grow more rapidly in higher light and temperature environments, such as the ocean surface [@thiel2005; @thiel2005; @graiff2016]. The increase in epibiont load reduces the buoyancy of floating macroalgal rafts over time eventually causing them to sink to the seafloor, while also potentially increasing drag [@hobday2000; @tala2013; @craw2018]. Fragmentation of kelp biomass over time may also reduce raft times further, while growth may counteract the effects of epibiont load and fragmentation provided the environmental conditions are favorable [@graiff2016; @macaya2016]. For instance a study by @rothausler2011 investigated the abiotic and biotic factors influencing raft time and dispersal potential of the giant kelp *M. pyrifera* by a combination of tethering experiments and field surveys. The results showed the physiological performance of kelp declined with increasing epiphyte biomass and that higher temperatures increased growth rate of epibionts and fragmentation of kelp. The authors concluded from the results of both the experiments and field surveys that *M. pyrifera* dispersal is dependent on low temperature and moderate irradiance conditions, with high temperatures and higher irradiance reducing overall raft-time and hence dispersal potential [@rothausler2011].
-
-Many past authors have also taken various approaches to estimate not only the raft-time of macroalgal rafts but also the oceanographic influences of macroalgae trajectory. Past research points to macroalgae trajectory being largely determined by prevailing wind conditions and surface currents [@thiel2005, @thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still not known; although the role of wind has been recognised as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterrey Bay. The results showed that kelp rafts with little surface area exposed to the wind were largely driven by a combination of wind and wind waves, however the relative importance of wind and wind waves was not clear. In addition, the tagged kelp trajectories were more consistent with the formation of eddies during winter. Previous studies have identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example the subAntartic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important potential mechanism for dispersal of floating kelp. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *Durvillaea antarctica* used a combination of population genetics and relative age estimate of ‘goosebarnacles’ attached to the raft. The presence of goosebarnacles suggests a long raft time as these species have a slow growth rate; while the genetic analyses showed these species are able to raft up to $\sim$ 390km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory, however, this was only inferred from the genetic results and local climatology data [@fraser2011]. 
+Past research points to macroalgae trajectory being largely determined by prevailing wind conditions and surface currents [@thiel2005, @thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still not known; although the role of wind has been recognised as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterrey Bay. The results showed that kelp rafts with little surface area exposed to the wind were largely driven by a combination of wind and wind waves, however the relative importance of wind and wind waves was not clear. In addition, the tagged kelp trajectories were more consistent with the formation of eddies during winter. Previous studies have identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example the subAntartic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important potential mechanism for dispersal of floating kelp. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *Durvillaea antarctica* used a combination of population genetics and relative age estimate of ‘goosebarnacles’ attached to the raft. The presence of goosebarnacles suggests a long raft time as these species have a slow growth rate; while the genetic analyses showed these species are able to raft up to $\sim$ 390km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory, however, this was only inferred from the genetic results and local climatology data [@fraser2011]. 
 
 Other aspects such as buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material. However, the past research on macroalgal trajectory has not investigated these factors which have been shown to be important aspects of trajectory for other materials such as icebergs, marine craft and microplastics. The "sail" area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in water form drag. Drag coefficients related to wind and surface current have been shown to be important properties to consider when estimating trajectory and forecasting drift for search and sea rescue operations. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. 
 
-Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modelling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
-
 To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulas to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is expressed mathematically by $\psi=s/s_d$, and the ratio of the surface area of a sphere having the volume as the irregular shaped particle ($s$) to the actual surface area of the particle ($s_d$). The values are dependent on the shape of the object and a range of values have been determined based on numerous experimental work. 
 
-In this study, a hypothetical approach was used to shed light on the role of drag on macroalgal drift trajectory by means of Langrangian based trajectory simulations. These simulations aimed to determine the role that hydrodynamic and wind drag might play in drift trajectory of macroalgae. In terms of wind drag, the direct effect of wind on the kelp was estimated rather than its affect on surface-currents.  
+Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modelling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
+
+In this study, a numerical approach is used to shed light on the role of water and direct wind drag on macroalgal drift trajectory using lagrangian based trajectory simulations. This will be achieved by comparing the trajectory outputs of virtual 'passive' particles (no drag characteristics added) with kelp particles (drag characteristics added) of varying degrees of water and wind drag exposure. The different degrees of wave and wind exposure are meant to reflect the different buoyancy characteristics, as well as identify the role of magnitude of the drag components on overall trajectory. 
 
 # Methods
 
@@ -105,13 +104,11 @@ ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, n
 
 ```
 
-## Hydrodynamic model
+## Hydrodynamic and wind model
 
-Both passive and kelp particles were simulated around the South African coastline within hind-cast outputs from the Copernicus Marine Environment Monitoring Service. The Copernicus outputs used in this study contains 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 1/12$^\circ$ and is interpolated on a Arakawa C native grid.
+Both passive and kelp particles were simulated around the South African coastline within hind-cast outputs from the Copernicus Marine Environment Monitoring Service. The Copernicus outputs used in this study contains 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 0.08$^\circ$ and is interpolated on a Arakawa C native grid. 
 
-## Wind model
-
-In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (WIND_L4_NRT_OBSERVATIONS_012_004). The outputs from the model is composed of 6-hourly avergaed fields of surface 10m wind velocity vectors with a spatial resolution of 1/4$^\circ$. 
+In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (WIND_L4_NRT_OBSERVATIONS_012_004). The outputs from the model is composed of 6-hourly averaged fields of surface 10m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Both averaged ocean current and wind data are stored as meridonal and zonal velocity vectors. 
 
 ## Particle tracking model
 
@@ -130,21 +127,56 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for simulations where the inclusion of the holdfast was considered. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, maximum and mean were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, maximum and mean cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, maximum and mean overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
-### Hydrodynamic drag
+```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE}
+# Investigate morphology data to assist in estimating surface area
 
-The use of a spherical shape coefficient was used in the approach to simulate the trajectory of solitary floating *E. maxima*. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of each virtual plant was converted to the equivalent cross-sectional area for that of a sphere in the equation for calculating hydrodynamic drag: $$ F_d = 0.5 \rho A_c C_d U^2$$
+# Read in morphology data
+eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
+  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
+  filter(site!= "De Hoop") 
+eck_df$site <- as.character(eck_df$site)
+eck_df <- eck_df %>% 
+  filter(population == "Deep") 
+eck_long_df <- gather(eck_df, Morphology, measurement, frond_mass:total_length, factor_key=TRUE)
+# Summary stats to make it easier to refer to later, these will not be used any analysis.
+site_list <- c("Kommetjie")
+eck_stats <- eck_long_df %>% 
+  group_by(site, Morphology) %>% 
+  summarise(mean = mean(measurement, na.rm = T),
+            minimum = min(measurement, na.rm = T),
+            maximum = max(measurement, na.rm = T)) %>% 
+  ungroup() %>% 
+  filter(site %in% site_list) %>% 
+  rename(Site = site) %>% 
+  rename(Mean = mean) %>% 
+  rename(Minimum = minimum) %>% 
+  rename(Maximum = maximum)
 
-### Wind drag
+eck_stats <- flextable(data = eck_stats)
+eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "transparent")
+eck_stats <- align(x= eck_stats, align = "center", part = "all")
+eck_stats
 
-The total wind drag effect was calculated for the hypothetical cross-sectional area of the kelp particle which was exposed above the water surface, which in this study, was estimated as 10% of the total cross-sectional area. 
+area_table <- read.csv("tables/chapter_3/area_table.csv", sep = ";")
+area_table <- flextable(data = area_table)
+area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = "transparent")
+area_table <- align(x= area_table, align = "center", part = "all")
 
-### Raft-time
+```
 
-Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 25 days, winter was 38 days, and autumn was 41 days respectively. 
+```{r area table, echo=FALSE, message=FALSE, warning=FALSE}
+area_table
+```
+
+### Hydrodynamic and wind drag
+
+The use of a spherical shape coefficient was used in the approach to simulate the trajectory of solitary floating *E. maxima*. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of each virtual plant was converted to the equivalent cross-sectional area for that of a sphere in the equation for calculating hydrodynamic drag: $ F_d = 0.5 \rho A_c C_d U^2$. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. A similar approach was used for the wind drag force. The same equation that was used to calculate hydrodynamic drag, was used to calculate the wind drag the virtual particle. Instead of estimating an ad hoc percentage of wind drag, the wind velocity vectors were interpolated for each time-step and were used in the overall calculation for wind drag force.
+
+To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for bouyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 80% of the plant is submerged and 20% of above water, then the overall hydrodynamic and wind drag forces would be 80% and 20% of the total drag forces respectively. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for water drag; 0 %, 5%, 10%, and 15% for wind.
 
 ## Simulations
 
-In order to determine the influence of morphology on drag components, simulations were performed for the minimum, median and maximum cross-sectional areas for one site on the Atlantic side and one site within False Bay (see figure \ref{fig:map})
+In order to determine the influence of morphology on drag components, simulations were performed for the minimum, mean and maximum cross-sectional areas for one site on the Atlantic side and one site within False Bay (see figure \ref{fig:map})
 
 ```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -164,57 +196,11 @@ sim_table
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
-# load and data wrangle for eddy simulation 
-
-p_eddy <- tidync("OceanParcels/trajectory_data/PassiveEddy.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-p_eddy_mean <- p_eddy %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-p_eddy$type <- "Passive Eddy" # add extra column 'type' to dataframe 
-
-Min_KFloat_Eddy <- tidync("OceanParcels/trajectory_data/Min_KFloat_Eddy.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-Min_K_Eddy_mean <- Min_KFloat_Eddy %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Min_KFloat_Eddy$type <- "Min_KFloat_Eddy" # add extra column 'type' to dataframe 
-
-Mean_KFloat_Eddy <- tidync("OceanParcels/trajectory_data/Mean_KFloat_Eddy.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-Mean_KFloat_Eddy_mean <- Mean_KFloat_Eddy %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Mean_KFloat_Eddy$type <- "Mean_KFloat_Eddy" # add extra column 'type' to dataframe
-
-Max_KFloat_Eddy <- tidync("OceanParcels/trajectory_data/Max_KFloat_Eddy.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-Max_KFloat_Eddy_mean <- Max_KFloat_Eddy %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-Max_KFloat_Eddy$type <- "Max_KFloat_Eddy" # add extra column 'type' to dataframe
-
 # Read in simulation data and data wrangling
 
 p_RK4 <- tidync("OceanParcels/trajectory_data/RK4_PFloat.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
 p_RK4_mean <- p_RK4 %>% # calculate mean trajectory
@@ -225,7 +211,7 @@ p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' la
 
 Min_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
@@ -236,7 +222,7 @@ Min_Kfloat_H100_W00$type <- "Min_Kfloat_H100_W00" # add extra column 'type' to d
 
 Min_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
@@ -247,7 +233,7 @@ Min_Kfloat_H095_W05$type <- "Min_Kfloat_H095_W05" # add extra column 'type' to d
 
 Min_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory 
@@ -258,7 +244,7 @@ Min_Kfloat_H090_W10$type <- "Min_Kfloat_H090_W10" # add extra column 'type' to d
 
 Min_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory 
@@ -269,7 +255,7 @@ Min_Kfloat_H085_W15$type <- "Min_Kfloat_H085_W15" # add extra column 'type' to d
 
 Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory 
@@ -280,7 +266,7 @@ Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to
 
 Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory 
@@ -291,7 +277,7 @@ Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to
 
 Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory 
@@ -302,7 +288,7 @@ Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to
 
 Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory 
@@ -313,7 +299,7 @@ Mean_KFloat_H085_W15$type <- "Mean_KFloat_H085_W15" # add extra column 'type' to
 
 Max_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory 
@@ -324,7 +310,7 @@ Max_Kfloat_H100_W00$type <- "Max_KFloat_H100_W00" # add extra column 'type' to d
 
 Max_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory 
@@ -335,7 +321,7 @@ Max_Kfloat_H095_W05$type <- "Max_KFloat_H095_W05" # add extra column 'type' to d
 
 Max_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory 
@@ -346,7 +332,7 @@ Max_Kfloat_H090_W10$type <- "Max_KFloat_H090_W10" # add extra column 'type' to d
 
 Max_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory 
@@ -356,19 +342,6 @@ Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory
 Max_Kfloat_H085_W15$type <- "Max_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 total_data <- rbind(p_RK4, Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W10, Min_Kfloat_H085_W15, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15, Max_Kfloat_H100_W00, Max_Kfloat_H095_W05, Max_Kfloat_H090_W10, Max_Kfloat_H085_W15)
-
-```
-
-```{r eddy plots, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
-
-total_eddy <- rbind(p_eddy, Min_KFloat_Eddy, Mean_KFloat_Eddy, Max_KFloat_Eddy)
-
-ggplot() + 
-  geom_point(data = total_eddy, aes(x = lon, y = lat, color = type)) +
-  xlab("Longtitude") +
-  ylab("Latitude") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
 
 ```
 
@@ -383,11 +356,11 @@ heatmap_RK4 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
+  #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() 
 
 heatmap_Min_Kfloat_H100_W00 <- ggplot() +
@@ -532,7 +505,11 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.'}
 
-ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("right"))
+
+a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
+
+ggarrange(heatmap_RK4, a, common.legend = TRUE, legend = c("right"), ncol = 1, nrow = 2)
+
 ```
 
 ```{r path plots, warning=FALSE, message=FALSE, echo=FALSE, include=TRUE}
@@ -602,86 +579,39 @@ ggarrange(lon_plot, lat_plot, labels = "AUTO", common.legend = TRUE, ncol = 1, n
 
 ```
 
+```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE}
+pos <- c("RK4",
+         "Min_Kfloat_H100_W00",
+         "Min_Kfloat_H095_W05",
+         "Min_Kfloat_H090_W10",
+         "Min_Kfloat_H085_W15",
+         "Mean_Kfloat_H100_W00",
+         "Mean_Kfloat_H095_W05",
+         "Mean_Kfloat_H090_W10",
+         "Mean_Kfloat_H085_W15",
+         "Max_Kfloat_H100_W00",
+         "Max_Kfloat_H095_W05",
+         "Max_Kfloat_H090_W10",
+         "Max_Kfloat_H085_W15")
 
+dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, show.legend = FALSE))+
+  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(limits = pos)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif")+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  coord_flip()
+
+```
+
+```{r distance plot, message=FALSE, warning=FALSE}
+dis_plot
+```
 
 # Discussion
 
 # Appendix
 
-```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE}
-# Investigate morphology data to assist in estimating surface area
-
-# Read in morphology data
-eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
-  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
-  filter(site!= "De Hoop") 
-eck_df$site <- as.character(eck_df$site)
-eck_df <- eck_df %>% 
-  filter(population == "Deep") 
-eck_long_df <- gather(eck_df, Morphology, measurement, frond_mass:total_length, factor_key=TRUE)
-# Summary stats to make it easier to refer to later, these will not be used any analysis.
-site_list <- c("Kommetjie")
-eck_stats <- eck_long_df %>% 
-  group_by(site, Morphology) %>% 
-  summarise(mean = mean(measurement, na.rm = T),
-            minimum = min(measurement, na.rm = T),
-            maximum = max(measurement, na.rm = T)) %>% 
-  ungroup() %>% 
-  filter(site %in% site_list) %>% 
-  rename(Site = site) %>% 
-  rename(Mean = mean) %>% 
-  rename(Minimum = minimum) %>% 
-  rename(Maximum = maximum)
-
-eck_stats <- flextable(data = eck_stats)
-eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "transparent")
-eck_stats <- align(x= eck_stats, align = "center", part = "all")
-eck_stats
-
-area_table <- read.csv("tables/chapter_3/area_table.csv", sep = ";")
-area_table <- flextable(data = area_table)
-area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = "transparent")
-area_table <- align(x= area_table, align = "center", part = "all")
-
-```
-
-```{r area table, echo=FALSE, message=FALSE, warning=FALSE}
-area_table
-```
-
 # References
-
-```{r}
-
-p_single <- tidync("OceanParcels/trajectory_data/RK4_Single.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
-
-Min_Single_H100<- tidync("OceanParcels/trajectory_data/Min_Single_H100_W00.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-
-Min_Single_H095_H05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-
-Min_Single_H090_H10 <- tidync("OceanParcels/trajectory_data/Min_Single_H090_W10.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-
-Min_Single_H085_H15 <- tidync("OceanParcels/trajectory_data/Min_Single_H085_W15.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(lon, lat, time, distance) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
-
-```
 
