@@ -104,15 +104,9 @@ ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, n
 
 ```
 
-## Hydrodynamic and wind model
-
-Both passive and kelp particles were simulated around the South African coastline within hind-cast outputs from the Copernicus Marine Environment Monitoring Service. The Copernicus outputs used in this study contains 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 0.08$^\circ$ and is interpolated on a Arakawa C native grid. 
-
-In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (WIND_L4_NRT_OBSERVATIONS_012_004). The outputs from the model is composed of 6-hourly averaged fields of surface 10m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Both averaged ocean current and wind data are stored as meridonal and zonal velocity vectors. 
-
 ## Particle tracking model
 
-The model is based on parameterisations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Furthermore, some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. In addition, large kelp rafts are not a characteristics around the coast of the Cape Peninsula but rather solitary kelp are (Pers. Obs). Therefore, the trajectory of solitary *E. maxima* individuals will be considered. Previous studies have made the assumption that floating macroalage move with the same velocity as the ocean current, and instead model a ensemble of particles which trajectories are determined by a combination of ocean currents and/or the effects of winds on currents. 
+The model is based on parameterisations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Furthermore, some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. In addition, large kelp rafts are not a characteristics around the coast of the Cape Peninsula but rather solitary kelp are (Pers. Obs). Therefore, the trajectory of only olitary *E. maxima* individuals will be considered. Previous studies have made the assumption that floating macroalage move with the same velocity as the ocean current, and instead model a ensemble of particles which trajectories are determined by a combination of ocean currents and/or the effects of winds on currents. 
 
 Numerical calculations of particle trajectory with a Lagrangian method [@delandmeter2019], and be described by the equation
 
@@ -122,10 +116,33 @@ where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three
 This study simulated two scenarios; one where the plant is fully submerged and only exposed to seawater drag; and the other where parts of the plants are partially exposed resulting in a combination of seawater and air form drag. Drag based on shape based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this particular study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_d + F_a + F_f$$
 where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, and $F_f$ the surface-current flow. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag and surface current-flow are two-dimensional vector quantities and were calculated for each time step of each simulation. 
 
+## Hydrodynamic and wind model
+
+Both passive and kelp particles were simulated around the South African coastline within hind-cast outputs from the Copernicus Marine Environment Monitoring Service. The Copernicus outputs used in this study contains 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 0.08$^\circ$ and is interpolated on a Arakawa C native grid. 
+
+In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (WIND_L4_NRT_OBSERVATIONS_012_004). The outputs from the model is composed of 6-hourly averaged fields of surface 10m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Both averaged ocean current and wind data are stored as meridonal and zonal velocity vectors. 
+
+## Simulations
+
+Virtual particles were released with drag or wind effects from the study site in order to act as a basis for comparison to simulations with varying degrees of hydrodynamic and wind drag. All simulations has the same release location and run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies. In order to determine the influence of cross-sectional area on drag components, simulations were performed for the minimum, mean and maximum cross-sectional areas for Kommetjie kelp forest population (see figure \ref{fig:map}). In order to determine the direct effect of wind on trajectory, simulations were run for varying magnitudes of wind exposure for each type of cross-sectional area. 
+
+
+```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
+
+sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
+
+sim_table <- flextable(data = sim_table)
+sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
+sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Time.Range = "Time Range", Drag.Exposure = "Drag Exposure level")
+sim_table <- align(x= sim_table, align = "center", part = "all")
+sim_table
+
+```
+
 ## Model inputs
 ### Cross-sectional area
 
-In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for simulations where the inclusion of the holdfast was considered. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, maximum and mean were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, maximum and mean cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, maximum and mean overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
+In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for simulations where the inclusion of the holdfast was considered. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
 ```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE}
 # Investigate morphology data to assist in estimating surface area
@@ -170,25 +187,12 @@ area_table
 
 ### Hydrodynamic and wind drag
 
-The use of a spherical shape coefficient was used in the approach to simulate the trajectory of solitary floating *E. maxima*. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of each virtual plant was converted to the equivalent cross-sectional area for that of a sphere in the equation for calculating hydrodynamic drag: $ F_d = 0.5 \rho A_c C_d U^2$. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. A similar approach was used for the wind drag force. The same equation that was used to calculate hydrodynamic drag, was used to calculate the wind drag the virtual particle. Instead of estimating an ad hoc percentage of wind drag, the wind velocity vectors were interpolated for each time-step and were used in the overall calculation for wind drag force.
+The use of a spherical shape coefficient was used in the approach to simulate the trajectory of solitary floating *E. maxima*. The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The cross-sectional area for each of each virtual plant was converted to the equivalent cross-sectional area for that of a sphere in the equation for calculating hydrodynamic drag: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to water or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. Water and wind drag components were calculated separately for both the meridonal and zonal velocity vectors. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. A similar approach was used for the wind drag force. The same equation that was used to calculate hydrodynamic drag, was used to calculate the wind drag the virtual particle. 
 
-To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for bouyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 80% of the plant is submerged and 20% of above water, then the overall hydrodynamic and wind drag forces would be 80% and 20% of the total drag forces respectively. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for water drag; 0 %, 5%, 10%, and 15% for wind.
+To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 80% of the plant is submerged and 20% of above water, then the overall hydrodynamic and wind drag forces would be 80% and 20% of the total drag forces respectively. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for water drag; 0 %, 5%, 10%, and 15% for wind.
 
-## Simulations
 
-In order to determine the influence of morphology on drag components, simulations were performed for the minimum, mean and maximum cross-sectional areas for one site on the Atlantic side and one site within False Bay (see figure \ref{fig:map})
 
-```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
-
-sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
-
-sim_table <- flextable(data = sim_table)
-sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
-sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Time.Range = "Time Range", Drag.Exposure = "Drag Exposure level")
-sim_table <- align(x= sim_table, align = "center", part = "all")
-sim_table
-
-```
 
 ## Statistical analysis
 
@@ -367,7 +371,8 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 13000)) +
+  geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -378,7 +383,8 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 13000)) +
+  geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -389,7 +395,8 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 13000)) +
+  geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -400,7 +407,8 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 13000)) +
+  geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -411,7 +419,8 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 13000)) +
+  geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -422,7 +431,8 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 13000)) +
+  geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -435,6 +445,7 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = Mean_KFloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -447,6 +458,7 @@ heatmap_Mean_KFloat_H085_W15 <- ggplot() +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = Mean_KFloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -459,6 +471,7 @@ heatmap_Max_KFloat_H100_W00 <- ggplot() +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -471,6 +484,7 @@ heatmap_Max_KFloat_H095_W05 <- ggplot() +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = Max_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -483,6 +497,7 @@ heatmap_Max_KFloat_H090_W10 <- ggplot() +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = Max_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -495,6 +510,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = Max_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -506,54 +522,11 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.'}
 
 
-a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
+ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
 
-ggarrange(heatmap_RK4, a, common.legend = TRUE, legend = c("right"), ncol = 1, nrow = 2)
-
-```
-
-```{r path plots, warning=FALSE, message=FALSE, echo=FALSE, include=TRUE}
-
-min_area_path <- ggplot() + 
-  geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'blue'), show.legend = FALSE) +
-  geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'yellow'), show.legend = FALSE) +
-  geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'pink'), show.legend = FALSE) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Minimum cross-sectional area") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-mean_area_path <- ggplot() + 
-  geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'blue'), show.legend = FALSE) +
-  geom_path(data = Mean_KFloat_H090_W10_mean,aes(x = lon, y = lat, color = 'yellow'), show.legend = FALSE) +
-  geom_path(data = Mean_KFloat_H085_W15_mean,aes(x = lon, y = lat, color = 'pink'), show.legend = FALSE) +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Mean cross-sectional area") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-max_area_path <- ggplot() + 
-  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  geom_path(data = Max_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'blue'), show.legend = FALSE) +
-  geom_path(data = Max_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'yellow'), show.legend = FALSE) +
-  geom_path(data = Max_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'pink'), show.legend = FALSE) +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Maximum cross-sectional area") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-ggarrange(min_area_path, mean_area_path, max_area_path, labels = "AUTO")
+#ggarrange(heatmap_RK4, a, common.legend = TRUE, legend = c("right"), ncol = 1, nrow = 2)
 
 ```
-
 ```{r trajectory plots, echo=FALSE, message=FALSE, warning=FALSE}
 
 total_mean_traj <- total_data %>% #calculate mean trajectory 
