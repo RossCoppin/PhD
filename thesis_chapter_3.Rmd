@@ -552,6 +552,19 @@ ggarrange(lon_plot, lat_plot, labels = "AUTO", common.legend = TRUE, ncol = 1, n
 
 ```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggfortify)
+
+total_end <- total_data %>%
+             filter(t == "2018-01-30 00:00:00")
+
+df <- total_end[2:3]
+pca_res <- prcomp(df, scale. = TRUE)
+
+autoplot(pca_res, data = total_end, colour = 'type', loadings = TRUE, loading.label = TRUE, frame = TRUE, frame.type = 'norm')
+```
+
+
 ```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE}
 pos <- c("RK4",
          "Min_Kfloat_H100_W00",
@@ -578,7 +591,7 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, s
 
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE}
 dis_plot
 ```
 
