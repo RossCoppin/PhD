@@ -2,9 +2,9 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
+  html_document:
   word_document:
     reference_docx: markdown/frontiers_template.docx
-  html_document:
   pdf_document:
     fig_caption: yes
 bibliography: references.bib
