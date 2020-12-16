@@ -180,7 +180,7 @@ area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = 
 area_table <- align(x= area_table, align = "center", part = "all")
 area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
 area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
-area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.maximum = "Ac Maximum")
+area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
 
 ```
 
@@ -196,7 +196,7 @@ To test the different magnitudes that hydrodynamic and wind drag might play in t
 
 ## Analysis
 
-In order to compare trajectories between cross-sectional area types and wind exposure scenarios, density distribution maps were produced. This approach is an effective for assessing pathways and ocean connectivity [@sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots and scatterplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@putman2020; @putman2018; @sebille2018]. 
+In order to compare trajectories between cross-sectional area types and wind exposure scenarios, density distribution maps were produced. This approach is an effective for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots and scatterplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
 
 # Results
 
@@ -531,7 +531,7 @@ ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_K
 ```
 
 
-```{r trajectory plots, echo=FALSE, message=FALSE, warning=FALSE}
+```{r trajectory plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean trajectory paths of each exposure scenario over the entire simulation run. Trajectory along the latitudinal and longitudal paths are plotted over time seperatley. Plot A is the longitudinal and plot B the latitudinal trajectories respectively."}
 
 total_mean_traj <- total_data %>% #calculate mean trajectory 
   group_by(t, type) %>% 
@@ -583,7 +583,7 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, s
 
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Boxplots of total distance from source over the course of the simulation for each exposure scenario."}
 dis_plot
 ```
 
