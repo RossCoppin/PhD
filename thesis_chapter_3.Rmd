@@ -3,10 +3,10 @@ title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
   html_document:
-  word_document:
-    reference_docx: markdown/frontiers_template.docx
   pdf_document:
     fig_caption: yes
+  word_document:
+    reference_docx: markdown/frontiers_template.docx
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
@@ -20,7 +20,7 @@ library(rgdal)
 library(tidyverse)
 library(gridExtra)
 library(ggpubr)
-#library(ggord)
+library(ggord)
 library(vegan)
 library(dplyr)
 library(ggpubr)
@@ -30,6 +30,7 @@ library(officer)
 library(tidync)
 library(tidyverse)
 library(hexbin)
+library(lubridate)
 
 ```
 
@@ -64,11 +65,11 @@ load("map/south_africa_coast_hi_res.Rdata")
 
 map_pen <- ggplot(data = south_africa_coast_hi_res) +
 geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-            size = 1.0, colour = "black", fill = NA) +
+            size = 1.0, colour = "black", fill = "green") +
   #geom_point(data = study_sites, aes(x = lon, y = lat), color = "red", nudge_x = 0, nudge_y = 0.1) +
   #geom_label(data = study_sites_edit, aes(x = lon, y = lat, label = site), nudge_x = 0, nudge_y = 0) +
   geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.10, xmax=18.50, ymin=-33.70, ymax=-34.50), inherit.aes = FALSE, fill = "blue", alpha = 0.01) +
-  geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.40, xmax=18.90, ymin=-34.00, ymax=-34.50), inherit.aes = FALSE, fill = "red", alpha = 0.01) +
+  #geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.40, xmax=18.90, ymin=-34.00, ymax=-34.50), inherit.aes = FALSE, fill = "red", alpha = 0.01) +
   #annotate("text", label = "Warm\nTemperate", x = 18.7, y = -34.5, size = 4.0, angle = 0, colour = "black") +
   #annotate("text", label = "Cool\nTemperate", x = 18.0, y = -34.0, size = 4.0, angle = 0, colour = "black") +
   annotate("text", label = "FALSE\nBAY", x =18.65, y = -34.25, size = 4.0, angle = 0, colour = "black") +
@@ -87,12 +88,12 @@ release_sites <- read.csv("metadata/release_sites.csv", sep = ";")
 ## Make 2nd map of just the peninsula
 release_map <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
+               size = 1.0, colour = "black", fill = "green") +
   geom_point(data = release_sites, aes(x = lon, y = lat, colour = "red"), show.legend = FALSE) +
   geom_label(data = release_sites, aes(x = lon, y = lat, label = site), nudge_x = 0, nudge_y = 0) +
   coord_cartesian(xlim = c(18.275, 18.525), ylim = c(-34.375, -33.600)) +
   theme(axis.ticks = element_blank(), # Remove tick marks
-        #axis.text = element_blank(), # Remove lat/ lon numbers
+        axis.text = element_blank(), # Remove lat/ lon numbers
         axis.title = element_blank()) # Remove lat/ lon labels
 #ggsave(filename = "map_B.jpg", plot = last_plot(), device = "jpeg", path = "map/")
 
@@ -181,11 +182,8 @@ area_table <- align(x= area_table, align = "center", part = "all")
 area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
 area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
 area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
-
-```
-
-```{r area table, echo=FALSE, message=FALSE, warning=FALSE}
 area_table
+
 ```
 
 ### Hydrodynamic and wind drag
@@ -196,9 +194,25 @@ To test the different magnitudes that hydrodynamic and wind drag might play in t
 
 ## Analysis
 
-In order to compare trajectories between cross-sectional area types and wind exposure scenarios, density distribution maps were produced. This approach is an effective for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots and scatterplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
+In order to compare trajectories between cross-sectional area types and wind exposure scenarios, density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots and scatterplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
 
 # Results
+
+## Domain features
+
+```{r, message=FALSE, warning = FALSE, include= TRUE, echo = FALSE, fig.height=8, fig.width=8}
+library(jpeg)
+library(grid)
+library(gridExtra)
+
+fieldUend <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/fieldUend.jpg")))
+fieldVend <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/fieldVend.jpg")))
+windUend <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/windUend.jpg")))
+windUend <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/windVend.jpg")))
+
+ggarrange(fieldUend, fieldVend, windUend, windUend, ncol = 2, nrow = 2, labels = "AUTO")
+```
+
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -206,7 +220,7 @@ In order to compare trajectories between cross-sectional area types and wind exp
 
 p_RK4 <- tidync("OceanParcels/trajectory_data/RK4_PFloat.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
 p_RK4_mean <- p_RK4 %>% # calculate mean trajectory
@@ -217,7 +231,7 @@ p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' la
 
 Min_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
@@ -228,7 +242,7 @@ Min_Kfloat_H100_W00$type <- "Min_Kfloat_H100_W00" # add extra column 'type' to d
 
 Min_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
@@ -239,7 +253,7 @@ Min_Kfloat_H095_W05$type <- "Min_Kfloat_H095_W05" # add extra column 'type' to d
 
 Min_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory 
@@ -250,7 +264,7 @@ Min_Kfloat_H090_W10$type <- "Min_Kfloat_H090_W10" # add extra column 'type' to d
 
 Min_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory 
@@ -261,7 +275,7 @@ Min_Kfloat_H085_W15$type <- "Min_Kfloat_H085_W15" # add extra column 'type' to d
 
 Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory 
@@ -272,7 +286,7 @@ Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to
 
 Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory 
@@ -283,7 +297,7 @@ Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to
 
 Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory 
@@ -294,7 +308,7 @@ Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to
 
 Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory 
@@ -305,7 +319,7 @@ Mean_KFloat_H085_W15$type <- "Mean_KFloat_H085_W15" # add extra column 'type' to
 
 Max_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory 
@@ -316,7 +330,7 @@ Max_Kfloat_H100_W00$type <- "Max_KFloat_H100_W00" # add extra column 'type' to d
 
 Max_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory 
@@ -327,7 +341,7 @@ Max_Kfloat_H095_W05$type <- "Max_KFloat_H095_W05" # add extra column 'type' to d
 
 Max_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory 
@@ -338,7 +352,7 @@ Max_Kfloat_H090_W10$type <- "Max_KFloat_H090_W10" # add extra column 'type' to d
 
 Max_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, uwind, vwind) %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
 Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory 
@@ -347,9 +361,46 @@ Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory
 
 Max_Kfloat_H085_W15$type <- "Max_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 
-total_data <- rbind(p_RK4, Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W10, Min_Kfloat_H085_W15, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15, Max_Kfloat_H100_W00, Max_Kfloat_H095_W05, Max_Kfloat_H090_W10, Max_Kfloat_H085_W15)
+total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W10, Min_Kfloat_H085_W15, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15, Max_Kfloat_H100_W00, Max_Kfloat_H095_W05, Max_Kfloat_H090_W10, Max_Kfloat_H085_W15)
 
 ```
+
+
+## Trajectory comparison
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+waterdrag_plot <- ggplot()+
+  geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'red')+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+wwdrag_plot <- ggplot()+
+  geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = Min_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'snow4')+
+  geom_path(data = Min_Kfloat_H090_W10_mean, aes(x = lon, y = lat), color = 'green')+
+  geom_path(data = Min_Kfloat_H085_W15_mean, aes(x = lon, y = lat), color = 'pink')+
+  geom_path(data = Mean_KFloat_H095_W05_mean, aes(x = lon, y = lat), color = 'yellow')+
+  geom_path(data = Mean_KFloat_H090_W10_mean, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = Mean_KFloat_H085_W15_mean, aes(x = lon, y = lat), color = 'red')+
+  geom_path(data = Max_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = Max_Kfloat_H090_W10_mean, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = Max_Kfloat_H085_W15_mean, aes(x = lon, y = lat), color = 'red')+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=8}
+ggarrange(waterdrag_plot, wwdrag_plot)
+```
+
+## Comparison of density distributions
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -363,6 +414,7 @@ heatmap_RK4 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_path(data = p_RK4_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -521,42 +573,12 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.'}
-
-
-ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15 , labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
-
-#ggarrange(heatmap_RK4, a, common.legend = TRUE, legend = c("right"), ncol = 1, nrow = 2)
-
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.', fig.height=8, fig.width=8}
+ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, heatmap_RK4, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"))
 ```
 
-
-```{r trajectory plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean trajectory paths of each exposure scenario over the entire simulation run. Trajectory along the latitudinal and longitudal paths are plotted over time seperatley. Plot A is the longitudinal and plot B the latitudinal trajectories respectively."}
-
-total_mean_traj <- total_data %>% #calculate mean trajectory 
-  group_by(t, type) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-lon_plot <- ggplot() +
-  geom_line(data = total_mean_traj, aes(x = t, y = lon, color = type), shape = "type") +
-  xlab("Time") +
-  ylab("Longitude") +
-  theme_bw() +
-  guides(fill=guide_legend(title="Type")) 
-
-
-lat_plot <- ggplot() +
-  geom_line(data = total_mean_traj, aes(x = t, y = lat, color = type)) +
-  xlab("Time") +
-  ylab("Latitude") +
-  theme_bw() +
-  guides(fill=guide_legend(title="Type"))
-
-ggarrange(lon_plot, lat_plot, labels = "AUTO", common.legend = TRUE, ncol = 1, nrow = 2, legend = "right")
-
-```
-
-```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE}
+## Comparison of distances 
+```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 
 pos <- c("RK4",
          "Min_Kfloat_H100_W00",
@@ -586,6 +608,63 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, s
 ```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Boxplots of total distance from source over the course of the simulation for each exposure scenario."}
 dis_plot
 ```
+
+
+```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
+
+Max_ShapeFloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_ShapeFloat_H100_W00_mean <- Max_ShapeFloat_H100_W00 %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_ShapeFloat_H100_W00$type <- "Max_ShapeFloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+# Make mean trajectory plot
+shape_plot <- ggplot()+
+  geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = Max_ShapeFloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+# make density map
+heatmap_Max_ShapeFloat_H100_W00 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_ShapeFloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() 
+
+shape_data_total <- rbind(Max_Kfloat_H100_W00, Max_ShapeFloat_H100_W00)
+
+shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, fill = type, show.legend = FALSE))+
+  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(limits = pos)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif")+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")
+
+```
+
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Comparison of trajectory data between a kelp sphere and kelp cylinder.", fig.height=8, fig.width=8}
+
+ggarrange(shape_plot, shape_dis_plot, heatmap_Max_KFloat_H100_W00, heatmap_Max_ShapeFloat_H100_W00, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
+
+```
+
 
 # Discussion
 
