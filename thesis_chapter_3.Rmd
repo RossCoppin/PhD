@@ -188,7 +188,7 @@ area_table
 
 ### Hydrodynamic and wind drag
 
-The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The drag equation used was: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to water or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. Water and wind drag components were calculated separately for both the meridonal and zonal velocity vectors. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. A similar approach was used for the wind drag force. The same equation that was used to calculate hydrodynamic drag, was used to calculate the wind drag the virtual particle. 
+The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The drag equation used was: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to water or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. Water and wind drag components were calculated separately for both the meridonal and zonal velocity vectors. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. The same approach was used for the wind drag force. The equation that was used to calculate hydrodynamic drag, was also used to calculate the wind drag the virtual particle. 
 
 To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 80% of the plant is submerged and 20% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for water drag; 0 %, 5%, 10%, and 15% for wind.
 
@@ -371,7 +371,7 @@ total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W
 
 ## Trajectory comparison
 
-The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles. When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation. The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories is evident. 
+The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles. When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation. The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. 
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 waterdrag_plot <- ggplot()+
@@ -407,7 +407,7 @@ ggarrange(waterdrag_plot, wwdrag_plot)
 
 ## Comparison of density distributions
 
-
+Across all simulations particles flowed in a north-westward direction. The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has a almost even density of particles across grids. In addition the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticy while particles in the passive simulation deflected away. Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -585,6 +585,9 @@ ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_K
 ```
 
 ## Comparison of distances 
+
+There were significant differences among the median distances travelled for all particles in each simulation (see figure ??; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations amongst simulations. 
+
 ```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 
 pos <- c("RK4",
