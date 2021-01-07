@@ -2,11 +2,11 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  html_document:
-  pdf_document:
-    fig_caption: yes
   word_document:
     reference_docx: markdown/frontiers_template.docx
+  pdf_document:
+    fig_caption: yes
+  html_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
@@ -45,9 +45,7 @@ Past research points to macroalgae trajectory being largely determined by prevai
 
 Other aspects such as buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material. However, the past research on macroalgal trajectory has not investigated these factors which have been shown to be important aspects of trajectory for other materials such as icebergs, marine craft and microplastics. The "sail" area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in water form drag. Drag coefficients related to wind and surface current have been shown to be important properties to consider when estimating trajectory and forecasting drift for search and sea rescue operations. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. 
 
-To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Methods used in the field of chemical engineering provide an alternative approach to estimating drag of macroalgae by means of formulas to calculate drag based on shape. Chemical engineers in the field of fluid dynamics which come across similar problems when including drag use an approach known as a 'spherecity factor'. A spherecity factor is expressed mathematically by $\psi=s/s_d$, and the ratio of the surface area of a sphere having the volume as the irregular shaped particle ($s$) to the actual surface area of the particle ($s_d$). The values are dependent on the shape of the object and a range of values have been determined based on numerous experimental work. 
-
-Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modeling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
+To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modeling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
 
 In this study, a numerical approach is used to shed light on the role of water and direct wind drag on macroalgal drift trajectory using lagrangian based trajectory simulations. This will be achieved by comparing the trajectory outputs of virtual 'passive' particles (no drag characteristics added) with kelp particles (drag characteristics added) of varying degrees of water and wind drag exposure. The different degrees of wave and wind exposure are meant to reflect the different buoyancy characteristics, as well as identify the role of magnitude of the drag components on overall trajectory. 
 
@@ -194,7 +192,7 @@ To test the different magnitudes that hydrodynamic and wind drag might play in t
 
 ## Analysis
 
-In order to compare trajectories between cross-sectional area types and wind exposure scenarios, density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots and scatterplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
+In order to compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
 
 # Results
 
@@ -368,12 +366,11 @@ total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W
 
 ```
 
-
 ## Trajectory comparison
 
 The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles. When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation. The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. 
 
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
 waterdrag_plot <- ggplot()+
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
@@ -381,9 +378,11 @@ waterdrag_plot <- ggplot()+
   geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  #guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
-
+  ggtitle("Comparison of hydrodynamic drag simulations") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+  
 wwdrag_plot <- ggplot()+
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'snow4')+
@@ -397,8 +396,11 @@ wwdrag_plot <- ggplot()+
   geom_path(data = Max_Kfloat_H085_W15_mean, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("Comparison of hydrodynamic and wind drag simulations")
   #guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=8}
@@ -425,8 +427,11 @@ heatmap_RK4 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  #guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  ggtitle("Passive") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Min_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -437,8 +442,11 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H100W100") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Min_Kfloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -450,7 +458,10 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  ggtitle("H095W05") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Min_Kfloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -461,8 +472,11 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H090W10") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Min_Kfloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -473,8 +487,11 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H085W15") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -485,8 +502,11 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H100W00") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -497,8 +517,11 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H095W05") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -510,8 +533,11 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H090W10") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Mean_KFloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -523,8 +549,11 @@ heatmap_Mean_KFloat_H085_W15 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H085W15") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Max_KFloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -536,8 +565,11 @@ heatmap_Max_KFloat_H100_W00 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H100W00") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Max_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -549,8 +581,12 @@ heatmap_Max_KFloat_H095_W05 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H095W05") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Max_KFloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -562,8 +598,11 @@ heatmap_Max_KFloat_H090_W10 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H090W10") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 heatmap_Max_KFloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
@@ -575,8 +614,11 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
+  ggtitle("H085W15") +
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 
 ```
 
@@ -611,7 +653,9 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, s
   theme_bw()+
   ylab("Distance (km)")+
   xlab("Type")+
-  coord_flip()
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 ```
 
@@ -639,9 +683,11 @@ shape_plot <- ggplot()+
   geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = Max_ShapeFloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
   xlab("Longtitude") + 
-  ylab("Latitude") + 
+  ylab("Latitude") +
+  ggtitle("Mean trajectory comparison") +
   #guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 # make density map
 heatmap_Max_ShapeFloat_H100_W00 <- ggplot() +
@@ -655,7 +701,28 @@ heatmap_Max_ShapeFloat_H100_W00 <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() 
+  ggtitle("Cylinder") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+# make another density map for the maximum so that title can be manipulated
+
+heatmap_Max_Sphere_H100_W00 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Sphere") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 shape_data_total <- rbind(Max_Kfloat_H100_W00, Max_ShapeFloat_H100_W00)
 
@@ -663,18 +730,19 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, fi
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
   stat_compare_means(method = "kruskal.test", label = "p.signif")+
-  theme_bw()+
   ylab("Distance (km)")+
-  xlab("Type")
+  xlab("Type") + 
+  ggtitle("Comparison of distance travelled") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 ```
 
 ```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Comparison of trajectory data between a kelp sphere and kelp cylinder.", fig.height=8, fig.width=8}
 
-ggarrange(shape_plot, shape_dis_plot, heatmap_Max_KFloat_H100_W00, heatmap_Max_ShapeFloat_H100_W00, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
+ggarrange(shape_plot, shape_dis_plot, heatmap_Max_Sphere_H100_W00, heatmap_Max_ShapeFloat_H100_W00, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
 
 ```
-
 
 # Discussion
 
