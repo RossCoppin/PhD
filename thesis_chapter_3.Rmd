@@ -2,11 +2,11 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  word_document:
-    reference_docx: markdown/frontiers_template.docx
+  html_document:
   pdf_document:
     fig_caption: yes
-  html_document:
+  word_document:
+    reference_docx: markdown/frontiers_template.docx
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
@@ -43,11 +43,11 @@ Some macroalgae species are negatively buoyant and sink to the seafloor when det
 
 Past research points to macroalgae trajectory being largely determined by prevailing wind conditions and surface currents [@thiel2005, @thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still not known; although the role of wind has been recognised as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterrey Bay. The results showed that kelp rafts with little surface area exposed to the wind were largely driven by a combination of wind and wind waves, however the relative importance of wind and wind waves was not clear. In addition, the tagged kelp trajectories were more consistent with the formation of eddies during winter. Previous studies have identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example the subAntartic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important potential mechanism for dispersal of floating kelp. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *Durvillaea antarctica* used a combination of population genetics and relative age estimate of ‘goosebarnacles’ attached to the raft. The presence of goosebarnacles suggests a long raft time as these species have a slow growth rate; while the genetic analyses showed these species are able to raft up to $\sim$ 390km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory, however, this was only inferred from the genetic results and local climatology data [@fraser2011]. 
 
-Other aspects such as buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material. However, the past research on macroalgal trajectory has not investigated these factors which have been shown to be important aspects of trajectory for other materials such as icebergs, marine craft and microplastics. The "sail" area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in water form drag. Drag coefficients related to wind and surface current have been shown to be important properties to consider when estimating trajectory and forecasting drift for search and sea rescue operations. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. 
+Other aspects such as buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material. However, the past research on macroalgal trajectory has not investigated these factors which have been shown to be important aspects of trajectory for other materials such as icebergs, marine craft and microplastics. The "sail" area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in hydrodynamic form drag. Drag coefficients related to wind and surface current have been shown to be important properties to consider when estimating trajectory and forecasting drift for search and sea rescue operations. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. 
 
 To accurately determine the trajectory of marine macroalgae these aspects need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been calculated for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Although various approaches have been used in the past to investigate floating macroalagae trajectory, very few studies have employed the use of Langrangian trajectory modeling. Furthermore, non of the existing studies using this modeling approach have considered macroalgal morphology (i.e. shape) as an aspect of drag and ultimately trajectory. Currently, work by @brooks2019 which investigated the effect of inertia and radial size on the trajectory of pelagic *Sargussum* rafts. The study used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not take into account the complex morphology on an individual level into account.
 
-In this study, a numerical approach is used to shed light on the role of water and direct wind drag on macroalgal drift trajectory using lagrangian based trajectory simulations. This will be achieved by comparing the trajectory outputs of virtual 'passive' particles (no drag characteristics added) with kelp particles (drag characteristics added) of varying degrees of water and wind drag exposure. The different degrees of wave and wind exposure are meant to reflect the different buoyancy characteristics, as well as identify the role of magnitude of the drag components on overall trajectory. 
+In this study, a numerical approach is used to shed light on the role of hydrodynamic and direct wind drag on macroalgal drift trajectory using lagrangian based trajectory simulations. This will be achieved by comparing the trajectory outputs of virtual 'passive' particles (no drag characteristics added) with kelp particles (drag characteristics added) of varying degrees of hydrodynamic and wind drag exposure. The different degrees of wave and wind exposure are meant to reflect the different buoyancy characteristics, as well as identify the role of magnitude of the drag components on overall trajectory. 
 
 # Methods
 
@@ -55,53 +55,15 @@ In this study, a numerical approach is used to shed light on the role of water a
 
 The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (see figure \ref{fig:map}A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (see figure \ref{fig:map}B). The hydrodynamics between the two domains are driven by a complex interaction of wind and wave vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these regions are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean. 
 
-```{r map data, message=FALSE, warning=FALSE, include=FALSE}
+```{r map, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Map of the study domain. This is a temporary map until issues with the map script are resolved."}
+library(jpeg)
+library(grid)
+library(gridExtra)
 
-source("map/scaleBarFunc.R")
-
-load("map/south_africa_coast_hi_res.Rdata")
-
-map_pen <- ggplot(data = south_africa_coast_hi_res) +
-geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-            size = 1.0, colour = "black", fill = "green") +
-  #geom_point(data = study_sites, aes(x = lon, y = lat), color = "red", nudge_x = 0, nudge_y = 0.1) +
-  #geom_label(data = study_sites_edit, aes(x = lon, y = lat, label = site), nudge_x = 0, nudge_y = 0) +
-  geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.10, xmax=18.50, ymin=-33.70, ymax=-34.50), inherit.aes = FALSE, fill = "blue", alpha = 0.01) +
-  #geom_rect(data = south_africa_coast_hi_res,aes(xmin=18.40, xmax=18.90, ymin=-34.00, ymax=-34.50), inherit.aes = FALSE, fill = "red", alpha = 0.01) +
-  #annotate("text", label = "Warm\nTemperate", x = 18.7, y = -34.5, size = 4.0, angle = 0, colour = "black") +
-  #annotate("text", label = "Cool\nTemperate", x = 18.0, y = -34.0, size = 4.0, angle = 0, colour = "black") +
-  annotate("text", label = "FALSE\nBAY", x =18.65, y = -34.25, size = 4.0, angle = 0, colour = "black") +
-  scaleBar(lon = 17.8, lat = -34.45, distanceLon = 10, distanceLat = 10, distanceLegend = -10, dist.unit = "km",
-  arrow.length = 10, arrow.distance = 15, arrow.North.size = 3) +
-  coord_cartesian(xlim = c(17.75, 19.15), ylim = c(-32.50, -34.55)) +
-  #theme(axis.ticks = element_blank()) + # Remove tick marks
-  xlab("Latitude") +
-  ylab("Longitude")
-
-## Coastline of Southern Africa
-load("map/south_africa_coast_hi_res.Rdata")
-
-release_sites <- read.csv("metadata/release_sites.csv", sep = ";")
-
-## Make 2nd map of just the peninsula
-release_map <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = "green") +
-  geom_point(data = release_sites, aes(x = lon, y = lat, colour = "red"), show.legend = FALSE) +
-  geom_label(data = release_sites, aes(x = lon, y = lat, label = site), nudge_x = 0, nudge_y = 0) +
-  coord_cartesian(xlim = c(18.275, 18.525), ylim = c(-34.375, -33.600)) +
-  theme(axis.ticks = element_blank(), # Remove tick marks
-        axis.text = element_blank(), # Remove lat/ lon numbers
-        axis.title = element_blank()) # Remove lat/ lon labels
-#ggsave(filename = "map_B.jpg", plot = last_plot(), device = "jpeg", path = "map/")
-
+map_chp3 <- rasterGrob(as.raster(readJPEG("map/tempmap_chapter3.jpg")))
+ggarrange(map_chp3)
 ```
 
-```{r map,echo=FALSE, message=FALSE, warning=FALSE, fig.cap='\\label{fig:map}Map of the study area and sampling sites. The blue shaded area is the Atlantic region and the red shaded region is the False Bay region.'}
-
-ggarrange(map_pen, release_map, labels = c("AUTO"), align = c("hv"), ncol = 2, nrow = 1)
-
-```
 
 ## Particle tracking model
 
@@ -110,7 +72,7 @@ The model is based on parameterisations that have been used for previous studies
 $$X(t+\Delta t) = X(t) + \int_{t}^{t+\Delta t} v(x, \tau)d \tau + \Delta X_b(t)$$
 where $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model, $X_b(t)$ is a change in position due to 'behavior' of the particle. This can range from swimming in fish to sinking or beaching. IN order to investigate the effects of drag components of trajectory of floating macroalgae, this study incorporated drag as the custom behavior. 
 
-This study simulated two scenarios; one where the plant is fully submerged and only exposed to seawater drag; and the other where parts of the plants are partially exposed resulting in a combination of seawater and air form drag. Drag based on shape based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this particular study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_d + F_a + F_f$$
+This study simulated two scenarios; one where the plant is fully submerged and only exposed to hydrodynamic drag; and the other where parts of the plants are partially exposed resulting in a combination of hydrodynamic and air form drag. Drag based on shape based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this particular study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_d + F_a + F_f$$
 where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, and $F_f$ the surface-current flow. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag and surface current-flow are two-dimensional vector quantities and were calculated for each time step for each simulation. 
 
 ## Hydrodynamic and wind model
@@ -132,8 +94,8 @@ sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "t
 sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Drag.Exposure = "Drag Exposure level")
 sim_table <- align(x= sim_table, align = "center", part = "all")
 sim_table <- set_table_properties(sim_table, width = 1, layout = "autofit")
+sim_table <- set_caption(sim_table, "Table 1:Details for each simulation executed for the study.")
 sim_table
-
 ```
 
 In order to determine the influence of cross-sectional area on drag components, simulations were performed for the minimum, mean and maximum cross-sectional areas for Kommetjie kelp forest population (see figure \ref{fig:map}). In order to determine the direct effect of wind on trajectory, simulations were run for varying magnitudes of wind exposure for each type of cross-sectional area. The virtual particles released with the hydrodynamic or wind drag components are referred to as 'kelp particles'.  
@@ -141,9 +103,9 @@ In order to determine the influence of cross-sectional area on drag components, 
 ## Model inputs
 ### Cross-sectional area
 
-In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please see image/table ???. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for all simulations. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
+In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please refer to table 2. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for all simulations. The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum were calculated for each morphological characteristic (see appendix), which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations. The trajectory of these "types" of cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
-```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE, fig.cap="Table summarising the atrributes used and estimated to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation."}
+```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 # Investigate morphology data to assist in estimating surface area
 
 # Read in morphology data
@@ -168,52 +130,34 @@ eck_stats <- eck_long_df %>%
   rename(Minimum = minimum) %>% 
   rename(Maximum = maximum)
 
-eck_stats <- flextable(data = eck_stats)
-eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "transparent")
-eck_stats <- align(x= eck_stats, align = "center", part = "all")
-eck_stats <- set_table_properties(sim_table, width = 1, layout = "autofit")
+#eck_stats <- flextable(data = eck_stats)
+#eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "transparent")
+#eck_stats <- align(x= eck_stats, align = "center", part = "all")
+#eck_stats <- set_table_properties(eck_stats, width = 1, layout = "autofit")
 
+```
+
+```{r morphology table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="Table summarising the atrributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation."}
 area_table <- read.csv("tables/chapter_3/area_table.csv", sep = ";")
 area_table <- flextable(data = area_table)
 area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = "transparent")
 area_table <- align(x= area_table, align = "center", part = "all")
-area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
 area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
 area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
+area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
+area_table <- set_caption(sim_table, "Table 2:Summary of the atrributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation.")
 area_table
-
 ```
 
 ### Hydrodynamic and wind drag
 
-The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The drag equation used was: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to water or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. Water and wind drag components were calculated separately for both the meridonal and zonal velocity vectors. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. The same approach was used for the wind drag force. The equation that was used to calculate hydrodynamic drag, was also used to calculate the wind drag the virtual particle. 
-
-To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 80% of the plant is submerged and 20% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for water drag; 0 %, 5%, 10%, and 15% for wind.
+The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The drag equation used was: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to hydrodynamic or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. hydrodynamic and wind drag components were calculated separately for both the meridonal and zonal velocity vectors. Since drag force is dependent on the velocity vectors which vary with time, the meridonal and zonal velocities were interpolated and used in the drag force calculation for each time-step. The same approach was used for the wind drag force. The equation that was used to calculate hydrodynamic drag, was also used to calculate the wind drag the virtual particle. To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 80% of the plant is submerged and 20% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1).
 
 ## Analysis
 
 In order to compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
 
 # Results
-
-## Domain features
-
-```{r, message=FALSE, warning = FALSE, include= TRUE, echo = FALSE, fig.height=8, fig.width=8}
-library(jpeg)
-library(grid)
-library(gridExtra)
-
-vector_2 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day2.jpg")))
-vector_5 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day5.jpg")))
-vector_10 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day10.jpg")))
-vector_15 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day15.jpg")))
-vector_20 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day20.jpg")))
-vector_25 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day25.jpg")))
-vector_30 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day30.jpg")))
-
-ggarrange(vector_2, vector_5, vector_10, vector_15, vector_20, vector_25, vector_30, labels = "AUTO")
-```
-
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -368,9 +312,10 @@ total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W
 
 ## Trajectory comparison
 
-The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles. When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation. The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. 
+The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles (\ref{fig:meantrajA}. When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation(\ref{fig:meantrajB}. The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. 
 
-```{r message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
+```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
+
 waterdrag_plot <- ggplot()+
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
@@ -378,10 +323,9 @@ waterdrag_plot <- ggplot()+
   geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Comparison of hydrodynamic drag simulations") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
   
 wwdrag_plot <- ggplot()+
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
@@ -396,15 +340,14 @@ wwdrag_plot <- ggplot()+
   geom_path(data = Max_Kfloat_H085_W15_mean, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Comparison of hydrodynamic and wind drag simulations")
-  #guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=8}
-ggarrange(waterdrag_plot, wwdrag_plot)
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.cap="Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag."}
+ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO")
 ```
 
 ## Comparison of density distributions
@@ -502,7 +445,6 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H100W00") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -517,7 +459,6 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H095W05") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -533,7 +474,6 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H090W10") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -549,7 +489,6 @@ heatmap_Mean_KFloat_H085_W15 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H085W15") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -565,7 +504,6 @@ heatmap_Max_KFloat_H100_W00 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H100W00") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -581,7 +519,6 @@ heatmap_Max_KFloat_H095_W05 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H095W05") +
   theme(plot.title = element_text(hjust = 0.5)) + 
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
@@ -598,7 +535,6 @@ heatmap_Max_KFloat_H090_W10 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H090W10") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -614,21 +550,24 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H085W15") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
-
-
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario.', fig.height=8, fig.width=8}
-ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, heatmap_RK4, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"))
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D repressent the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
+
+figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
+
+figure_b <- ggarrange(heatmap_RK4, legend = c("right"))
+
+ggarrange(figure_a, figure_b, ncol = 1, nrow = 2)
+
 ```
 
 ## Comparison of distances 
 
-There were significant differences among the median distances travelled for all particles in each simulation (see figure ??; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations amongst simulations. 
+There were significant differences among the median distances travelled for all particles in each simulation (see figure (\ref{fig:distance plot}; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations amongst simulations. 
 
 ```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 
@@ -646,7 +585,7 @@ pos <- c("RK4",
          "Max_Kfloat_H090_W10",
          "Max_Kfloat_H085_W15")
 
-dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, show.legend = FALSE))+
+dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, show.legend = FALSE))+
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
   stat_compare_means(method = "kruskal.test", label = "p.signif")+
@@ -659,10 +598,13 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, fill = type, s
 
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Boxplots of total distance from source over the course of the simulation for each exposure scenario."}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Boxplots of total distance of all particles from the release site over the course of the simulation for each exposure scenario."}
 dis_plot
 ```
 
+## Comparison of coefficents
+
+The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no dissimilarity. This was also reflected when comparing distance travelled by particles and particle density plots. The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient. 
 
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
 
@@ -726,7 +668,7 @@ heatmap_Max_Sphere_H100_W00 <- ggplot() +
 
 shape_data_total <- rbind(Max_Kfloat_H100_W00, Max_ShapeFloat_H100_W00)
 
-shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, fill = type, show.legend = FALSE))+
+shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, show.legend = FALSE))+
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
   stat_compare_means(method = "kruskal.test", label = "p.signif")+
@@ -738,7 +680,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, fi
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Comparison of trajectory data between a kelp sphere and kelp cylinder.", fig.height=8, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
 
 ggarrange(shape_plot, shape_dis_plot, heatmap_Max_Sphere_H100_W00, heatmap_Max_ShapeFloat_H100_W00, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
 
@@ -746,23 +688,39 @@ ggarrange(shape_plot, shape_dis_plot, heatmap_Max_Sphere_H100_W00, heatmap_Max_S
 
 # Discussion
 
-The treatment of drifting macroalgae as purely lagrangian will not be able to accurately determine patterns of passive dispersal, such as entrainment in eddies or vortices. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics, however current research has focused on large macroalgae-rafts that can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag into account. The passive simulations deviated from passive particles trajectories when including varing levels of hydrodynamic and wind drag scenarios into account. The results from this study show the inclusion of hydrodynamic and wind drag improves entrainment patterns and as well our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case *E.maxima*.
+The treatment of drifting macroalgae as purely lagrangian will not be able to accurately determine patterns of passive dispersal, such as entrainment in eddies or vortices [@fossette2012; @Sebille2018; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], however current research has focused on large macroalgae-rafts that can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag into account. The passive simulations deviated from passive particles trajectories when including varing levels of hydrodynamic and wind drag scenarios into account. The results from this study show the inclusion of hydrodynamic and wind drag improves entrainment patterns and as well our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case *E.maxima*.
 
-Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005, @thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when ad-hoc wind drag (windage) is considered in combination with hydrodynamic drag the trajectories differ greatly when compared to purely lagrangian particle trajectories. The inclusion of wind drag causes the particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object. This causes the particles to travel further as well as exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used ad-hoc windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic Sargassum. The results showed that including a ad-hoc windage factor in proving virtual trajectories to tracked Sargassum mats which was partly due to the inclusion of momemtum energy transfer from the wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag. 
+Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005, @thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when ad-hoc wind drag (windage) is considered in combination with hydrodynamic drag the trajectories differ greatly when compared to purely lagrangian particle trajectories. The inclusion of wind drag causes the particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object [@hackett2006; @putman2020]. This causes the particles to travel further as well as exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used ad-hoc windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic Sargassum. The results showed that including a ad-hoc windage factor in proving virtual trajectories to tracked Sargassum mats which was partly due to the inclusion of momemtum energy transfer from the wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag. 
 
 The addition of drag forces into the simulation also causes the particles to cluster together along the mean trajectory compared to that of the passive particles which are more evenly dispersed. This is most likely due to the shared drag characteristics among the particles which included the plants weight and surface area into the calculation. Other studies investigating flotsam trajectory characteristics have found similar results [@breivik2011; @olascoaga2020; @miron2020]. A study by @miron2020 conducted field experiments using a range of objects such as spheres, cubes, cuboids to compare to investigate the effect of inertia on particles dynamics. The results from the study showed that objects tended to cluster according to the shape of the object which the authors attributed to shared characteristics of inertia. Although drag forces were used in this study and not inertia, the same conclusion applies, drag is an important characteristic to consider when investigating or predicting solitary drifting macrolagae. 
 
-The ocean is made up of varying time-varying flows and changes in an objects velocity can cause the object to be exposed to different flow patterns over time. The lack of dissimilarity between different cross-sectional area types (minimum, mean and maximum) was an unexpected result. A similar result was found by @gouvello2020 who investigated the effects of swimming behavior on sea turtle hatchling dispersal in the Agulhas region. The results suggested that the hatchlings trajectories are mostly influenced by the ocean currents in the first year of hatching due to low swimming speeds of juveniles. Therefore, the differences in cross-sectional area types may not be significant enough in order to have a significant effect on the relevant velocity vectors (zonal and meridonal). Another possible reason is the resolution of the ocean model used. The resolution of the underlying ocean model is an important aspect of lagrangian ocean modeling and must be able to resolve sub-grid scale ocean processes for finer scale applications. A study by @hart2018 assessed the inclusion of stochastic motion, wind and currents into forecasting for search and rescue using the same model ocean model used in this study. The authors found that the inclusion of brownian motion greatly increased the accuracy in representing sub-grid scale processes and that the inclusion of wind, currents and stochastic motion greatly improved forecasting applications. Therefore, the authors argue that the lack of dissimilarity between simulations of different cross-sectional area and drag exposure scenarios is not as a result of the resolution of the model. 
+The ocean is made up of varying time-varying flows and changes in an objects velocity can cause the object to be exposed to different flow patterns over time. The lack of dissimilarity between different cross-sectional area types (minimum, mean and maximum) suggests that reduction in velocity in relation to cross-sectional area is negligible. A similar result was found by @gouvello2020 who investigated the effects of swimming behavior on sea turtle hatchling dispersal in the Agulhas region. The results suggested that the hatchlings trajectories are mostly influenced by the ocean currents in the first year of hatching due to low swimming speeds of juveniles. Therefore, the differences in cross-sectional area types may not be significant enough in order to have a significant effect on the relevant velocity vectors (zonal and meridonal). Another possible reason is the resolution of the ocean model used. The resolution of the underlying ocean model is an important aspect of lagrangian ocean modeling and must be able to resolve sub-grid scale ocean processes for finer scale applications. A study by @hart2018 assessed the inclusion of stochastic motion, wind and currents into forecasting for search and rescue using the same model ocean model used in this study. The authors found that the inclusion of brownian motion greatly increased the accuracy in representing sub-grid scale processes and that the inclusion of wind, currents and stochastic motion greatly improved forecasting applications. Therefore, the authors argue that the lack of dissimilarity between simulations of different cross-sectional area and drag exposure scenarios is not as a result of the resolution of the model. 
 
-The same is also true when comparing different hydrodynamic and wind drag exposure scenarios. These scenarios reflect different buoyancy situations which result in different amounts of surface area exposed to hydrodynamic and/or wind drag. The similarities between the different combined drag scenarios suggests that higher magnitudes of wind exposure do not significantly alter trajectories. Instead, the results from this study suggest that the inclusion of drag forces in simulating macroalgal trajectory may result in improving accuracy of entrainment patterns. All the simulations that included any form of drag resulted in a fairly high density of particles entrained in a vortex. The entrainment and expulsion from eddies and vortices is an important characteristic of floating macroalgae. Accuracy in predicting entrainment and expulsion of macroalgae-rafts from eddies has been investigated previously by @putman2018 and @putman2020, who show that including windage greatly improves entrainment patterns when comparing virtual and real Sargassum rafts. However, the aforementioned studies investigated large rafts and not floating individuals. Inertia is based on the size/weight of the raft, while hydrodynamic and wind drag are based on current velocity and surface area. Therefore, the role of inertia may be negligible for a solitary individual and rather other forms of drag should be considered. The results from this study suggest that the inclusion of hydrodynamic and/or wind drag is an important component when simulating virtual kelp particles will greatly increase the accuracy of entrainment and expulsion from sub-grid mesoscale oceanographic features, such as eddies and vortices. 
-
-The use of a cylindrical shape coefficient instead of a sphere in the calculation of drag force also had no effect on the mean trajectory. Instead, the inclusion of a differnt shape coefficient increased to the density of particles entrained in an eddy field. This suggest that inclusion of different shape coefficients play a role in further improving estmiates and hindcasts of macroalgal disperal patterns.
+The same is also true when comparing different hydrodynamic and wind drag exposure scenarios. These scenarios reflect different buoyancy situations which result in different amounts of surface area exposed to hydrodynamic and/or wind drag. The similarities between the different combined drag scenarios suggests that higher magnitudes of wind exposure do not significantly alter trajectories. Instead, the results from this study suggest that the inclusion of drag forces in simulating macroalgal trajectory may result in improving accuracy of entrainment patterns. All the simulations that included any form of drag resulted in a fairly high density of particles entrained in a vortex. The entrainment and expulsion from eddies and vortices is an important characteristic of floating macroalgae. Accuracy in predicting entrainment and expulsion of macroalgae-rafts from eddies has been investigated previously by @putman2018 and @putman2020, who show that including windage greatly improves entrainment patterns when comparing virtual and real Sargassum rafts. However, the aforementioned studies investigated large rafts and not floating individuals. Inertia is based on the size/weight of the raft, while hydrodynamic and wind drag are based on current velocity and surface area. Therefore, the role of inertia may be negligible for a solitary individual and rather other forms of drag should be considered. The results from this study suggest that the inclusion of hydrodynamic and/or wind drag is an important component when simulating virtual kelp particles will greatly increase the accuracy of entrainment and expulsion from sub-grid mesoscale oceanographic features, such as eddies and vortices. The use of a cylindrical shape coefficient instead of a sphere in the calculation of drag force also had no effect on the mean trajectory. Instead, the inclusion of a differnt shape coefficient increased to the density of particles entrained in an eddy field. This suggest that inclusion of different shape coefficients play a role in further improving estmiates and hindcasts of macroalgal disperal patterns.
 
 # Conclusion
 
 Most of the past research has focused on large macroalgae rafts which can vary greatly in size and shape, however no research exists attempting to clarify the drifting characteristics of solitary macroalgae. Understanding how to accurately model the distribution of solitary kelp can lead to be understanding of accumulation zones and sinks and ultimately the ecological links pertaining to those processes. The findings from this study indicate that solitary floating virtual *E. maxima* particles do tend to follow the prevailing surface currents but that the inclusion of wind causes the trajectories to differ greatly from that of a purely lagrangian particle. Furthermore, the inclusion of both hydrodynamic and wind drag cause clustering of particles along the trajectory as well causing particles to become entrained in eddies. Different cross-sectional areas exposed to hydrodynamic and wind drag had no effect on overall trajectory suggesting that those differences are neglible when investigating dispersal patterns of drifting *E.maxima*. In addition, the use of a cylindrical shape coefficient has no effect on mean trajectory but also causes higher density of particles to become entrained in an eddy. Overall the inclusion of drag forces is an important aspect to consider when investigating the dispersal patterns of solitary macroalgae, while differences in cross-sectional areas are not. This study also provides an approach which can be adapted to model floating solitary macroalgae, provided the surface area can be estimated accurately. However, more gaps in the research exist when considering what oceanographic processes play a role in solitary macroalgal dispersal as well as how these change seasonally. The identification of biological and physical factors that play a role in accumulation zones is also needed, as well as better estimates for sinking rates and raft-times. 
 
 # Appendix
+
+## Domain features
+
+```{r, message=FALSE, warning = FALSE, include= TRUE, echo = FALSE, fig.height=8, fig.width=8}
+library(jpeg)
+library(grid)
+library(gridExtra)
+
+vector_2 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day2.jpg")))
+vector_5 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day5.jpg")))
+vector_10 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day10.jpg")))
+vector_15 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day15.jpg")))
+vector_20 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day20.jpg")))
+vector_25 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day25.jpg")))
+vector_30 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_outputs/jpeg/vector_day30.jpg")))
+
+ggarrange(vector_2, vector_5, vector_10, vector_15, vector_20, vector_25, vector_30, labels = "AUTO")
+```
 
 # References
 
