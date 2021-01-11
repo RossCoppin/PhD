@@ -355,7 +355,6 @@ ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO")
 Across all simulations particles flowed in a north-westward direction. The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has a almost even density of particles across grids. In addition the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticy while particles in the passive simulation deflected away. Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
-
 ## Heatmaps of study domain, use previous data for study site map and histograms
 
 ## Coastline of Southern Africa
@@ -608,22 +607,37 @@ The comparison of mean trajectories between the sphere and cylindrical shape coe
 
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
 
-Max_ShapeFloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00.nc") %>%
+sphere <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
-Max_ShapeFloat_H100_W00_mean <- Max_ShapeFloat_H100_W00 %>% #calculate mean trajectory 
+sphere_mean <- sphere %>% #calculate mean trajectory 
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-Max_ShapeFloat_H100_W00$type <- "Max_ShapeFloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_mean$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+# read in data again for one max simulation, as cannot sort issue out with rename df...
+cyl <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+cyl_mean <- cyl %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+cyl$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_mean$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+
 
 # Make mean trajectory plot
 shape_plot <- ggplot()+
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = Max_ShapeFloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = sphere_mean, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = cyl_mean, aes(x = lon, y = lat), color = 'orange')+
   xlab("Longtitude") + 
   ylab("Latitude") +
   ggtitle("Mean trajectory comparison") +
@@ -632,13 +646,13 @@ shape_plot <- ggplot()+
   theme(plot.title = element_text(hjust = 0.5))
 
 # make density map
-heatmap_Max_ShapeFloat_H100_W00 <- ggplot() +
+heatmap_sphere <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_ShapeFloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = sphere, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
-  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_path(data = sphere_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -647,16 +661,13 @@ heatmap_Max_ShapeFloat_H100_W00 <- ggplot() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-
-# make another density map for the maximum so that title can be manipulated
-
-heatmap_Max_Sphere_H100_W00 <- ggplot() +
+heatmap_cyl <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = cyl, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
-  geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_path(data = cyl_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -666,7 +677,7 @@ heatmap_Max_Sphere_H100_W00 <- ggplot() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-shape_data_total <- rbind(Max_Kfloat_H100_W00, Max_ShapeFloat_H100_W00)
+shape_data_total <- rbind(sphere, cyl)
 
 shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, show.legend = FALSE))+
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
@@ -682,7 +693,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, sh
 
 ```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
 
-ggarrange(shape_plot, shape_dis_plot, heatmap_Max_Sphere_H100_W00, heatmap_Max_ShapeFloat_H100_W00, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
+ggarrange(shape_plot, shape_dis_plot, heatmap_sphere, heatmap_cyl, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
 
 ```
 
