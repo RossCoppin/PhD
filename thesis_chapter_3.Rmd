@@ -155,7 +155,7 @@ The drag coefficient for a spherical particle was used in the calculation of hyd
 
 ## Analysis
 
-In order to compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@Sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@Sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@Putman2020; @Putman2018; @Sebille2018]. 
+In order to compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@sebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particle [@sebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@putman2020; putman2018; @sebille2018]. 
 
 # Results
 
@@ -346,7 +346,7 @@ wwdrag_plot <- ggplot()+
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.cap="Figure 2:Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.cap="Figure 2: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag."}
 ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO")
 ```
 
@@ -554,7 +554,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3:Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D repressent the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D repressent the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
 
 figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
 
@@ -566,7 +566,7 @@ ggarrange(figure_a, figure_b, ncol = 1, nrow = 2)
 
 ## Comparison of distances 
 
-There were significant differences among the median distances travelled for all particles in each simulation (Figure 4; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations amongst simulations. 
+There were significant differences among the median distances travelled for all particles in each simulation (Figure 4; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations among simulations. 
 
 ```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 
@@ -597,7 +597,7 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, show.legend = 
 
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4:Boxplots of total distance of all particles from the release site over the course of the simulation for each exposure scenario."}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4: Boxplots of total distance of all particles from the release site over the course of the simulation for each exposure scenario."}
 dis_plot
 ```
 
@@ -691,7 +691,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, sh
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 5:Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 5: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
 
 ggarrange(shape_plot, shape_dis_plot, heatmap_sphere, heatmap_cyl, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
 
@@ -699,7 +699,7 @@ ggarrange(shape_plot, shape_dis_plot, heatmap_sphere, heatmap_cyl, labels = c("A
 
 # Discussion
 
-The treatment of drifting macroalgae as purely lagrangian will not be able to accurately determine patterns of passive dispersal, such as entrainment in eddies or vortices [@fossette2012; @Sebille2018; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], however current research has focused on large macroalgae-rafts that can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag into account. The passive simulations deviated from passive particles trajectories when including varing levels of hydrodynamic and wind drag scenarios into account. The results from this study show the inclusion of hydrodynamic and wind drag improves entrainment patterns and as well our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case *E.maxima*.
+The treatment of drifting macroalgae as purely lagrangian will not be able to accurately determine patterns of passive dispersal, such as entrainment in eddies or vortices [@fossette2012; @sebille2018; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], however current research has focused on large macroalgae-rafts that can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag into account. The passive simulations deviated from passive particles trajectories when including varing levels of hydrodynamic and wind drag scenarios into account. The results from this study show the inclusion of hydrodynamic and wind drag improves entrainment patterns and as well our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case *E.maxima*.
 
 Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005, @thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when ad-hoc wind drag (windage) is considered in combination with hydrodynamic drag the trajectories differ greatly when compared to purely lagrangian particle trajectories. The inclusion of wind drag causes the particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object [@hackett2006; @putman2020]. This causes the particles to travel further as well as exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used ad-hoc windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic Sargassum. The results showed that including a ad-hoc windage factor in proving virtual trajectories to tracked Sargassum mats which was partly due to the inclusion of momemtum energy transfer from the wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag. 
 
