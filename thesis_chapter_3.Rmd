@@ -2,11 +2,11 @@
 title: 'Numerical trajectory patterns of floating macroalgae'
 author: "Ross Coppin"
 output:
-  html_document:
-  pdf_document:
-    fig_caption: yes
   word_document:
     reference_docx: markdown/frontiers_template.docx
+  pdf_document:
+    fig_caption: yes
+  html_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
@@ -53,9 +53,9 @@ In this study, a numerical approach is used to shed light on the role of hydrody
 
 ## Study site
 
-The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (see figure \ref{fig:map}A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (see figure \ref{fig:map}B). The hydrodynamics between the two domains are driven by a complex interaction of wind and wave vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these regions are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean. 
+The region of interest for this study was the Cape Peninsula in the Western Cape, South Africa. This was further sub-divided into two domains, the Atlantic domain and False Bay domain (Figure 1A). One release site is located in each of the domains, namely Kommetjie in the Atlantic and Buffelsbaai in False Bay (Figure 2B). The hydrodynamics between the two domains are driven by a complex interaction of wind and wave vectors, with wind driven processes primarily occurring in False Bay. For a more detailed explanation of the hydrodynamics of these two domains the reader is referred to @coppin2020. The hydrodynamic characteristics of these regions are also influenced by larger oceanic processes, which in South Africa can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC). The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly southwestward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean. 
 
-```{r map, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Map of the study domain. This is a temporary map until issues with the map script are resolved."}
+```{r map, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 1:Map of the study domain. This is a temporary map until issues with the map script are resolved."}
 library(jpeg)
 library(grid)
 library(gridExtra)
@@ -98,7 +98,7 @@ sim_table <- set_caption(sim_table, "Table 1:Details for each simulation execute
 sim_table
 ```
 
-In order to determine the influence of cross-sectional area on drag components, simulations were performed for the minimum, mean and maximum cross-sectional areas for Kommetjie kelp forest population (see figure \ref{fig:map}). In order to determine the direct effect of wind on trajectory, simulations were run for varying magnitudes of wind exposure for each type of cross-sectional area. The virtual particles released with the hydrodynamic or wind drag components are referred to as 'kelp particles'.  
+In order to determine the influence of cross-sectional area on drag components, simulations were performed for the minimum, mean and maximum cross-sectional areas for Kommetjie kelp forest population (Figure 1). In order to determine the direct effect of wind on trajectory, simulations were run for varying magnitudes of wind exposure for each type of cross-sectional area. The virtual particles released with the hydrodynamic or wind drag components are referred to as 'kelp particles'.  
 
 ## Model inputs
 ### Cross-sectional area
@@ -312,7 +312,7 @@ total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W
 
 ## Trajectory comparison
 
-The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles (\ref{fig:meantrajA}. When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation(\ref{fig:meantrajB}. The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. 
+The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles (Figure 1A). When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen with only slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation (Figure 1B). The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well as being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. 
 
 ```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
 
@@ -346,13 +346,13 @@ wwdrag_plot <- ggplot()+
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.cap="Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=6, fig.cap="Figure 2:Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag."}
 ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO")
 ```
 
 ## Comparison of density distributions
 
-Across all simulations particles flowed in a north-westward direction. The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has a almost even density of particles across grids. In addition the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticy while particles in the passive simulation deflected away. Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
+Across all simulations particles flowed in a north-westward direction (Figure 3). The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has a almost even density of particles across grids (Figure 3A, 3E, 3I). In addition the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticy while particles in the passive simulation deflected away (Figure 3). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
 ## Heatmaps of study domain, use previous data for study site map and histograms
@@ -554,7 +554,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D repressent the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3:Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D repressent the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
 
 figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
 
@@ -566,7 +566,7 @@ ggarrange(figure_a, figure_b, ncol = 1, nrow = 2)
 
 ## Comparison of distances 
 
-There were significant differences among the median distances travelled for all particles in each simulation (see figure (\ref{fig:distance plot}; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations amongst simulations. 
+There were significant differences among the median distances travelled for all particles in each simulation (Figure 4; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled less distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations amongst simulations. 
 
 ```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 
@@ -597,13 +597,13 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, show.legend = 
 
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Boxplots of total distance of all particles from the release site over the course of the simulation for each exposure scenario."}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4:Boxplots of total distance of all particles from the release site over the course of the simulation for each exposure scenario."}
 dis_plot
 ```
 
 ## Comparison of coefficents
 
-The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no dissimilarity. This was also reflected when comparing distance travelled by particles and particle density plots. The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient. 
+The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no dissimilarity (Figure 5A). This was also reflected when comparing distance travelled by particles and particle density plots (Figure 5B). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (Figure 5C-D). 
 
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
 
@@ -691,7 +691,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, sh
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 5:Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
 
 ggarrange(shape_plot, shape_dis_plot, heatmap_sphere, heatmap_cyl, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
 
