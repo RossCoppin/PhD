@@ -1,6 +1,9 @@
 ---
 title: 'Numerical trajectory patterns of floating macroalgae'
-author: "Ross Coppin"
+author:
+- R Coppin^[University of the Western Cape]
+- C Rautenbach^[South African Weather Service]
+- AJ Smit^[University of the Western Cape]
 output:
   word_document:
     reference_docx: markdown/frontiers_template.docx
@@ -181,6 +184,7 @@ Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H100_W00$type <- "Min_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00$velocity <- with(Min_Kfloat_H100_W00, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Min_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
@@ -192,6 +196,7 @@ Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H095_W05$type <- "Min_Kfloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05$velocity <- with(Min_Kfloat_H095_W05, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Min_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
@@ -203,6 +208,7 @@ Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H090_W10$type <- "Min_Kfloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10$velocity <- with(Min_Kfloat_H090_W10, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Min_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
@@ -214,6 +220,7 @@ Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Min_Kfloat_H085_W15$type <- "Min_Kfloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15$velocity <- with(Min_Kfloat_H085_W15, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
@@ -225,6 +232,7 @@ Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00$velocity <- with(Mean_Kfloat_H100_W00, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
@@ -236,6 +244,7 @@ Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05$velocity <- with(Mean_KFloat_H095_W05, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
@@ -247,6 +256,7 @@ Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10$velocity <- with(Mean_KFloat_H090_W10, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
@@ -258,6 +268,7 @@ Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE)) 
 
 Mean_KFloat_H085_W15$type <- "Mean_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15$velocity <- with(Mean_KFloat_H085_W15, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Max_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
@@ -269,6 +280,7 @@ Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H100_W00$type <- "Max_KFloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00$velocity <- with(Max_Kfloat_H100_W00, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Max_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
@@ -280,6 +292,7 @@ Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H095_W05$type <- "Max_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05$velocity <- with(Max_Kfloat_H095_W05, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Max_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
@@ -291,6 +304,7 @@ Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H090_W10$type <- "Max_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10$velocity <- with(Max_Kfloat_H090_W10, sqrt(kelpvelU^2 + kelpvelV^2))
 
 Max_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
@@ -302,6 +316,7 @@ Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 Max_Kfloat_H085_W15$type <- "Max_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15$velocity <- with(Max_Kfloat_H085_W15, sqrt(kelpvelU^2 + kelpvelV^2))
 
 total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W10, Min_Kfloat_H085_W15, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15, Max_Kfloat_H100_W00, Max_Kfloat_H095_W05, Max_Kfloat_H090_W10, Max_Kfloat_H085_W15)
 
