@@ -1,0 +1,94 @@
+---
+title: "Chapter 4"
+author: "Ross Coppin"
+date: "11/12/2020"
+output: html_document
+---
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+library(tidyverse)
+library(flextable)
+
+```
+
+# Introduction
+
+The raft-time is the amount of time macroalgae floats at the surface before becoming negatively buoyant and begins to sink to the ocean-floor. Raft-time, also referred to as raft longevity, is determined by epibiont load, macroalgal growth rate and the loss of kelp biomass over time through fragmentation. Epibiont load consists of epiphytic and bryozoan species which tend to grow more rapidly in higher light and temperature environments, such as the ocean surface [@thiel2005; @thiel2005; @graiff2016]. The increase in epibiont load reduces the buoyancy of floating macroalgal rafts over time eventually causing them to sink to the seafloor, while also potentially increasing drag [@hobday2000; @tala2013; @craw2018]. Fragmentation of kelp biomass over time may also reduce raft times further, while growth may counteract the effects of epibiont load and fragmentation provided the environmental conditions are favorable [@graiff2016; @macaya2016]. For instance a study by @rothausler2011 investigated the abiotic and biotic factors influencing raft time and dispersal potential of the giant kelp *M. pyrifera* by a combination of tethering experiments and field surveys. The results showed the physiological performance of kelp declined with increasing epiphyte biomass and that higher temperatures increased growth rate of epibionts and fragmentation of kelp. The authors concluded from the results of both the experiments and field surveys that *M. pyrifera* dispersal is dependent on low temperature and moderate irradiance conditions, with high temperatures and higher irradiance reducing overall raft-time and hence dispersal potential [@rothausler2011].
+
+
+# Methods
+
+## Raft-time
+
+Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 25 days, winter was 38 days, and autumn was 41 days respectively. 
+
+
+
+```{r morphology surface area table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="TBD."}
+
+# Read in morphology data
+
+eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
+  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
+  filter(site!= "De Hoop") 
+eck_df$site <- as.character(eck_df$site)
+eck_df <- eck_df %>% 
+  filter(population == "Deep") 
+eck_long_df <- gather(eck_df, Morphology, measurement, frond_mass:total_length, factor_key=TRUE)
+
+# Summary stats to make it easier to refer to later, these will not be used any analysis.
+#site_list <- c("Kommetjie")
+
+morph_data <- eck_long_df %>% 
+  group_by(site, Morphology) %>% 
+  summarise(maximum = max(measurement, na.rm = T)) %>% 
+  ungroup() %>% 
+  rename(Site = site) %>% 
+  rename(Maximum = maximum) %>% 
+  spread(Morphology, Maximum)
+
+# Add in and/calculate estimates
+morph_data$stipe_radius <- with(morph_data, stipe_circ/(pi*2))
+morph_data$frond_width <- with(morph_data, 5)
+morph_data$frond_thickness <- with(morph_data, 0.2)
+morph_data$bulb_length <- with(morph_data, 10)
+morph_data$bulb_base_radius <- with(morph_data, 5)
+morph_data$top_radius <- with(morph_data, 3)
+morph_data$bottom_radius <- with(morph_data, 10)
+morph_data$stipe_radius <- with(morph_data, stipe_circ/(pi*2))
+morph_data$height <- with(morph_data, 5)
+
+# Define the value of pi for ease
+pi <- 3.14
+
+# Calculate the total cross-sectional areas for each site from all morphological characteristics
+morph_data$total_Ac <- with(morph_data, ((2*frond_length*frond_width) + (2*frond_length*frond_thickness) + (2*frond_width*frond_thickness) + (primary_length * primary_width)/2 + (4*pi*bulb_base_radius*2) + (2*pi*bulb_base_radius*bulb_length) + 2*pi*stipe_radius*(stipe_radius*stipe_length) +  (pi*(2*top_radius + 2*bottom_radius) + pi*(top_radius + bottom_radius)*pi*(top_radius - bottom_radius)*2 + height*2))/1000)
+
+# Make table based on new entries
+site_surface_area <- morph_data
+site_surface_area <- flextable(data = site_surface_area)
+site_surface_area <- theme_zebra(site_surface_area, odd_header = "transparent", even_header = "transparent")
+site_surface_area <- align(x= site_surface_area, align = "center", part = "all")
+#area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
+#area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
+site_surface_area <- set_table_properties(site_surface_area, width = 1, layout = "autofit")
+#site_surface_area <- set_caption(site_surface_area, "Table 2:Summary of the atrributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation.")
+site_surface_area
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
