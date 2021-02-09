@@ -1,14 +1,15 @@
-Scenario;Type;Cross-sectional area;Drag Exposure
-1;Passive;N/A;N/A
-2;Kelp;Minimum;Hydrodynamic drag only
-3;Kelp;Minimum;Hydrodynamic drag 95%, wind drag 5%
-4;Kelp;Minimum;Hydrodynamic drag 90%, wind drag 10%
-5;Kelp;Minimum;Hydrodynamic drag 85%, wind drag 15%
-6;Kelp;Mean;Hydrodynamic drag only
-7;Kelp;Mean;Hydrodynamic drag 95%, wind drag 5%
-8;Kelp;Mean;Hydrodynamic drag 90%, wind drag 10%
-9;Kelp;Mean;Hydrodynamic drag 85%, wind drag 15%
-10;Kelp;Maximum;Hydrodynamic drag only
-11;Kelp;Maximum;Hydrodynamic drag 95%, wind drag 5%
-12;Kelp;Maximum;Hydrodynamic drag 90%, wind drag 10%
-13;Kelp;Maximum;Hydrodynamic drag 85%, wind drag 15%
+Scenario;ID;Type;Cross-sectional area;Drag Exposure
+1;RK4_Pfloat;Passive;N/A;N/A
+2;Min_Kfloat_H100W00;Kelp;Minimum;Hydrodynamic drag only
+3;Min_Kfloat_H095W005;Kelp;Minimum;Hydrodynamic drag 95%, wind drag 5%
+4;Min_Kfloat_H090W10;Kelp;Minimum;Hydrodynamic drag 90%, wind drag 10%
+5;Min_Kfloat_H085W15;Kelp;Minimum;Hydrodynamic drag 85%, wind drag 15%
+6;Mean_Kfloat_H100W00;Kelp;Mean;Hydrodynamic drag only
+7;Mean_Kfloat_H095W005;Kelp;Mean;Hydrodynamic drag 95%, wind drag 5%
+8;Mean_Kfloat_H090W10;Kelp;Mean;Hydrodynamic drag 90%, wind drag 10%
+9;Mean_Kfloat_H085W15;Kelp;Mean;Hydrodynamic drag 85%, wind drag 15%
+10;Max_Kfloat_H100W00;Kelp;Maximum;Hydrodynamic drag only
+11;Max_Kfloat_H095W005;Kelp;Maximum;Hydrodynamic drag 95%, wind drag 5%
+12;Max_Kfloat_H090W10;Kelp;Maximum;Hydrodynamic drag 90%, wind drag 10%
+13;Max_Kfloat_H085W15;Kelp;Maximum;Hydrodynamic drag 85%, wind drag 15%
+14;Max_ShapeFloat_H085W15;Kelp;Maximum area, cylinder shape;Hydrodynamic drag only

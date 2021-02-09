@@ -2,7 +2,7 @@ This folder contains the script needed for all trajectory simulations and a subf
 the simulations called "trajectory_data". Please see the "trajectory_data" subfolder for details
 about the contents. The file/s located within this  folder contain the latest working script and outputs. 
 
-The file "kelp.float.ipynb" is the python project file containing the script to run the current
+The file "chapter3_simulation" and "chapter_3_simulation_cyl" are the python project files containing the script to run the current
 version of the langrangian based simulations incorporating drag aspects into trajectory simulations.
 This file is also used to run the simulations for passive particles by "switching on/off" certian
 kernels and advections schemes. This must be manually set by the user for each simulation run, within
@@ -18,17 +18,13 @@ The current variables available to work with are:
 2) Longitude
 3) Time
 4) Distance
+5) Age
 
-** To be added:
+** To be added for chapter 4:
 
 > Depth (an appropriate dataset is needed for this)
-> Age (time afloat at the end of simulation)
 > Velocity (average velocity over time-step)
 > Sinking kernel (sinks between a specified interval of time depending on season)
-> Sinking rate kernel (particle behaviour of sinking kelp),
-
-and more...
-
 
 
 NOTE: The data for the underlying numerical model has not been added to this repo
