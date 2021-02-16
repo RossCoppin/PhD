@@ -617,7 +617,7 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, show.legend = 
   stat_compare_means(method = "kruskal.test", label = "p.signif")+
   theme_bw()+
   ylab("Distance (km)")+
-  xlab("Type")+
+  xlab("Scenario")+
   #coord_flip() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
