@@ -111,7 +111,7 @@ The drag coefficient for a spherical particle was used in the calculation of hyd
 
 ### Cross-sectional area
 
-In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please refer to figure 2. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, the cross-sectional area of the bulb/pneumatocyst was not considered in the calculation of overall cross-sectional area. In terms of the holdfast, a standard cross-sectional area was used for all simulations. 
+In order to incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant, for details please refer to figure 2. The dimensional data needed was estimated in cases were data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent, the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
 
 ```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2:Diagram of the *E.maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic."}
 
@@ -396,7 +396,7 @@ heatmap_RK4 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Passive") +
+  ggtitle("1") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -411,7 +411,7 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H100W100") +
+  #ggtitle("H100W100") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -427,7 +427,7 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("H095W05") +
+  #ggtitle("H095W05") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -441,7 +441,7 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H090W10") + 
+  #ggtitle("H090W10") + 
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -456,7 +456,7 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("H085W15") + 
+  #ggtitle("H085W15") + 
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -583,7 +583,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
 
-figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("AUTO"), common.legend = TRUE, legend = c("none"))
+figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"))
 
 figure_b <- ggarrange(heatmap_RK4, legend = c("right"))
 
@@ -618,9 +618,15 @@ dis_plot <- ggplot(data = total_data, aes(x = type, y = distance, show.legend = 
   theme_bw()+
   ylab("Distance (km)")+
   xlab("Type")+
-  coord_flip() +
+  #coord_flip() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
+
+custom_labs <- c("1","2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13") #create custom labels and add them to dis_plot
+
+dis_plot <- dis_plot +
+  scale_x_discrete(labels= custom_labs)
+  
 
 ```
 
