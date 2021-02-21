@@ -54,7 +54,7 @@ In this study, a numerical approach is used to shed light on the role of hydrody
 
 The region of interest for this study was the Cape Peninsula in the Western Cape (Figure 1A). A release site was chosen for this study, Kommetjie, which is located on the Atlantic side of the Cape Peninsula (Figure 2B). The hydrodynamics in the study region are driven by a complex interaction of wind and waves, which are also influenced by larger oceanic processes. In South Africa, the larger processes can largely be attributed to the Agulhas Current (AC) and the Benguela Current (BC)[@lutjeharms2000;@lutjeharms2007;@garzoli1996;@Hutchings2009;@rubio2009]. The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly south-westward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean [@@lutjeharms2000;@lutjeharms2007]. The region where the retroflection occurs is known as the Agulhas retroflection and consists of high levels of mesoscale variability [@garzoli1996]. The variability results in shedding of rings and filaments known as the Agulhas Rings and have an average diameter of ~324km [@lutjeharms1988; @lutjeharms2006; @lutjeharms2007]. The Agulhas Rings are the main contributors to the Agulhas leakage which are the transport of warm water from the Indian Ocean to the South Atlantic Ocean [@garzoli1996; @lutjeharms2006; @beal2015]. The Agulhas leakage is also a source of meso-scale variability within the Benguela region as anticyclonic rings are shed and drift northwestward along the southern Benguela slope region [@rubio2009]. The Benguela region is characterised by strong coastal upwelling cells which are primarily driven by equatorward winds [@shannon1996; @hardman2003], and is known as the Benguela upwelling region. The Benguela upwelling region starts at 27$^\circ$S and extends southward to 35$^\circ$S [@shannon1996]. The region is also characterised by high amounts of mesoscale variability in the form of eddies and filaments [@blanke2002; @blanke2005; @rubio2009]. The Benguela inshore region is dominated by a northwestward flow as a result of topographical steering, wind stress and interactions with passing Agulhas rings and eddies [@veitch2010]. 
 
-```{r map, echo=FALSE, message=FALSE, warning=FALSE, strip.white=TRUE, fig.cap="Figure 1:Map of the study domain. This is a temporary map until issues with the map script are resolved."}
+```{r map, echo=FALSE, message=FALSE, warning=FALSE, strip.white=TRUE, fig.cap="Figure 1:Map of the study domain and the main features pertaining to transport in the region. In panel A, the map of the entire South African coastline and the main currents presented. The resulting eddies and filaments from the Agulhas retroflection and study area are presented. In panel B, the splitting of the Benguela Jet, eddie features and general flow of the study domain are presented."}
 
 library(png)
 library(grid)
@@ -84,7 +84,7 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All simulations have the same release location and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic Sargassum rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 where released from Kommetjie at the start of simulation. The particles sets were advected with a Runge-Kutte fourth order scheme for 30 days and incorporated brownian motion. Since the aim of this investigation was to investigate the relative surface behaviour of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. The time period chosen to run the simulations was 01-01-2018 un 30-01-2018. This particular time period was chosen as the splitting of the Benguela Jet occurs in Janurary, which also conincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity [@rubio2009; @veitch2018; @ragoasha2019]. 
 
-```{r sim table, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Details for each simulation run for the study"}
+```{r sim table, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Details for each simulation run for the study. The table cosists of parameterisations for each scenario. The ID coloumn refers to the syntax used in the relevant OceanParcels script. Type refers to either a passive particle with no drag behaviour or a kelp particle that has been advected with any drag exposure. The drag exposure column refers to the parameterisations regarding the level of water and wind drag simulated."}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -158,7 +158,7 @@ eck_stats <- eck_long_df %>%
 
 ```
 
-```{r morphology table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="Table summarising the atrributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation."}
+```{r morphology table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="Table summarising the atrributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morpholgical characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. The total surface areas for each plant characteristic for each surface area type make up the remaining columns."}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -585,7 +585,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density of particles within each grid cell for the end run time of each scenario. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time of each scenario. The plots are regular hexagons within the density of particles is calculated. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation. The mean trajectories for each scenario are also plotted for comparison.', fig.height=10.2, fig.width=7.5}
 
 figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"))
 
@@ -634,7 +634,7 @@ dis_plot <- dis_plot +
 
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4: Boxplots of total distance of all particles from the release site over the course of the simulation for each exposure scenario."}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario. The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper "hinges" correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers."}
 dis_plot
 ```
 
@@ -728,7 +728,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, sh
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 5: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 5: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of total distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylinderical shape coefficient.", fig.height=8, fig.width=8}
 
 ggarrange(shape_plot, shape_dis_plot, heatmap_sphere, heatmap_cyl, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
 
