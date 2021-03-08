@@ -5,11 +5,15 @@ date: "11/12/2020"
 output: html_document
 ---
 
-
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 
 library(tidyverse)
 library(flextable)
+library(tidync)
+library(ncdf4)
+library(lubridate)
+library(gridExtra)
+library(ggpubr)
 
 ```
 
@@ -17,14 +21,11 @@ library(flextable)
 
 The raft-time is the amount of time macroalgae floats at the surface before becoming negatively buoyant and begins to sink to the ocean-floor. Raft-time, also referred to as raft longevity, is determined by epibiont load, macroalgal growth rate and the loss of kelp biomass over time through fragmentation. Epibiont load consists of epiphytic and bryozoan species which tend to grow more rapidly in higher light and temperature environments, such as the ocean surface [@thiel2005; @thiel2005; @graiff2016]. The increase in epibiont load reduces the buoyancy of floating macroalgal rafts over time eventually causing them to sink to the seafloor, while also potentially increasing drag [@hobday2000; @tala2013; @craw2018]. Fragmentation of kelp biomass over time may also reduce raft times further, while growth may counteract the effects of epibiont load and fragmentation provided the environmental conditions are favorable [@graiff2016; @macaya2016]. For instance a study by @rothausler2011 investigated the abiotic and biotic factors influencing raft time and dispersal potential of the giant kelp *M. pyrifera* by a combination of tethering experiments and field surveys. The results showed the physiological performance of kelp declined with increasing epiphyte biomass and that higher temperatures increased growth rate of epibionts and fragmentation of kelp. The authors concluded from the results of both the experiments and field surveys that *M. pyrifera* dispersal is dependent on low temperature and moderate irradiance conditions, with high temperatures and higher irradiance reducing overall raft-time and hence dispersal potential [@rothausler2011].
 
-
 # Methods
 
 ## Raft-time
 
 Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 25 days, winter was 38 days, and autumn was 41 days respectively. 
-
-
 
 ```{r morphology surface area table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="TBD."}
 
@@ -60,16 +61,22 @@ morph_data$bottom_radius <- with(morph_data, 10)
 morph_data$stipe_radius <- with(morph_data, stipe_circ/(pi*2))
 morph_data$height <- with(morph_data, 5)
 
-# Define the value of pi for ease
+# Define the value of pi 
 pi <- 3.14
 
 # Calculate the total cross-sectional areas for each site from all morphological characteristics
 morph_data$total_Ac <- with(morph_data, ((2*frond_length*frond_width) + (2*frond_length*frond_thickness) + (2*frond_width*frond_thickness) + (primary_length * primary_width)/2 + (4*pi*bulb_base_radius*2) + (2*pi*bulb_base_radius*bulb_length) + 2*pi*stipe_radius*(stipe_radius*stipe_length) +  (pi*(2*top_radius + 2*bottom_radius) + pi*(top_radius + bottom_radius)*pi*(top_radius - bottom_radius)*2 + height*2))/1000)
 
+# Calculate the total mass of kelp individual based on site morphological characteristics
+
+morph_data$total_mass <- with(morph_data, (frond_mass*6) + (stipe_mass) )
+
+
+
 # Make table based on new entries
 site_surface_area <- morph_data
 site_surface_area <- flextable(data = site_surface_area)
-site_surface_area <- theme_zebra(site_surface_area, odd_header = "transparent", even_header = "transparent")
+#site_surface_area <- theme_zebra(site_surface_area, odd_header = "transparent", even_header = "transparent")
 site_surface_area <- align(x= site_surface_area, align = "center", part = "all")
 #area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
 #area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
@@ -78,17 +85,181 @@ site_surface_area <- set_table_properties(site_surface_area, width = 1, layout =
 site_surface_area
 ```
 
+```{r, warning=FALSE, message=FALSE, echo = FALSE}
+
+houtbay <- tidync("OceanParcels/trajectory_data/chapter_4/houtbay.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+
+houtbay_mean <- houtbay %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+houtbay$site <- "Hout Bay" 
+houtbay_mean$site <- "Hout Bay" 
+
+kommetjie <- tidync("OceanParcels/trajectory_data/chapter_4/kommetjie.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+
+kommetjie_mean <- kommetjie %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+kommetjie$site <- "kommetjie" 
+kommetjie_mean$site <- "kommetjie" 
+
+soetwater <- tidync("OceanParcels/trajectory_data/chapter_4/soetwater.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+
+soetwater_mean <- soetwater %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+soetwater$site <- "Soetwater" 
+soetwater_mean$site <- "Soetwater" 
 
 
+millers <- tidync("OceanParcels/trajectory_data/chapter_4/millers.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+
+millers_mean <- millers %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+millers$site <- "millers" 
+millers_mean$site <- "millers" 
+
+total_data <- rbind(houtbay, soetwater, kommetjie, millers)
+total_data_mean <- rbind(houtbay_mean, soetwater_mean,kommetjie_mean, millers_mean)
+```
+
+## Mean trajectory 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+
+library(ggplot2)
+
+## Coastline of Southern Africa
+load("map/south_africa_coast_hi_res.Rdata")
+
+mean_traj_site <- ggplot() + 
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_data_mean, aes(x = lon, y = lat, colour = site)) +
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+  
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+mean_traj_site
+
+```
+
+## Density comparisons
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+
+## Coastline of Southern Africa
+load("map/south_africa_coast_hi_res.Rdata")
+
+heatmap_houtbay <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = houtbay, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
+  geom_path(data = houtbay_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("HoutBay") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_komm <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = kommetjie, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
+  geom_path(data = kommetjie_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Kommetjie") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_soetwater <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
+  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Soetwater") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_soetwater <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
+  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Kommetjie") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_millers <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = millers, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
+  geom_path(data = millers_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Millers") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 
+```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
+ggarrange(heatmap_houtbay, heatmap_komm, heatmap_soetwater, heatmap_millers, labels = "AUTO", common.legend = TRUE)
 
-
-
-
-
-
+```
 
 
