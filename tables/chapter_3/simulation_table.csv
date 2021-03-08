@@ -1,15 +1,17 @@
-Scenario;ID;Type;Cross-sectional area;Drag Exposure
-1;RK4_Pfloat;Passive;N/A;N/A
-2;Min_Kfloat_H100W00;Kelp;Minimum;Hydrodynamic drag only
-3;Min_Kfloat_H095W005;Kelp;Minimum;Hydrodynamic drag 95%, wind drag 5%
-4;Min_Kfloat_H090W10;Kelp;Minimum;Hydrodynamic drag 90%, wind drag 10%
-5;Min_Kfloat_H085W15;Kelp;Minimum;Hydrodynamic drag 85%, wind drag 15%
-6;Mean_Kfloat_H100W00;Kelp;Mean;Hydrodynamic drag only
-7;Mean_Kfloat_H095W005;Kelp;Mean;Hydrodynamic drag 95%, wind drag 5%
-8;Mean_Kfloat_H090W10;Kelp;Mean;Hydrodynamic drag 90%, wind drag 10%
-9;Mean_Kfloat_H085W15;Kelp;Mean;Hydrodynamic drag 85%, wind drag 15%
-10;Max_Kfloat_H100W00;Kelp;Maximum;Hydrodynamic drag only
-11;Max_Kfloat_H095W005;Kelp;Maximum;Hydrodynamic drag 95%, wind drag 5%
-12;Max_Kfloat_H090W10;Kelp;Maximum;Hydrodynamic drag 90%, wind drag 10%
-13;Max_Kfloat_H085W15;Kelp;Maximum;Hydrodynamic drag 85%, wind drag 15%
-14;Max_ShapeFloat_H085W15;Kelp;Maximum area, cylinder shape;Hydrodynamic drag only
+Scenario;ID;Type;Parameters;Cross-sectional area;Drag Exposure
+1;RK4_Pfloat;Passive;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;N/A;N/A
+2;Min_Kfloat_H100W00;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Minimum;Hydrodynamic drag only
+3;Min_Kfloat_H095W005;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Minimum;Hydrodynamic drag 95%, wind drag 5%
+4;Min_Kfloat_H090W10;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Minimum;Hydrodynamic drag 90%, wind drag 10%
+5;Min_Kfloat_H085W15;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Minimum;Hydrodynamic drag 85%, wind drag 15%
+6;Mean_Kfloat_H100W00;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Mean;Hydrodynamic drag only
+7;Mean_Kfloat_H095W005;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Mean;Hydrodynamic drag 95%, wind drag 5%
+8;Mean_Kfloat_H090W10;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Mean;Hydrodynamic drag 90%, wind drag 10%
+9;Mean_Kfloat_H085W15;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Mean;Hydrodynamic drag 85%, wind drag 15%
+10;Max_Kfloat_H100W00;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Maximum;Hydrodynamic drag only
+11;Max_Kfloat_H095W005;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Maximum;Hydrodynamic drag 95%, wind drag 5%
+12;Max_Kfloat_H090W10;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Maximum;Hydrodynamic drag 90%, wind drag 10%
+13;Max_Kfloat_H085W15;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Maximum;Hydrodynamic drag 85%, wind drag 15%
+14;RK4_Pfloat_acc;Passive;Runge-Kutte (4th), Brownian motion, 30 days, repeated release every hour;N/A;N/A
+15;Max_Kfloat_H085W15_acc;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, repeated release every hour;Maximum;Hydrodynamic drag 85%, wind drag 15%
+16;Max_ShapeFloat_H085W15;Kelp;Runge-Kutte (4th), Brownian motion, 30 days, 1000 particles;Maximum area, cylinder shape;Hydrodynamic drag only

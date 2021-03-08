@@ -3,7 +3,7 @@ Secondary blade;Rectangle;Ac = 2lw + 2lh + 2wh;frond length, frond width*,frond 
 Primary blade;Rhombus;Ac = (lxb)/2;primary length, primary width;96.00;261.62;536.50
 Bulb/pneomatocyst;Capsule;Ac = 4?r2 + 2?rh;bulb length*, bulb base radius*;628.32;628.32;628.32
 Stipe;Cylinder;Ac = 2?r(r + h);stipe radius from stipe circumference, stipe length;9797.27;19338.49;34273.35
-Holdfast area;Conical frustrum;Ac = ?(R2 + r2) + ?(R+r)?(R-r)2 + h2;top radius*, bottom radius*, height*;639.76;639.76;639.76
+Holdfast area;Conical frustrum;Ac =?(R2 + r2) + ?(R+r)?(R-r)2 + h2;top radius*, bottom radius*, height*;639.76;639.76;639.76
 ;;;Total Area (centimeters);12296.96;22861.37;38627.93
 ;;;Total area (meters);122.97;228.61;386.2793
 Total weight;N/A;mass (kg) = stipe mass + (frond mass x 6);Total weight (kg);17.10;34.45;48.65
