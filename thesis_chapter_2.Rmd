@@ -465,39 +465,11 @@ img_wave_rose_A <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_5A.jpg")
 img_wave_rose_B <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_5B.jpg")))
 img_wave_rose_C <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_5C.jpg")))
 
-ggarrange(img_wave_rose_A, img_wave_rose_B, img_wave_rose_C, ncol = 2, nrow = 2, labels = "AUTO")
+ggarrange(img_wave_rose_A, img_wave_rose_B, img_wave_rose_C, ncol = 2, nrow = 2, labels = c("A", "C", "B"))
 ```
 
-```{r wave power map, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:wave power map}The total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length. Total (A), summer (B), winter (C), spring (D) and autumn (E).'}
-
-library(jpeg)
-library(grid)
-library(gridExtra)
-library(ggpubr)
-
-wp_1 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6A.jpg"))) #figure missing, copy of fig_6B used
-wp_2 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6B.jpg")))
-wp_3 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6C.jpg")))
-wp_4 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6D.jpg")))
-wp_5 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6E.jpg")))
-wp_6 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_6_legend.jpg")))
-
-ggarrange(wp_1, wp_2, wp_3, wp_4, wp_5, wp_6, ncol = 3, nrow = 2, labels = "AUTO", align = "hv")
-
-#wave_power_map <- readPNG("figures/wave_power_all_labels.png")
-#grid.raster(wave_power_map)
-```
 To clarify the averaged wave exposure map presented in Figure \ref{fig:wave power map}A, the propagation of a typical offshore wave spectrum as produced from a single time-step in SWAN is presented in Figure \ref{fig:wave power map}C. Tracing the wave height contours into False Bay its clear why this bay’s western periphery is predominantly sheltered.
 
-```{r FB spectrum, echo=FALSE, eval= TRUE, fig.cap='\\label{fig:FB spectrum}The propagation of a typical offshore wave spectrum is given as produced from a single time-step in SWAN.'}
-
-library(grid)
-library(jpeg)
-
-img_fb <- readJPEG("figures/chapter_2/fig_7.jpg")
-grid.raster(img_fb)
-
-```
 ## Drivers of kelp morphological characteristics
 
 Significant differences were found between cool temperate and warm temperate regimes for most *L. pallida* morphological characteristics with lamina length, number of digits and thallus mass the exceptions (see Figure 6). Certain morphological characteristics such as stipe mass, stipe length, total length and stipe diameter had significantly higher means for kelp from the cool temperate regime when compared to kelp from the warm temperate regime (p < 0.05; see Figure \ref{fig:lamanaria temp plots}). Conversely, lamina weight and lamina thickness had significantly lower means for kelp from the cool temperate regime compared to kelp from the warm temperate regime. When *L. pallida* morphological characteristics were grouped to wave exposure categories Kruskal-Wallis tests revealed significant differences amongst categories for most morphological characteristics with lamina length, number of digits and thallus mass the exceptions (see Figure ref\{fig:lamanaria wave plots}). The morphological characteristics that were significantly different amongst sites exhibited similar patterns, with increasing mean values from the fully sheltered to extremely sheltered categories and a decrease in mean values for the remainder of the categories. Two morphological characteristics, namely lamina thickness and stipe diameter, both exhibited higher variations for the exposed categories compared to other morphological characteristics.
@@ -720,11 +692,11 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
 ```
 
 ```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots representing *L. pallida* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8}
-ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, labels = c("AUTO"), common.legend = TRUE, legend = "none", align ='hv')
+ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, common.legend = TRUE, legend = "none", align ='hv')
 ```
 
 ```{r lamanaria wave plots, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.height=8, fig.width=8, fig.cap='\\label{fig:lamanaria wave plots}Boxplots representing *L. pallida* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.'}
-ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, labels = c("AUTO"), common.legend = TRUE, legend = "bottom", align = "hv")
+ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, common.legend = TRUE, legend = "bottom", align = "hv")
 ```
 
 Six out of the ten deep *E. maxima* morphological characteristics showed differences between cool temperate and warm temperate regime except for frond mass, frond length, stipe mass and epiphyte length. Mean values for primary length, primary width and stipe circumference were significantly higher for kelp from the cool temperate regime than for kelp from the warm temperate regime (see Figure \ref{fig:{deep eck temp plot}}). The remaining morphological characteristics, stipe length, number of tufts and total length had significantly lower means for kelp from cool temperate compared to kelp from the warm temperate regime (p < 0.05; see Figure 8). Significant differences amongst wave exposure categories were found for all morphological characteristics of deep E. maxima populations (see Figure \ref{fig:deep eck temp plot}
@@ -972,11 +944,11 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
 ```
 
 ```{r deep ecklonia temp plot, echo=FALSE, fig.cap='\\label{fig:deep eck temp plot}Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
-ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, labels = "AUTO", common.legend = TRUE, legend = c("none"), ncol = 4, nrow = 3, vjust = 1.5)
+ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, common.legend = TRUE, legend = c("none"), ncol = 4, nrow = 3, vjust = 1.5)
 ```
 
 ```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplots representing deep *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=8, fig.width=8}
-ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 4, nrow = 3, vjust = 1.5)
+ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, common.legend = TRUE, legend = "bottom", ncol = 4, nrow = 3, vjust = 1.5)
 ```
 
 ```{r shallow ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=TRUE}
@@ -1202,11 +1174,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 ```
 
 ```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp} Boxplots representing shallow *E. maxima* morphological characteristics  grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=7, fig.width=8}
-ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, labels = "AUTO", common.legend = FALSE, legend = "bottom", ncol = 4, nrow = 3, vjust = 1.5)
+ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, common.legend = FALSE, legend = "bottom", ncol = 4, nrow = 3, vjust = 1.5)
 ```
 
 ```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplots representing shallow *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=7, fig.width=8}
-ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9,ESW10, labels = "AUTO", common.legend = TRUE, legend = "bottom", ncol = 4,nrow = 3)
+ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9,ESW10, common.legend = TRUE, legend = "bottom", ncol = 4,nrow = 3)
 ```
 When grouped by temperature regime, shallow *E. maxima* exhibited significant differences between temperature regimes for frond mass, primary length, primary width, frond length, stipe mass, stipe length, stipe circumference and total length (p < 0.05; see Figure \ref{fig:shallow ecklonia temp}). All of the significantly different morphological characteristics, except primary length, had lower values for the western region compared to the eastern region. When shallow E. maxima were grouped by wave exposure category significant difference were found for all morphological characteristics (p < 0.05; see Figure \ref{fig:shallow ecklonia wave}). In general, values of the various morphological characteristics increase for the lower wave exposure categories, followed by a sharp decrease and a gradual increase in value.
 
@@ -1492,10 +1464,11 @@ The same approaches to identify the descriptors for *L. pallida* were employed f
 
 ```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C). The blue cluster represnts sites from the western region and the red represents sites from the eastern region."}
 #ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, legend = "none", labels = "AUTO", ncol = 2, nrow = 2, align = "hv")
+library(jpeg)
 
-rda_1 <- rasterGrob(as.raster(readJPEG("thesis_chapter_2_files/figures_frontiers/fig_12A.jpeg"))) #figure missing, copy of fig_6B used
-rda_2 <- rasterGrob(as.raster(readJPEG("thesis_chapter_2_files/figures_frontiers/fig_12B.jpeg")))
-rda_3 <- rasterGrob(as.raster(readJPEG("thesis_chapter_2_files/figures_frontiers/fig_12C.jpeg")))
+rda_1 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_14A.jpeg"))) #figure missing, copy of fig_6B used
+rda_2 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_14B.jpeg")))
+rda_3 <- rasterGrob(as.raster(readJPEG("figures/chapter_2/fig_14C.jpeg")))
 
 ggarrange(rda_1, rda_2, rda_3, labels = "AUTO", align = "hv")
 ```
@@ -1543,187 +1516,15 @@ The Supplementary Material for this article can be found online at: https://www.
 
 # Appendix
 
-```{r appendix figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
-positionsLam <- c("Betty's Bay", "Roman Rock","A-Frame", "Miller's Point ", "Baboon Rock", 
-                  "Batsata Rock", "Buffelsbaai","Buffelsbaai South","Bordjies Deep","Olifantsbos", "Kommetjie", "Sea Point")
-lam_all_A <- ggplot(data = lam_data, aes(x = site, y = laminaWeight, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Lamina Weight (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("")
-lam_all_B <- ggplot(data = lam_data, aes(x = site, y = laminaLength, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Lamina Length (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("")
-lam_all_C <- ggplot(data = lam_data, aes(x = site, y = laminaThickness, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Lamina Thickness (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-lam_all_D <- ggplot(data = lam_data, aes(x = site, y = stipeMass, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Stipe Mass (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-lam_all_E <- ggplot(data = lam_data, aes(x = site, y = stipeLength, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Stipe Length (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-lam_all_F <- ggplot(data = lam_data, aes(x = site, y = stipeDiameter, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Stipe Diameter (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("")
-lam_all_G <- ggplot(data = lam_data, aes(x = site, y = digits, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("No. of Digits") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-lam_all_H <- ggplot(data = lam_data, aes(x = site, y = thallusMass, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Thallus Mass (g)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-lam_all_I <- ggplot(data = lam_data, aes(x = site, y = totalLength, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsLam) + 
-           ylab("Total length (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
+```{r appendix figure, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
 
-ggarrange(lam_all_A,lam_all_B,lam_all_C,lam_all_D,lam_all_E,lam_all_F,lam_all_G,lam_all_H,lam_all_I, ncol = 3, nrow = 3, common.legend = TRUE)
+app_A <- rasterGrob(as.raster(readJPEG("figures/chapter_2/appendix_A.jpg"))) #figure missing, copy of fig_6B used
+app_B <- rasterGrob(as.raster(readJPEG("figures/chapter_2/appendix_B.jpg")))
+app_C <- rasterGrob(as.raster(readJPEG("figures/chapter_2/appendix_C.jpg")))
 
-```
+app_plt_A <- ggarrange(app_B, app_C, align = "hv", ncol = 2, nrow = 1, labels = c("B", "C"))
+ggarrange(app_A, app_plt_A, align = "hv", ncol = 1, nrow = 2, labels = c("A", "", ""))
 
-```{r appendix figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
-# Order site names by location west to east
-
-positionsEck <- c("Betty's Bay", "Kalk Bay", "A-Frame", 
-                  "Miller's Point", "Baboon Rock", "Batsata Rock", 
-                  "Buffels Bay", "Scarborough", 
-                  "Soetwater","Kommetjie","Hout Bay", 
-                  "Oudekraal", "St. Helena Bay")
-
-eck_all_A <- ggplot(data = eck_data, aes(x = site, y = frond_mass, fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Frond mass (g)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_B <- ggplot(data = eck_data, aes(x = site, y = primary_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Primary Length  (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_C <- ggplot(data = eck_data, aes(x = site, y = primary_width , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Primary Width (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_D <- ggplot(data = eck_data, aes(x = site, y = frond_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Frond length (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_E <- ggplot(data = eck_data, aes(x = site, y = stipe_mass , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Stipe mass (g)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_F <- ggplot(data = eck_data, aes(x = site, y = stipe_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Stipe length (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_G <- ggplot(data = eck_data, aes(x = site, y = stipe_circ , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Stipe circ (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_H <- ggplot(data = eck_data, aes(x = site, y = tufts , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("No. of tufts") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-eck_all_I <- ggplot(data = eck_data, aes(x = site, y = epi_length , fill = wave_exposure)) +
-           geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = FALSE) +
-           stat_compare_means(method = "kruskal.test", label.x = 5) + 
-           scale_x_discrete(limits = positionsEck) + 
-           ylab("Epi Length  (cm)") + 
-           scale_fill_brewer(palette="OrRd") +
-           coord_flip() +
-           guides(fill=guide_legend(title="Wave Exposure")) +
-           xlab("") 
-
-ggarrange(eck_all_A,eck_all_B,eck_all_C,eck_all_D,eck_all_E,eck_all_F,eck_all_G,eck_all_H,eck_all_I, ncol = 3, nrow = 3, common.legend = TRUE, legend = FALSE)
 ```
 
 # References
