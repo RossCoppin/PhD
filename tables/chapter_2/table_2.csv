@@ -1,0 +1,18 @@
+Variable;Abbreviation
+Maximum temperature;max_temp
+Minimum temperature;min_temp
+Mean temperature;mean_temp
+Range in temperature;temp_range
+Standard deviation in temperature;sd_temp
+Mean significant wave height;hs_mean
+Maximum significant wave height;hs_max
+Minimum significant wave height;hs_min
+Standard deviation in swell height;hs_sd
+Mean wave period;tp_mean
+Maximum wave period;tp_max
+Minimum wave period;tp_min
+Standard deviation in wave period;tp_sd
+Median wave direction;dir_median
+Mean wind speed;spw_mean
+Standard deviation in wind speed;spw_sd
+Median wind direction;dirw_median
