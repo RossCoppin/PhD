@@ -105,7 +105,7 @@ map_combined <- ggplot() +
 ```
 
 
-```{r map, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, fig.cap="\\label{fig:map}Map of the study area and sampling sites. The red dot indicates the position of Cape Town for sake of reference."}
+```{r map, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, fig.cap="\\label{fig:map}Map of the study area and sampling sites. The red dots represent study sites around the Cape Peninsula."}
 map_combined
 ```
 
