@@ -272,7 +272,7 @@ temp_boxplot <- ggplot(data = temp_ann_meta, aes(x = region, y = mean_temp, fill
 
 ```
 
-```{r Temperature variables plot, eval=TRUE, echo=FALSE, fig.cap='\\label{fig:Temperature variables plot}Annual temperature variables at the collections sites around the Cape Peninsula are represented by plot A, with sites in order from North to South. Temperature variables include minimum temperature represented by inverted triangles, mean represented by black dots, maximum by black triangles, and whiskers standard deviation. Summary of temperature data for sites grouped by region and represented in plot B.', fig.height=5, fig.width=8, warning=FALSE}
+```{r Temperature variables plot, eval=TRUE, echo=FALSE, fig.cap='\\label{fig:Temperature variables plot}Annual temperature variables at the collection sites around the Cape Peninsula are represented in panel (A), with sites in order from north to south. Temperature variables include minimum represented by inverted triangles, mean represented by blue and red dots which represent the western and eastern side of the peninsula, respectively, maximum by black triangles, and whiskers standard deviation. Summary of temperature data for sites grouped by region are represented in panel (B). Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.', fig.height=5, fig.width=8, warning=FALSE}
 
 ggarrange(temp_plot, temp_boxplot, common.legend = FALSE, ncol = 2, nrow = 1, labels = c("AUTO"), align = c("hv"), legend = FALSE)
 
@@ -448,13 +448,13 @@ wave_boxplot_2 <- ggplot(data = wave_ann_meta, aes(x = region, y = tp_mean, fill
 
 ```
 
-```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE, eval=TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}Mean significant wave height and mean significant peak period across sites and by region. Mean significant wave height across sites is presented in plot A and is represented by solid triangles and standard deviation by the whiskers. Differences in mean significant wave height between regions are presented in plot B. Mean significant peak period across sites is presented in plot C and is represented by solid dots and standard deviation by whiskers. Differences in mean significant peak period between regions are presented in plot D.'}
+```{r wave variable plot, warning = FALSE, echo=FALSE, message = FALSE, include= TRUE, eval=TRUE,fig.height=7,fig.width=8, fig.cap='\\label{fig:wave variable plot}Mean significant wave height (meters) and mean significant peak period (seconds) across sites and by region. Annual mean significant wave height across sites is presented in panel (A) and is represented by solid triangles and standard deviation by the whiskers. Differences in annual mean significant wave height between regions are presented in panel (B). Annual mean significant peak period across sites is presented in panel (C) and is represented by solid dots and standard deviation by whiskers. Differences in annual mean significant peak period between regions are presented in panel (D). Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.'}
 ggarrange(wave_plot_1,wave_boxplot_1, wave_plot_2, wave_boxplot_2, common.legend = FALSE, labels = c("A", "B", "C", "D"), align = "hv")
 
 ggsave(plot = last_plot(), filename = "Fig_3", path = "figures/chapter_2/", device = "jpeg", units = "cm", width = 7, height = 7)
 ```
 
-```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}The total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given form the years 2000 till end 2017 (the period for which directional wave spectra was available). Total (A), Austral winter (B) and Austral summer (C) respectively'}
+```{r wave rose, echo=FALSE, warning = FALSE, eval= TRUE, fig.align="center",fig.cap='\\label{fig:wave rose}The total coastal wave exposure of the Cape Peninsula is given in terms of wave energy (kW per meter wave crest length) is presented in panel (A) and the associated legend in panel (B). The propagation of a typical offshore wave spectrum is given as produced from a single time-step in SWAN, is represented in panel (C)'}
 
 library(png)
 library(jpeg)
@@ -691,11 +691,11 @@ LW9 <- ggplot(data = lam_data, aes(x = wave_exposure, y = totalLength, fill = wa
 
 ```
 
-```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots representing *L. pallida* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper "hinges" correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8}
+```{r laminaria temp plots, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:lamanaria temp plots}Boxplots representing *L. pallida* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper “hinges” correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light gray boxes represent cool-temperate and dark gray warm-temperate. Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.', fig.height=8, fig.width=8}
 ggarrange(LT1, LT2,LT3,LT4,LT5,LT6,LT7,LT8,LT9, common.legend = TRUE, legend = "none", align ='hv')
 ```
 
-```{r lamanaria wave plots, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.height=8, fig.width=8, fig.cap='\\label{fig:lamanaria wave plots}Boxplots representing *L. pallida* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.'}
+```{r lamanaria wave plots, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.height=8, fig.width=8, fig.cap='\\label{fig:lamanaria wave plots}Boxplots representing *L. pallida* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.'}
 ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, common.legend = TRUE, legend = "bottom", align = "hv")
 ```
 
@@ -943,11 +943,11 @@ EW10 <- ggplot(data = eck_deep, aes(x = wave_exposure, y = total_length, fill = 
 
 ```
 
-```{r deep ecklonia temp plot, echo=FALSE, fig.cap='\\label{fig:deep eck temp plot}Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
+```{r deep ecklonia temp plot, echo=FALSE, fig.cap='\\label{fig:deep eck temp plot}Boxplots representing deep population *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light gray boxes represent cool-temperate and dark gray warm-temperate. Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.', fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE}
 ggarrange(ET1,ET2,ET3,ET4,ET5,ET6,ET7,ET8,ET9,ET10, common.legend = TRUE, legend = c("none"), ncol = 4, nrow = 3, vjust = 1.5)
 ```
 
-```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplots representing deep *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=8, fig.width=8}
+```{r deep ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:deep ecklonia wave}Boxplots representing deep *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.', fig.height=8, fig.width=8}
 ggarrange(EW1,EW2,EW3,EW4,EW5,EW6,EW7,EW8,EW9,EW10, common.legend = TRUE, legend = "bottom", ncol = 4, nrow = 3, vjust = 1.5)
 ```
 
@@ -1173,11 +1173,11 @@ ESW10 <- ggplot(data = eck_shall, aes(x = wave_exposure, y = total_length, fill 
 
 ```
 
-```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp} Boxplots representing shallow *E. maxima* morphological characteristics  grouped by temperature regime measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light grey boxes represent cool-temperate and dark grey warm-temperate.', fig.height=7, fig.width=8}
+```{r shallow ecklonia temp, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.cap='\\label{fig:shallow ecklonia temp} Boxplots representing shallow *E. maxima* morphological characteristics grouped by temperature regime measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Light gray boxes represent cool-temperate and dark gray warm-temperate. Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.', fig.height=7, fig.width=8}
 ggarrange(EST1,EST2,EST3,EST4,EST5,EST6,EST7,EST8,EST9,EST10, common.legend = FALSE, legend = "bottom", ncol = 4, nrow = 3, vjust = 1.5)
 ```
 
-```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplots representing shallow *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the *y*-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.', fig.height=7, fig.width=8}
+```{r shallow ecklonia wave, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap='\\label{fig:shallow ecklonia wave}Boxplots representing shallow *E. maxima* morphological characteristics grouped by wave exposure category measured around the Western Cape coastline, with the y-axis depicting the specific morphology measured, with units provided. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. Significance levels are as follows: * represents ≤0.05, ** represents ≤0.01, *** represents ≤0.001, **** represents ≤0.0001.', fig.height=7, fig.width=8}
 ggarrange(ESW1,ESW2,ESW3,ESW4,ESW5,ESW6,ESW7,ESW8, ESW9,ESW10, common.legend = TRUE, legend = "bottom", ncol = 4,nrow = 3)
 ```
 When grouped by temperature regime, shallow *E. maxima* exhibited significant differences between temperature regimes for frond mass, primary length, primary width, frond length, stipe mass, stipe length, stipe circumference and total length (p < 0.05; see Figure \ref{fig:shallow ecklonia temp}). All of the significantly different morphological characteristics, except primary length, had lower values for the western region compared to the eastern region. When shallow E. maxima were grouped by wave exposure category significant difference were found for all morphological characteristics (p < 0.05; see Figure \ref{fig:shallow ecklonia wave}). In general, values of the various morphological characteristics increase for the lower wave exposure categories, followed by a sharp decrease and a gradual increase in value.
@@ -1462,7 +1462,7 @@ rda_eck_shallow <- ggord(rda_eck_shallow,meta_shallow_rda$region,ellipse = FALSE
 ```
 The same approaches to identify the descriptors for *L. pallida* were employed for both populations of *E. maxima*. Forward selection, assessment of VIF and Pearson correlation coefficients allowed us to retained as the most parsimonious descriptors of deep *E. maxima* morphological characteristics with an adjusted R2 of 0.39, explaining 67% of the variation (global permutation test on final model: d.f = 5, F = 2.4, p = 0.026; Figure \ref{fig:rda plots}B). RDA1 was the only significant axis in the model (p = 0.03) and explained 72% of the variation. Primary length, primary width and stipe circumference were positively influenced by mean significant wave height, mean peak period and median swell direction for kelp from the western region. The remaining morphological characteristics were positively influenced by minimum temperature and negatively influenced by peak period standard deviation for kelp from the eastern region. 
 
-```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C). The blue cluster represnts sites from the western region and the red represents sites from the eastern region."}
+```{r rda plots, echo=FALSE, fig.height=8, fig.width=8, message=FALSE, warning=FALSE, eval=TRUE, fig.cap="\\label{fig:rda plots}RDA output for *L. pallida* (A), deep *E. maxima* (B) and shallow *E. maxima* (C). The blue cluster represents sites from the western region and the red represents sites from the eastern region."}
 #ggarrange(lam_rda, rda_eck_deep, rda_eck_shallow, legend = "none", labels = "AUTO", ncol = 2, nrow = 2, align = "hv")
 library(jpeg)
 
@@ -1516,7 +1516,7 @@ The Supplementary Material for this article can be found online at: https://www.
 
 # Appendix
 
-```{r appendix figure, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8}
+```{r appendix figure, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7,fig.width=8, fig.cap = "The total and seasonal wave roses of the directional wave buoy just offshore from Cape Town is given for years 2000 till end of 2017 (the period for which the directional wave spectra was available). The total (A), Austral winter (B), and Austral summer (C) are presented, respectively."}
 
 app_A <- rasterGrob(as.raster(readJPEG("figures/chapter_2/appendix_A.jpg"))) #figure missing, copy of fig_6B used
 app_B <- rasterGrob(as.raster(readJPEG("figures/chapter_2/appendix_B.jpg")))
