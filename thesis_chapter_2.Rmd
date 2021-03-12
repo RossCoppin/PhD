@@ -702,7 +702,6 @@ ggarrange(LW1, LW2,LW3,LW4,LW5,LW6,LW7,LW8,LW9, common.legend = TRUE, legend = "
 Six out of the ten deep *E. maxima* morphological characteristics showed differences between cool temperate and warm temperate regime except for frond mass, frond length, stipe mass and epiphyte length. Mean values for primary length, primary width and stipe circumference were significantly higher for kelp from the cool temperate regime than for kelp from the warm temperate regime (see Figure \ref{fig:{deep eck temp plot}}). The remaining morphological characteristics, stipe length, number of tufts and total length had significantly lower means for kelp from cool temperate compared to kelp from the warm temperate regime (p < 0.05; see Figure 8). Significant differences amongst wave exposure categories were found for all morphological characteristics of deep E. maxima populations (see Figure \ref{fig:deep eck temp plot}
 ). Certain morphological characteristics showed a gradual increase in mean value with increasing degree of wave exposure. The remaining morphological characteristics exhibited decreased means for only the higher wave exposure categories, followed by a sharp increase in mean value for the highest wave exposure category.
 
-
 ```{r deep ecklonia processing, message=FALSE, warning=FALSE, include=FALSE, eval=TRUE}
 ## Preparing data
 # Ecklonia
