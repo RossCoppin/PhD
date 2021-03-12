@@ -23,6 +23,7 @@ nocite:  |
 knitr::opts_chunk$set(cache=FALSE)
 knitr::opts_chunk$set(fig.align = "center")
 ```
+
 # Introduction
 
 Kelps are a group of large seaweeds of the order Laminariales (Ochrophyta), which despite their relatively low taxonomic diversity of species in genera [@Bolton2010], form the basis of one of the most productive ecosystems globally [@Mann1973; @Krumhansl2012]. Kelps generally have a dependence on cool-temperate and arctic seawater temperatures [@Bolton2010; @Mohring2014-bk; @Cavanaugh2011-ib; @Dayton1985], and dominate the nearshore biomass within the rocky shallow coasts in both hemispheres [@Steneck2002]. Their size and complex morphology provide a heterogeneous habitat structure [@Steneck2002] that accommodate a multitude of turf and sub-canopy seaweed species, and diverse assemblages of sessile and mobile invertebrates and vertebrates [@Mann1973; @Steneck2002], each depending on a wide suite of ecological services provided by kelp forests [@Dayton1985; @Gaines1987-bg; @Paul1993-bm; @Levin1994-qf; @Anderson1997; @Willis2003-xo]. Wave exposure and temperature are regarded as important environmental drivers of kelp forests, and play a role in their distribution [@Gorman2013-nj], abundance [@Dayton1998; @Cavanaugh2011-ib], diversity [@Wing2007-tv; @Wernberg2008], composition [@Dayton1985; @Leliaert2000a; @Harley2012; @Norderhaug2012-ks], growth [@Cousens1982-ck] and productivity [@Dayton1998;@Krumhansl2012; @Pedersen2012].
@@ -138,9 +139,34 @@ grid.raster(schematic)
 
 Morphological measurements of L. pallida and E. maxima were collected at 18 sites along the Western Cape coast of South Africa (Figure \ref{fig:map}) between October 2014 and April 2015. AlgaeBase was used to confirm the latest taxonomic associations for each species [@Guiry2019]. Divers sampled kelp individuals by means of SCUBA for deeper populations and freediving for shallower populations. The sampled individuals were then taken ashore and the relevant morphological measurements taken. In each instance only the 13 largest individuals were sampled to ensure that only mature and fully grown sporophytes were measured. The age of *E. maxima* was determined by size, presence at the surface as well as a darker coloration of the stipe; as this occurs with age. In the case of *L. pallida*, the individuals with the longest stipe were selected which is considered a reasonable estimate of age. In each case the age of the individuals was estimated visually before the individual was sampled. In instances where one of the species was not present a site, the nearest population of the missing species was sampled. Because the macroalgae differ in morphological features, species-specific morphological characteristics were included and are presented in Table 1. The stipe length for *E. maxima* was considered to be the portion of the plant just below the pneumatocyst and just above the holdfast. Stipe circumference was measured just above the holdfast for both species. Between February 2017 and November 2018, morphological measurements for E. maxima individuals in shallow water (<1 m) at seven sites along the Western Cape coast of South Africa were also collected. The same morphological characteristic measurements were taken as for the deeper *E. maxima*, and this allowed comparison between morphological characteristics between deep and shallow individuals within sites. Measurements were not collected for *L. pallida* in the shallow depths, as this species is largely absent from the shallow in this portion of the South African coastline.
 
+```{r table 2.1, message= FALSE, warning=FALSE, echo=FALSE}
+
+library(flextable)
+
+morph_table <- read.csv("tables/chapter_2/table_1.csv", sep = ";")
+morph_table <- flextable(data = morph_table)
+morph_table <- theme_zebra(morph_table, odd_header = "transparent", even_header = "transparent")
+morph_table <- set_header_labels(morph_table, Morphological.Characteristic = "Morphological Characteristic", Unit.measurement = "Unit.measurement")
+morph_table <- align(x= morph_table, align = "center", part = "all")
+morph_table <- set_table_properties(morph_table, width = 1, layout = "autofit")
+morph_table
+
+```
+
 ## Statistical analyses 
 
 Summary statistics were calculated for each site and region for each of the environmental variables considered in this study, and are presented in Table 2. The associated abbreviations used are also presented in Table 2. In addition, annual median wave and wind direction were also calculated. The median was calculated for wind and wave direction, as issues arise when calculating the mean and standard deviation for compass metrics. Summary statistics for wind was not plotted and instead are discussed, as the data were course relative to the other environmental variables considered in this study.
+
+```{r table 2.2, message= FALSE, warning=FALSE, echo=FALSE}
+
+var_table <- read.csv("tables/chapter_2/table_2.csv", sep = ";")
+var_table <- flextable(data = var_table)
+var_table <- theme_zebra(var_table, odd_header = "transparent", even_header = "transparent")
+var_table <- align(x= var_table, align = "center", part = "all")
+var_table <- set_table_properties(var_table, width = 1, layout = "autofit")
+var_table
+```
+
 
 Morphological characteristics in relation to temperature and wave exposure were investigated using non-parametric statistical methods. Morphological characteristics were placed into categories according to temperature regime and wave exposure class for each species and population of kelp in this study. The appropriate category was determined by kelp’s sampling location along the coastline and the according wave exposure and temperature category assigned to that species and/or population. The R software package ggplot2 was used for graphical output and non-parametric analyses. Significant differences between temperature regimes and across wave exposure categories were tested with Wilcox tests and Kruskal -Wallis tests, respectively, and notched boxplots allowed comparison between individual categories of wave exposure. The alpha level used to define significance was p = 0.05. Boxplots were created using the software package ggplot2 [@Wickham2009]. In order to investigate specific drivers of morphological characteristics a distance-based redundancy analysis (db-RDA) was performed using the rda function in the vegan software package [@Oksanen2015-vj] in R (R Core Team, 2014; RStudio Team, 2020). The abiotic data covered all study sites for both species of kelp. Both morphology and abiotic data (temperature, waves and wind) were standardized using the decostand function in the vegan software package; morphology data were used as response variables and the abiotic data as explanatory variables. A list of the abbreviations used and the associated metrics are presented in Table 2. To determine the explanatory variables that best describe patterns in the response data, a full RDA was performed using a complete set of explanatory variables. Forward selection was then used to reduce the number of explanatory variables, as well as prevent the inflation of overall Type I error. To further improve the model, pairwise coefficients and Variance Inflation Factor (VIF) were calculated to identify variables with high multicollinearity. The computation of the parsimonious RDA was followed by permutation tests of the adjusted R2 to assess significance of constraints. 
 
