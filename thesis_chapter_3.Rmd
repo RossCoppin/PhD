@@ -44,7 +44,7 @@ library(lubridate)
 
 There are a range of objects, both natural and anthropogenic, floating in the ocean of which macroalgae are regarded as one of the most important passive dispersal mechanisms of marine taxa. Floating kelp acts as a passive dispersal mechanism for a range of marine taxa and is sometimes referred to as the 'tumble-weed' of the ocean [@edgar1987; @bushing1994; @norton1992; @helmuth1994; @holmquist1994; @smith2002; @McCormick2008]; as well as input of allochthonous materials to near and distant ecosystems [@cartraud2021; @colombini2003; @Filbee-Dexter2018-wp; @zuercher2019; @Krumhansl2012; @vanderklift2008; @bustamante1995]. 
 
-Some macroalgal species are negatively buoyant and sink to the seafloor when detached from the substrate, while other species of macroalgae have air-filled pneumatocysts or stipes which allow the plants to reach the surface where light is more abundant. In turn, the positively buoyant pneumatocysts cause plants to float to the surface when dislodged from the substratum. The structure and number of pneumatocysts varies between species. For example species from the genera *Macrocystis*, *Sargassum*, *Ascophyllum*, and *Fucus* have thalli with many small pneumatocysts, while other kelp species such as *Nereocystis luetkeana*, *Pelagophycus porra*, *Ecklonia radiata*, *Ecklonia maxima* have a single, large pneumatocysts [@dayton1985; @smith2002; @thiel2005; @graiff2016; @batista2018]. In some cases the stipe itself is air-filled, such as with *E. maxima* and *E. radiata*. Although there have been reports of floating Chlorophyta species and some Rhodophyta species, Phaeophyceae species are the most reported forms of floating algae. This is most likely because the green and red species reported floating are not actually positively buoyant, but instead are kept at the surface by gas trapped in-between or in the thalli [@dromgoole1982; @back2000]. The giant kelp *Macrocystis pyrifera* [@helmuth1994; @kingsford1995; @hobday2000; @macaya2005; @graiff2016; @batista2018], the bull kelp *Durvillaea antarctica* [@collins2010; @tala2013 ; @tala2017; @saunders2014; @smith2002; @wichmann2012; @batista2018], and pelagic *Sargassum* species [@putman2020; @brooks2019; @putman2018; @brooks2018; ] have been the focus of much of the research regarding spatial and temporal dispersal patterns, the ecological role of rafting, marine connectivity and raft-time.
+Some macroalgal species are negatively buoyant and sink to the seafloor when detached from the substrate, while other species of macroalgae have air-filled pneumatocysts or stipes which allow the plants to reach the surface where light is more abundant. In turn, the positively buoyant pneumatocysts cause plants to float to the surface when dislodged from the substratum. The structure and number of pneumatocysts varies between species. For example species from the genera *Macrocystis*, *Sargassum*, *Ascophyllum*, and *Fucus* have thalli with many small pneumatocysts, while other kelp species such as *Nereocystis luetkeana*, *Pelagophycus porra*, *Ecklonia radiata*, *Ecklonia maxima* have a single, large pneumatocysts [@dayton1985; @smith2002; @thiel2005; @graiff2016; @batista2018]. In some cases the stipe itself is air-filled, such as with *E. maxima* and *E. radiata*. Although there have been reports of floating Chlorophyta species and some Rhodophyta species, Phaeophyceae species are the most reported forms of floating algae. This is most likely because the green and red species reported floating are not actually positively buoyant, but instead are kept at the surface by gas trapped in-between or in the thalli [@dromgoole1982; @back2000]. The giant kelp *Macrocystis pyrifera* [@helmuth1994; @kingsford1995; @hobday2000; @macaya2005; @graiff2016; @batista2018], the bull kelp *Durvillaea antarctica* [@collins2010; @tala2013 ; @tala2017; @saunders2014; @smith2002; @wichmann2012; @batista2018], and pelagic *Sargassum* species [@putman2020; @brooks2019; @putman2018; @brooks2018; @wang2019] have been the focus of much of the research regarding spatial and temporal dispersal patterns, the ecological role of rafting, marine connectivity and raft-time.
 
 Past research points to macroalgae trajectory being largely determined by prevailing wind conditions and surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still unknown although the role of wind has been recognised as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterrey Bay. The results showed that kelp rafts, with little surface area, exposed to the wind were largely driven by a combination of wind and surface currents, however the relative importance of wind and was not clear. In addition, the trajectories of tagged kelp were more consistent with the formation of eddies during winter. Previous studies have identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example, in the sub-Antarctic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important potential mechanism for dispersal of floating bull kelp *Durvillaea antarctica*. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *D. antarctica* used a combination of population genetics and relative age estimate of goosebarnacles attached to the raft. The presence of goosebarnacles suggests a long raft time as these species have a slow growth rate. Genetic analyses showed these species are able to raft up to $\sim$ 390km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory; however, this was only inferred from the genetic results and local climatology data [@fraser2011]. Past research has shown that buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material [onink2019; @shen2019; @dasaro2018; @gates2018; @beron2016; @trinanes2016; @furnans2008]. The 'sail' area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in hydrodynamic form drag [@breivik2011; @griffin2017]. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. 
 
@@ -388,14 +388,18 @@ ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO")
 Across all simulations particles flowed in a north-westward direction (Figure 3). The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has an almost even density of particles across grids (Figure 3A, 3E, 3I). In addition the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticity while particles in the passive simulation deflected away (Figure 3). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
-## Heatmaps of study domain, use previous data for study site map and histograms## Coastline of Southern Africa
+
+## Heatmaps of study domain, use previous data for study site map and histograms
+## Coastline of Southern Africa
+
 load("map/south_africa_coast_hi_res.Rdata")
 
 heatmap_RK4 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
   geom_path(data = p_RK4_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -410,7 +414,8 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
+  scale_fill_continuous(type = "gradient",limits = c(1, 13000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -425,7 +430,8 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  
+  scale_fill_continuous(type = "gradient",limits = c(1, 13000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -440,7 +446,8 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  
+  scale_fill_continuous(type = "gradient",limits = c(1, 13000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -455,7 +462,8 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 13000)) +
+  geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -470,7 +478,8 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 13000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -484,7 +493,7 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 13000)) +
+  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -892,7 +901,7 @@ Most of the past research has focused on large macroalgae rafts which can vary g
 
 ## Domain features
 
-```{r eval=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE, include=TRUE}
+```{r eval=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
 
 library(jpeg)
 library(grid)
@@ -1302,7 +1311,7 @@ ggarrange(waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot
 
 ```
 
-```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
+```{r density plots additional, message=FALSE, warning=FALSE, echo=FALSE}
 ## Heatmaps of study domain, use previous data for study site map and histograms## Coastline of Southern Africa
 load("map/south_africa_coast_hi_res.Rdata")
 
@@ -1722,10 +1731,10 @@ ggarrange(figure_a_Oct, figure_b_Oct, ncol = 1, nrow = 2)
 ```
 ## Comparison of distances 
 
-```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
+```{r distance plot processing additional, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 ## July
 
-pos <- c("RK4_July",
+pos_July <- c("RK4_July",
          "Min_Kfloat_H100_W00_July",
          "Min_Kfloat_H095_W05_July",
          "Min_Kfloat_H090_W10_July",
@@ -1757,7 +1766,7 @@ dis_plot_July <- dis_plot_July +
 
 ## Oct
 
-pos <- c("RK4_Oct",
+pos_Oct <- c("RK4_Oct",
          "Min_Kfloat_H100_W00_Oct",
          "Min_Kfloat_H095_W05_Oct",
          "Min_Kfloat_H090_W10_Oct",
@@ -1789,7 +1798,7 @@ dis_plot_Oct <- dis_plot_Oct +
   
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for July (winter) and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+```{r distance plot additional, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Figure 4: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for July (winter) and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
 ggarrange(dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 2)
 
