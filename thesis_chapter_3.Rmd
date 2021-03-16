@@ -1,6 +1,6 @@
 ---
-title: 'Numerical trajectory patterns of floating macroalgae'
-author:
+title: 'A numerical experiment investigating the influence of drag in trajectory patterns of floating macroalgae'
+author: 
 - R Coppin^[University of the Western Cape], C Rautenbach^[National Institute of Water and Atmospheric Research], AJ Smit^[University of the Western Cape]
 output:
   word_document:
@@ -11,7 +11,7 @@ output:
     latex_engine: xelatex
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
-abstract: "*Abstract* The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms in the ocean, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also tend to focus on kelp-rafts which can vary greatly in size and making it difficult to form a concensus as to the role of wind and surface currents. In addition past studies have not conisidered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectory of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, as well as the role of drag, in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scnearios causes accumulation in eddies and vortices within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies and vortices, as important surface accumlation zones for solitary floating macroalage."
+abstract: "**Abstract**: The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms in the ocean, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also tend to focus on kelp-rafts which can vary greatly in size and making it difficult to form a concensus as to the role of wind and surface currents. In addition past studies have not conisidered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectory of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, as well as the role of drag, in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scnearios causes accumulation in eddies and vortices within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies and vortices, as important surface accumlation zones for solitary floating macroalage."
 ---
 
 ```{r software, message=FALSE, warning=FALSE, include=FALSE}
@@ -66,7 +66,7 @@ library(gridExtra)
 #map_chp3A <- rasterGrob(as.raster(readPNG("map/chp3_mapA.png")))
 #map_chp3B <- rasterGrob(as.raster(readPNG("map/chp3_mapB.png")))
 #ggarrange(map_chp3A, map_chp3B, ncol = 2, nrow = 1, labels = "AUTO", align = c("h"))
-map_chp3_combined <- rasterGrob(as.raster(readPNG("map/chp3_map_combined_hz.png")))
+map_chp3_combined <- rasterGrob(as.raster(readPNG("map/ch3_map_final.png")))
 ggarrange(map_chp3_combined)
 
 ```
@@ -351,9 +351,10 @@ The mean trajectories of the different cross-sectional areas are similar to the 
 load("map/south_africa_coast_hi_res.Rdata")
 
 waterdrag_plot <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
+  geom_point(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), shape = 20)+
   geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
   geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
@@ -363,7 +364,7 @@ waterdrag_plot <- ggplot()+
   theme_bw() 
 
 wwdrag_plot <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'grey')+
   geom_path(data = Min_Kfloat_H090_W10_mean, aes(x = lon, y = lat), color = 'green')+
@@ -1252,7 +1253,7 @@ total_data_Oct <- rbind(Min_Kfloat_H100_W00_Oct, Min_Kfloat_H095_W05_Oct, Min_Kf
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
 
 waterdrag_plot_July <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_July, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_July, aes(x = lon, y = lat), color = 'orange')+
@@ -1264,7 +1265,7 @@ waterdrag_plot_July <- ggplot()+
   theme_bw() 
 
 wwdrag_plot_July <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean_July, aes(x = lon, y = lat), color = 'grey')+
   geom_path(data = Min_Kfloat_H090_W10_mean_July, aes(x = lon, y = lat), color = 'green')+
@@ -1282,7 +1283,7 @@ wwdrag_plot_July <- ggplot()+
   theme_bw() 
 
 waterdrag_plot_Oct <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_Oct, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_Oct, aes(x = lon, y = lat), color = 'orange')+
@@ -1294,7 +1295,7 @@ waterdrag_plot_Oct <- ggplot()+
   theme_bw() 
 
 wwdrag_plot_Oct <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean_Oct, aes(x = lon, y = lat), color = 'grey')+
   geom_path(data = Min_Kfloat_H090_W10_mean_Oct, aes(x = lon, y = lat), color = 'green')+
