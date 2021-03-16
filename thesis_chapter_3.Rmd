@@ -1,9 +1,7 @@
 ---
 title: 'Numerical trajectory patterns of floating macroalgae'
 author:
-- R Coppin^[University of the Western Cape]
-- C Rautenbach^[South African Weather Service]
-- AJ Smit^[University of the Western Cape]
+- R Coppin^[University of the Western Cape], C Rautenbach^[National Institute of Water and Atmospheric Research], AJ Smit^[University of the Western Cape]
 output:
   word_document:
     reference_docx: markdown/frontiers_template.docx
@@ -13,7 +11,7 @@ output:
     latex_engine: xelatex
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
-abstract: The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms in the ocean, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also tend to focus on kelp-rafts which can vary greatly in size and making it difficult to form a concensus as to the role of wind and surface currents. In addition past studies have not conisidered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectory of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, as well as the role of drag, in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scnearios causes accumulation in eddies and vortices within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies and vortices, as important surface accumlation zones for solitary floating macroalage.
+abstract: "*Abstract* The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms in the ocean, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also tend to focus on kelp-rafts which can vary greatly in size and making it difficult to form a concensus as to the role of wind and surface currents. In addition past studies have not conisidered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectory of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, as well as the role of drag, in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scnearios causes accumulation in eddies and vortices within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies and vortices, as important surface accumlation zones for solitary floating macroalage."
 ---
 
 ```{r software, message=FALSE, warning=FALSE, include=FALSE}
@@ -57,7 +55,7 @@ In this study, a numerical approach is used to shed light on the role of hydrody
 # Methods
 ## Study site
 
-The region of interest for this study was the Cape Peninsula in the Western Cape (Figure 1A). A release site was chosen for this study, Kommetjie, which is located on the Atlantic side of the Cape Peninsula (Figure 2B). The hydrodynamics in the study region are driven by a complex interaction of wind and waves, which are also influenced by larger oceanic processes. In South Africa, the larger processes can be attributed to the Agulhas Current (AC) and the Benguela Current (BC)[@lutjeharms2000;@lutjeharms2007;@garzoli1996;@Hutchings2009;@rubio2009]. The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly south-westward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean [@lutjeharms2000;@lutjeharms2007]. The region where the retroflection occurs is known as the Agulhas Retroflection and consists of high levels of mesoscale variability [@garzoli1996]. The variability results in shedding of rings and filaments known as the Agulhas Rings and have an average diameter of ~324km [@lutjeharms1988; @lutjeharms2006; @lutjeharms2007]. The Agulhas Rings are the main contributors to the Agulhas leakage which are the transport of warm water from the Indian Ocean to the South Atlantic Ocean [@garzoli1996; @lutjeharms2006; @beal2015]. The Agulhas leakage is also a source of meso-scale variability within the Benguela region as anticyclonic rings are shed and drift northwestward along the southern Benguela slope region [@rubio2009]. The Benguela region is characterised by strong coastal upwelling cells which are primarily driven by equatorward winds [@shannon1996; @hardman2003]. It is known as the Benguela Upwelling System (BUS) The BUS starts at 27$^\circ$S and extends southward to 35$^\circ$S [@shannon1996]. The region is also characterised by high amounts of mesoscale variability in the form of eddies and filaments [@blanke2002; @blanke2005; @rubio2009]. The Benguela inshore region is dominated by a northwestward flow because of topographical steering, wind stress and interactions with passing Agulhas Rings and eddies [@veitch2010]. 
+The region of interest for this study was the Cape Peninsula in the Western Cape (Figure 1A). A release site was chosen for this study, Kommetjie, which is located on the Atlantic side of the Cape Peninsula (Figure 2B). The hydrodynamics in the study region are driven by a complex interaction of wind and waves, which are also influenced by larger oceanic processes. In South Africa, the larger processes can be attributed to the Agulhas Current (AC) and the Benguela Current (BC)[@lutjeharms2000; @lutjeharms2007 ;@garzoli1996 ;@hutchings2009; @rubio2009]. The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly south-westward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean [@lutjeharms2000;@lutjeharms2007]. The region where the retroflection occurs is known as the Agulhas Retroflection and consists of high levels of mesoscale variability [@garzoli1996]. The variability results in shedding of rings and filaments known as the Agulhas Rings and have an average diameter of ~324km [@lutjeharms1988; @lutjeharms2006; @lutjeharms2007]. The Agulhas Rings are the main contributors to the Agulhas leakage which are the transport of warm water from the Indian Ocean to the South Atlantic Ocean [@garzoli1996; @lutjeharms2006; @beal2015]. The Agulhas leakage is also a source of meso-scale variability within the Benguela region as anticyclonic rings are shed and drift northwestward along the southern Benguela slope region [@rubio2009]. The Benguela region is characterised by strong coastal upwelling cells which are primarily driven by equatorward winds [@shannon1996; @hardman2003]. It is known as the Benguela Upwelling System (BUS) The BUS starts at 27$^\circ$S and extends southward to 35$^\circ$S [@shannon1996]. The region is also characterised by high amounts of mesoscale variability in the form of eddies and filaments [@blanke2002; @blanke2005; @rubio2009]. The Benguela inshore region is dominated by a northwestward flow because of topographical steering, wind stress and interactions with passing Agulhas Rings and eddies [@veitch2010]. 
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, strip.white=TRUE, fig.cap="Figure 1:Map of the study domain and the main features pertaining to transport in the region. In panel A, the map of the entire South African coastline and the main currents presented. The resulting eddies and filaments from the Agulhas retroflection and study area are presented. In panel B, the splitting of the Benguela Jet, eddie features and general flow of the study domain are presented."}
 
@@ -74,6 +72,7 @@ ggarrange(map_chp3_combined)
 ```
 
 The study domain falls within the southern Benguela upwelling ecosystem, which is a region of high mesoscale variability and activity. These occur mostly in the form of eddies, filaments and vortices which are generated from the Agulhas retroflection [@veitch2018; @veitch2017], generally flowing northward along the coastline and begin to move offshore near Cape Columbine. The Benguela Jet is a coastal flowing current and is driven by a complex interaction of eddies, upwelling, eckman transport and geostrophic currents [@stramma1989; @veitch2017; @veitch2018; @hutchings2009]. The stability of the jet varies seasonally with more stable flows in winter and splitting of the jet during summer and spring. In January, the jet begins to split between Cape Point and Cape Columbine [@veitch2018; @blanke2005; @blanke2002] which results into a weak narrow inshore branch which flows along the shelf edge and a strong flowing north-westwards offshore branch. The area is also an area of high upwelling activity driven by strong westerly winds [@hutchings2009]. These winds are most intense during summer (December-March) which favours upwelling conditions in the region, and also act to reinforce the flow of the Benguela Jet; which occurs due to cold upwelling waters contributing to the across-shore density gradient [@ragoasha2019]. In winter the wind direction is reversed which decreases upwelling favorable conditions, but the core of the Benguela jet is maintained by the intrusion of warm agulhas waters into the Benguela region over the shelf edge [@veitch2018; @hutchings2009; @ragoasha2019].   
+
 ## Particle tracking model
 
 The model is based on parameterisations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a rugby field. Furthermore, some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. In addition, large kelp rafts are not a feature around the coast of the Cape Peninsula; rather, solitary kelp are (pers. obs). Therefore, the trajectory of only solitary *E. maxima* individuals will be considered. Numerical calculations of particle trajectory were performed with a Lagrangian method [@delandmeter2019], and be described by the equation
@@ -349,7 +348,10 @@ The mean trajectories of the different cross-sectional areas are similar to the 
 
 ```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
 
+load("map/south_africa_coast_hi_res.Rdata")
+
 waterdrag_plot <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
@@ -361,6 +363,7 @@ waterdrag_plot <- ggplot()+
   theme_bw() 
 
 wwdrag_plot <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'grey')+
   geom_path(data = Min_Kfloat_H090_W10_mean, aes(x = lon, y = lat), color = 'green')+
@@ -771,7 +774,7 @@ dis_plot_acc <- ggplot(data = total_acc_data, aes(x = type, y = distance, show.l
 
 ```
 
-```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 6: Comparison of trajectory data between passive and kelp accumulation scenarios. Panel A are a comparison of density plots  and panel B is a comparison of age.", fig.height=8, fig.width=8}
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 5: Comparison of trajectory data between passive and kelp accumulation scenarios. Panel A are a comparison of density plots  and panel B is a comparison of age.", fig.height=8, fig.width=8}
 
 plot_A <- ggarrange(heatmap_RK4_acc, heatmap_kelp_acc, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 1)
 plot_B <- ggarrange(point_RK4_acc, point_kelp_acc, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 1)
@@ -918,7 +921,7 @@ vector_30 <- rasterGrob(as.raster(readJPEG("OceanParcels/trajectory_data/vector_
 ggarrange(vector_2, vector_5, vector_10, vector_15, vector_20, vector_25, vector_30, labels = "AUTO")
 ```
 
-## Additional simulations
+## Additional comparisons
 
 ```{r additional sims, message=FALSE, echo=FALSE, warning=FALSE}
 
@@ -1244,10 +1247,12 @@ total_data_Oct <- rbind(Min_Kfloat_H100_W00_Oct, Min_Kfloat_H095_W05_Oct, Min_Kf
 
 ```
 
+### Comparison of mean trajectories
 
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
 
 waterdrag_plot_July <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_July, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_July, aes(x = lon, y = lat), color = 'orange')+
@@ -1259,6 +1264,7 @@ waterdrag_plot_July <- ggplot()+
   theme_bw() 
 
 wwdrag_plot_July <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean_July, aes(x = lon, y = lat), color = 'grey')+
   geom_path(data = Min_Kfloat_H090_W10_mean_July, aes(x = lon, y = lat), color = 'green')+
@@ -1276,6 +1282,7 @@ wwdrag_plot_July <- ggplot()+
   theme_bw() 
 
 waterdrag_plot_Oct <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_Oct, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = Mean_Kfloat_H100_W00_mean_Oct, aes(x = lon, y = lat), color = 'orange')+
@@ -1287,6 +1294,7 @@ waterdrag_plot_Oct <- ggplot()+
   theme_bw() 
 
 wwdrag_plot_Oct <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
   geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = Min_Kfloat_H095_W05_mean_Oct, aes(x = lon, y = lat), color = 'grey')+
   geom_path(data = Min_Kfloat_H090_W10_mean_Oct, aes(x = lon, y = lat), color = 'green')+
@@ -1305,11 +1313,13 @@ wwdrag_plot_Oct <- ggplot()+
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=7, fig.cap="Figure ??: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag. In plot A, the black line represents simulation 1, the blue line 2, the orange line 6 and the red line 10. In plot B, the black line represents simulation 1, the grey line simulation 3, the green 4, the pink 5, the yellow 7, orange 8, red 9, blue 11, bronze 12, and cherry 13. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 7: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag. In plot A, the black line represents simulation 1, the blue line 2, the orange line 6 and the red line 10. In plot B, the black line represents simulation 1, the grey line simulation 3, the green 4, the pink 5, the yellow 7, orange 8, red 9, blue 11, bronze 12, and cherry 13. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
 ggarrange(waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, labels = "AUTO")
 
 ```
+
+### Comparison of density
 
 ```{r density plots additional, message=FALSE, warning=FALSE, echo=FALSE}
 ## Heatmaps of study domain, use previous data for study site map and histograms## Coastline of Southern Africa
@@ -1326,7 +1336,7 @@ heatmap_RK4_July <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("1") +
+  ggtitle("30") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1521,7 +1531,7 @@ heatmap_RK4_Oct <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("1") +
+  ggtitle("43") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1706,23 +1716,21 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-## Density comparison
-### July
+## July
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure ??: Comparison of density plots at the end run time of each scenario for July 2018 (winter). The plots are regular hexagons within the density of particles is calculated. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 8: Comparison of density plots at the end run time of each scenario for July 2018 (winter). The plots are regular hexagons within the density of particles is calculated. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"))
+figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("32","33","34","35","36","37","338","39","40","41","42","43"), common.legend = TRUE, legend = c("none"))
 
 figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"))
 
 ggarrange(figure_a_July, figure_b_July, ncol = 1, nrow = 2)
 
 ```
-### October
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure ??: Comparison of density plots at the end run time of each scenario for October 2018 (spring). The plots are regular hexagons within the density of particles is calculated. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 9: Comparison of density plots at the end run time of each scenario for October 2018 (spring). The plots are regular hexagons within the density of particles is calculated. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_Oct <- ggarrange(heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"))
+figure_a_Oct <- ggarrange(heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("none"))
 
 figure_b_Oct <- ggarrange(heatmap_RK4_Oct, legend = c("right"))
 
@@ -1731,7 +1739,7 @@ ggarrange(figure_a_Oct, figure_b_Oct, ncol = 1, nrow = 2)
 ```
 ## Comparison of distances 
 
-```{r distance plot processing additional, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
+```{r distance plot processing additional, message=FALSE, warning=FALSE, include=FALSE}
 ## July
 
 pos_July <- c("RK4_July",
@@ -1759,7 +1767,7 @@ dis_plot_July <- ggplot(data = total_data_July, aes(x = type, y = distance, show
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_July <- c("1","2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13") #create custom labels and add them to dis_plot
+custom_labs_July <- c("32","33","34","35","36","37","338","39","40","41","42","43") #create custom labels and add them to dis_plot
 
 dis_plot_July <- dis_plot_July +
   scale_x_discrete(labels= custom_labs_July)
@@ -1791,19 +1799,18 @@ dis_plot_Oct <- ggplot(data = total_data_Oct, aes(x = type, y = distance, show.l
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_Oct <- c("1","2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13") #create custom labels and add them to dis_plot
+custom_labs_Oct <- c("44","45","46","47","48","49","50","51","52","53","54","55") #create custom labels and add them to dis_plot
 
 dis_plot_Oct <- dis_plot_Oct +
   scale_x_discrete(labels= custom_labs_Oct)
   
 ```
 
-```{r distance plot additional, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Figure 4: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for July (winter) and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+```{r distance plot additional, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Figure 10: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for July (winter) and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
 ggarrange(dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 2)
 
 ```
-
 
 # References
 
