@@ -11,7 +11,7 @@ output:
     latex_engine: xelatex
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
-abstract: "**Abstract**: The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms in the ocean, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also tend to focus on kelp-rafts which can vary greatly in size and making it difficult to form a concensus as to the role of wind and surface currents. In addition past studies have not conisidered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectory of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, as well as the role of drag, in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scnearios causes accumulation in eddies and vortices within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies and vortices, as important surface accumlation zones for solitary floating macroalage."
+abstract: "**Abstract**: The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also focus on kelp-rafts, which can vary greatly in size making it difficult to form a concensus as to the relative role of wind versus surface currents. In addition, past studies have not conisidered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectory of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddies within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies, as important surface accumlation zones for solitary floating macroalage."
 ---
 
 ```{r software, message=FALSE, warning=FALSE, include=FALSE}
@@ -118,7 +118,7 @@ The drag coefficient for a spherical particle was used in the calculation of hyd
 
 To incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant. For details please refer to figure 2. The dimensional data needed were estimated in cases where data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent; the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
 
-```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2:Diagram of the *E.maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic."}
+```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Diagram of the *E.maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic."}
 
 kelp_shape_figure <- rasterGrob(as.raster(readPNG("figures/chapter_3/chp3_shapedrawing.png")))
 ggarrange(kelp_shape_figure)
@@ -939,7 +939,7 @@ p_RK4_mean_July <- p_RK4_July %>% # calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-p_RK4_July$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_July$type <- "RK4_July" # add extra column 'type' to dataframe and assigned 'RK4' label
 
 Min_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_July.nc") %>%
   hyper_tibble() %>%
@@ -1098,7 +1098,7 @@ p_RK4_mean_Oct <- p_RK4_Oct %>% # calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-p_RK4_Oct$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_Oct$type <- "RK4_Oct" # add extra column 'type' to dataframe and assigned 'RK4' label
 
 Min_Kfloat_H100_W00_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_Oct.nc") %>%
   hyper_tibble() %>%
@@ -1721,7 +1721,7 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 8: Comparison of density plots at the end run time of each scenario for July 2018 (winter). The plots are regular hexagons within the density of particles is calculated. Plots A-D represents the minimum, plots E-H are the mean and plots I-L the maximum cross-sectional areas. The bottom plot is the density plot for the passive simulation. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("32","33","34","35","36","37","338","39","40","41","42","43"), common.legend = TRUE, legend = c("none"))
+figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("none"))
 
 figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"))
 
@@ -1738,12 +1738,12 @@ figure_b_Oct <- ggarrange(heatmap_RK4_Oct, legend = c("right"))
 ggarrange(figure_a_Oct, figure_b_Oct, ncol = 1, nrow = 2)
 
 ```
+
 ## Comparison of distances 
 
 ```{r distance plot processing additional, message=FALSE, warning=FALSE, include=FALSE}
-## July
 
-pos_July <- c("RK4_July",
+pos_July <- c("RK4_July",             ## July
          "Min_Kfloat_H100_W00_July",
          "Min_Kfloat_H095_W05_July",
          "Min_Kfloat_H090_W10_July",
@@ -1768,14 +1768,12 @@ dis_plot_July <- ggplot(data = total_data_July, aes(x = type, y = distance, show
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_July <- c("32","33","34","35","36","37","338","39","40","41","42","43") #create custom labels and add them to dis_plot
+custom_labs_July <- c("30","31","32","33","34","35","36","37","38","39","40","41", "42") #create custom labels and add them to dis_plot
 
 dis_plot_July <- dis_plot_July +
   scale_x_discrete(labels= custom_labs_July)
 
-## Oct
-
-pos_Oct <- c("RK4_Oct",
+pos_Oct <- c("RK4_Oct",              ## Oct
          "Min_Kfloat_H100_W00_Oct",
          "Min_Kfloat_H095_W05_Oct",
          "Min_Kfloat_H090_W10_Oct",
@@ -1800,14 +1798,14 @@ dis_plot_Oct <- ggplot(data = total_data_Oct, aes(x = type, y = distance, show.l
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_Oct <- c("44","45","46","47","48","49","50","51","52","53","54","55") #create custom labels and add them to dis_plot
+custom_labs_Oct <- c("43","44","45","46","47","48","49","50","51","52","53","54","55") #create custom labels and add them to dis_plot
 
 dis_plot_Oct <- dis_plot_Oct +
   scale_x_discrete(labels= custom_labs_Oct)
   
 ```
 
-```{r distance plot additional, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Figure 10: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for July (winter) and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+```{r distance plot additional, include = FALSE, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Figure 10: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for July (winter) and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
 ggarrange(dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 2)
 
