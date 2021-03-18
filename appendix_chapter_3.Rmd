@@ -658,7 +658,7 @@ heatmap_RK4_April <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("17") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -853,7 +853,7 @@ heatmap_RK4_July <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("30") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1048,7 +1048,7 @@ heatmap_RK4_Oct <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("43") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1237,22 +1237,22 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 8: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles is calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_April <- ggarrange(heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April, labels = c("18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("none"))
+figure_a_April <- ggarrange(heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April, labels = c("18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
 
-figure_b_April <- ggarrange(heatmap_RK4_April, legend = c("right"))
+figure_b_April <- ggarrange(heatmap_RK4_April, legend = c("right"), labels = c("17"), font.label = list(size = 11, face = "bold"))
 
-ggarrange(figure_a_April, figure_b_April, ncol = 1, nrow = 2)
+ggarrange(figure_b_April, figure_a_April, ncol = 1, nrow = 2)
 
 ```
 ## July
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 9: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles is calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("none"))
+figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
 
-figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"))
+figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"), labels = c("30"), font.label = list(size = 11, face = "bold"))
 
-ggarrange(figure_a_July, figure_b_July, ncol = 1, nrow = 2)
+ggarrange(figure_b_July, figure_a_July, ncol = 1, nrow = 2)
 
 ```
 
@@ -1260,19 +1260,19 @@ ggarrange(figure_a_July, figure_b_July, ncol = 1, nrow = 2)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 10: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles is calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_Oct <- ggarrange(heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("none"))
+figure_a_Oct <- ggarrange(heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
 
-figure_b_Oct <- ggarrange(heatmap_RK4_Oct, legend = c("right"))
+figure_b_Oct <- ggarrange(heatmap_RK4_Oct, legend = c("right"), labels = c("43"), font.label = list(size = 11, face = "bold"))
 
-ggarrange(figure_a_Oct, figure_b_Oct, ncol = 1, nrow = 2)
+ggarrange(figure_b_Oct, figure_a_Oct, ncol = 1, nrow = 2)
 
 ```
 
 ## Comparison of distances 
 
-```{r distance plot processing additional, message=FALSE, warning=FALSE, include=FALSE}
+```{r distance plot processing additional, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 
-pos_April <- c("RK4_April",             ## April
+pos_April <- c("RK4_April",             
          "Min_Kfloat_H100_W00_April",
          "Min_Kfloat_H095_W05_April",
          "Min_Kfloat_H090_W10_April",
@@ -1290,7 +1290,7 @@ dis_plot_April <- ggplot(data = total_data_April, aes(x = type, y = distance, sh
   geom_boxplot(data = p_RK4_April, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
-  stat_compare_means(method = "kruskal.test", label = "p.signif")+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
   theme_bw()+
   ylab("Distance (km)")+
   xlab("Scenario")+
@@ -1303,7 +1303,7 @@ custom_labs_April <- c("17","18","19","20","21","22","23","24","25","26","27","2
 dis_plot_April <- dis_plot_April +
   scale_x_discrete(labels= custom_labs_April)
 
-pos_July <- c("RK4_July",             ## July
+pos_July <- c("RK4_July",             
          "Min_Kfloat_H100_W00_July",
          "Min_Kfloat_H095_W05_July",
          "Min_Kfloat_H090_W10_July",
@@ -1321,7 +1321,7 @@ dis_plot_July <- ggplot(data = total_data_July, aes(x = type, y = distance, show
   geom_boxplot(data = p_RK4_July, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
-  stat_compare_means(method = "kruskal.test", label = "p.signif")+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
   theme_bw()+
   ylab("Distance (km)")+
   xlab("Scenario")+
@@ -1334,7 +1334,7 @@ custom_labs_July <- c("30","31","32","33","34","35","36","37","38","39","40","41
 dis_plot_July <- dis_plot_July +
   scale_x_discrete(labels= custom_labs_July)
 
-pos_Oct <- c("RK4_Oct",              ## Oct
+pos_Oct <- c("RK4_Oct",              
          "Min_Kfloat_H100_W00_Oct",
          "Min_Kfloat_H095_W05_Oct",
          "Min_Kfloat_H090_W10_Oct",
@@ -1352,7 +1352,7 @@ dis_plot_Oct <- ggplot(data = total_data_Oct, aes(x = type, y = distance, show.l
   geom_boxplot(data = p_RK4_Oct, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
-  stat_compare_means(method = "kruskal.test", label = "p.signif")+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
   theme_bw()+
   ylab("Distance (km)")+
   xlab("Scenario")+
