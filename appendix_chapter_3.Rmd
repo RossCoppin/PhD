@@ -10,7 +10,7 @@ output:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 ---
-```{r software, message=FALSE, warning=FALSE, include=FALSE}
+```{r software, message=FALSE, warning=FALSE, include=FALSE, eval=FALSE}
 ## Load software need for entire script
 
 #library(computeMSD)
@@ -37,7 +37,7 @@ library(lubridate)
 
 ## Domain features
 
-```{r eval=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
+```{r eval=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=FALSE}
 
 library(jpeg)
 library(grid)
@@ -634,12 +634,13 @@ wwdrag_plot_Oct <- ggplot()+
 
 ```
 
+The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag travelled further northward compared to the passive particles (see Figure 7A-B). The mean trajectories of kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag travelled further north-westard compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles travelled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles was also evident in the July (winter) simulations (see Figure 7C-D). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially travel in a southerly direction and then moved westward offshore; resulting in entrainment within an eddy. Similar behaviour is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles travelled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (see Figure 7E-F). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag ended a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles; with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=8, fig.cap="Figure 7: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag. In plot A, the black line represents simulation 1, the blue line 2, the orange line 6 and the red line 10. In plot B, the black line represents simulation 1, the grey line simulation 3, the green 4, the pink 5, the yellow 7, orange 8, red 9, blue 11, bronze 12, and cherry 13. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
 ggarrange(waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, labels = "AUTO", ncol = 2, nrow = 3)
 
 ```
-In the April simulations, both passive and kelp particles followed the general north-westward flow of the region with clear entrainment of kelp particles in sub-mesoscale features. Kelp particles follow the north
 
 ### Comparison of density
 
@@ -1233,7 +1234,7 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-## April
+In April and across all simulations, particles flowed in a north-westward direction (see Figure 8). The density plots that considered any form of drag showed narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulatons that considered any form of drag got entrained within an eddy further north-westward from end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. Simulations for July showed that the flow was also north-westward, but all kelp particles across cross-sectional areas and drag scenarios show high density of particles entrained in a eddy located westward of the release site compared to passive particles (see Figure 9). Variation in density along the mean trajectory and eddy for all kelp particles is evident. Kelp particles with only hydrodynamic drag across cross-sectional areas showed lower density of particles along the mean trajectory compared to kelp particles with both wind and hydrodynamic drag. October simulations showed no differences in density of particles along the mean trajectory when comparing passive and kelp particles. Only slight variations in density and trajectory can be seen with no entrainment (see Figure 10). Kelp particles with any cross-sectional area and drag exposure scenario flowed further offshore when compared to passive particles. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 8: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles is calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
@@ -1244,7 +1245,6 @@ figure_b_April <- ggarrange(heatmap_RK4_April, legend = c("right"), labels = c("
 ggarrange(figure_b_April, figure_a_April, ncol = 1, nrow = 2)
 
 ```
-## July
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 9: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles is calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
@@ -1255,8 +1255,6 @@ figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"), labels = c("30
 ggarrange(figure_b_July, figure_a_July, ncol = 1, nrow = 2)
 
 ```
-
-## October
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 10: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles is calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
@@ -1367,7 +1365,7 @@ dis_plot_Oct <- dis_plot_Oct +
   
 ```
 
-```{r distance plot additional, message=FALSE, warning=FALSE, echo=FALSE, fig.height=8, fig.width=6, fig.cap="Figure 11: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for April (Autumn), July (winter), and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+```{r distance plot additional, message=FALSE, warning=FALSE, echo=FALSE, fig.height=6, fig.width=5, fig.cap="Figure 11: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for each scenario for April (Autumn), July (winter), and October (spring). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
 ggarrange(dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 3)
 
