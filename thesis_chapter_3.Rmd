@@ -789,7 +789,7 @@ ggarrange(plot_A, plot_B, labels = c("AUTO"), ncol = 1, nrow = 2)
 
 The role of eddies that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 5A). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 5A). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 5B, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
 
-## Comparison of coefficents
+## Comparison of coefficients
 
 The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (Figure 6A). This was also reflected when comparing distance travelled by particles and particle density plots (Figure 6B). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (Figure 6C-D). 
 
