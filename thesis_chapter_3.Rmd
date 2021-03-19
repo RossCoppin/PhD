@@ -1,5 +1,5 @@
 ---
-title: 'A numerical experiment investigating the influence of drag in trajectory patterns of floating macroalgae'
+title: 'Numerical experiment investigating the influence of drag on trajectory patterns of floating macroalgae'
 author: 
 - R Coppin^[University of the Western Cape], C Rautenbach^[National Institute of Water and Atmospheric Research], AJ Smit^[University of the Western Cape]
 output:
