@@ -11,7 +11,7 @@ output:
     latex_engine: xelatex
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
-abstract: "**Abstract**: The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalage are one of the most important natural dispersal mechanisms, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macrolage trajectory is still unknown. Past studies also focus on kelp-rafts, which can vary greatly in size making it difficult to form a concensus as to the relative role of wind versus surface currents. In addition, past studies have not considered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddies within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies, as important surface accumulation zones for solitary floating macroalage."
+abstract: "**Abstract**: The ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalgae are one of the most important natural dispersal mechanisms, and are regarded as the tumble-weed of the ocean. Despite the many studies that exist, the relative role of wind and surface currents in macroalgae trajectory is still unknown. Past studies also focus on kelp-rafts, which can vary greatly in size making it difficult to form a concensus as to the relative role of wind versus surface currents. In addition, past studies have not considered surface-area in relation to drag characterisics of floating macroalgae, which have been shown to play a role in the trajectory and accumulation of other flotsam. The advances in Lagrangian trajectory modeling has been exponential in recent years and allows the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagae trajectory and accumulation. This study did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp particles which incorporate drag with that of purley Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddies within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies, as important surface accumulation zones for solitary floating macroalage."
 ---
 
 ```{r software, message=FALSE, warning=FALSE, include=FALSE}
@@ -44,7 +44,7 @@ There are a range of objects, both natural and anthropogenic, floating in the oc
 
 Some macroalgal species are negatively buoyant and sink to the seafloor when detached from the substrate, while other species of macroalgae have air-filled pneumatocysts or stipes which allow the plants to reach the surface where light is more abundant. In turn, the positively buoyant pneumatocysts cause plants to float to the surface when dislodged from the substratum. The structure and number of pneumatocysts varies between species. For example species from the genera *Macrocystis*, *Sargassum*, *Ascophyllum*, and *Fucus* have thalli with many small pneumatocysts, while other kelp species such as *Nereocystis luetkeana*, *Pelagophycus porra*, *Ecklonia radiata*, *Ecklonia maxima* have a single, large pneumatocysts [@dayton1985; @smith2002; @thiel2005; @graiff2016; @batista2018]. In some cases the stipe itself is air-filled, such as with *E. maxima* and *E. radiata*. Although there have been reports of floating Chlorophyta species and some Rhodophyta species, Phaeophyceae species are the most reported forms of floating algae. This is most likely because the green and red species reported floating are not actually positively buoyant, but instead are kept at the surface by gas trapped in-between or in the thalli [@dromgoole1982; @back2000]. The giant kelp *Macrocystis pyrifera* [@helmuth1994; @kingsford1995; @hobday2000; @macaya2005; @graiff2016; @batista2018], the bull kelp *Durvillaea antarctica* [@collins2010; @tala2013 ; @tala2017; @saunders2014; @smith2002; @wichmann2012; @batista2018], and pelagic *Sargassum* species [@putman2020; @brooks2019; @putman2018; @brooks2018; @wang2019] have been the focus of much of the research regarding spatial and temporal dispersal patterns, the ecological role of rafting, marine connectivity and raft-time.
 
-Past research points to macroalgae trajectory being largely determined by prevailing wind conditions and surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still unknown although the role of wind has been recognised as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterrey Bay. The results showed that kelp rafts, with little surface area, exposed to the wind were largely driven by a combination of wind and surface currents, however the relative importance of wind and was not clear. In addition, the trajectories of tagged kelp were more consistent with the formation of eddies during winter. Previous studies have identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example, in the sub-Antarctic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important potential mechanism for dispersal of floating bull kelp *Durvillaea antarctica*. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *D. antarctica* used a combination of population genetics and relative age estimate of goosebarnacles attached to the raft. The presence of goosebarnacles suggests a long raft time as these species have a slow growth rate. Genetic analyses showed these species are able to raft up to $\sim$ 390km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory; however, this was only inferred from the genetic results and local climatology data [@fraser2011]. Past research has shown that buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material [onink2019; @shen2019; @dasaro2018; @gates2018; @beron2016; @trinanes2016; @furnans2008]. The 'sail' area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in hydrodynamic form drag [@breivik2011; @griffin2017]. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. 
+Past research points to macroalgae trajectory being largely determined by prevailing wind conditions and surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still unknown although the role of wind has been recognised as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterrey Bay. The results showed that kelp rafts, with little surface area, exposed to the wind were largely driven by a combination of wind and surface currents, however the relative importance of wind and was not clear. In addition, the trajectories of tagged kelp were more consistent with the formation of eddies during winter. Previous studies have identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example, in the sub-Antarctic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important potential mechanism for dispersal of floating bull kelp *Durvillaea antarctica*. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *D. antarctica* used a combination of population genetics and relative age estimate of goosebarnacles attached to the raft. The presence of goosebarnacles suggests a long raft time as these species have a slow growth rate. Genetic analyses showed these species are able to raft up to $\sim$ 390km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory; however, this was only inferred from the genetic results and local climatology data [@fraser2011]. Past research has shown that buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material [@onink2019; @shen2019; @dasaro2018; @gates2018; @beron2016; @trinanes2016; @furnans2008]. The 'sail' area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in hydrodynamic form drag [@breivik2011; @griffin2017]. In addition, past research conducted within the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. 
 
 To accurately determine the trajectory of marine macroalgae water and wind drag need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been applied for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Although various approaches have been used in the past to investigate floating macroalgal trajectories, very few studies have employed the use of Langrangian trajectory modeling. Furthermore, none of the existing studies using this modeling approach have considered macroalgal morphology cross-sectional area (**i.e.** shape) as an aspect of drag and ultimately trajectory. Studies by @brooks2019, @putman2018, and @putman2020 used Lagrangian approaches to investigate the effects of inertia, raft-size, and windage on macroalgae trajectory. @brooks2019 used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Other work by @putman2020 investigated the effect of including windage in macroalgae trajectory simulations. The authors showed that including **ad-hoc** windage factors greatly improved accuracy regarding entrainment or expulsion from eddies when compared to tracked sargassum mats in the ocean. Langrangian trajectory modeling is a useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not consider the complex morphology on an individual level into account.
 
@@ -195,6 +195,7 @@ p_RK4_mean <- p_RK4 %>% # calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 p_RK4$type <- "RK4" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_mean$type <- "1" # add extra column 'type' to dataframe and assigned 'RK4' label
 
 Min_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
@@ -207,6 +208,7 @@ Min_Kfloat_H100_W00_mean <- Min_Kfloat_H100_W00 %>% # calculate mean trajectory
 
 Min_Kfloat_H100_W00$type <- "Min_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H100_W00$velocity <- with(Min_Kfloat_H100_W00, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H100_W00_mean$type <- "2" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
@@ -219,6 +221,7 @@ Min_Kfloat_H095_W05_mean <- Min_Kfloat_H095_W05 %>% # calculate mean trajectory
 
 Min_Kfloat_H095_W05$type <- "Min_Kfloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H095_W05$velocity <- with(Min_Kfloat_H095_W05, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H095_W05_mean$type <- "3" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
@@ -231,6 +234,7 @@ Min_Kfloat_H090_W10_mean <- Min_Kfloat_H090_W10 %>% #calculate mean trajectory
 
 Min_Kfloat_H090_W10$type <- "Min_Kfloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H090_W10$velocity <- with(Min_Kfloat_H090_W10, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H090_W10_mean$type <- "4" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Min_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
@@ -243,6 +247,7 @@ Min_Kfloat_H085_W15_mean <- Min_Kfloat_H085_W15 %>% #calculate mean trajectory
 
 Min_Kfloat_H085_W15$type <- "Min_Kfloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H085_W15$velocity <- with(Min_Kfloat_H085_W15, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H085_W15_mean$type <- "5" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
@@ -255,6 +260,7 @@ Mean_Kfloat_H100_W00_mean <- Mean_Kfloat_H100_W00 %>% #calculate mean trajectory
 
 Mean_Kfloat_H100_W00$type <- "Mean_Kfloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_Kfloat_H100_W00$velocity <- with(Mean_Kfloat_H100_W00, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_Kfloat_H100_W00_mean$type <- "6" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
@@ -267,6 +273,7 @@ Mean_KFloat_H095_W05_mean <- Mean_KFloat_H095_W05 %>% #calculate mean trajectory
 
 Mean_KFloat_H095_W05$type <- "Mean_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H095_W05$velocity <- with(Mean_KFloat_H095_W05, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H095_W05_mean$type <- "7" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
@@ -279,6 +286,7 @@ Mean_KFloat_H090_W10_mean <- Mean_KFloat_H090_W10 %>% #calculate mean trajectory
 
 Mean_KFloat_H090_W10$type <- "Mean_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H090_W10$velocity <- with(Mean_KFloat_H090_W10, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H090_W10_mean$type <- "8" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Mean_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
@@ -291,6 +299,7 @@ Mean_KFloat_H085_W15_mean <- Mean_KFloat_H085_W15 %>% #calculate mean trajectory
 
 Mean_KFloat_H085_W15$type <- "Mean_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H085_W15$velocity <- with(Mean_KFloat_H085_W15, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H085_W15_mean$type <- "9" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H100_W00 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
@@ -303,6 +312,7 @@ Max_Kfloat_H100_W00_mean <- Max_Kfloat_H100_W00 %>% #calculate mean trajectory
 
 Max_Kfloat_H100_W00$type <- "Max_KFloat_H100_W00" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H100_W00$velocity <- with(Max_Kfloat_H100_W00, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H100_W00_mean$type <- "10" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H095_W05 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H095_W05.nc") %>%
   hyper_tibble() %>%
@@ -315,6 +325,7 @@ Max_Kfloat_H095_W05_mean <- Max_Kfloat_H095_W05 %>% #calculate mean trajectory
 
 Max_Kfloat_H095_W05$type <- "Max_KFloat_H095_W05" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H095_W05$velocity <- with(Max_Kfloat_H095_W05, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H095_W05_mean$type <- "11" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H090_W10 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H090_W10.nc") %>%
   hyper_tibble() %>%
@@ -327,6 +338,7 @@ Max_Kfloat_H090_W10_mean <- Max_Kfloat_H090_W10 %>% #calculate mean trajectory
 
 Max_Kfloat_H090_W10$type <- "Max_KFloat_H090_W10" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H090_W10$velocity <- with(Max_Kfloat_H090_W10, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H090_W10_mean$type <- "12" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H085_W15 <- tidync("OceanParcels/trajectory_data/Max_KFloat_H085_W15.nc") %>%
   hyper_tibble() %>%
@@ -339,6 +351,7 @@ Max_Kfloat_H085_W15_mean <- Max_Kfloat_H085_W15 %>% #calculate mean trajectory
 
 Max_Kfloat_H085_W15$type <- "Max_KFloat_H085_W15" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H085_W15$velocity <- with(Max_Kfloat_H085_W15, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H085_W15_mean$type <- "13" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W10, Min_Kfloat_H085_W15, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15, Max_Kfloat_H100_W00, Max_Kfloat_H095_W05, Max_Kfloat_H090_W10, Max_Kfloat_H085_W15)
 
@@ -352,41 +365,39 @@ The mean trajectories of the different cross-sectional areas are similar to the 
 
 load("map/south_africa_coast_hi_res.Rdata")
 
+total_mean_water <- rbind(p_RK4_mean, Min_Kfloat_H100_W00_mean, Mean_Kfloat_H100_W00_mean, Max_Kfloat_H100_W00_mean)
+total_mean_ww <- rbind(p_RK4_mean, Min_Kfloat_H095_W05_mean, Min_Kfloat_H090_W10_mean, Min_Kfloat_H085_W15_mean, Mean_KFloat_H095_W05_mean, Mean_KFloat_H090_W10_mean, Mean_KFloat_H085_W15_mean, Max_Kfloat_H095_W05_mean, Max_Kfloat_H090_W10_mean, Max_Kfloat_H085_W15_mean)
+
+total_mean_water$type <- factor(total_mean_water$type, levels=c("1", "2", "6", "10"))
+total_mean_ww$type <- factor(total_mean_ww$type, levels=c("1", "3", "4", "5", "7", "8", "9", "11", "12", "13"))
+
+
 waterdrag_plot <- ggplot()+
   #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
-  geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'blue')+
-  geom_point(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), shape = 20)+
-  geom_path(data = Mean_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'orange')+
-  geom_path(data = Max_Kfloat_H100_W00_mean, aes(x = lon, y = lat), color = 'red')+
+  geom_path(data = total_mean_water, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
+  scale_colour_discrete("Type") +  
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot <- ggplot()+
   #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
-  geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = Min_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'grey')+
-  geom_path(data = Min_Kfloat_H090_W10_mean, aes(x = lon, y = lat), color = 'green')+
-  geom_path(data = Min_Kfloat_H085_W15_mean, aes(x = lon, y = lat), color = 'pink')+
-  geom_path(data = Mean_KFloat_H095_W05_mean, aes(x = lon, y = lat), color = 'yellow')+
-  geom_path(data = Mean_KFloat_H090_W10_mean, aes(x = lon, y = lat), color = 'orange')+
-  geom_path(data = Mean_KFloat_H085_W15_mean, aes(x = lon, y = lat), color = 'red')+
-  geom_path(data = Max_Kfloat_H095_W05_mean, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = Max_Kfloat_H090_W10_mean, aes(x = lon, y = lat), color = 'orange')+
-  geom_path(data = Max_Kfloat_H085_W15_mean, aes(x = lon, y = lat), color = 'red')+
+  geom_path(data = total_mean_ww, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
+  scale_colour_discrete("Type") +  
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag. In plot A, the black line represents simulation 1, the blue line 2, the orange line 6 and the red line 10. In plot B, the black line represents simulation 1, the grey line simulation 3, the green 4, the pink 5, the yellow 7, orange 8, red 9, blue 11, bronze 12, and cherry 13. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
-ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO")
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+
+ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO", ncol = 1, nrow = 2)
+
 ```
 
 ## Comparison of density distributions
@@ -405,7 +416,7 @@ heatmap_RK4 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -421,7 +432,7 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient",limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient",limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -437,7 +448,7 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient",limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient",limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -453,7 +464,7 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient",limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient",limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -469,7 +480,7 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -485,7 +496,7 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -499,7 +510,7 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -514,7 +525,7 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -529,7 +540,7 @@ heatmap_Mean_KFloat_H085_W15 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -544,7 +555,7 @@ heatmap_Max_KFloat_H100_W00 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -559,7 +570,7 @@ heatmap_Max_KFloat_H095_W05 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -575,7 +586,7 @@ heatmap_Max_KFloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -590,7 +601,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -600,7 +611,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles was calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
 figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
 
