@@ -48,7 +48,7 @@ Past research points to macroalgae trajectory being largely determined by prevai
 
 To accurately determine the trajectory of marine macroalgae, water and wind drag need to be taken into account. Past research by @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work does not consider biological material such as macroalgae. Although drag estimates do exist, these have been applied for macroalgae not detached from the substratum and are regarded as fixed-point estimates. Although various approaches have been used in the past to investigate floating macroalgal trajectories, very few studies have employed the use of Langrangian trajectory modeling. Furthermore, none of the existing studies using this modeling approach have considered macroalgal morphology cross-sectional area (*i.e.* shape) as an aspect of drag and ultimately trajectory. Studies by @brooks2019, @putman2018, and @putman2020 used Lagrangian approaches to investigate the effects of inertia, raft-size, and windage on macroalgae trajectory. @brooks2019 used a custom growth model to estimate changes in biomass and ultimately radial size, while a customised Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. The results showed that the trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. Other work by @putman2020 investigated the effect of including windage in macroalgae trajectory simulations. The authors showed that including *ad hoc* windage factors greatly improved accuracy regarding entrainment or expulsion from eddies when compared to tracked *Sargassum* mats in the ocean. Langrangian trajectory modeling is clearly; useful tool, however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement, however this approach does not consider the complex morphology on an individual level into account.
 
-Past studies have focused on kelp-rafts, not solitary floating kelp, and therefore are not able to investigate the role of eddies and vortices in the accumulation of individual kelp plants at the surface. Gyres, eddies and converging surface currents have been identified as important in the accumulation and dispersal of plastics and other marine debris [@onink2019; @dasaro2018; @brach2018]. Past studies investigating the dispersal of marine debris have also included the possible effects of inertia in accumulation of ocean drifter instruments in mesoscale features. For example, a study by @beron2016 used a modeling approach to investigated the role of Eckman transport and inertia to explain the observed behavior of undrogued drifters in the ocean gyres. Undrogued drifter trajectory is affected by wind unlike the drogue counter parts which makes the effects of wind negligible. The results showed that the combined effect inertia, not Eckman transport, played a significant role in the observed drifter behavior [@beron2016]. The authors also noted that the presence of other flotsam along with the undrogued drifters in ocean gyres also suggests that aspects inertia also play a role in accumulation of other marine debris [@beron2016]. The approach by @beron2016 has also been improved upon by @beron2019 but also shows the significant role of inertia in flotsam trajectory and accumulation. 
+Past studies have focused on kelp-rafts, not solitary floating kelp, and therefore are not able to investigate the role of eddies and vortices in the accumulation of individual kelp plants at the surface. Gyres, eddies, and converging surface currents have been identified as important in the accumulation and dispersal of plastics and other marine debris [@onink2019; @dasaro2018; @brach2018]. Past studies investigating the dispersal of marine debris have also included the possible effects of inertia in accumulation of ocean drifter instruments in mesoscale features. For example, a study by @beron2016 used a modeling approach to investigated the role of Eckman transport and inertia to explain the observed behavior of undrogued drifters in the ocean gyres. Undrogued drifter trajectory is affected by wind unlike the drogue counter parts which makes the effects of wind negligible. The results showed that the combined effect inertia, not Eckman transport, played a significant role in the observed drifter behavior [@beron2016]. The authors also noted that the presence of other flotsam along with the undrogued drifters in ocean gyres also suggests that aspects inertia also play a role in accumulation of other marine debris [@beron2016]. The approach by @beron2016 has also been improved upon by @beron2019 but also shows the significant role of inertia in flotsam trajectory and accumulation. 
 
 In this study, a numerical approach is used to shed light on the role of hydrodynamic and direct wind drag on macroalgal drift trajectory using Lagrangian based trajectory simulations. We aim to shed light on the 'behaviour' of surface drifting macroalgae from a coastal environment into the open ocean, which will inform future characterisation studies. We will achieve this by comparing the trajectory outputs of virtual passive particles (no drag characteristics added) with kelp particles (drag characteristics added) of varying degrees of hydrodynamic and wind drag exposure. The different degrees of wave and wind exposure are meant to reflect the different buoyancy characteristics, as well as identify the role of magnitude of the drag components on overall trajectory. The modeling of single kelp offers the opportunity to study the role of eddies and vortices in accumulation points on the surface. 
 
@@ -85,7 +85,7 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 ## Simulations
 
-Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. The time period chosen to run the simulations was 01-01-2018 un 30-01-2018. This particular time period was chosen as the splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity [@rubio2009; @veitch2018; @ragoasha2019]. A summary of the parameters for each simulation are provided in table 1.
+Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. The time period chosen to run the simulations was 01-01-2018 un 30-01-2018. This particular time period was chosen as the splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity [@rubio2009; @veitch2018; @ragoasha2019]. Additional simulations were done for months in 2018, which were chosen based on seasonality. These simulations had the same parameters used for January and were performed for April (Autumn), July (winter), and October (Spring) in order to assess if any patterns seen in January translate into general patterns for times periods throughout 2018. A summary of the parameters for each simulation are provided in table 1.
 
 ```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -103,14 +103,12 @@ sim_table
 
 ```
 
-To determine if vortices and eddies play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations these simulation released a particle every hour. These were run over the same time period for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme and incorporated Brownian motion. In order to determine if the shape co-efficient used plays a role in model used, a simulation of a kelp with the maximum surface area and drag exposure was run using the shape coefficient for a cylinder to compare to a simulation using a sphere, and was run for 30 days using a fourth order Runge-Kutte advection scheme with brownian motion and a particle set of size 1000. 
-
-Additional simulations were done for months in 2018, which were chosen based on seasonality. These simulations had the same parameters used for January and were performed for April (Autumn), July (winter), and October (Spring) in order to assess if any patterns seen in January translate into general patterns for times periods throughout 2018. 
+To determine if vortices and eddies play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations these simulation released a particle every hour over the same time periods. In order to determine if the shape co-efficient used plays a role in model used, a simulation of a kelp with the maximum surface area and drag exposure was run using the shape coefficient for a cylinder to compare to a simulation using a sphere, and was run for 30 days using a fourth order Runge-Kutte advection scheme with brownian motion and a particle set of size 1000. 
 
 ## Model inputs
 ### Ocean and wind model
 
-Both passive and kelp particles were simulated around the South African coastline within hind-cast outputs from the Copernicus Marine Environment Monitoring Service (Copernicus, http://marine.copernicus.com). The Copernicus model is based on the modelling framework known as Nucleus for European Modelling of the ocean. The Copernicus outputs used in this study contains 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model is forcedhas a spatial resolution of 0.08$^\circ$ and is interpolated on an Arakawa C native grid. In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (Global Ocean Wind L4_NRT_012_004). The outputs from the model is composed of 6-hourly averaged fields of surface 10m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Both averaged ocean current and wind data are stored as meridional and zonal velocity vectors. 
+Both passive and kelp particles were simulated around the South African coastline within hindcast outputs from the Copernicus Marine Environment Monitoring Service (Copernicus, http://marine.copernicus.com). The Copernicus model is based on the modelling framework known as Nucleus for European Modelling of the ocean. The Copernicus outputs used in this study contain 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 0.08$^\circ$ and is interpolated on an Arakawa C native grid. In order to incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (Global Ocean Wind L4_NRT_012_004). The outputs from the model are composed of 6-hourly averaged fields of surface 10 m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Averaged ocean current and wind data are stored as meridional and zonal velocity vectors. 
 
 ### Hydrodynamic and wind drag
 
@@ -118,9 +116,9 @@ The drag coefficient for a spherical particle was used in the calculation of hyd
 
 ### Cross-sectional area
 
-To incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant. For details please refer to figure 2. The dimensional data needed were estimated in cases where data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent; the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
+To incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant. For details refer to figure 2. The dimensional data needed were estimated in cases where data was not available for that particular morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent; the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
 
-```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Diagram of the *E.maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic."}
+```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Diagram of the *E. maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic."}
 
 kelp_shape_figure <- rasterGrob(as.raster(readPNG("figures/chapter_3/chp3_shapedrawing.png")))
 ggarrange(kelp_shape_figure)
@@ -172,7 +170,7 @@ area_table <- align(x= area_table, align = "center", part = "all")
 area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
 area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
 area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
-area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulation. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
+area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulations. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
 area_table
 ```
 ## Analysis
@@ -355,11 +353,530 @@ Max_Kfloat_H085_W15_mean$type <- "13" # add extra column 'type' to dataframe and
 
 total_data <- rbind(Min_Kfloat_H100_W00 , Min_Kfloat_H095_W05, Min_Kfloat_H090_W10, Min_Kfloat_H085_W15, Mean_Kfloat_H100_W00, Mean_KFloat_H095_W05, Mean_KFloat_H090_W10, Mean_KFloat_H085_W15, Max_Kfloat_H100_W00, Max_Kfloat_H095_W05, Max_Kfloat_H090_W10, Max_Kfloat_H085_W15)
 
+## April
+
+p_RK4_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/RK4_PFloat_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+p_RK4_mean_April <- p_RK4_April %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+p_RK4_April$type <- "RK4_April" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_mean_April$type <- "17" # add extra column 'type' to dataframe and assigned 'RK4' label
+
+
+Min_Kfloat_H100_W00_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H100_W00_mean_April <- Min_Kfloat_H100_W00_April %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H100_W00_April$type <- "Min_Kfloat_H100_W00_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00_April$velocity <- with(Min_Kfloat_H100_W00_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H100_W00_mean_April$type <- "18" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H095_W05_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H095_W05_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H095_W05_mean_April <- Min_Kfloat_H095_W05_April %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H095_W05_April$type <- "Min_Kfloat_H095_W05_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05_April$velocity <- with(Min_Kfloat_H095_W05_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H095_W05_mean_April$type <- "19" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H090_W10_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H090_W10_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H090_W10_mean_April <- Min_Kfloat_H090_W10_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H090_W10_April$type <- "Min_Kfloat_H090_W10_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10_April$velocity <- with(Min_Kfloat_H090_W10_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H090_W10_mean_April$type <- "20" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H085_W15_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H085_W15_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H085_W15_mean_April <- Min_Kfloat_H085_W15_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H085_W15_April$type <- "Min_Kfloat_H085_W15_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15_April$velocity <- with(Min_Kfloat_H085_W15_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H085_W15_mean_April$type <- "21" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_Kfloat_H100_W00_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H100_W00_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_Kfloat_H100_W00_mean_April <- Mean_Kfloat_H100_W00_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_Kfloat_H100_W00_April$type <- "Mean_Kfloat_H100_W00_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00_April$velocity <- with(Mean_Kfloat_H100_W00_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_Kfloat_H100_W00_mean_April$type <- "22" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H095_W05_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H095_W05_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H095_W05_mean_April <- Mean_KFloat_H095_W05_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H095_W05_April$type <- "Mean_KFloat_H095_W05_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05_April$velocity <- with(Mean_KFloat_H095_W05_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H095_W05_mean_April$type <- "23" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H090_W10_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H090_W10_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H090_W10_mean_April <- Mean_KFloat_H090_W10_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H090_W10_April$type <- "Mean_KFloat_H090_W10_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10_April$velocity <- with(Mean_KFloat_H090_W10_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H090_W10_mean_April$type <- "24" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H085_W15_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H085_W15_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H085_W15_mean_April <- Mean_KFloat_H085_W15_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE)) 
+
+Mean_KFloat_H085_W15_April$type <- "Mean_KFloat_H085_W15_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15_April$velocity <- with(Mean_KFloat_H085_W15_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H085_W15_mean_April$type <- "25" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H100_W00_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H100_W00_mean_April <- Max_Kfloat_H100_W00_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H100_W00_April$type <- "Max_KFloat_H100_W00_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00_April$velocity <- with(Max_Kfloat_H100_W00_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H100_W00_mean_April$type <- "26" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H095_W05_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H095_W05_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H095_W05_mean_April <- Max_Kfloat_H095_W05_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H095_W05_April$type <- "Max_KFloat_H095_W05_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05_April$velocity <- with(Max_Kfloat_H095_W05_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H095_W05_mean_April$type <- "27" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H090_W10_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H090_W10_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H090_W10_mean_April <- Max_Kfloat_H090_W10_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H090_W10_April$type <- "Max_KFloat_H090_W10_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10_April$velocity <- with(Max_Kfloat_H090_W10_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H090_W10_mean_April$type <- "28" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H085_W15_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H085_W15_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H085_W15_mean_April <- Max_Kfloat_H085_W15_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H085_W15_April$type <- "Max_KFloat_H085_W15_April" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15_April$velocity <- with(Max_Kfloat_H085_W15_April, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H085_W15_mean_April$type <- "29" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+total_data_April <- rbind(Min_Kfloat_H100_W00_April, Min_Kfloat_H095_W05_April, Min_Kfloat_H090_W10_April, Min_Kfloat_H085_W15_April, Mean_Kfloat_H100_W00_April, Mean_KFloat_H095_W05_April, Mean_KFloat_H090_W10_April, Mean_KFloat_H085_W15_April, Max_Kfloat_H100_W00_April, Max_Kfloat_H095_W05_April, Max_Kfloat_H090_W10_April, Max_Kfloat_H085_W15_April)
+
+## July
+
+p_RK4_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/RK4_PFloat_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+p_RK4_mean_July <- p_RK4_July %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+p_RK4_July$type <- "RK4_July" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_mean_July$type <- "30" # add extra column 'type' to dataframe and assigned 'RK4' label
+
+Min_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H100_W00_mean_July <- Min_Kfloat_H100_W00_July %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H100_W00_July$type <- "Min_Kfloat_H100_W00_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00_July$velocity <- with(Min_Kfloat_H100_W00_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H100_W00_mean_July$type <- "31" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H095_W05_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H095_W05_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H095_W05_mean_July <- Min_Kfloat_H095_W05_July %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H095_W05_July$type <- "Min_Kfloat_H095_W05_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05_July$velocity <- with(Min_Kfloat_H095_W05_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H095_W05_mean_July$type <- "32" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H090_W10_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H090_W10_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H090_W10_mean_July <- Min_Kfloat_H090_W10_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H090_W10_July$type <- "Min_Kfloat_H090_W10_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10_July$velocity <- with(Min_Kfloat_H090_W10_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H090_W10_mean_July$type <- "33" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H085_W15_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H085_W15_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H085_W15_mean_July <- Min_Kfloat_H085_W15_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H085_W15_July$type <- "Min_Kfloat_H085_W15_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15_July$velocity <- with(Min_Kfloat_H085_W15_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H085_W15_mean_July$type <- "34" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H100_W00_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_Kfloat_H100_W00_mean_July <- Mean_Kfloat_H100_W00_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_Kfloat_H100_W00_July$type <- "Mean_Kfloat_H100_W00_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00_July$velocity <- with(Mean_Kfloat_H100_W00_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_Kfloat_H100_W00_mean_July$type <- "35" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H095_W05_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H095_W05_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H095_W05_mean_July <- Mean_KFloat_H095_W05_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H095_W05_July$type <- "Mean_KFloat_H095_W05_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05_July$velocity <- with(Mean_KFloat_H095_W05_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H095_W05_mean_July$type <- "36" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H090_W10_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H090_W10_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H090_W10_mean_July <- Mean_KFloat_H090_W10_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H090_W10_July$type <- "Mean_KFloat_H090_W10_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10_July$velocity <- with(Mean_KFloat_H090_W10_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H090_W10_mean_July$type <- "37" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H085_W15_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H085_W15_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H085_W15_mean_July <- Mean_KFloat_H085_W15_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE)) 
+
+Mean_KFloat_H085_W15_July$type <- "Mean_KFloat_H085_W15_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15_July$velocity <- with(Mean_KFloat_H085_W15_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H085_W15_mean_July$type <- "38" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H100_W00_mean_July <- Max_Kfloat_H100_W00_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H100_W00_July$type <- "Max_KFloat_H100_W00_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00_July$velocity <- with(Max_Kfloat_H100_W00_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H100_W00_mean_July$type <- "39" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H095_W05_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H095_W05_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H095_W05_mean_July <- Max_Kfloat_H095_W05_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H095_W05_July$type <- "Max_KFloat_H095_W05_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05_July$velocity <- with(Max_Kfloat_H095_W05_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H095_W05_mean_July$type <- "40" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H090_W10_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H090_W10_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H090_W10_mean_July <- Max_Kfloat_H090_W10_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H090_W10_July$type <- "Max_KFloat_H090_W10_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10_July$velocity <- with(Max_Kfloat_H090_W10_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H090_W10_mean_July$type <- "41" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H085_W15_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H085_W15_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H085_W15_mean_July <- Max_Kfloat_H085_W15_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H085_W15_July$type <- "Max_KFloat_H085_W15_July" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15_July$velocity <- with(Max_Kfloat_H085_W15_July, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H085_W15_mean_July$type <- "42" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+total_data_July <- rbind(Min_Kfloat_H100_W00_July, Min_Kfloat_H095_W05_July, Min_Kfloat_H090_W10_July, Min_Kfloat_H085_W15_July, Mean_Kfloat_H100_W00_July, Mean_KFloat_H095_W05_July, Mean_KFloat_H090_W10_July, Mean_KFloat_H085_W15_July, Max_Kfloat_H100_W00_July, Max_Kfloat_H095_W05_July, Max_Kfloat_H090_W10_July, Max_Kfloat_H085_W15_July)
+
+## October
+
+p_RK4_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/RK4_PFloat_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+p_RK4_mean_Oct <- p_RK4_Oct %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+p_RK4_Oct$type <- "RK4_Oct" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_mean_Oct$type <- "43" # add extra column 'type' to dataframe and assigned 'RK4' label
+
+Min_Kfloat_H100_W00_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H100_W00_mean_Oct <- Min_Kfloat_H100_W00_Oct %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H100_W00_Oct$type <- "Min_Kfloat_H100_W00_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00_Oct$velocity <- with(Min_Kfloat_H100_W00_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H100_W00_mean_Oct$type <- "44" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H095_W05_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H095_W05_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H095_W05_mean_Oct <- Min_Kfloat_H095_W05_Oct %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H095_W05_Oct$type <- "Min_Kfloat_H095_W05_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05_Oct$velocity <- with(Min_Kfloat_H095_W05_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H095_W05_mean_Oct$type <- "45" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H090_W10_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H090_W10_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H090_W10_mean_Oct <- Min_Kfloat_H090_W10_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H090_W10_Oct$type <- "Min_Kfloat_H090_W10_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10_Oct$velocity <- with(Min_Kfloat_H090_W10_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H090_W10_mean_Oct$type <- "46" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Min_Kfloat_H085_W15_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H085_W15_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Min_Kfloat_H085_W15_mean_Oct <- Min_Kfloat_H085_W15_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Min_Kfloat_H085_W15_Oct$type <- "Min_Kfloat_H085_W15_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15_Oct$velocity <- with(Min_Kfloat_H085_W15_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Min_Kfloat_H085_W15_mean_Oct$type <- "47" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_Kfloat_H100_W00_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H100_W00_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_Kfloat_H100_W00_mean_Oct <- Mean_Kfloat_H100_W00_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_Kfloat_H100_W00_Oct$type <- "Mean_Kfloat_H100_W00_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00_Oct$velocity <- with(Mean_Kfloat_H100_W00_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_Kfloat_H100_W00_mean_Oct$type <- "48" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H095_W05_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H095_W05_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H095_W05_mean_Oct <- Mean_KFloat_H095_W05_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H095_W05_Oct$type <- "Mean_KFloat_H095_W05_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05_Oct$velocity <- with(Mean_KFloat_H095_W05_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H095_W05_mean_Oct$type <- "49" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H090_W10_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H090_W10_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H090_W10_mean_Oct <- Mean_KFloat_H090_W10_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Mean_KFloat_H090_W10_Oct$type <- "Mean_KFloat_H090_W10_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10_Oct$velocity <- with(Mean_KFloat_H090_W10_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H090_W10_mean_Oct$type <- "50" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Mean_KFloat_H085_W15_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H085_W15_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Mean_KFloat_H085_W15_mean_Oct <- Mean_KFloat_H085_W15_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE)) 
+
+Mean_KFloat_H085_W15_Oct$type <- "Mean_KFloat_H085_W15_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15_Oct$velocity <- with(Mean_KFloat_H085_W15_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Mean_KFloat_H085_W15_mean_Oct$type <- "51" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H100_W00_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H100_W00_mean_Oct <- Max_Kfloat_H100_W00_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H100_W00_Oct$type <- "Max_KFloat_H100_W00_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00_Oct$velocity <- with(Max_Kfloat_H100_W00_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H100_W00_mean_Oct$type <- "52" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H095_W05_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H095_W05_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H095_W05_mean_Oct <- Max_Kfloat_H095_W05_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H095_W05_Oct$type <- "Max_KFloat_H095_W05_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05_Oct$velocity <- with(Max_Kfloat_H095_W05_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H095_W05_mean_Oct$type <- "53" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H090_W10_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H090_W10_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H090_W10_mean_Oct <- Max_Kfloat_H090_W10_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H090_W10_Oct$type <- "Max_KFloat_H090_W10_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10_Oct$velocity <- with(Max_Kfloat_H090_W10_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H090_W10_mean_Oct$type <- "54" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+Max_Kfloat_H085_W15_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H085_W15_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+Max_Kfloat_H085_W15_mean_Oct <- Max_Kfloat_H085_W15_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+Max_Kfloat_H085_W15_Oct$type <- "Max_KFloat_H085_W15_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15_Oct$velocity <- with(Max_Kfloat_H085_W15_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
+Max_Kfloat_H085_W15_mean_Oct$type <- "55" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+total_data_Oct <- rbind(Min_Kfloat_H100_W00_Oct, Min_Kfloat_H095_W05_Oct, Min_Kfloat_H090_W10_Oct, Min_Kfloat_H085_W15_Oct, Mean_Kfloat_H100_W00_Oct, Mean_KFloat_H095_W05_Oct, Mean_KFloat_H090_W10_Oct, Mean_KFloat_H085_W15_Oct, Max_Kfloat_H100_W00_Oct, Max_Kfloat_H095_W05_Oct, Max_Kfloat_H090_W10_Oct, Max_Kfloat_H085_W15_Oct)
+
 ```
 
 ## Trajectory comparison
 
-The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles (Figure 2A). When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen; rather, there is only a slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation (Figure 2B). The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well the final location of the kelp particles being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction. The patterns of north-westward flow and entrainment in eddies is also evident in the additional simulations, however clear differences in mean trajectory between kelp and passive particles is clear (see appendix).
+The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles (Figure 2A). When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen; rather, there is only a slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation (Figure 2B). The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well the final location of the kelp particles being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction.
+
+The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag travelled further northward compared to the passive particles (see Figure 7A-B). The mean trajectories of kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag flowed further north-westward compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles travelled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles were also evident in the July (winter) simulations (see Figure 7C-D). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially flowed in a southerly direction and then flowed westward offshore; resulting in entrainment within an eddy. Similar behaviour is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles travelled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (see Figure 7E-F). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag ended a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles; with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy. 
 
 ```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
 
@@ -392,17 +909,100 @@ wwdrag_plot <- ggplot()+
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
+total_mean_water_April <- rbind(p_RK4_mean_April, Min_Kfloat_H100_W00_mean_April, Mean_Kfloat_H100_W00_mean_April, Max_Kfloat_H100_W00_mean_April)
+total_mean_ww_April <- rbind(p_RK4_mean_April, Min_Kfloat_H095_W05_mean_April, Min_Kfloat_H090_W10_mean_April, Min_Kfloat_H085_W15_mean_April, Mean_KFloat_H095_W05_mean_April, Mean_KFloat_H090_W10_mean_April, Mean_KFloat_H085_W15_mean_April, Max_Kfloat_H095_W05_mean_April, Max_Kfloat_H090_W10_mean_April, Max_Kfloat_H085_W15_mean_April)
+
+total_mean_water_April$type <- factor(total_mean_water_April$type, levels=c("17", "18", "22", "26"))
+total_mean_ww_April$type <- factor(total_mean_ww_April$type, levels=c("17", "19", "20", "21", "23", "24", "25", "27", "28", "29"))
+
+
+waterdrag_plot_April <- ggplot()+
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_mean_water_April, aes(x = lon, y = lat, colour = type))+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  scale_colour_discrete("Type") +  
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+
+wwdrag_plot_April <- ggplot()+
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_mean_ww_April, aes(x = lon, y = lat, colour = type))+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  scale_colour_discrete("Type") +  
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+
+total_mean_water_July <- rbind(p_RK4_mean_July, Min_Kfloat_H100_W00_mean_July, Mean_Kfloat_H100_W00_mean_July, Max_Kfloat_H100_W00_mean_July)
+total_mean_ww_July <- rbind(p_RK4_mean_July, Min_Kfloat_H095_W05_mean_July, Min_Kfloat_H090_W10_mean_July, Min_Kfloat_H085_W15_mean_July, Mean_KFloat_H095_W05_mean_July, Mean_KFloat_H090_W10_mean_July, Mean_KFloat_H085_W15_mean_July, Max_Kfloat_H095_W05_mean_July, Max_Kfloat_H090_W10_mean_July, Max_Kfloat_H085_W15_mean_July)
+
+total_mean_water_July$type <- factor(total_mean_water_July$type, levels=c("30", "31", "35", "39"))
+total_mean_ww_July$type <- factor(total_mean_ww_July$type, levels=c("30", "32", "33", "34", "36", "37", "38", "40", "41", "42"))
+
+
+waterdrag_plot_July <- ggplot()+
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_mean_water_July, aes(x = lon, y = lat, colour = type))+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  scale_colour_discrete("Type") +  
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+
+wwdrag_plot_July <- ggplot()+
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_mean_ww_July, aes(x = lon, y = lat, colour = type))+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  scale_colour_discrete("Type") +  
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+
+total_mean_water_Oct <- rbind(p_RK4_mean_Oct, Min_Kfloat_H100_W00_mean_Oct, Mean_Kfloat_H100_W00_mean_Oct, Max_Kfloat_H100_W00_mean_Oct)
+total_mean_ww_Oct <- rbind(p_RK4_mean_Oct, Min_Kfloat_H095_W05_mean_Oct, Min_Kfloat_H090_W10_mean_Oct, Min_Kfloat_H085_W15_mean_Oct, Mean_KFloat_H095_W05_mean_Oct, Mean_KFloat_H090_W10_mean_Oct, Mean_KFloat_H085_W15_mean_Oct, Max_Kfloat_H095_W05_mean_Oct, Max_Kfloat_H090_W10_mean_Oct, Max_Kfloat_H085_W15_mean_Oct)
+
+total_mean_water_Oct$type <- factor(total_mean_water_Oct$type, levels=c("43", "44", "48", "52"))
+total_mean_ww_Oct$type <- factor(total_mean_ww_Oct$type, levels=c("43", "45", "46", "47", "49", "50", "51", "53", "54", "55"))
+
+
+waterdrag_plot_Oct <- ggplot()+
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_mean_water_Oct, aes(x = lon, y = lat, colour = type))+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  scale_colour_discrete("Type") +  
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+
+wwdrag_plot_Oct <- ggplot()+
+  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_path(data = total_mean_ww_Oct, aes(x = lon, y = lat, colour = type))+
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  scale_colour_discrete("Type") +  
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Comparison of mean trajectories. Plot A is the comparison of mean trajectories for only hydrodynamic drag and plot B is the comparison of mean trajectories for simulations with varying degrees of hydrodynamic and wind drag. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
-ggarrange(waterdrag_plot, wwdrag_plot, labels = "AUTO", ncol = 1, nrow = 2)
+ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, labels = "AUTO", ncol = 2, nrow = 4)
 
 ```
 
 ## Comparison of density distributions
 
 Across all simulations particles flowed in a north-westward direction (Figure 3). The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has an almost even density of particles across grids (Figure 3A, 3E, 3I). In addition the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticity while particles in the passive simulation deflected away (Figure 3). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
+
+In April and across all simulations, particles flowed in a north-westward direction (see Figure 8). The density plots that considered any form of drag showed narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulations that considered any form of drag got entrained within an eddy further north-westward from the end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. Simulations for July showed that the flow was also north-westward, but all kelp particles across cross-sectional areas and drag scenarios show high density of particles entrained in a eddy located westward of the release site compared to passive particles (see Figure 9). Variation in density along the mean trajectory and eddy for all kelp particles is evident. Kelp particles with only hydrodynamic drag across cross-sectional areas showed lower density of particles along the mean trajectory compared to kelp particles with both wind and hydrodynamic drag. October simulations showed no differences in density of particles along the mean trajectory when comparing passive and kelp particles. Only slight variations in density and trajectory can be seen with no entrainment (see Figure 10). Kelp particles with any cross-sectional area and drag exposure scenario flowed further offshore when compared to passive particles. 
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -609,6 +1209,592 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
+
+## April
+
+heatmap_RK4_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = p_RK4_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = p_RK4_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H100_W00_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H100_W00_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H100W100") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H095_W05_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H095_W05_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  #ggtitle("H095W05") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H090_W10_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H090W10") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H085_W15_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H085_W15_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H085W15") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_Kfloat_H100_W00_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_path(data = Mean_Kfloat_H100_W00_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H095_W05_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H095_W05_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H090_W10_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H085_W15_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H085_W15_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H100_W00_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00_April , bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H100_W00_mean_April ,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H095_W05_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H095_W05_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H090_W10_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H085_W15_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H085_W15_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## July
+
+heatmap_RK4_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = p_RK4_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = p_RK4_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H100_W00_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H100_W00_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H100W100") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H095_W05_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  #ggtitle("H095W05") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H090_W10_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H090W10") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H085_W15_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H085_W15_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H085W15") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_Kfloat_H100_W00_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_path(data = Mean_Kfloat_H100_W00_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H095_W05_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H090_W10_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H085_W15_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H085_W15_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H100_W00_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00_July , bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H100_W00_mean_July ,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H095_W05_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H090_W10_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H085_W15_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H085_W15_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## October
+
+heatmap_RK4_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = p_RK4_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = p_RK4_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H100_W00_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H100W100") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H095_W05_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  #ggtitle("H095W05") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H090_W10_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H090W10") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Min_Kfloat_H085_W15_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Min_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_path(data = Min_Kfloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  #ggtitle("H085W15") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_Kfloat_H100_W00_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_path(data = Mean_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H095_W05_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H090_W10 <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Mean_KFloat_H085_W15_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Mean_KFloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H100_W00_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H095_W05_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H090_W10_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_path(data = Max_Kfloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
@@ -621,9 +1807,39 @@ ggarrange(figure_b, figure_a, ncol = 1, nrow = 2)
 
 ```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 8: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+
+figure_a_April <- ggarrange(heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April, labels = c("18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
+
+figure_b_April <- ggarrange(heatmap_RK4_April, legend = c("right"), labels = c("17"), font.label = list(size = 11, face = "bold"))
+
+ggarrange(figure_b_April, figure_a_April, ncol = 1, nrow = 2)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 9: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+
+figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
+
+figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"), labels = c("30"), font.label = list(size = 11, face = "bold"))
+
+ggarrange(figure_b_July, figure_a_July, ncol = 1, nrow = 2)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 10: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+
+figure_a_Oct <- ggarrange(heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
+
+figure_b_Oct <- ggarrange(heatmap_RK4_Oct, legend = c("right"), labels = c("43"), font.label = list(size = 11, face = "bold"))
+
+ggarrange(figure_b_Oct, figure_a_Oct, ncol = 1, nrow = 2)
+
+```
+
 ## Comparison of distances 
 
-There were significant differences among the median distances travelled for all particles in each simulation (Figure 4; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled a shorter distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations among simulations. 
+There were significant differences among the median distances travelled for all particles in each simulation (Figure 4; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled a shorter distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations among simulations. When comparing distances between passive and kelp particles for April, significant differences are evident. (Figure 11, simulations 17-29; p < 0.05). Kelp particles with only 90% hydrodynamic and 10% wind drag across cross-sectional areas travelled shorter distance across compared to other kelp particles. The shortest distance travelled was the scenario with the maximum cross-sectional area and drag exposure scenarios. No significant differences are evident for the July simulations, with only slight variation across simulations (see Figure 11, simulations 30-42; p > 0.05). In October, the plot shows significant differences when comparing both passive and kelp particles (see Figure 11, simulations 43-55; p < 0.05). Kelp particles with only 90% hydrodynamic drag across cross-sectional areas travelled shorter distance compared to all other particles. As seen in the April simulations, the kelp particles with the maximum cross-sectional area and drag exposure travelled the shortest distance compared to all other particles.
 
 ```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
 
@@ -665,12 +1881,105 @@ custom_labs <- c("1","2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "
 dis_plot <- dis_plot +
   scale_x_discrete(labels= custom_labs)
   
+pos_April <- c("RK4_April",             
+         "Min_Kfloat_H100_W00_April",
+         "Min_Kfloat_H095_W05_April",
+         "Min_Kfloat_H090_W10_April",
+         "Min_Kfloat_H085_W15_April",
+         "Mean_Kfloat_H100_W00_April",
+         "Mean_Kfloat_H095_W05_April",
+         "Mean_Kfloat_H090_W10_April",
+         "Mean_Kfloat_H085_W15_April",
+         "Max_Kfloat_H100_W00_April",
+         "Max_Kfloat_H095_W05_April",
+         "Max_Kfloat_H090_W10_April",
+         "Max_Kfloat_H085_W15_April")
+
+dis_plot_April <- ggplot(data = total_data_April, aes(x = type, y = distance, show.legend = FALSE))+
+  geom_boxplot(data = p_RK4_April, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(limits = pos)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Scenario")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+custom_labs_April <- c("17","18","19","20","21","22","23","24","25","26","27","28", "29") #create custom labels and add them to dis_plot
+
+dis_plot_April <- dis_plot_April +
+  scale_x_discrete(labels= custom_labs_April)
+
+pos_July <- c("RK4_July",             
+         "Min_Kfloat_H100_W00_July",
+         "Min_Kfloat_H095_W05_July",
+         "Min_Kfloat_H090_W10_July",
+         "Min_Kfloat_H085_W15_July",
+         "Mean_Kfloat_H100_W00_July",
+         "Mean_Kfloat_H095_W05_July",
+         "Mean_Kfloat_H090_W10_July",
+         "Mean_Kfloat_H085_W15_July",
+         "Max_Kfloat_H100_W00_July",
+         "Max_Kfloat_H095_W05_July",
+         "Max_Kfloat_H090_W10_July",
+         "Max_Kfloat_H085_W15_July")
+
+dis_plot_July <- ggplot(data = total_data_July, aes(x = type, y = distance, show.legend = FALSE))+
+  geom_boxplot(data = p_RK4_July, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(limits = pos)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Scenario")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+custom_labs_July <- c("30","31","32","33","34","35","36","37","38","39","40","41", "42") #create custom labels and add them to dis_plot
+
+dis_plot_July <- dis_plot_July +
+  scale_x_discrete(labels= custom_labs_July)
+
+pos_Oct <- c("RK4_Oct",              
+         "Min_Kfloat_H100_W00_Oct",
+         "Min_Kfloat_H095_W05_Oct",
+         "Min_Kfloat_H090_W10_Oct",
+         "Min_Kfloat_H085_W15_Oct",
+         "Mean_Kfloat_H100_W00_Oct",
+         "Mean_Kfloat_H095_W05_Oct",
+         "Mean_Kfloat_H090_W10_Oct",
+         "Mean_Kfloat_H085_W15_Oct",
+         "Max_Kfloat_H100_W00_Oct",
+         "Max_Kfloat_H095_W05_Oct",
+         "Max_Kfloat_H090_W10_Oct",
+         "Max_Kfloat_H085_W15_Oct")
+
+dis_plot_Oct <- ggplot(data = total_data_Oct, aes(x = type, y = distance, show.legend = FALSE))+
+  geom_boxplot(data = p_RK4_Oct, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(limits = pos)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Scenario")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+custom_labs_Oct <- c("43","44","45","46","47","48","49","50","51","52","53","54","55") #create custom labels and add them to dis_plot
+
+dis_plot_Oct <- dis_plot_Oct +
+  scale_x_discrete(labels= custom_labs_Oct)
 
 ```
 
 ```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 4: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for scenarios 1 - 13, for January 2018 (summer). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
-dis_plot
+ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 3)
+
 ggsave(filename = "figure_4.jpg", plot = last_plot(), device = "jpeg", path = "figures/chapter_3/", width = 8, height = 5, dpi = 600)
 
 ```
