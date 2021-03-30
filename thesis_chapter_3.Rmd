@@ -98,7 +98,7 @@ sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "t
 sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Drag.Exposure = "Drag Exposure level")
 sim_table <- align(x= sim_table, align = "center", part = "all")
 sim_table <- set_table_properties(sim_table, width = 1, layout = "autofit")
-sim_table <- set_caption(sim_table, "Table 1: Details for each simulation run for the study. Type refers to either a passive particle with no drag behaviour or a kelp particle that has been advected with any drag exposure. The drag exposure column refers to the parameterisations regarding the level of water and wind drag simulated.")
+sim_table <- set_caption(sim_table, "Details for each simulation run for the study. Type refers to either a passive particle with no drag behaviour or a kelp particle that has been advected with any drag exposure. The drag exposure column refers to the parameterisations regarding the level of water and wind drag simulated. All simulations were run with a Runge-Kutte (4th) advection scheme, Brownian motion, 30 days, and included 1000 particles for a 2018 hindcast.")
 sim_table
 
 ```
