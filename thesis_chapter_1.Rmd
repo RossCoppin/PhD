@@ -5,13 +5,13 @@ author:
 - C Rautenbach^[South African Weather Service]
 - AJ Smit^[University of the Western Cape]
 output:
-  html_document:
-    df_print: paged
-    theme: simplex
-    toc: yes
   word_document:
     fig_caption: yes
     reference_docx: markdown/thesis_template.docx
+    toc: yes
+  html_document:
+    df_print: paged
+    theme: simplex
     toc: yes
   pdf_document:
     toc: yes
@@ -178,20 +178,7 @@ This module is a multi-dimensional hydrodynamic/transport simulation program whi
 
 ## Surface currents
 
-
-
-
-
-
-
-
-
-
-
-
 # Trajectory model
-
-
 
 # Drifting aspects of floating objects
 
