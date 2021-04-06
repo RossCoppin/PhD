@@ -1988,6 +1988,8 @@ ggsave(filename = "figure_7.jpg", plot = last_plot(), device = "jpeg", path = "f
 
 ```{r message=FALSE, echo=FALSE, warning=FALSE}
 
+# January
+
 kelp_acc <- tidync("OceanParcels/trajectory_data/chap3_kelpsim_acc.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
@@ -2014,11 +2016,125 @@ pass_acc$type <- "Passive" # add extra column 'type' to dataframe and assigned '
 pass_acc_mean$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
 pass_acc$age <- with(pass_acc, age/3600)
 
-total_acc_data <- rbind(pass_acc, kelp_acc)
-total_acc_mean <- rbind(pass_acc_mean, kelp_acc_mean)
-
 mean_traj_acc <- ggplot() +
   geom_path(data = total_acc_mean, aes(x = lon, y = lat, colour = type)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+
+# April
+
+kelp_acc_April <- tidync("OceanParcels/trajectory_data/chap3_kelpsim_acc_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+kelp_acc_mean_April <- kelp_acc_April %>% #calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+kelp_acc_April$type <- "Kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
+kelp_acc_mean_April$type <- "Kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
+kelp_acc_April$age <- with(kelp_acc_April, age/3600)
+
+pass_acc_April <- tidync("OceanParcels/trajectory_data/chap3_passivesim_acc_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+pass_acc_mean_April <- pass_acc_April %>% #calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+pass_acc_April$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
+pass_acc_mean_April$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
+pass_acc_April$age <- with(pass_acc, age/3600)
+
+total_acc_data_April <- rbind(pass_acc_April, kelp_acc_April)
+total_acc_mean_April <- rbind(pass_acc_mean_April, kelp_acc_mean_April)
+
+mean_traj_acc_April <- ggplot() +
+  geom_path(data = total_acc_mean_April, aes(x = lon, y = lat, colour = type)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+
+# July
+
+kelp_acc_July <- tidync("OceanParcels/trajectory_data/chap3_kelpsim_acc_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+kelp_acc_mean_July <- kelp_acc_July %>% #calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+kelp_acc_July$type <- "Kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
+kelp_acc_mean_July$type <- "Kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
+kelp_acc_July$age <- with(kelp_acc_July, age/3600)
+
+pass_acc_July <- tidync("OceanParcels/trajectory_data/chap3_passivesim_acc_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+pass_acc_mean_July <- pass_acc_July %>% #calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+pass_acc_July$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
+pass_acc_mean_July$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
+pass_acc_July$age <- with(pass_acc_July, age/3600)
+
+total_acc_data_July <- rbind(pass_acc_July, kelp_acc_July)
+total_acc_mean_July <- rbind(pass_acc_mean_July, kelp_acc_mean_July)
+
+mean_traj_acc_July <- ggplot() +
+  geom_path(data = total_acc_mean_July, aes(x = lon, y = lat, colour = type)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+
+# October
+
+kelp_acc_Oct <- tidync("OceanParcels/trajectory_data/chap3_kelpsim_acc_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+kelp_acc_mean_Oct <- kelp_acc_Oct %>% #calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+kelp_acc_Oct$type <- "Kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
+kelp_acc_mean_Oct$type <- "Kelp" # add extra column 'type' to dataframe and assigned 'kelp' label
+kelp_acc_Oct$age <- with(kelp_acc_Oct, age/3600)
+
+pass_acc_Oct <- tidync("OceanParcels/trajectory_data/chap3_passivesim_acc_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+pass_acc_mean_Oct <- pass_acc_Oct %>% #calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+pass_acc_Oct$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
+pass_acc_mean_Oct$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
+pass_acc_Oct$age <- with(pass_acc_Oct, age/3600)
+
+total_acc_data_Oct <- rbind(pass_acc_Oct, kelp_acc_Oct)
+total_acc_mean_Oct <- rbind(pass_acc_mean_Oct, kelp_acc_mean_Oct)
+
+mean_traj_acc_Oct <- ggplot() +
+  geom_path(data = total_acc_mean_Oct, aes(x = lon, y = lat, colour = type)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
@@ -2028,11 +2144,13 @@ mean_traj_acc <- ggplot() +
 ## Coastline of Southern Africa
 load("map/south_africa_coast_hi_res.Rdata")
 
+# January
+
 heatmap_RK4_acc <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   geom_path(data = pass_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2046,7 +2164,7 @@ heatmap_kelp_acc <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   geom_path(data = kelp_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2074,7 +2192,7 @@ point_kelp_acc <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = kelp_acc, aes(x = lon, y = lat, colour = age)) +
-  #scale_fill_continuous(type = "gradient", limits = c(0, 30)) +
+  #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
   ylab("Latitude") +
@@ -2083,6 +2201,181 @@ point_kelp_acc <- ggplot() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
+# April
+
+heatmap_RK4_acc_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = pass_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = pass_acc_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("Passive particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_kelp_acc_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = kelp_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = kelp_acc_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("Kelp particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+point_RK4_acc_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = pass_acc_April, aes(x = lon, y = lat, colour = distance)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+point_kelp_acc_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = kelp_acc_April, aes(x = lon, y = lat, colour = age)) +
+  #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Age")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# July
+
+heatmap_RK4_acc_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = pass_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = pass_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("Passive particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_kelp_acc_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = kelp_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = kelp_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("Kelp particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+point_RK4_acc_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = pass_acc_July, aes(x = lon, y = lat, colour = distance)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+point_kelp_acc_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = kelp_acc_July, aes(x = lon, y = lat, colour = age)) +
+  #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Age")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# October
+
+heatmap_RK4_acc_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = pass_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = pass_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("Passive particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_kelp_acc_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = kelp_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = kelp_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("Kelp particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+point_RK4_acc_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = pass_acc_Oct, aes(x = lon, y = lat, colour = distance)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+point_kelp_acc_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  geom_point(data = kelp_acc_Oct, aes(x = lon, y = lat, colour = age)) +
+  #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Age")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+total_acc_data <- rbind(pass_acc, kelp_acc, pass_acc_April, kelp_acc_April,pass_acc_July, kelp_acc_July,pass_acc_Oct, kelp_acc_Oct)
+total_acc_mean <- rbind(pass_acc_mean, kelp_acc_mean, pass_acc_mean_April, kelp_acc_mean_April, pass_acc_mean_July, kelp_acc_mean_July, pass_acc_mean_Oct, kelp_acc_mean_Oct)
+
+# Distance
 
 dis_plot_acc <- ggplot(data = total_acc_data, aes(x = type, y = distance, show.legend = FALSE)) +
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
@@ -2095,24 +2388,25 @@ dis_plot_acc <- ggplot(data = total_acc_data, aes(x = type, y = distance, show.l
   theme_bw()
   #theme(plot.title = element_text(hjust = 1))
 
-
 ```
 
 ```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of trajectory data between passive and kelp accumulation scenarios. Panel A are a comparison of density plots  and panel B is a comparison of age.", fig.height=8, fig.width=8}
 
-plot_A <- ggarrange(heatmap_RK4_acc, heatmap_kelp_acc, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 1)
-plot_B <- ggarrange(point_RK4_acc, point_kelp_acc, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 1)
-
-ggarrange(plot_A, plot_B, labels = c("AUTO"), ncol = 1, nrow = 2)
-ggsave(filename = "figure_5.jpg", plot = last_plot(), device = "jpeg", path = "figures/chapter_3/", width = 7, height = 7, dpi = 600)
+ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4)
 
 ```
 
-The role of eddies that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 8A). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 8A). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 8B, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
+```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between passive and kelp accumulation scenarios. Panel A are a comparison of density plots  and panel B is a comparison of age.", fig.height=8, fig.width=8}
+
+ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4)
+
+```
+
+The role of eddies that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 8). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 8A). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 9, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
 
 ## Comparison of coefficients
 
-The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (Figure 9A). This was also reflected when comparing distance travelled by particles and particle density plots (Figure 9B). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (Figure 9C-D). 
+The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (Figure 10). This was also reflected when comparing distance travelled by particles and particle density plots (Figure 10). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (Figure 10). 
 
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
 
