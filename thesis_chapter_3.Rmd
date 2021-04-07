@@ -3,12 +3,12 @@ title: 'Numerical experiment investigating the influence of drag on trajectory p
 author: 
 - R Coppin^[University of the Western Cape], C Rautenbach^[National Institute of Water and Atmospheric Research], AJ Smit^[University of the Western Cape]
 output:
-  word_document:
-    reference_docx: markdown/frontiers_template.docx
   html_document:
   pdf_document:
     fig_caption: yes
     latex_engine: xelatex
+  word_document:
+    reference_docx: markdown/frontiers_template.docx
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 abstract: "**Abstract**: Ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalgae are one of the most important natural dispersal vectors, and are regarded as the tumble-weed of the ocean. Despite many studies that exist on the topic, the relative role of wind and surface currents in macroalgae trajectory is still unknown. Past studies focus on kelp-rafts, which can vary greatly in size, making it difficult to form a concensus as to the relative role of wind versus surface currents. In addition, past studies have not considered surface-area in relation to drag characterisics of floating macroalgae which have been shown to play a role in the trajectory and accumulation of other flotsam. Advances in Lagrangian trajectory modeling have been exponential in recent years, and allow the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagal trajectory and accumulation. We did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp 'particles' which incorporate drag with that of purely Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddies within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies, as important surface accumulation zones for solitary floating macroalage."
@@ -17,18 +17,16 @@ abstract: "**Abstract**: Ocean currents act as an important dispersal mechanism 
 ```{r software, message=FALSE, warning=FALSE, include=FALSE}
 ## Load software need for entire script
 
-#library(computeMSD)
 library(ggplot2)
 library(rgdal)
 library(gridExtra)
 library(ggpubr)
-library(ggord)
 library(mapproj)
 library(vegan)
 library(dplyr)
 library(ggpubr)
 library(maps)
-library(flextable)
+#library(flextable)
 library(officer)
 library(tidync)
 library(tidyverse)
@@ -36,7 +34,6 @@ library(hexbin)
 library(lubridate)
 
 ```
-
 
 # Introduction
 
@@ -85,9 +82,11 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 ## Simulations
 
-Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. The time period chosen to run the simulations was 01-01-2018 un 30-01-2018. This particular time period was chosen as the splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity [@rubio2009; @veitch2018; @ragoasha2019]. Additional simulations were done for months in 2018, which were chosen based on seasonality. These simulations had the same parameters used for January and were performed for April (Autumn), July (winter), and October (Spring) in order to assess if any patterns seen in January translate into general patterns for times periods throughout 2018. A summary of the parameters for each simulation are provided in table 1.
+Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. The time period used in all simulations were January (summer), April (Autumn), July (winter), and October (Spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity ; while in winter the Benguela jet begins to stablize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. In order to determine if the shape co-efficient used plays a role in model used, a simulation of a kelp with the maximum surface area and drag exposure was run using the shape coefficient for a cylinder to compare to a simulation using a sphere, and was run for 30 days using a fourth order Runge-Kutte advection scheme with brownian motion and a particle set of size 1000. 
 
-```{r sim table, echo=FALSE, message=FALSE, warning=FALSE}
+To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1.To determine if vortices and eddies play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations these simulation released a particle every hour over the same time periods. 
+
+```{r sim table, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -102,8 +101,6 @@ sim_table <- set_caption(sim_table, "Details for each simulation run for the stu
 sim_table
 
 ```
-
-To determine if vortices and eddies play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations these simulation released a particle every hour over the same time periods. In order to determine if the shape co-efficient used plays a role in model used, a simulation of a kelp with the maximum surface area and drag exposure was run using the shape coefficient for a cylinder to compare to a simulation using a sphere, and was run for 30 days using a fourth order Runge-Kutte advection scheme with brownian motion and a particle set of size 1000. 
 
 ## Model inputs
 ### Ocean and wind model
@@ -159,7 +156,7 @@ eck_stats <- eck_long_df %>%
 
 ```
 
-```{r morphology table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
+```{r morphology table, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=FALSE}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -178,6 +175,10 @@ area_table
 In order to compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@vanSebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particles [@vanSebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@putman2020; @putman2018; @vanSebille2018]. 
 
 # Results
+## Comparison of coefficients
+
+The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (see appendix). This was also reflected when comparing distance travelled by particles and particle density plots (see appendix). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (see appendix). 
+
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -876,7 +877,7 @@ total_data_Oct <- rbind(Min_Kfloat_H100_W00_Oct, Min_Kfloat_H095_W05_Oct, Min_Kf
 
 The mean trajectories of the different cross-sectional areas are similar to the mean trajectory of the passive particles (Figure 2A). When comparing mean trajectories between the different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen; rather, there is only a slight variation. The results from the simulations including different hydrodynamic and wind drag exposures and cross-sectional area types show differences in mean trajectory when compared to the passive simulation (Figure 2B). The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well the final location of the kelp particles being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations particles flowed in a north-westward direction.
 
-The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag travelled further northward compared to the passive particles (see Figure 2C-D). The mean trajectories of kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag flowed further north-westward compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles travelled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles were also evident in the July (winter) simulations (see Figure 2E-F). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially flowed in a southerly direction and then flowed westward offshore; resulting in entrainment within an eddy. Similar behaviour is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles travelled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (see Figure 7F-G). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag ended a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles; with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy. 
+The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag travelled further northward compared to the passive particles (see Figure 2C-D). The mean trajectories of kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag flowed further north-westward compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles travelled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles were also evident in the July (winter) simulations (see Figure 2E-F). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially flowed in a southerly direction and then flowed westward offshore; resulting in entrainment within an eddy. Similar behaviour is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles travelled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (see Figure 7F-G). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag ended a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles; with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy.  
 
 ```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
 
@@ -1016,12 +1017,11 @@ heatmap_RK4 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = p_RK4_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1032,7 +1032,7 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient",limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis",limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1048,7 +1048,7 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient",limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis",limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1064,7 +1064,7 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient",limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis",limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1080,7 +1080,7 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1096,7 +1096,7 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1110,7 +1110,7 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1125,7 +1125,7 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_KFloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1140,7 +1140,7 @@ heatmap_Mean_KFloat_H085_W15 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_KFloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1155,7 +1155,7 @@ heatmap_Max_KFloat_H100_W00 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1170,7 +1170,7 @@ heatmap_Max_KFloat_H095_W05 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1186,7 +1186,7 @@ heatmap_Max_KFloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1201,7 +1201,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1100)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1216,12 +1216,11 @@ heatmap_RK4_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_hex(data = p_RK4_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1231,7 +1230,7 @@ heatmap_Min_Kfloat_H100_W00_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1246,7 +1245,7 @@ heatmap_Min_Kfloat_H095_W05_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1261,7 +1260,7 @@ heatmap_Min_Kfloat_H090_W10_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1276,7 +1275,7 @@ heatmap_Min_Kfloat_H085_W15_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1291,7 +1290,7 @@ heatmap_Mean_Kfloat_H100_W00_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1305,7 +1304,7 @@ heatmap_Mean_KFloat_H095_W05_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_KFloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1320,7 +1319,7 @@ heatmap_Mean_KFloat_H090_W10_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1335,7 +1334,7 @@ heatmap_Mean_KFloat_H085_W15_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1350,7 +1349,7 @@ heatmap_Max_KFloat_H100_W00_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H100_W00_April , bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean_April ,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1365,7 +1364,7 @@ heatmap_Max_KFloat_H095_W05_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1381,7 +1380,7 @@ heatmap_Max_KFloat_H090_W10_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1396,7 +1395,7 @@ heatmap_Max_KFloat_H085_W15_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1411,12 +1410,11 @@ heatmap_RK4_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_hex(data = p_RK4_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1426,7 +1424,7 @@ heatmap_Min_Kfloat_H100_W00_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1441,7 +1439,7 @@ heatmap_Min_Kfloat_H095_W05_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1456,7 +1454,7 @@ heatmap_Min_Kfloat_H090_W10_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1471,7 +1469,7 @@ heatmap_Min_Kfloat_H085_W15_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1486,7 +1484,7 @@ heatmap_Mean_Kfloat_H100_W00_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1500,7 +1498,7 @@ heatmap_Mean_KFloat_H095_W05_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_KFloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1515,7 +1513,7 @@ heatmap_Mean_KFloat_H090_W10_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1530,7 +1528,7 @@ heatmap_Mean_KFloat_H085_W15_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1545,7 +1543,7 @@ heatmap_Max_KFloat_H100_W00_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H100_W00_July , bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean_July ,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1560,7 +1558,7 @@ heatmap_Max_KFloat_H095_W05_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1576,7 +1574,7 @@ heatmap_Max_KFloat_H090_W10_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1591,7 +1589,7 @@ heatmap_Max_KFloat_H085_W15_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1606,12 +1604,11 @@ heatmap_RK4_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  geom_hex(data = p_RK4_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -1621,7 +1618,7 @@ heatmap_Min_Kfloat_H100_W00_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1636,7 +1633,7 @@ heatmap_Min_Kfloat_H095_W05_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1651,7 +1648,7 @@ heatmap_Min_Kfloat_H090_W10_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1666,7 +1663,7 @@ heatmap_Min_Kfloat_H085_W15_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1681,7 +1678,7 @@ heatmap_Mean_Kfloat_H100_W00_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1695,7 +1692,7 @@ heatmap_Mean_KFloat_H095_W05_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "gradient",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_KFloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1710,7 +1707,7 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1725,7 +1722,7 @@ heatmap_Mean_KFloat_H085_W15_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Mean_KFloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1740,7 +1737,7 @@ heatmap_Max_KFloat_H100_W00_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1755,7 +1752,7 @@ heatmap_Max_KFloat_H095_W05_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1771,7 +1768,7 @@ heatmap_Max_KFloat_H090_W10_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1786,7 +1783,7 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = Max_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1797,43 +1794,27 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=7}
 
-figure_a <- ggarrange(heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
-
-figure_b <- ggarrange(heatmap_RK4, legend = c("right"), labels = c("1"), font.label = list(size = 11, face = "bold"))
-
-ggarrange(figure_b, figure_a, ncol = 1, nrow = 2)
+ggarrange(heatmap_RK4, heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("1","2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=7}
 
-figure_a_April <- ggarrange(heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April, labels = c("18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
-
-figure_b_April <- ggarrange(heatmap_RK4_April, legend = c("right"), labels = c("17"), font.label = list(size = 11, face = "bold"))
-
-ggarrange(figure_b_April, figure_a_April, ncol = 1, nrow = 2)
+ggarrange(heatmap_RK4_April,heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April, labels = c("17", "18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
 
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
 
-figure_a_July <- ggarrange(heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
-
-figure_b_July <- ggarrange(heatmap_RK4_July, legend = c("right"), labels = c("30"), font.label = list(size = 11, face = "bold"))
-
-ggarrange(figure_b_July, figure_a_July, ncol = 1, nrow = 2)
+ggarrange(heatmap_RK4_July,heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("30","31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=7}
 
-figure_a_Oct <- ggarrange(heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
-
-figure_b_Oct <- ggarrange(heatmap_RK4_Oct, legend = c("right"), labels = c("43"), font.label = list(size = 11, face = "bold"))
-
-ggarrange(figure_b_Oct, figure_a_Oct, ncol = 1, nrow = 2)
+ggarrange(heatmap_RK4_Oct, heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("43","44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
 
 ```
 
@@ -1978,9 +1959,7 @@ dis_plot_Oct <- dis_plot_Oct +
 
 ```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 7: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for scenarios 1 - 13, for January 2018 (summer). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
 
-ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 3)
-
-ggsave(filename = "figure_7.jpg", plot = last_plot(), device = "jpeg", path = "figures/chapter_3/", width = 8, height = 5, dpi = 600)
+ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 4)
 
 ```
 
@@ -2015,14 +1994,6 @@ pass_acc_mean <- pass_acc %>% #calculate mean trajectory
 pass_acc$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
 pass_acc_mean$type <- "Passive" # add extra column 'type' to dataframe and assigned 'kelp' label
 pass_acc$age <- with(pass_acc, age/3600)
-
-mean_traj_acc <- ggplot() +
-  geom_path(data = total_acc_mean, aes(x = lon, y = lat, colour = type)) +
-  xlab("Longtitude") +
-  ylab("Latitude") +
-  ggtitle("") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  theme_bw()
 
 # April
 
@@ -2375,40 +2346,69 @@ point_kelp_acc_Oct <- ggplot() +
 total_acc_data <- rbind(pass_acc, kelp_acc, pass_acc_April, kelp_acc_April,pass_acc_July, kelp_acc_July,pass_acc_Oct, kelp_acc_Oct)
 total_acc_mean <- rbind(pass_acc_mean, kelp_acc_mean, pass_acc_mean_April, kelp_acc_mean_April, pass_acc_mean_July, kelp_acc_mean_July, pass_acc_mean_Oct, kelp_acc_mean_Oct)
 
+mean_traj_acc <- ggplot() +
+  geom_path(data = total_acc_mean, aes(x = lon, y = lat, colour = type)) +
+  xlab("Longtitude") +
+  ylab("Latitude") +
+  ggtitle("") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+
+
 # Distance
 
-dis_plot_acc <- ggplot(data = total_acc_data, aes(x = type, y = distance, show.legend = FALSE)) +
-  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+#dis_plot_acc <- ggplot(data = total_acc_data, aes(x = type, y = distance, show.legend = FALSE)) +
+#  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
   #scale_x_discrete(limits = pos)+
-  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = "right") +
-  theme_bw() +
-  ylab("Distance (km)") +
-  xlab("Scenario") +
+#  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = "right") +
+#  theme_bw() +
+#  ylab("Distance (km)") +
+#  xlab("Scenario") +
   #coord_flip() +
-  theme_bw()
+#  theme_bw()
   #theme(plot.title = element_text(hjust = 1))
 
 ```
 
-```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of trajectory data between passive and kelp accumulation scenarios. Panel A are a comparison of density plots  and panel B is a comparison of age.", fig.height=8, fig.width=8}
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation scenarios.", fig.height=9, fig.width=7}
 
-ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4)
-
-```
-
-```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between passive and kelp accumulation scenarios. Panel A are a comparison of density plots  and panel B is a comparison of age.", fig.height=8, fig.width=8}
-
-ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4)
+ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 11, face = "bold"), align = "hv")
 
 ```
 
-The role of eddies that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 8). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 8A). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 9, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
+```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of age between passive and kelp accumulation scenarios.", fig.height=9, fig.width=7}
 
-## Comparison of coefficients
+ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 11, face = "bold"), align = "hv")
 
-The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (Figure 10). This was also reflected when comparing distance travelled by particles and particle density plots (Figure 10). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (Figure 10). 
+```
+
+The role of eddies that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 8). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 8). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 9, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
+
+# Discussion
+
+The treatment of drifting macroalgae as purely Lagrangian will not be able to accurately determine patterns of passive dispersal, such as entrainment in eddies or vortices [@fossette2012; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], past research has focused on large macroalgal-rafts which can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and Lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag. The mean virtual kelp trajectory deviated from the mean passive  trajectory when including varying levels of hydrodynamic and wind drag scenarios. The results from this study show the inclusion of hydrodynamic and wind drag results in observable entrainment patterns, and broadens our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case that of *E. maxima*.
+
+Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when *ad hoc* wind drag (windage) is considered in combination with hydrodynamic drag the end locations differ greatly when compared to purely Lagrangian particle trajectories. The inclusion of wind drag causes the kelp particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object [@hackett2006; @putman2020]. This causes the kelp particles to travel further as well as exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used *ad hoc* windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic *Sargassum sp*. The results showed that including ad-hoc windage factors improved virtual trajectories compared to tracked *Sargassum sp* mats which was partly due to the inclusion of momentum energy transfer from wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag. Similar patterns are seen in the additional simulations run for April (autumn), July (winter), and October (spring); however even kelp particles with only hydrodynamic drag flow further compared to passive particles in these times of the year. This may be a result of the kelp particles exposed to different time-varying flows, which results in the kelp particles following a different surface current vector compared to passive particles. This also results in different end-points and therefore these results further confirm that drag is an important factor to account for when investigating macroalgal drift patterns.
+
+The addition of drag forces causes the kelp particles to cluster together along the mean trajectory compared to that of the passive particles which are more evenly dispersed. This is most likely due to the shared drag characteristics among the kelp particles which included the plants weight and surface area into the calculation. Other studies investigating flotsam trajectory characteristics have found similar results [@breivik2011; @olascoaga2020; @miron2020]. A study by @miron2020 conducted field experiments using a range of objects such as spheres, cubes, and cuboids to compare to investigate the effect of inertia on particles dynamics. The results from the study showed that objects tended to cluster according to the shape of the object which the authors attributed to shared characteristics of inertia. Although drag forces and not inertia were used in this study, the same conclusion applies; drag is therefore an important characteristic to consider when investigating or predicting solitary drifting macroalgae trajectory. 
+
+The ocean is comprised of time-varying flows and changes in an objects velocity that can cause the object to be exposed to different flow patterns over time. The lack of dissimilarity in trajectory between different cross-sectional area types (minimum, mean and maximum) suggests that reduction in velocity in relation to cross-sectional area is negligible. A similar result was found by @gouvello2020 who investigated the effects of swimming behavior on sea turtle hatchling dispersal in the Agulhas region. The results suggested that the hatchling trajectories are mostly influenced by the ocean currents in the first year of hatching due as juveniles do not swim fast enough to alter their overall trajectory. Therefore, the differences in cross-sectional area types may not be significant enough to have an effect on the relevant zonal and meridional velocity vectors. Another possible reason is the resolution of the ocean model used. The resolution of the underlying ocean model is an important aspect of Lagrangian ocean modeling and must be able to resolve sub-grid scale ocean processes for finer scale applications. A study by @hart2018 assessed the inclusion of stochastic motion, wind and currents into forecasting for search and rescue using the same model ocean model used in this study. The authors found that the inclusion of Brownian motion greatly increased the accuracy in representing sub-grid scale processes and that the inclusion of wind, currents and stochastic motion greatly improved forecasting applications. Therefore, the authors argue that the lack of dissimilarity between simulations of different cross-sectional area and drag exposure scenarios is not as a result of the resolution of the model. 
+
+The same is also true when comparing different hydrodynamic and wind drag exposure scenarios. These scenarios reflect different buoyancy situations which result in different amounts of surface area exposed to hydrodynamic and/or wind drag. The similarities between the different combined drag scenarios suggest that higher magnitudes of wind exposure do not significantly alter trajectories. Instead, the results from this study suggest that the inclusion of drag forces in simulating macroalgal trajectory may result in improving accuracy of entrainment patterns. All the simulations that included any form of drag resulted in a high density of particles entrained in an eddy. The entrainment and expulsion from eddies and vortices are an important characteristic of floating macroalgae. Accuracy in predicting entrainment and expulsion of macroalgae-rafts from eddies has been investigated previously by @putman2018 and @putman2020, who show that including windage greatly improves entrainment patterns when comparing virtual and real *Sargassum* rafts. However, these studies investigated large rafts and not floating individuals. Inertia is based on the size/mass of the raft, while hydrodynamic and wind drag are based on current velocity and surface area. Therefore, the role of inertia may be negligible for a solitary individual and rather other forms of drag, such as in this study, should be considered. The results from this study suggest that the inclusion of hydrodynamic and/or wind drag is an important component when simulating virtual kelp particles, and will greatly increase the accuracy of entrainment and expulsion from sub-grid mesoscale oceanographic features, such as eddies and vortices.
+
+The role of eddies and vortices in the entrainment of kelp is further supported by the accumulation simulations. These results clearly show that the inclusion of drag greatly increases the number of particles entrained in the eddy within the study domain. Eddies and vortices may act as accumulation zones for kelp where the formation of rafts may occur, or the kelp is entrained for long enough to eventually sink in area below the eddy. In a study by @woodborne1989 references a site offshore approximately 120 km from Cape Columbine where dredged kelp was found. The area referenced by @woodborne1989 coincides with the area where virtual kelp are entrained by an eddy. The use of a cylindrical shape coefficient instead of a sphere in the calculation of drag force also had no effect on the mean trajectory. Instead, the inclusion of a different shape coefficient increased to the density of particles entrained in an eddy field. Therefore, more accurately parameterizing shape will therefore allow for further improvements in models of macroalgal dispersal patterns. 
+
+# Conclusion
+
+Most of the past research has focused on large macroalgae rafts which can vary greatly in size and shape; however, no research exists to clarify the drifting characteristics of solitary macroalgae. Understanding how to accurately model the distribution of solitary kelp can lead to be understanding of accumulation zones and sinks and ultimately the ecological links pertaining to those processes. The findings from this study indicate that solitary floating virtual *E. maxima* particles tend to follow the prevailing surface currents and the inclusion of wind causes the trajectories to differ greatly from that of a purely Lagrangian particle. Furthermore, the inclusion of both hydrodynamic and wind drag cause clustering of particles along the trajectory as well causing particles to become entrained in eddies. Different cross-sectional areas exposed to hydrodynamic and wind drag had no effect on overall trajectory suggesting that those differences are negligible when investigating dispersal patterns of drifting *E. maxima*. In addition, the use of a cylindrical shape coefficient has no effect on mean trajectory, but it does cause higher density of particles to become entrained in an eddy. Overall, the inclusion of drag forces is an important aspect to consider when investigating the dispersal patterns of solitary macroalgae, while differences in cross-sectional areas are not. This study also provides an approach which can be adapted to model any floating solitary macroalgae, provided the surface area can be estimated accurately. Gaps in the research exist when considering what oceanographic processes play a role in solitary macroalgal dispersal as well as how these vary seasonally. The identification of biological and physical factors that play a role in accumulation zones is also needed, as well as better estimates for sinking rates and raft-times. 
+
+# References
+
+# Appendix
 
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
+
+# January
 
 sphere <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
   hyper_tibble() %>%
@@ -2454,7 +2454,7 @@ heatmap_sphere <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = sphere, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   geom_path(data = sphere_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -2469,7 +2469,7 @@ heatmap_cyl <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = cyl, bins = 80, aes(x = lon, y = lat)) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 13000)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   geom_path(data = cyl_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -2480,7 +2480,225 @@ heatmap_cyl <- ggplot() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-shape_data_total <- rbind(sphere, cyl)
+# April
+
+sphere_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+sphere_mean_April <- sphere_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+sphere_April$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_mean_April$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+# read in data again for one max simulation, as cannot sort issue out with rename df...
+cyl_April <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_April.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+cyl_mean_April <- cyl_April %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+cyl_April$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_mean_April$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+# Make mean trajectory plot
+shape_plot_April <- ggplot()+
+  geom_path(data = p_RK4_mean_April, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = sphere_mean_April, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = cyl_mean_April, aes(x = lon, y = lat), color = 'orange')+
+  xlab("Longtitude") + 
+  ylab("Latitude") +
+  ggtitle("Mean trajectory comparison") +
+  #guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# make density map
+heatmap_sphere_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = sphere_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = sphere_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  ggtitle("Cylinder") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_cyl_April <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = cyl_April, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = cyl_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Sphere") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# July
+
+sphere_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+sphere_mean_July <- sphere_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+sphere_July$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_mean_July$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+# read in data again for one max simulation, as cannot sort issue out with rename df...
+cyl_July <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_July.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+cyl_mean_July <- cyl_July %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+cyl_July$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_mean_July$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+# Make mean trajectory plot
+shape_plot_July <- ggplot()+
+  geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = sphere_mean_July, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = cyl_mean_July, aes(x = lon, y = lat), color = 'orange')+
+  xlab("Longtitude") + 
+  ylab("Latitude") +
+  ggtitle("Mean trajectory comparison") +
+  #guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# make density map
+heatmap_sphere_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = sphere_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = sphere_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  ggtitle("Cylinder") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_cyl_July <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = cyl_July, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = cyl_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Sphere") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# October
+
+sphere_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+sphere_mean_Oct <- sphere_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+sphere_Oct$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_mean_Oct$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+# read in data again for one max simulation, as cannot sort issue out with rename df...
+cyl_Oct <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_Oct.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(trajectory, lon, lat, time, distance, kelpvelU, kelpvelV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+cyl_mean_Oct <- cyl_Oct %>% #calculate mean trajectory 
+  group_by(t) %>% 
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+cyl_Oct$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_mean_Oct$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+
+
+# Make mean trajectory plot
+shape_plot_Oct <- ggplot()+
+  geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = sphere_mean_Oct, aes(x = lon, y = lat), color = 'blue')+
+  geom_path(data = cyl_mean_Oct, aes(x = lon, y = lat), color = 'orange')+
+  xlab("Longtitude") + 
+  ylab("Latitude") +
+  ggtitle("Mean trajectory comparison") +
+  #guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# make density map
+heatmap_sphere_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = sphere_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = sphere_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  guides(fill=guide_legend(title="Number of particles")) +
+  ggtitle("Cylinder") + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+heatmap_cyl_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = cyl_Oct, bins = 80, aes(x = lon, y = lat)) +
+  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_path(data = cyl_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Sphere") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# Distance plot
+
+shape_data_total <- rbind(sphere, cyl, sphere_April, cyl_April, sphere_July, cyl_July, sphere_Oct, cyl_Oct)
 
 shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, show.legend = FALSE))+
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
@@ -2494,30 +2712,12 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, sh
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of total distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylindrical shape coefficient. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of total distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylindrical shape coefficient. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=8}
 
-ggarrange(shape_plot, shape_dis_plot, heatmap_sphere, heatmap_cyl, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 2)
+shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_cyl,heatmap_sphere_April, heatmap_cyl_April, heatmap_sphere_July, heatmap_cyl_July, heatmap_sphere_Oct, heatmap_cyl_Oct, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3)
+
+ggarrange(shape_plot_A, shape_dis_plot, ncol = 1, nrow = 2)
 
 ```
 
-
-# Discussion
-
-The treatment of drifting macroalgae as purely Lagrangian will not be able to accurately determine patterns of passive dispersal, such as entrainment in eddies or vortices [@fossette2012; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], past research has focused on large macroalgal-rafts which can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and Lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag. The mean virtual kelp trajectory deviated from the mean passive  trajectory when including varying levels of hydrodynamic and wind drag scenarios. The results from this study show the inclusion of hydrodynamic and wind drag results in observable entrainment patterns, and broadens our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case that of *E. maxima*.
-
-Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when *ad hoc* wind drag (windage) is considered in combination with hydrodynamic drag the end locations differ greatly when compared to purely Lagrangian particle trajectories. The inclusion of wind drag causes the kelp particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object [@hackett2006; @putman2020]. This causes the kelp particles to travel further as well as exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used *ad hoc* windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic *Sargassum sp*. The results showed that including ad-hoc windage factors improved virtual trajectories compared to tracked *Sargassum sp* mats which was partly due to the inclusion of momentum energy transfer from wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag. Similar patterns are seen in the additional simulations run for April (autumn), July (winter), and October (spring); however even kelp particles with only hydrodynamic drag flow further compared to passive particles in these times of the year. This may be a result of the kelp particles exposed to different time-varying flows, which results in the kelp particles following a different surface current vector compared to passive particles. This also results in different end-points and therefore these results further confirm that drag is an important factor to account for when investigating macroalgal drift patterns.
-
-The addition of drag forces causes the kelp particles to cluster together along the mean trajectory compared to that of the passive particles which are more evenly dispersed. This is most likely due to the shared drag characteristics among the kelp particles which included the plants weight and surface area into the calculation. Other studies investigating flotsam trajectory characteristics have found similar results [@breivik2011; @olascoaga2020; @miron2020]. A study by @miron2020 conducted field experiments using a range of objects such as spheres, cubes, and cuboids to compare to investigate the effect of inertia on particles dynamics. The results from the study showed that objects tended to cluster according to the shape of the object which the authors attributed to shared characteristics of inertia. Although drag forces and not inertia were used in this study, the same conclusion applies; drag is therefore an important characteristic to consider when investigating or predicting solitary drifting macroalgae trajectory. 
-
-The ocean is comprised of time-varying flows and changes in an objects velocity that can cause the object to be exposed to different flow patterns over time. The lack of dissimilarity in trajectory between different cross-sectional area types (minimum, mean and maximum) suggests that reduction in velocity in relation to cross-sectional area is negligible. A similar result was found by @gouvello2020 who investigated the effects of swimming behavior on sea turtle hatchling dispersal in the Agulhas region. The results suggested that the hatchling trajectories are mostly influenced by the ocean currents in the first year of hatching due as juveniles do not swim fast enough to alter their overall trajectory. Therefore, the differences in cross-sectional area types may not be significant enough to have an effect on the relevant zonal and meridional velocity vectors. Another possible reason is the resolution of the ocean model used. The resolution of the underlying ocean model is an important aspect of Lagrangian ocean modeling and must be able to resolve sub-grid scale ocean processes for finer scale applications. A study by @hart2018 assessed the inclusion of stochastic motion, wind and currents into forecasting for search and rescue using the same model ocean model used in this study. The authors found that the inclusion of Brownian motion greatly increased the accuracy in representing sub-grid scale processes and that the inclusion of wind, currents and stochastic motion greatly improved forecasting applications. Therefore, the authors argue that the lack of dissimilarity between simulations of different cross-sectional area and drag exposure scenarios is not as a result of the resolution of the model. 
-
-The same is also true when comparing different hydrodynamic and wind drag exposure scenarios. These scenarios reflect different buoyancy situations which result in different amounts of surface area exposed to hydrodynamic and/or wind drag. The similarities between the different combined drag scenarios suggest that higher magnitudes of wind exposure do not significantly alter trajectories. Instead, the results from this study suggest that the inclusion of drag forces in simulating macroalgal trajectory may result in improving accuracy of entrainment patterns. All the simulations that included any form of drag resulted in a high density of particles entrained in an eddy. The entrainment and expulsion from eddies and vortices are an important characteristic of floating macroalgae. Accuracy in predicting entrainment and expulsion of macroalgae-rafts from eddies has been investigated previously by @putman2018 and @putman2020, who show that including windage greatly improves entrainment patterns when comparing virtual and real *Sargassum* rafts. However, these studies investigated large rafts and not floating individuals. Inertia is based on the size/mass of the raft, while hydrodynamic and wind drag are based on current velocity and surface area. Therefore, the role of inertia may be negligible for a solitary individual and rather other forms of drag, such as in this study, should be considered. The results from this study suggest that the inclusion of hydrodynamic and/or wind drag is an important component when simulating virtual kelp particles, and will greatly increase the accuracy of entrainment and expulsion from sub-grid mesoscale oceanographic features, such as eddies and vortices.
-
-The role of eddies and vortices in the entrainment of kelp is further supported by the accumulation simulations. These results clearly show that the inclusion of drag greatly increases the number of particles entrained in the eddy within the study domain. Eddies and vortices may act as accumulation zones for kelp where the formation of rafts may occur, or the kelp is entrained for long enough to eventually sink in area below the eddy. In a study by @woodborne1989 references a site offshore approximately 120 km from Cape Columbine where dredged kelp was found. The area referenced by @woodborne1989 coincides with the area where virtual kelp are entrained by an eddy. The use of a cylindrical shape coefficient instead of a sphere in the calculation of drag force also had no effect on the mean trajectory. Instead, the inclusion of a different shape coefficient increased to the density of particles entrained in an eddy field. Therefore, more accurately parameterizing shape will therefore allow for further improvements in models of macroalgal dispersal patterns. 
-
-# Conclusion
-
-Most of the past research has focused on large macroalgae rafts which can vary greatly in size and shape; however, no research exists to clarify the drifting characteristics of solitary macroalgae. Understanding how to accurately model the distribution of solitary kelp can lead to be understanding of accumulation zones and sinks and ultimately the ecological links pertaining to those processes. The findings from this study indicate that solitary floating virtual *E. maxima* particles tend to follow the prevailing surface currents and the inclusion of wind causes the trajectories to differ greatly from that of a purely Lagrangian particle. Furthermore, the inclusion of both hydrodynamic and wind drag cause clustering of particles along the trajectory as well causing particles to become entrained in eddies. Different cross-sectional areas exposed to hydrodynamic and wind drag had no effect on overall trajectory suggesting that those differences are negligible when investigating dispersal patterns of drifting *E. maxima*. In addition, the use of a cylindrical shape coefficient has no effect on mean trajectory, but it does cause higher density of particles to become entrained in an eddy. Overall, the inclusion of drag forces is an important aspect to consider when investigating the dispersal patterns of solitary macroalgae, while differences in cross-sectional areas are not. This study also provides an approach which can be adapted to model any floating solitary macroalgae, provided the surface area can be estimated accurately. Gaps in the research exist when considering what oceanographic processes play a role in solitary macroalgal dispersal as well as how these vary seasonally. The identification of biological and physical factors that play a role in accumulation zones is also needed, as well as better estimates for sinking rates and raft-times. 
-
-# References
 
