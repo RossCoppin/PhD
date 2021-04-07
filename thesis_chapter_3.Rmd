@@ -3,12 +3,12 @@ title: 'Numerical experiment investigating the influence of drag on trajectory p
 author: 
 - R Coppin^[University of the Western Cape], C Rautenbach^[National Institute of Water and Atmospheric Research], AJ Smit^[University of the Western Cape]
 output:
-  html_document:
+  word_document:
+    reference_docx: markdown/frontiers_template.docx
   pdf_document:
     fig_caption: yes
     latex_engine: xelatex
-  word_document:
-    reference_docx: markdown/frontiers_template.docx
+  html_document:
 bibliography: references.bib
 csl: markdown/frontiers.csl.txt
 abstract: "**Abstract**: Ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalgae are one of the most important natural dispersal vectors, and are regarded as the tumble-weed of the ocean. Despite many studies that exist on the topic, the relative role of wind and surface currents in macroalgae trajectory is still unknown. Past studies focus on kelp-rafts, which can vary greatly in size, making it difficult to form a concensus as to the relative role of wind versus surface currents. In addition, past studies have not considered surface-area in relation to drag characterisics of floating macroalgae which have been shown to play a role in the trajectory and accumulation of other flotsam. Advances in Lagrangian trajectory modeling have been exponential in recent years, and allow the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagal trajectory and accumulation. We did not investigate kelp-raft behaviour but instead focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp 'particles' which incorporate drag with that of purely Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddies within the study domain. The results also point to the importance of sub-mesoscale features, such as eddies, as important surface accumulation zones for solitary floating macroalage."
