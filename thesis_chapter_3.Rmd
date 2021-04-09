@@ -891,7 +891,8 @@ total_mean_ww$type <- factor(total_mean_ww$type, levels=c("1", "3", "4", "5", "7
 
 
 waterdrag_plot <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_water, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -901,7 +902,8 @@ waterdrag_plot <- ggplot()+
   theme_bw() 
 
 wwdrag_plot <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_ww, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -918,7 +920,8 @@ total_mean_ww_April$type <- factor(total_mean_ww_April$type, levels=c("17", "19"
 
 
 waterdrag_plot_April <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_water_April, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -928,7 +931,8 @@ waterdrag_plot_April <- ggplot()+
   theme_bw() 
 
 wwdrag_plot_April <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill ="grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_ww_April, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -945,7 +949,8 @@ total_mean_ww_July$type <- factor(total_mean_ww_July$type, levels=c("30", "32", 
 
 
 waterdrag_plot_July <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_water_July, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -955,7 +960,8 @@ waterdrag_plot_July <- ggplot()+
   theme_bw() 
 
 wwdrag_plot_July <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_ww_July, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -972,7 +978,8 @@ total_mean_ww_Oct$type <- factor(total_mean_ww_Oct$type, levels=c("43", "45", "4
 
 
 waterdrag_plot_Oct <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_water_Oct, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -981,8 +988,9 @@ waterdrag_plot_Oct <- ggplot()+
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
-wwdrag_plot_Oct <- ggplot()+
-  #geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black", fill = NA) +
+wwdrag_plot_Oct <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
   geom_path(data = total_mean_ww_Oct, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -993,9 +1001,9 @@ wwdrag_plot_Oct <- ggplot()+
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=8, fig.width=6, fig.cap="Figure 2: Comparison of mean trajectories. Panel (A) represents hydrodynamic drag only simulations and Panel (B) represents simulations for both wind and hydrodynamic drag, for January, Panel (C) represents hydrodynamic drag only simulations and Panel (D) represents simulations for both wind and hydrodynamic drag, for April. Panel (E) represents hydrodynamic drag only simulations and Panel (F) represents simulations for both wind and hydrodynamic drag, for July. Panel (G) represents hydrodynamic drag only simulations and Panel (H) represents simulations for both wind and hydrodynamic drag, for October. In all panels the passive simulations are represented by black lines."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=7, fig.width=5, fig.cap="Figure 2: Comparison of mean trajectories. Panel (A) represents hydrodynamic drag only simulations and Panel (B) represents simulations for both wind and hydrodynamic drag, for January, Panel (C) represents hydrodynamic drag only simulations and Panel (D) represents simulations for both wind and hydrodynamic drag, for April. Panel (E) represents hydrodynamic drag only simulations and Panel (F) represents simulations for both wind and hydrodynamic drag, for July. Panel (G) represents hydrodynamic drag only simulations and Panel (H) represents simulations for both wind and hydrodynamic drag, for October. In all panels the passive simulations are represented by black lines."}
 
-ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, labels = "AUTO", ncol = 2, nrow = 4)
+ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, labels = "AUTO", ncol = 2, nrow = 4, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("right"))
 
 ```
 
