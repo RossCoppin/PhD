@@ -1024,7 +1024,7 @@ heatmap_RK4 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  geom_hex(data = p_RK4, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = p_RK4_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1039,7 +1039,7 @@ heatmap_Min_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
+  geom_hex(data = Min_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
   scale_fill_continuous(type = "viridis",limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1055,7 +1055,7 @@ heatmap_Min_Kfloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  
+  geom_hex(data = Min_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
   scale_fill_continuous(type = "viridis",limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1071,7 +1071,7 @@ heatmap_Min_Kfloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +  
+  geom_hex(data = Min_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
   scale_fill_continuous(type = "viridis",limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1087,7 +1087,7 @@ heatmap_Min_Kfloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +  
+  geom_hex(data = Min_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Min_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1103,7 +1103,7 @@ heatmap_Mean_Kfloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +  
+  geom_hex(data = Mean_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1118,7 +1118,7 @@ heatmap_Mean_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
+  geom_hex(data = Mean_KFloat_H095_W05, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_KFloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1132,7 +1132,7 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_KFloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1147,7 +1147,7 @@ heatmap_Mean_KFloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Mean_KFloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1162,7 +1162,7 @@ heatmap_Max_KFloat_H100_W00 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1177,7 +1177,7 @@ heatmap_Max_KFloat_H095_W05 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H095_W05_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1193,7 +1193,7 @@ heatmap_Max_KFloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H090_W10_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1208,7 +1208,7 @@ heatmap_Max_KFloat_H085_W15 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1100)) +
   geom_path(data = Max_Kfloat_H085_W15_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1224,7 +1224,7 @@ heatmap_RK4_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
+  geom_hex(data = p_RK4_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1238,7 +1238,7 @@ heatmap_Min_Kfloat_H100_W00_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1253,7 +1253,7 @@ heatmap_Min_Kfloat_H095_W05_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1268,7 +1268,7 @@ heatmap_Min_Kfloat_H090_W10_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1283,7 +1283,7 @@ heatmap_Min_Kfloat_H085_W15_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1298,7 +1298,7 @@ heatmap_Mean_Kfloat_H100_W00_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1312,7 +1312,7 @@ heatmap_Mean_KFloat_H095_W05_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_KFloat_H095_W05_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1326,7 +1326,7 @@ heatmap_Mean_KFloat_H090_W10_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1341,7 +1341,7 @@ heatmap_Mean_KFloat_H085_W15_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1356,7 +1356,7 @@ heatmap_Max_KFloat_H100_W00_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H100_W00_April , bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00_April , bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean_April ,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1371,7 +1371,7 @@ heatmap_Max_KFloat_H095_W05_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1387,7 +1387,7 @@ heatmap_Max_KFloat_H090_W10_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1402,7 +1402,7 @@ heatmap_Max_KFloat_H085_W15_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15_April, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1418,7 +1418,7 @@ heatmap_RK4_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
+  geom_hex(data = p_RK4_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1432,7 +1432,7 @@ heatmap_Min_Kfloat_H100_W00_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1447,7 +1447,7 @@ heatmap_Min_Kfloat_H095_W05_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1462,7 +1462,7 @@ heatmap_Min_Kfloat_H090_W10_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1477,7 +1477,7 @@ heatmap_Min_Kfloat_H085_W15_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1492,7 +1492,7 @@ heatmap_Mean_Kfloat_H100_W00_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1506,7 +1506,7 @@ heatmap_Mean_KFloat_H095_W05_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_KFloat_H095_W05_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1520,7 +1520,7 @@ heatmap_Mean_KFloat_H090_W10_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1535,7 +1535,7 @@ heatmap_Mean_KFloat_H085_W15_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1550,7 +1550,7 @@ heatmap_Max_KFloat_H100_W00_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H100_W00_July , bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00_July , bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean_July ,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1565,7 +1565,7 @@ heatmap_Max_KFloat_H095_W05_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1581,7 +1581,7 @@ heatmap_Max_KFloat_H090_W10_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1596,7 +1596,7 @@ heatmap_Max_KFloat_H085_W15_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15_July, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1612,7 +1612,7 @@ heatmap_RK4_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = p_RK4_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
+  geom_hex(data = p_RK4_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = p_RK4_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1626,7 +1626,7 @@ heatmap_Min_Kfloat_H100_W00_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1641,7 +1641,7 @@ heatmap_Min_Kfloat_H095_W05_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1656,7 +1656,7 @@ heatmap_Min_Kfloat_H090_W10_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1671,7 +1671,7 @@ heatmap_Min_Kfloat_H085_W15_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Min_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
+  geom_hex(data = Min_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",        limits = c(1, 1000)) +
   geom_path(data = Min_Kfloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1686,7 +1686,7 @@ heatmap_Mean_Kfloat_H100_W00_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1700,7 +1700,7 @@ heatmap_Mean_KFloat_H095_W05_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app1, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
+  geom_hex(data = Mean_KFloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  scale_fill_continuous(type = "viridis",       limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
@@ -1714,7 +1714,7 @@ heatmap_Mean_KFloat_H090_W10 <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1729,7 +1729,7 @@ heatmap_Mean_KFloat_H085_W15_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Mean_KFloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Mean_KFloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Mean_KFloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1744,7 +1744,7 @@ heatmap_Max_KFloat_H100_W00_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H100_W00_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H100_W00_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1759,7 +1759,7 @@ heatmap_Max_KFloat_H095_W05_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H095_W05_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H095_W05_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1775,7 +1775,7 @@ heatmap_Max_KFloat_H090_W10_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H090_W10_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H090_W10_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1790,7 +1790,7 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = Max_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = Max_Kfloat_H085_W15_Oct, bins = 80, aes(x = lon, y = lat), legend = TRUE) +
   scale_fill_continuous(type = "viridis", limits = c(1, 1000)) +
   geom_path(data = Max_Kfloat_H085_W15_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -1802,27 +1802,35 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=7}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 3: Comparison of density plots at the end run time for scenarios 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
 
-ggarrange(heatmap_RK4, heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15, labels = c("1","2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
+leg_Jan <- get_legend(heatmap_RK4)
 
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=7}
-
-ggarrange(heatmap_RK4_April,heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April, labels = c("17", "18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
+ggarrange(heatmap_RK4, heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,heatmap_Min_Kfloat_H090_W10,heatmap_Min_Kfloat_H085_W15, heatmap_Mean_Kfloat_H100_W00, heatmap_Mean_KFloat_H095_W05, heatmap_Mean_KFloat_H090_W10, heatmap_Mean_KFloat_H085_W15, heatmap_Max_KFloat_H100_W00,heatmap_Max_KFloat_H095_W05, heatmap_Max_KFloat_H090_W10, heatmap_Max_KFloat_H085_W15,as_ggplot(leg_Jan), labels = c("1","2","3","4","5","6","7","8","9","10","11","12","13"), common.legend = TRUE, legend = c("none"),font.label = list(size = 11, face = "bold")) 
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=10.2, fig.width=7.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
 
-ggarrange(heatmap_RK4_July,heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, labels = c("30","31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
+leg_April <- get_legend(heatmap_RK4_April)
+
+ggarrange(heatmap_RK4_April,heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloat_H095_W05_April,heatmap_Min_Kfloat_H090_W10_April,heatmap_Min_Kfloat_H085_W15_April, heatmap_Mean_Kfloat_H100_W00_April, heatmap_Mean_KFloat_H095_W05_April, heatmap_Mean_KFloat_H090_W10_April, heatmap_Mean_KFloat_H085_W15_April, heatmap_Max_KFloat_H100_W00_April,heatmap_Max_KFloat_H095_W05_April, heatmap_Max_KFloat_H090_W10_April, heatmap_Max_KFloat_H085_W15_April,as_ggplot(leg_April), labels = c("17", "18","19","20","21","22","23","24","25","26","27","28", "29"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=7}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
 
-ggarrange(heatmap_RK4_Oct, heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, labels = c("43","44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("bottom"), font.label = list(size = 11, face = "bold"))
+leg_July <- get_legend(heatmap_RK4_July)
+
+ggarrange(heatmap_RK4_July,heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_H095_W05_July,heatmap_Min_Kfloat_H090_W10_July,heatmap_Min_Kfloat_H085_W15_July, heatmap_Mean_Kfloat_H100_W00_July, heatmap_Mean_KFloat_H095_W05_July, heatmap_Mean_KFloat_H090_W10_July, heatmap_Mean_KFloat_H085_W15_July, heatmap_Max_KFloat_H100_W00_July,heatmap_Max_KFloat_H095_W05_July, heatmap_Max_KFloat_H090_W10_July, heatmap_Max_KFloat_H085_W15_July, as_ggplot(leg_July),labels = c("30","31","32","33","34","35","36","37","38","39","40","41","42"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
+
+leg_Oct <- get_legend(heatmap_RK4_Oct)
+
+ggarrange(heatmap_RK4_Oct, heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H095_W05_Oct,heatmap_Min_Kfloat_H090_W10_Oct,heatmap_Min_Kfloat_H085_W15_Oct, heatmap_Mean_Kfloat_H100_W00_Oct, heatmap_Mean_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Mean_KFloat_H085_W15_Oct, heatmap_Max_KFloat_H100_W00_Oct,heatmap_Max_KFloat_H095_W05_Oct, heatmap_Max_KFloat_H090_W10_Oct, heatmap_Max_KFloat_H085_W15_Oct, as_ggplot(leg_Oct),labels = c("43","44","45","46","47","48","49","50","51","52","53","54","55"), common.legend = TRUE, legend = c("none"), font.label = list(size = 11, face = "bold"))
 
 ```
 
@@ -1830,8 +1838,7 @@ ggarrange(heatmap_RK4_Oct, heatmap_Min_Kfloat_H100_W00_Oct, heatmap_Min_Kfloat_H
 
 There were significant differences among the median distances travelled for all particles in each simulation (Figure 4; p < 0.05). The simulations that considered for 100% hydrodynamic drag travelled a shorter distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations among simulations. When comparing distances between passive and kelp particles for April, significant differences are evident. (Figure 11, simulations 17-29; p < 0.05). Kelp particles with only 90% hydrodynamic and 10% wind drag across cross-sectional areas travelled shorter distance across compared to other kelp particles. The shortest distance travelled was the scenario with the maximum cross-sectional area and drag exposure scenarios. No significant differences are evident for the July simulations, with only slight variation across simulations (see Figure 11, simulations 30-42; p > 0.05). In October, the plot shows significant differences when comparing both passive and kelp particles (see Figure 11, simulations 43-55; p < 0.05). Kelp particles with only 90% hydrodynamic drag across cross-sectional areas travelled shorter distance compared to all other particles. As seen in the April simulations, the kelp particles with the maximum cross-sectional area and drag exposure travelled the shortest distance compared to all other particles.
 
-```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, fig.height=3, fig.width=4}
-
+```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE}
 
 data_dis <- total_data %>% 
   select(!(kelpvelU)) %>%
@@ -1962,10 +1969,9 @@ custom_labs_Oct <- c("43","44","45","46","47","48","49","50","51","52","53","54"
 
 dis_plot_Oct <- dis_plot_Oct +
   scale_x_discrete(labels= custom_labs_Oct)
-
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 7: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for scenarios 1 - 13, for January 2018 (summer). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario."}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 7: Boxplots of total distance travelled by all particles from the release site over the course of the simulation for scenarios 1 - 13, for January 2018 (summer). The x-axis represents the scenario number and the y-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=7, fig.width=5}
 
 ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 4)
 
@@ -2129,7 +2135,7 @@ heatmap_RK4_acc <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2143,7 +2149,7 @@ heatmap_kelp_acc <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2186,7 +2192,7 @@ heatmap_RK4_acc_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = pass_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2200,7 +2206,7 @@ heatmap_kelp_acc_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = kelp_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2243,7 +2249,7 @@ heatmap_RK4_acc_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = pass_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2257,7 +2263,7 @@ heatmap_kelp_acc_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = kelp_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2300,7 +2306,7 @@ heatmap_RK4_acc_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = pass_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2314,7 +2320,7 @@ heatmap_kelp_acc_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_hex(data = kelp_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
   xlab("Longtitude") +
@@ -2427,8 +2433,9 @@ sphere_mean <- sphere %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-sphere$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
-sphere_mean$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere$type <- "Sphere" 
+sphere$Month <- "January" 
+sphere_mean$type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00.nc") %>%
@@ -2440,8 +2447,9 @@ cyl_mean <- cyl %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-cyl$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
-cyl_mean$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl$type <- "Cylinder" 
+cyl$Month <- "January" 
+cyl_mean$type <- "Cylinder" 
 
 
 # Make mean trajectory plot
@@ -2499,8 +2507,9 @@ sphere_mean_April <- sphere_April %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-sphere_April$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
-sphere_mean_April$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_April$type <- "Sphere" 
+sphere_April$Month <- "April" 
+sphere_mean_April$type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl_April <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_April.nc") %>%
@@ -2512,8 +2521,9 @@ cyl_mean_April <- cyl_April %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-cyl_April$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
-cyl_mean_April$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_April$type <- "Cylinder" 
+cyl_April$Month <- "April" 
+cyl_mean_April$type <- "Cylinder" 
 
 
 # Make mean trajectory plot
@@ -2571,8 +2581,9 @@ sphere_mean_July <- sphere_July %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-sphere_July$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
-sphere_mean_July$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_July$type <- "Sphere" 
+sphere_July$Month <- "July" 
+sphere_mean_July$type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl_July <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_July.nc") %>%
@@ -2585,6 +2596,7 @@ cyl_mean_July <- cyl_July %>% #calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 cyl_July$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_July$Month <- "July" # add extra column 'type' to dataframe and assigned 'kelp' label
 cyl_mean_July$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 
@@ -2643,8 +2655,9 @@ sphere_mean_Oct <- sphere_Oct %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-sphere_Oct$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
-sphere_mean_Oct$type <- "Sphere" # add extra column 'type' to dataframe and assigned 'kelp' label
+sphere_Oct$type <- "Sphere" 
+sphere_Oct$Month <- "October" 
+sphere_mean_Oct$type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl_Oct <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_Oct.nc") %>%
@@ -2656,8 +2669,9 @@ cyl_mean_Oct <- cyl_Oct %>% #calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
-cyl_Oct$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
-cyl_mean_Oct$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_Oct$type <- "Cylinder" 
+cyl_Oct$Month <- "October"
+cyl_mean_Oct$type <- "Cylinder" 
 
 
 # Make mean trajectory plot
@@ -2707,13 +2721,13 @@ heatmap_cyl_Oct <- ggplot() +
 # Distance plot
 
 shape_data_total <- rbind(sphere, cyl, sphere_April, cyl_April, sphere_July, cyl_July, sphere_Oct, cyl_Oct)
-
-shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, show.legend = FALSE))+
-  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
-  #scale_x_discrete(limits = pos)+
+shape_pos <- c("January", "April", "July", "October")
+shape_dis_plot <- ggplot(data = shape_data_total, aes(x = Month, y = distance, show.legend = TRUE, fill = type))+
+  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = TRUE, stat = "boxplot") +
+  scale_x_discrete(limits = shape_pos)+
   stat_compare_means(method = "kruskal.test", label = "p.signif")+
   ylab("Distance (km)")+
-  xlab("Type") + 
+  xlab("Month") + 
   ggtitle("Comparison of distance travelled") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -2722,7 +2736,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = type, y = distance, sh
 
 ```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of total distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylindrical shape coefficient. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=8}
 
-shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_cyl,heatmap_sphere_April, heatmap_cyl_April, heatmap_sphere_July, heatmap_cyl_July, heatmap_sphere_Oct, heatmap_cyl_Oct, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3)
+shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_sphere_April,heatmap_sphere_July, heatmap_sphere_Oct, heatmap_cyl, heatmap_cyl_April, heatmap_cyl_July, heatmap_cyl_Oct, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3)
 
 ggarrange(shape_plot_A, shape_dis_plot, ncol = 1, nrow = 2)
 
