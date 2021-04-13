@@ -12,54 +12,54 @@ Scenario;Type;Month;Parameters;Cross-sectional area;Drag Exposure
 11;Kelp;January;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
 12;Kelp;January;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
 13;Kelp;January;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-17;Passive;April;No drag simulation;N/A;N/A
-18;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag only
-19;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag 95%, wind drag 5%
-20;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag 90%, wind drag 10%
-21;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag 85%, wind drag 15%
-22;Kelp;April;Drag simulation;Mean;Hydrodynamic drag only
-23;Kelp;April;Drag simulation;Mean;Hydrodynamic drag 95%, wind drag 5%
-24;Kelp;April;Drag simulation;Mean;Hydrodynamic drag 90%, wind drag 10%
-25;Kelp;April;Drag simulation;Mean;Hydrodynamic drag 85%, wind drag 15%
-26;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag only
-27;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
-28;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
-29;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-30;Passive;July;No drag simulation;N/A;N/A
-31;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag only
-32;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag 95%, wind drag 5%
-33;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag 90%, wind drag 10%
-34;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag 85%, wind drag 15%
-35;Kelp;July;Drag simulation;Mean;Hydrodynamic drag only
-36;Kelp;July;Drag simulation;Mean;Hydrodynamic drag 95%, wind drag 5%
-37;Kelp;July;Drag simulation;Mean;Hydrodynamic drag 90%, wind drag 10%
-38;Kelp;July;Drag simulation;Mean;Hydrodynamic drag 85%, wind drag 15%
-39;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag only
-40;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
-41;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
-42;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-43;Passive;October;No drag simulation;N/A;N/A
-44;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag only
-45;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag 95%, wind drag 5%
-46;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag 90%, wind drag 10%
-47;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag 85%, wind drag 15%
-48;Kelp;October;Drag simulation;Mean;Hydrodynamic drag only
-49;Kelp;October;Drag simulation;Mean;Hydrodynamic drag 95%, wind drag 5%
-50;Kelp;October;Drag simulation;Mean;Hydrodynamic drag 90%, wind drag 10%
-51;Kelp;October;Drag simulation;Mean;Hydrodynamic drag 85%, wind drag 15%
-52;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag only
-53;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
-54;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
-55;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-56;Passive;January;Accumulation simulation;N/A;N/A
-57;Kelp;January;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-58;Passive;April;Accumulation simulation;N/A;N/A
-59;Kelp;April;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-60;Passive;July;Accumulation simulation;N/A;N/A
-61;Kelp;July;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-62;Passive;October;Accumulation simulation;N/A;N/A
-63;Kelp;October;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-64;Kelp;January;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
-65;Kelp;April;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
-66;Kelp;July;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
-67;Kelp;October;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+14;Passive;April;No drag simulation;N/A;N/A
+15;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag only
+16;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag 95%, wind drag 5%
+17;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag 90%, wind drag 10%
+18;Kelp;April;Drag simulation;Minimum;Hydrodynamic drag 85%, wind drag 15%
+19;Kelp;April;Drag simulation;Mean;Hydrodynamic drag only
+20;Kelp;April;Drag simulation;Mean;Hydrodynamic drag 95%, wind drag 5%
+21;Kelp;April;Drag simulation;Mean;Hydrodynamic drag 90%, wind drag 10%
+22;Kelp;April;Drag simulation;Mean;Hydrodynamic drag 85%, wind drag 15%
+23;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag only
+24;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
+25;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
+26;Kelp;April;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+27;Passive;July;No drag simulation;N/A;N/A
+28;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag only
+29;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag 95%, wind drag 5%
+30;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag 90%, wind drag 10%
+31;Kelp;July;Drag simulation;Minimum;Hydrodynamic drag 85%, wind drag 15%
+32;Kelp;July;Drag simulation;Mean;Hydrodynamic drag only
+33;Kelp;July;Drag simulation;Mean;Hydrodynamic drag 95%, wind drag 5%
+34;Kelp;July;Drag simulation;Mean;Hydrodynamic drag 90%, wind drag 10%
+35;Kelp;July;Drag simulation;Mean;Hydrodynamic drag 85%, wind drag 15%
+36;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag only
+37;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
+38;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
+39;Kelp;July;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+40;Passive;October;No drag simulation;N/A;N/A
+41;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag only
+42;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag 95%, wind drag 5%
+43;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag 90%, wind drag 10%
+44;Kelp;October;Drag simulation;Minimum;Hydrodynamic drag 85%, wind drag 15%
+45;Kelp;October;Drag simulation;Mean;Hydrodynamic drag only
+46;Kelp;October;Drag simulation;Mean;Hydrodynamic drag 95%, wind drag 5%
+47;Kelp;October;Drag simulation;Mean;Hydrodynamic drag 90%, wind drag 10%
+48;Kelp;October;Drag simulation;Mean;Hydrodynamic drag 85%, wind drag 15%
+49;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag only
+50;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag 95%, wind drag 5%
+51;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag 90%, wind drag 10%
+52;Kelp;October;Drag simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+53;Passive;January;Accumulation simulation;N/A;N/A
+54;Kelp;January;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+55;Passive;April;Accumulation simulation;N/A;N/A
+56;Kelp;April;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+57;Passive;July;Accumulation simulation;N/A;N/A
+58;Kelp;July;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+59;Passive;October;Accumulation simulation;N/A;N/A
+60;Kelp;October;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
+61;Kelp;January;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+62;Kelp;April;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+63;Kelp;July;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+64;Kelp;October;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
