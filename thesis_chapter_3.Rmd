@@ -26,7 +26,7 @@ library(vegan)
 library(dplyr)
 library(ggpubr)
 library(maps)
-#library(flextable)
+library(flextable)
 library(officer)
 library(tidync)
 library(tidyverse)
@@ -86,7 +86,7 @@ Virtual particles were released with no drag or wind effects from the study site
 
 To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1.To determine if vortices and eddies play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations these simulation released a particle every hour over the same time periods. 
 
-```{r sim table, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r sim table, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -156,7 +156,7 @@ eck_stats <- eck_long_df %>%
 
 ```
 
-```{r morphology table, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE, eval=FALSE}
+```{r morphology table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, eval=TRUE}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -996,14 +996,15 @@ wwdrag_plot_Oct <- ggplot() +
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
+  guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=7, fig.width=5, fig.cap="Figure 3: Comparison of mean trajectories. Panel (A) represents hydrodynamic drag only simulations and Panel (B) represents simulations for both wind and hydrodynamic drag, for January, Panel (C) represents hydrodynamic drag only simulations and Panel (D) represents simulations for both wind and hydrodynamic drag, for April. Panel (E) represents hydrodynamic drag only simulations and Panel (F) represents simulations for both wind and hydrodynamic drag, for July. Panel (G) represents hydrodynamic drag only simulations and Panel (H) represents simulations for both wind and hydrodynamic drag, for October. In all panels the passive simulations are represented by black lines."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=11, fig.width=8, fig.cap="Figure 3: Comparison of mean trajectories. Panel (A) represents hydrodynamic drag only simulations and Panel (B) represents simulations for both wind and hydrodynamic drag, for January, Panel (C) represents hydrodynamic drag only simulations and Panel (D) represents simulations for both wind and hydrodynamic drag, for April. Panel (E) represents hydrodynamic drag only simulations and Panel (F) represents simulations for both wind and hydrodynamic drag, for July. Panel (G) represents hydrodynamic drag only simulations and Panel (H) represents simulations for both wind and hydrodynamic drag, for October. In all panels the passive simulations are represented by black lines."}
 
-ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, labels = "AUTO", ncol = 2, nrow = 4, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("right"))
+ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, ncol = 2, nrow = 4, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("right"), labels = "AUTO", align = "hv")
 
 ```
 
@@ -2384,7 +2385,7 @@ mean_traj_acc <- ggplot() +
 
 ```
 
-```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation scenarios.", fig.height=9, fig.width=7}
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation scenarios for each season.For each month, passive particles are plotted on the left colum", fig.height=9, fig.width=7}
 
 ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 11, face = "bold"), align = "hv")
 
@@ -2422,6 +2423,8 @@ Most of the past research has focused on large macroalgae rafts which can vary g
 
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
 
+load("map/south_africa_coast_hi_res.Rdata")
+
 # January
 
 sphere <- tidync("OceanParcels/trajectory_data/Max_KFloat_H100_W00.nc") %>%
@@ -2454,12 +2457,12 @@ cyl_mean$type <- "Cylinder"
 
 # Make mean trajectory plot
 shape_plot <- ggplot()+
-  geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = cyl_mean, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") +
-  ggtitle("Mean trajectory comparison") +
+  ggtitle("January") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -2476,7 +2479,7 @@ heatmap_sphere <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Cylinder") + 
+  ggtitle("") + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2490,7 +2493,7 @@ heatmap_cyl <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Sphere") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
@@ -2528,12 +2531,12 @@ cyl_mean_April$type <- "Cylinder"
 
 # Make mean trajectory plot
 shape_plot_April <- ggplot()+
-  geom_path(data = p_RK4_mean_April, aes(x = lon, y = lat), color = 'black')+
+  #geom_path(data = p_RK4_mean_April, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean_April, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean_April, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = cyl_mean_April, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") +
-  ggtitle("Mean trajectory comparison") +
+  ggtitle("April") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -2550,7 +2553,7 @@ heatmap_sphere_April <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Cylinder") + 
+  ggtitle("") + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2564,7 +2567,7 @@ heatmap_cyl_April <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Sphere") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
@@ -2602,12 +2605,12 @@ cyl_mean_July$type <- "Cylinder" # add extra column 'type' to dataframe and assi
 
 # Make mean trajectory plot
 shape_plot_July <- ggplot()+
-  geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
+  #geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean_July, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean_July, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = cyl_mean_July, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") +
-  ggtitle("Mean trajectory comparison") +
+  ggtitle("July") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -2624,7 +2627,7 @@ heatmap_sphere_July <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Cylinder") + 
+  ggtitle("") + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2638,7 +2641,7 @@ heatmap_cyl_July <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Sphere") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
@@ -2676,12 +2679,12 @@ cyl_mean_Oct$type <- "Cylinder"
 
 # Make mean trajectory plot
 shape_plot_Oct <- ggplot()+
-  geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
+  #geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean_Oct, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean_Oct, aes(x = lon, y = lat), color = 'orange')+
+  geom_path(data = cyl_mean_Oct, aes(x = lon, y = lat), color = 'red')+
   xlab("Longtitude") + 
   ylab("Latitude") +
-  ggtitle("Mean trajectory comparison") +
+  ggtitle("October") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -2698,7 +2701,7 @@ heatmap_sphere_Oct <- ggplot() +
   xlab("Longtitude") + 
   ylab("Latitude") + 
   guides(fill=guide_legend(title="Number of particles")) +
-  ggtitle("Cylinder") + 
+  ggtitle("") + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2712,7 +2715,7 @@ heatmap_cyl_Oct <- ggplot() +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("Sphere") +
+  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
@@ -2729,16 +2732,17 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = Month, y = distance, s
   ylab("Distance (km)")+
   xlab("Month") + 
   ggtitle("Comparison of distance travelled") +
+  guides(fill=guide_legend(title="Coefficient")) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between a kelp sphere and kelp cylinder. Plot A is the comparison of mean trajectories, plot B is the comparison of total distance travelled by all particles, and plot C and D are the density plots for simulations using a sphere and cylindrical shape coefficient. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between spehere and cylinder shape coeficients.The mean trajectory comparison between passive and kel The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=8}
 
-shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_sphere_April,heatmap_sphere_July, heatmap_sphere_Oct, heatmap_cyl, heatmap_cyl_April, heatmap_cyl_July, heatmap_cyl_Oct, labels = c("AUTO"), common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3)
+shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_sphere_April,heatmap_sphere_July, heatmap_sphere_Oct, heatmap_cyl, heatmap_cyl_April, heatmap_cyl_July, heatmap_cyl_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3, align = "hv", labels = c("A", "", "", "", "B", "", "", "", "C"), font.label = list(size = 11, face = "bold"))
 
-ggarrange(shape_plot_A, shape_dis_plot, ncol = 1, nrow = 2)
+ggarrange(shape_plot_A, shape_dis_plot, ncol = 1, nrow = 2, legend = c("right"), labels = c("", "D") , font.label = list(size = 11, face = "bold"))
 
 ```
 
