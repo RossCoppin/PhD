@@ -82,11 +82,13 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 ## Simulations
 
-Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. The time period used in all simulations were January (summer), April (Autumn), July (winter), and October (Spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity ; while in winter the Benguela jet begins to stablize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. In order to determine if the shape co-efficient used plays a role in model used, a simulation of a kelp with the maximum surface area and drag exposure was run using the shape coefficient for a cylinder to compare to a simulation using a sphere, and was run for 30 days using a fourth order Runge-Kutte advection scheme with brownian motion and a particle set of size 1000. 
+Virtual particles were released with no drag or wind effects from the study site in order to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag, and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated in order to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. The time period used in all simulations were January (summer), April (Autumn), July (winter), and October (Spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity ; while in winter the Benguela jet begins to stablize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. 
 
 To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1.To determine if vortices and eddies play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations these simulation released a particle every hour over the same time periods. 
 
-```{r sim table, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+In order to determine if the shape co-efficient used plays a role in model used and to validate the use of a sphereical shape coefficent, simulations of kelps with the maximum surface area and hydrodynamic drag exposure was run using the shape coefficient for a cylinder to compare to a simulations using a spheres. Simulations were run for 30 days using a fourth order Runge-Kutte advection scheme with brownian motion and a particle set of size 1000 for the same seasons as per previous simulations. 
+
+```{r sim table, eval=TRUE, message=FALSE, warning=FALSE, include=FALSE}
 
 set_flextable_defaults(fonts_ignore=TRUE)
 
@@ -175,10 +177,6 @@ area_table
 In order to compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@vanSebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particles [@vanSebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity as a result of momentum energy transfer [@putman2020; @putman2018; @vanSebille2018]. 
 
 # Results
-## Comparison of coefficients
-
-The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (see appendix). This was also reflected when comparing distance travelled by particles and particle density plots (see appendix). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (see appendix). 
-
 
 ```{r data wrangling, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -366,7 +364,7 @@ p_RK4_mean_April <- p_RK4_April %>% # calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 p_RK4_April$type <- "RK4_April" # add extra column 'type' to dataframe and assigned 'RK4' label
-p_RK4_mean_April$type <- "17" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_mean_April$type <- "14" # add extra column 'type' to dataframe and assigned 'RK4' label
 
 
 Min_Kfloat_H100_W00_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_April.nc") %>%
@@ -380,7 +378,7 @@ Min_Kfloat_H100_W00_mean_April <- Min_Kfloat_H100_W00_April %>% # calculate mean
 
 Min_Kfloat_H100_W00_April$type <- "Min_Kfloat_H100_W00_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H100_W00_April$velocity <- with(Min_Kfloat_H100_W00_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H100_W00_mean_April$type <- "18" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00_mean_April$type <- "15" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H095_W05_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H095_W05_April.nc") %>%
   hyper_tibble() %>%
@@ -393,7 +391,7 @@ Min_Kfloat_H095_W05_mean_April <- Min_Kfloat_H095_W05_April %>% # calculate mean
 
 Min_Kfloat_H095_W05_April$type <- "Min_Kfloat_H095_W05_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H095_W05_April$velocity <- with(Min_Kfloat_H095_W05_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H095_W05_mean_April$type <- "19" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05_mean_April$type <- "16" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H090_W10_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H090_W10_April.nc") %>%
   hyper_tibble() %>%
@@ -406,7 +404,7 @@ Min_Kfloat_H090_W10_mean_April <- Min_Kfloat_H090_W10_April %>% #calculate mean 
 
 Min_Kfloat_H090_W10_April$type <- "Min_Kfloat_H090_W10_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H090_W10_April$velocity <- with(Min_Kfloat_H090_W10_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H090_W10_mean_April$type <- "20" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10_mean_April$type <- "17" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H085_W15_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H085_W15_April.nc") %>%
   hyper_tibble() %>%
@@ -419,7 +417,7 @@ Min_Kfloat_H085_W15_mean_April <- Min_Kfloat_H085_W15_April %>% #calculate mean 
 
 Min_Kfloat_H085_W15_April$type <- "Min_Kfloat_H085_W15_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H085_W15_April$velocity <- with(Min_Kfloat_H085_W15_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H085_W15_mean_April$type <- "21" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15_mean_April$type <- "18" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_Kfloat_H100_W00_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H100_W00_April.nc") %>%
   hyper_tibble() %>%
@@ -432,7 +430,7 @@ Mean_Kfloat_H100_W00_mean_April <- Mean_Kfloat_H100_W00_April %>% #calculate mea
 
 Mean_Kfloat_H100_W00_April$type <- "Mean_Kfloat_H100_W00_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_Kfloat_H100_W00_April$velocity <- with(Mean_Kfloat_H100_W00_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_Kfloat_H100_W00_mean_April$type <- "22" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00_mean_April$type <- "19" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H095_W05_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H095_W05_April.nc") %>%
   hyper_tibble() %>%
@@ -445,7 +443,7 @@ Mean_KFloat_H095_W05_mean_April <- Mean_KFloat_H095_W05_April %>% #calculate mea
 
 Mean_KFloat_H095_W05_April$type <- "Mean_KFloat_H095_W05_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H095_W05_April$velocity <- with(Mean_KFloat_H095_W05_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H095_W05_mean_April$type <- "23" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05_mean_April$type <- "20" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H090_W10_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H090_W10_April.nc") %>%
   hyper_tibble() %>%
@@ -458,7 +456,7 @@ Mean_KFloat_H090_W10_mean_April <- Mean_KFloat_H090_W10_April %>% #calculate mea
 
 Mean_KFloat_H090_W10_April$type <- "Mean_KFloat_H090_W10_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H090_W10_April$velocity <- with(Mean_KFloat_H090_W10_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H090_W10_mean_April$type <- "24" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10_mean_April$type <- "21" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H085_W15_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H085_W15_April.nc") %>%
   hyper_tibble() %>%
@@ -471,7 +469,7 @@ Mean_KFloat_H085_W15_mean_April <- Mean_KFloat_H085_W15_April %>% #calculate mea
 
 Mean_KFloat_H085_W15_April$type <- "Mean_KFloat_H085_W15_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H085_W15_April$velocity <- with(Mean_KFloat_H085_W15_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H085_W15_mean_April$type <- "25" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15_mean_April$type <- "22" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H100_W00_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_April.nc") %>%
   hyper_tibble() %>%
@@ -484,7 +482,7 @@ Max_Kfloat_H100_W00_mean_April <- Max_Kfloat_H100_W00_April %>% #calculate mean 
 
 Max_Kfloat_H100_W00_April$type <- "Max_KFloat_H100_W00_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H100_W00_April$velocity <- with(Max_Kfloat_H100_W00_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H100_W00_mean_April$type <- "26" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00_mean_April$type <- "23" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H095_W05_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H095_W05_April.nc") %>%
   hyper_tibble() %>%
@@ -497,7 +495,7 @@ Max_Kfloat_H095_W05_mean_April <- Max_Kfloat_H095_W05_April %>% #calculate mean 
 
 Max_Kfloat_H095_W05_April$type <- "Max_KFloat_H095_W05_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H095_W05_April$velocity <- with(Max_Kfloat_H095_W05_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H095_W05_mean_April$type <- "27" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05_mean_April$type <- "24" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H090_W10_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H090_W10_April.nc") %>%
   hyper_tibble() %>%
@@ -510,7 +508,7 @@ Max_Kfloat_H090_W10_mean_April <- Max_Kfloat_H090_W10_April %>% #calculate mean 
 
 Max_Kfloat_H090_W10_April$type <- "Max_KFloat_H090_W10_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H090_W10_April$velocity <- with(Max_Kfloat_H090_W10_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H090_W10_mean_April$type <- "28" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10_mean_April$type <- "25" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H085_W15_April <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H085_W15_April.nc") %>%
   hyper_tibble() %>%
@@ -523,7 +521,7 @@ Max_Kfloat_H085_W15_mean_April <- Max_Kfloat_H085_W15_April %>% #calculate mean 
 
 Max_Kfloat_H085_W15_April$type <- "Max_KFloat_H085_W15_April" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H085_W15_April$velocity <- with(Max_Kfloat_H085_W15_April, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H085_W15_mean_April$type <- "29" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15_mean_April$type <- "26" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 total_data_April <- rbind(Min_Kfloat_H100_W00_April, Min_Kfloat_H095_W05_April, Min_Kfloat_H090_W10_April, Min_Kfloat_H085_W15_April, Mean_Kfloat_H100_W00_April, Mean_KFloat_H095_W05_April, Mean_KFloat_H090_W10_April, Mean_KFloat_H085_W15_April, Max_Kfloat_H100_W00_April, Max_Kfloat_H095_W05_April, Max_Kfloat_H090_W10_April, Max_Kfloat_H085_W15_April)
 
@@ -539,7 +537,7 @@ p_RK4_mean_July <- p_RK4_July %>% # calculate mean trajectory
   summarise(across(lon:lat, mean, na.rm= TRUE))
 
 p_RK4_July$type <- "RK4_July" # add extra column 'type' to dataframe and assigned 'RK4' label
-p_RK4_mean_July$type <- "30" # add extra column 'type' to dataframe and assigned 'RK4' label
+p_RK4_mean_July$type <- "27" # add extra column 'type' to dataframe and assigned 'RK4' label
 
 Min_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H100_W00_July.nc") %>%
   hyper_tibble() %>%
@@ -552,7 +550,7 @@ Min_Kfloat_H100_W00_mean_July <- Min_Kfloat_H100_W00_July %>% # calculate mean t
 
 Min_Kfloat_H100_W00_July$type <- "Min_Kfloat_H100_W00_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H100_W00_July$velocity <- with(Min_Kfloat_H100_W00_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H100_W00_mean_July$type <- "31" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00_mean_July$type <- "28" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H095_W05_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H095_W05_July.nc") %>%
   hyper_tibble() %>%
@@ -565,7 +563,7 @@ Min_Kfloat_H095_W05_mean_July <- Min_Kfloat_H095_W05_July %>% # calculate mean t
 
 Min_Kfloat_H095_W05_July$type <- "Min_Kfloat_H095_W05_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H095_W05_July$velocity <- with(Min_Kfloat_H095_W05_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H095_W05_mean_July$type <- "32" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05_mean_July$type <- "29" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H090_W10_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H090_W10_July.nc") %>%
   hyper_tibble() %>%
@@ -578,7 +576,7 @@ Min_Kfloat_H090_W10_mean_July <- Min_Kfloat_H090_W10_July %>% #calculate mean tr
 
 Min_Kfloat_H090_W10_July$type <- "Min_Kfloat_H090_W10_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H090_W10_July$velocity <- with(Min_Kfloat_H090_W10_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H090_W10_mean_July$type <- "33" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10_mean_July$type <- "30" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H085_W15_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H085_W15_July.nc") %>%
   hyper_tibble() %>%
@@ -591,7 +589,7 @@ Min_Kfloat_H085_W15_mean_July <- Min_Kfloat_H085_W15_July %>% #calculate mean tr
 
 Min_Kfloat_H085_W15_July$type <- "Min_Kfloat_H085_W15_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H085_W15_July$velocity <- with(Min_Kfloat_H085_W15_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H085_W15_mean_July$type <- "34" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15_mean_July$type <- "31" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H100_W00_July.nc") %>%
   hyper_tibble() %>%
@@ -604,7 +602,7 @@ Mean_Kfloat_H100_W00_mean_July <- Mean_Kfloat_H100_W00_July %>% #calculate mean 
 
 Mean_Kfloat_H100_W00_July$type <- "Mean_Kfloat_H100_W00_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_Kfloat_H100_W00_July$velocity <- with(Mean_Kfloat_H100_W00_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_Kfloat_H100_W00_mean_July$type <- "35" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00_mean_July$type <- "32" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H095_W05_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H095_W05_July.nc") %>%
   hyper_tibble() %>%
@@ -617,7 +615,7 @@ Mean_KFloat_H095_W05_mean_July <- Mean_KFloat_H095_W05_July %>% #calculate mean 
 
 Mean_KFloat_H095_W05_July$type <- "Mean_KFloat_H095_W05_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H095_W05_July$velocity <- with(Mean_KFloat_H095_W05_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H095_W05_mean_July$type <- "36" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05_mean_July$type <- "33" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H090_W10_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H090_W10_July.nc") %>%
   hyper_tibble() %>%
@@ -630,7 +628,7 @@ Mean_KFloat_H090_W10_mean_July <- Mean_KFloat_H090_W10_July %>% #calculate mean 
 
 Mean_KFloat_H090_W10_July$type <- "Mean_KFloat_H090_W10_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H090_W10_July$velocity <- with(Mean_KFloat_H090_W10_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H090_W10_mean_July$type <- "37" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10_mean_July$type <- "34" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H085_W15_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H085_W15_July.nc") %>%
   hyper_tibble() %>%
@@ -643,7 +641,7 @@ Mean_KFloat_H085_W15_mean_July <- Mean_KFloat_H085_W15_July %>% #calculate mean 
 
 Mean_KFloat_H085_W15_July$type <- "Mean_KFloat_H085_W15_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H085_W15_July$velocity <- with(Mean_KFloat_H085_W15_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H085_W15_mean_July$type <- "38" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15_mean_July$type <- "35" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H100_W00_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_July.nc") %>%
   hyper_tibble() %>%
@@ -656,7 +654,7 @@ Max_Kfloat_H100_W00_mean_July <- Max_Kfloat_H100_W00_July %>% #calculate mean tr
 
 Max_Kfloat_H100_W00_July$type <- "Max_KFloat_H100_W00_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H100_W00_July$velocity <- with(Max_Kfloat_H100_W00_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H100_W00_mean_July$type <- "39" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00_mean_July$type <- "36" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H095_W05_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H095_W05_July.nc") %>%
   hyper_tibble() %>%
@@ -669,7 +667,7 @@ Max_Kfloat_H095_W05_mean_July <- Max_Kfloat_H095_W05_July %>% #calculate mean tr
 
 Max_Kfloat_H095_W05_July$type <- "Max_KFloat_H095_W05_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H095_W05_July$velocity <- with(Max_Kfloat_H095_W05_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H095_W05_mean_July$type <- "40" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05_mean_July$type <- "37" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H090_W10_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H090_W10_July.nc") %>%
   hyper_tibble() %>%
@@ -682,7 +680,7 @@ Max_Kfloat_H090_W10_mean_July <- Max_Kfloat_H090_W10_July %>% #calculate mean tr
 
 Max_Kfloat_H090_W10_July$type <- "Max_KFloat_H090_W10_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H090_W10_July$velocity <- with(Max_Kfloat_H090_W10_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H090_W10_mean_July$type <- "41" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10_mean_July$type <- "38" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H085_W15_July <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H085_W15_July.nc") %>%
   hyper_tibble() %>%
@@ -695,7 +693,7 @@ Max_Kfloat_H085_W15_mean_July <- Max_Kfloat_H085_W15_July %>% #calculate mean tr
 
 Max_Kfloat_H085_W15_July$type <- "Max_KFloat_H085_W15_July" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H085_W15_July$velocity <- with(Max_Kfloat_H085_W15_July, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H085_W15_mean_July$type <- "42" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15_mean_July$type <- "39" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 total_data_July <- rbind(Min_Kfloat_H100_W00_July, Min_Kfloat_H095_W05_July, Min_Kfloat_H090_W10_July, Min_Kfloat_H085_W15_July, Mean_Kfloat_H100_W00_July, Mean_KFloat_H095_W05_July, Mean_KFloat_H090_W10_July, Mean_KFloat_H085_W15_July, Max_Kfloat_H100_W00_July, Max_Kfloat_H095_W05_July, Max_Kfloat_H090_W10_July, Max_Kfloat_H085_W15_July)
 
@@ -724,7 +722,7 @@ Min_Kfloat_H100_W00_mean_Oct <- Min_Kfloat_H100_W00_Oct %>% # calculate mean tra
 
 Min_Kfloat_H100_W00_Oct$type <- "Min_Kfloat_H100_W00_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H100_W00_Oct$velocity <- with(Min_Kfloat_H100_W00_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H100_W00_mean_Oct$type <- "44" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H100_W00_mean_Oct$type <- "40" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H095_W05_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H095_W05_Oct.nc") %>%
   hyper_tibble() %>%
@@ -737,7 +735,7 @@ Min_Kfloat_H095_W05_mean_Oct <- Min_Kfloat_H095_W05_Oct %>% # calculate mean tra
 
 Min_Kfloat_H095_W05_Oct$type <- "Min_Kfloat_H095_W05_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H095_W05_Oct$velocity <- with(Min_Kfloat_H095_W05_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H095_W05_mean_Oct$type <- "45" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H095_W05_mean_Oct$type <- "41" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H090_W10_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H090_W10_Oct.nc") %>%
   hyper_tibble() %>%
@@ -750,7 +748,7 @@ Min_Kfloat_H090_W10_mean_Oct <- Min_Kfloat_H090_W10_Oct %>% #calculate mean traj
 
 Min_Kfloat_H090_W10_Oct$type <- "Min_Kfloat_H090_W10_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H090_W10_Oct$velocity <- with(Min_Kfloat_H090_W10_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H090_W10_mean_Oct$type <- "46" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H090_W10_mean_Oct$type <- "42" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Min_Kfloat_H085_W15_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Min_KFloat_H085_W15_Oct.nc") %>%
   hyper_tibble() %>%
@@ -763,7 +761,7 @@ Min_Kfloat_H085_W15_mean_Oct <- Min_Kfloat_H085_W15_Oct %>% #calculate mean traj
 
 Min_Kfloat_H085_W15_Oct$type <- "Min_Kfloat_H085_W15_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Min_Kfloat_H085_W15_Oct$velocity <- with(Min_Kfloat_H085_W15_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Min_Kfloat_H085_W15_mean_Oct$type <- "47" # add extra column 'type' to dataframe and assigned 'kelp' label
+Min_Kfloat_H085_W15_mean_Oct$type <- "43" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_Kfloat_H100_W00_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H100_W00_Oct.nc") %>%
   hyper_tibble() %>%
@@ -776,7 +774,7 @@ Mean_Kfloat_H100_W00_mean_Oct <- Mean_Kfloat_H100_W00_Oct %>% #calculate mean tr
 
 Mean_Kfloat_H100_W00_Oct$type <- "Mean_Kfloat_H100_W00_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_Kfloat_H100_W00_Oct$velocity <- with(Mean_Kfloat_H100_W00_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_Kfloat_H100_W00_mean_Oct$type <- "48" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_Kfloat_H100_W00_mean_Oct$type <- "44" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H095_W05_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H095_W05_Oct.nc") %>%
   hyper_tibble() %>%
@@ -789,7 +787,7 @@ Mean_KFloat_H095_W05_mean_Oct <- Mean_KFloat_H095_W05_Oct %>% #calculate mean tr
 
 Mean_KFloat_H095_W05_Oct$type <- "Mean_KFloat_H095_W05_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H095_W05_Oct$velocity <- with(Mean_KFloat_H095_W05_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H095_W05_mean_Oct$type <- "49" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H095_W05_mean_Oct$type <- "45" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H090_W10_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H090_W10_Oct.nc") %>%
   hyper_tibble() %>%
@@ -802,7 +800,7 @@ Mean_KFloat_H090_W10_mean_Oct <- Mean_KFloat_H090_W10_Oct %>% #calculate mean tr
 
 Mean_KFloat_H090_W10_Oct$type <- "Mean_KFloat_H090_W10_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H090_W10_Oct$velocity <- with(Mean_KFloat_H090_W10_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H090_W10_mean_Oct$type <- "50" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H090_W10_mean_Oct$type <- "46" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Mean_KFloat_H085_W15_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Mean_KFloat_H085_W15_Oct.nc") %>%
   hyper_tibble() %>%
@@ -815,7 +813,7 @@ Mean_KFloat_H085_W15_mean_Oct <- Mean_KFloat_H085_W15_Oct %>% #calculate mean tr
 
 Mean_KFloat_H085_W15_Oct$type <- "Mean_KFloat_H085_W15_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Mean_KFloat_H085_W15_Oct$velocity <- with(Mean_KFloat_H085_W15_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Mean_KFloat_H085_W15_mean_Oct$type <- "51" # add extra column 'type' to dataframe and assigned 'kelp' label
+Mean_KFloat_H085_W15_mean_Oct$type <- "47" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H100_W00_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H100_W00_Oct.nc") %>%
   hyper_tibble() %>%
@@ -828,7 +826,7 @@ Max_Kfloat_H100_W00_mean_Oct <- Max_Kfloat_H100_W00_Oct %>% #calculate mean traj
 
 Max_Kfloat_H100_W00_Oct$type <- "Max_KFloat_H100_W00_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H100_W00_Oct$velocity <- with(Max_Kfloat_H100_W00_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H100_W00_mean_Oct$type <- "52" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H100_W00_mean_Oct$type <- "48" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H095_W05_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H095_W05_Oct.nc") %>%
   hyper_tibble() %>%
@@ -841,7 +839,7 @@ Max_Kfloat_H095_W05_mean_Oct <- Max_Kfloat_H095_W05_Oct %>% #calculate mean traj
 
 Max_Kfloat_H095_W05_Oct$type <- "Max_KFloat_H095_W05_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H095_W05_Oct$velocity <- with(Max_Kfloat_H095_W05_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H095_W05_mean_Oct$type <- "53" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H095_W05_mean_Oct$type <- "49" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H090_W10_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H090_W10_Oct.nc") %>%
   hyper_tibble() %>%
@@ -854,7 +852,7 @@ Max_Kfloat_H090_W10_mean_Oct <- Max_Kfloat_H090_W10_Oct %>% #calculate mean traj
 
 Max_Kfloat_H090_W10_Oct$type <- "Max_KFloat_H090_W10_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H090_W10_Oct$velocity <- with(Max_Kfloat_H090_W10_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H090_W10_mean_Oct$type <- "54" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H090_W10_mean_Oct$type <- "50" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 Max_Kfloat_H085_W15_Oct <- tidync("OceanParcels/trajectory_data/chapter3_additional/Max_KFloat_H085_W15_Oct.nc") %>%
   hyper_tibble() %>%
@@ -867,7 +865,7 @@ Max_Kfloat_H085_W15_mean_Oct <- Max_Kfloat_H085_W15_Oct %>% #calculate mean traj
 
 Max_Kfloat_H085_W15_Oct$type <- "Max_KFloat_H085_W15_Oct" # add extra column 'type' to dataframe and assigned 'kelp' label
 Max_Kfloat_H085_W15_Oct$velocity <- with(Max_Kfloat_H085_W15_Oct, sqrt(kelpvelU^2 + kelpvelV^2))
-Max_Kfloat_H085_W15_mean_Oct$type <- "55" # add extra column 'type' to dataframe and assigned 'kelp' label
+Max_Kfloat_H085_W15_mean_Oct$type <- "51" # add extra column 'type' to dataframe and assigned 'kelp' label
 
 total_data_Oct <- rbind(Min_Kfloat_H100_W00_Oct, Min_Kfloat_H095_W05_Oct, Min_Kfloat_H090_W10_Oct, Min_Kfloat_H085_W15_Oct, Mean_Kfloat_H100_W00_Oct, Mean_KFloat_H095_W05_Oct, Mean_KFloat_H090_W10_Oct, Mean_KFloat_H085_W15_Oct, Max_Kfloat_H100_W00_Oct, Max_Kfloat_H095_W05_Oct, Max_Kfloat_H090_W10_Oct, Max_Kfloat_H085_W15_Oct)
 
@@ -915,8 +913,8 @@ wwdrag_plot <- ggplot()+
 total_mean_water_April <- rbind(p_RK4_mean_April, Min_Kfloat_H100_W00_mean_April, Mean_Kfloat_H100_W00_mean_April, Max_Kfloat_H100_W00_mean_April)
 total_mean_ww_April <- rbind(p_RK4_mean_April, Min_Kfloat_H095_W05_mean_April, Min_Kfloat_H090_W10_mean_April, Min_Kfloat_H085_W15_mean_April, Mean_KFloat_H095_W05_mean_April, Mean_KFloat_H090_W10_mean_April, Mean_KFloat_H085_W15_mean_April, Max_Kfloat_H095_W05_mean_April, Max_Kfloat_H090_W10_mean_April, Max_Kfloat_H085_W15_mean_April)
 
-total_mean_water_April$type <- factor(total_mean_water_April$type, levels=c("17", "18", "22", "26"))
-total_mean_ww_April$type <- factor(total_mean_ww_April$type, levels=c("17", "19", "20", "21", "23", "24", "25", "27", "28", "29"))
+total_mean_water_April$type <- factor(total_mean_water_April$type, levels=c("14", "15", "19", "23"))
+total_mean_ww_April$type <- factor(total_mean_ww_April$type, levels=c("14", "16", "17", "18", "20", "21", "22", "24", "25", "26"))
 
 
 waterdrag_plot_April <- ggplot()+
@@ -944,8 +942,8 @@ wwdrag_plot_April <- ggplot()+
 total_mean_water_July <- rbind(p_RK4_mean_July, Min_Kfloat_H100_W00_mean_July, Mean_Kfloat_H100_W00_mean_July, Max_Kfloat_H100_W00_mean_July)
 total_mean_ww_July <- rbind(p_RK4_mean_July, Min_Kfloat_H095_W05_mean_July, Min_Kfloat_H090_W10_mean_July, Min_Kfloat_H085_W15_mean_July, Mean_KFloat_H095_W05_mean_July, Mean_KFloat_H090_W10_mean_July, Mean_KFloat_H085_W15_mean_July, Max_Kfloat_H095_W05_mean_July, Max_Kfloat_H090_W10_mean_July, Max_Kfloat_H085_W15_mean_July)
 
-total_mean_water_July$type <- factor(total_mean_water_July$type, levels=c("30", "31", "35", "39"))
-total_mean_ww_July$type <- factor(total_mean_ww_July$type, levels=c("30", "32", "33", "34", "36", "37", "38", "40", "41", "42"))
+total_mean_water_July$type <- factor(total_mean_water_July$type, levels=c("27", "28", "32", "36"))
+total_mean_ww_July$type <- factor(total_mean_ww_July$type, levels=c("27", "29", "30", "31", "33", "34", "35", "37", "38", "39"))
 
 
 waterdrag_plot_July <- ggplot()+
@@ -973,8 +971,8 @@ wwdrag_plot_July <- ggplot()+
 total_mean_water_Oct <- rbind(p_RK4_mean_Oct, Min_Kfloat_H100_W00_mean_Oct, Mean_Kfloat_H100_W00_mean_Oct, Max_Kfloat_H100_W00_mean_Oct)
 total_mean_ww_Oct <- rbind(p_RK4_mean_Oct, Min_Kfloat_H095_W05_mean_Oct, Min_Kfloat_H090_W10_mean_Oct, Min_Kfloat_H085_W15_mean_Oct, Mean_KFloat_H095_W05_mean_Oct, Mean_KFloat_H090_W10_mean_Oct, Mean_KFloat_H085_W15_mean_Oct, Max_Kfloat_H095_W05_mean_Oct, Max_Kfloat_H090_W10_mean_Oct, Max_Kfloat_H085_W15_mean_Oct)
 
-total_mean_water_Oct$type <- factor(total_mean_water_Oct$type, levels=c("43", "44", "48", "52"))
-total_mean_ww_Oct$type <- factor(total_mean_ww_Oct$type, levels=c("43", "45", "46", "47", "49", "50", "51", "53", "54", "55"))
+total_mean_water_Oct$type <- factor(total_mean_water_Oct$type, levels=c("40", "41", "45", "49"))
+total_mean_ww_Oct$type <- factor(total_mean_ww_Oct$type, levels=c("40", "42", "43", "44", "46", "47", "48", "50", "51", "52"))
 
 
 waterdrag_plot_Oct <- ggplot()+
@@ -1904,7 +1902,7 @@ dis_plot_April <- ggplot(data = total_data_April, aes(x = type, y = distance, sh
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_April <- c("17","18","19","20","21","22","23","24","25","26","27","28", "29") #create custom labels and add them to dis_plot
+custom_labs_April <- c("14","15","16","17","18","19","20","21","22","23","24","25", "26") #create custom labels and add them to dis_plot
 
 dis_plot_April <- dis_plot_April +
   scale_x_discrete(labels= custom_labs_April)
@@ -1935,7 +1933,7 @@ dis_plot_July <- ggplot(data = total_data_July, aes(x = type, y = distance, show
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_July <- c("30","31","32","33","34","35","36","37","38","39","40","41", "42") #create custom labels and add them to dis_plot
+custom_labs_July <- c("27","28","29","30","31","32","33","34","35","36","37","38", "39") #create custom labels and add them to dis_plot
 
 dis_plot_July <- dis_plot_July +
   scale_x_discrete(labels= custom_labs_July)
@@ -1966,7 +1964,7 @@ dis_plot_Oct <- ggplot(data = total_data_Oct, aes(x = type, y = distance, show.l
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-custom_labs_Oct <- c("43","44","45","46","47","48","49","50","51","52","53","54","55") #create custom labels and add them to dis_plot
+custom_labs_Oct <- c("40","41","42","43","44","45","46","47","48","49","50","51","52") #create custom labels and add them to dis_plot
 
 dis_plot_Oct <- dis_plot_Oct +
   scale_x_discrete(labels= custom_labs_Oct)
@@ -2385,19 +2383,23 @@ mean_traj_acc <- ggplot() +
 
 ```
 
-```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation scenarios for each season.For each month, passive particles are plotted on the left colum", fig.height=9, fig.width=7}
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation for scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=9, fig.width=7}
 
 ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 11, face = "bold"), align = "hv")
 
 ```
 
-```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of age between passive and kelp accumulation scenarios.", fig.height=9, fig.width=7}
+```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of age between passive and kelp accumulation scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=9, fig.width=7}
 
 ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 11, face = "bold"), align = "hv")
 
 ```
 
 The role of eddies that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 8). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 8). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 9, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
+
+## Comparison of coefficients
+
+The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (see appendix). This was also reflected when comparing distance travelled by particles and particle density plots (see appendix). The simulation which used a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (see appendix). 
 
 # Discussion
 
@@ -2738,7 +2740,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = Month, y = distance, s
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between spehere and cylinder shape coeficients.The mean trajectory comparison between passive and kel The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=8}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of trajectory data between spehere and cylinder shape coeficients for scenarios 61-64.The mean trajectory comparison between passive and kel The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=8}
 
 shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_sphere_April,heatmap_sphere_July, heatmap_sphere_Oct, heatmap_cyl, heatmap_cyl_April, heatmap_cyl_July, heatmap_cyl_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3, align = "hv", labels = c("A", "", "", "", "B", "", "", "", "C"), font.label = list(size = 11, face = "bold"))
 
