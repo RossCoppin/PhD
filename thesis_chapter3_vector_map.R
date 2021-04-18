@@ -108,7 +108,6 @@ ocean_plot_oct <-  ggplot() +
   theme(axis.text = element_text(size = 11, colour = 1)) +
   labs(x = NULL, y = NULL)
 
-ggarrange(ocean_plot, wind_plot, font.label = list(size = 11, face = "bold"), ncol = 2, nrow = 1)
 
 ggsave("ocean_plot.png", dpi = 320, width = 8, height = 8, path = "figures/chapter_3/", units = "in")
 
@@ -228,10 +227,21 @@ wind_plot_oct <- ggplot() +
   theme(axis.text = element_text(size = 11, colour = 1)) +
   labs(x = NULL, y = NULL)
 
-ggarrange(ocean_plot_jan, wind_plot_jan, ocean_plot_apr, wind_plot_apr, ocean_plot_july, wind_plot_july, ocean_plot_oct, wind_plot_oct,
-          font.label = list(size = 11, face = "bold"), ncol = 2, nrow = 3, labels = c("January", "", "April", "", "July", "", "October"))
+ocean <- ggarrange(ocean_plot_jan, ocean_plot_apr, ocean_plot_july, ocean_plot_oct,
+                   font.label = list(size = 12, face = "bold"), labels = c("January", "April", "July","October"),
+                   ncol = 2, nrow = 2, common.legend = TRUE, legend = c("bottom"))
 
-ggsave("vector_combined.png", dpi = 320, width = 8, height = 8, path = "figures/chapter_3/", units = "in")
+wind <- ggarrange(wind_plot_jan, wind_plot_apr, wind_plot_july, wind_plot_oct,
+                  font.label = list(size = 12, face = "bold"),labels = c("January", "April", "July","October"),
+                  ncol = 2, nrow = 2, common.legend = TRUE, legend = c("bottom"))
+
+combined <- ggarrange(ocean, wind, align = c("h"), ncol = 1, nrow = 2)
+
+ggarrange(ocean_plot_jan, wind_plot_jan, ocean_plot_apr, wind_plot_apr, ocean_plot_july, wind_plot_july, ocean_plot_oct, wind_plot_oct,
+          font.label = list(size = 11, face = "bold"), labels = c("January", "", "April", "","July", "", "October"), ncol = 2, nrow = 4, align = "h",
+          common.legend = TRUE, legend = c("bottom"))
+
+ggsave("vector_combined.jpeg", dpi = 320, width = 8, height = 8, path = "figures/chapter_3/", units = "in")
 
 ##########################################################################################################################################################
 # wind rose
