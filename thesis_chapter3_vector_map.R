@@ -46,17 +46,20 @@ ocean_oct_summary <- ocean_oct %>%
             vo = median(vo, na.rm = TRUE),
             velocity = median(velocity, na.rm = TRUE))
 
+#ocean_jan_summary[seq(5, nrow(ocean_jan_summary), 4), ] # every 4th row
+
+
 # January ocean vector map
 
 load("map/south_africa_coast_hi_res.Rdata")
 
 ocean_plot_jan <-  ggplot() +
   geom_tile(data = ocean_jan_summary, aes(fill = velocity, x = longitude, y = latitude)) +
-  geom_segment(data = ocean_jan_summary,
-               aes(x = longitude, xend = longitude+uo, y = latitude,
-                   yend = latitude+vo), arrow = arrow(length = unit(0.30, "cm"))) +
+  geom_segment(data = ocean_jan_summary[seq(5, nrow(ocean_jan_summary),2), ],
+               aes(x = longitude, xend = longitude+uo/30, y = latitude,
+                   yend = latitude+vo/30), arrow = arrow(length = unit(0.30, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 0.6)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 0.8)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -67,11 +70,11 @@ ocean_plot_jan <-  ggplot() +
 
 ocean_plot_apr <-  ggplot() +
   geom_tile(data = ocean_apr_summary, aes(fill = velocity, x = longitude, y = latitude)) +
-  geom_segment(data = ocean_apr_summary,
-               aes(x = longitude, xend = longitude+uo, y = latitude,
-                   yend = latitude+vo), arrow = arrow(length = unit(0.30, "cm"))) +
+  geom_segment(data = ocean_apr_summary[seq(5, nrow(ocean_jan_summary), 2), ],
+               aes(x = longitude, xend = longitude+uo/30, y = latitude,
+                   yend = latitude+vo/30), arrow = arrow(length = unit(0.30, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 0.6)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 0.8)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -82,11 +85,11 @@ ocean_plot_apr <-  ggplot() +
 
 ocean_plot_july <-  ggplot() +
   geom_tile(data = ocean_july_summary, aes(fill = velocity, x = longitude, y = latitude)) +
-  geom_segment(data = ocean_july_summary,
-               aes(x = longitude, xend = longitude+uo, y = latitude,
-                   yend = latitude+vo), arrow = arrow(length = unit(0.30, "cm"))) +
+  geom_segment(data = ocean_july_summary[seq(5, nrow(ocean_jan_summary), 2), ],
+               aes(x = longitude, xend = longitude+uo/30, y = latitude,
+                   yend = latitude+vo/30), arrow = arrow(length = unit(0.30, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 0.6)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 0.8)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -97,11 +100,11 @@ ocean_plot_july <-  ggplot() +
 
 ocean_plot_oct <-  ggplot() +
   geom_tile(data = ocean_oct_summary, aes(fill = velocity, x = longitude, y = latitude)) +
-  geom_segment(data = ocean_oct_summary,
-               aes(x = longitude, xend = longitude+uo, y = latitude,
-                   yend = latitude+vo), arrow = arrow(length = unit(0.30, "cm"))) +
+  geom_segment(data = ocean_oct_summary[seq(5, nrow(ocean_jan_summary), 2), ],
+               aes(x = longitude, xend = longitude+uo/30, y = latitude,
+                   yend = latitude+vo/30), arrow = arrow(length = unit(0.30, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 0.6)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 0.8)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -172,7 +175,7 @@ wind_plot_jan <- ggplot() +
                aes(x = lon, xend = lon+eastward_wind/30, y = lat,
                yend = lat+northward_wind/30), arrow = arrow(length = unit(0.25, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 10)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 11)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -188,7 +191,7 @@ wind_plot_apr <- ggplot() +
                aes(x = lon, xend = lon+eastward_wind/30, y = lat,
                    yend = lat+northward_wind/30), arrow = arrow(length = unit(0.25, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 10)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 11)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -204,7 +207,7 @@ wind_plot_july <- ggplot() +
                aes(x = lon, xend = lon+eastward_wind/30, y = lat,
                    yend = lat+northward_wind/30), arrow = arrow(length = unit(0.25, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 10)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 11)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
@@ -220,28 +223,51 @@ wind_plot_oct <- ggplot() +
                aes(x = lon, xend = lon+eastward_wind/30, y = lat,
                    yend = lat+northward_wind/30), arrow = arrow(length = unit(0.25, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",fill = "grey") +
-  scale_fill_continuous(type = "viridis", limits = c(0, 10)) +
+  scale_fill_continuous(type = "viridis", limits = c(0, 11)) +
   coord_cartesian(xlim = c(15, 20), ylim = c(-35, -30)) +
   guides(fill=guide_legend(title="Velocity")) +
   theme_bw() +
   theme(axis.text = element_text(size = 11, colour = 1)) +
   labs(x = NULL, y = NULL)
 
+
+
+# Plotting ---------------------------------------------------------------------
+
 ocean <- ggarrange(ocean_plot_jan, ocean_plot_apr, ocean_plot_july, ocean_plot_oct,
-                   font.label = list(size = 12, face = "bold"), labels = c("January", "April", "July","October"),
-                   ncol = 2, nrow = 2, common.legend = TRUE, legend = c("bottom"))
+                   font.label = list(size = 12, face = "bold"), labels = c("A", "B", "C","D"),
+                   ncol = 1, nrow = 4, common.legend = TRUE, legend = c("bottom"))
 
 wind <- ggarrange(wind_plot_jan, wind_plot_apr, wind_plot_july, wind_plot_oct,
-                  font.label = list(size = 12, face = "bold"),labels = c("January", "April", "July","October"),
-                  ncol = 2, nrow = 2, common.legend = TRUE, legend = c("bottom"))
+                  font.label = list(size = 12, face = "bold"),labels = c("", "", "",""),
+                  ncol = 1, nrow = 4, common.legend = TRUE, legend = c("bottom"))
 
-combined <- ggarrange(ocean, wind, align = c("h"), ncol = 1, nrow = 2)
+combined <- ggarrange(ocean, wind, align = c("h"), ncol = 2, nrow = 1)
 
-ggarrange(ocean_plot_jan, wind_plot_jan, ocean_plot_apr, wind_plot_apr, ocean_plot_july, wind_plot_july, ocean_plot_oct, wind_plot_oct,
-          font.label = list(size = 11, face = "bold"), labels = c("January", "", "April", "","July", "", "October"), ncol = 2, nrow = 4, align = "h",
-          common.legend = TRUE, legend = c("bottom"))
 
-ggsave("vector_combined.jpeg", dpi = 320, width = 8, height = 8, path = "figures/chapter_3/", units = "in")
+
+
+
+jan_maps <- ggarrange(ocean_plot_jan, wind_plot_jan, ncol = 2, legend = c("bottom"),
+                      labels = c("January"))
+
+apr_maps <- ggarrange(ocean_plot_jan, wind_plot_jan, ncol = 2, legend = c("bottom"),
+                      labels = c("April"))
+
+july_maps <- ggarrange(ocean_plot_jan, wind_plot_jan, ncol = 2, legend = c("bottom"),
+                      labels = c("July"))
+
+oct_maps <- ggarrange(ocean_plot_jan, wind_plot_jan, ncol = 2, legend = c("bottom"),
+                      labels = c("October"))
+
+
+leg_ocean <- get_legend(ocean_plot_jan)
+leg_wind <- get_legend(wind_plot_jan)
+ggarrange(ocean_plot_jan, wind_plot_jan, ocean_plot_apr, wind_plot_apr, ocean_plot_july, wind_plot_july, ocean_plot_oct, wind_plot_oct,leg_ocean, leg_wind,
+          font.label = list(size = 11, face = "bold"), labels = c("a", "", "b", "","c", "", "d"), ncol = 2, nrow = 5, align = "hv",
+          common.legend = FALSE, legend = c("none"))
+
+ggsave("vector_combined.jpeg", dpi = 320, width = 10, height = 10, path = "figures/chapter_3/", units = "in" , scale = 4)
 
 ##########################################################################################################################################################
 # wind rose
