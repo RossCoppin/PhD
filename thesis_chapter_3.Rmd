@@ -1809,7 +1809,7 @@ ggarrange(heatmap_RK4, heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for scenarios 17 - 29, for April 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for scenarios 14 - 26, for April 2018 (autumn). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
 
 leg_April <- get_legend(heatmap_RK4_April)
 
@@ -1817,7 +1817,7 @@ ggarrange(heatmap_RK4_April,heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloa
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end run time for scenarios 30 - 42, for July 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end run time for scenarios 27 - 39, for July 2018 (winter). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
 
 leg_July <- get_legend(heatmap_RK4_July)
 
@@ -1825,7 +1825,7 @@ ggarrange(heatmap_RK4_July,heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end run time for scenarios 43 - 55, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end run time for scenarios 40 - 52, for October 2018 (spring). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each scenario are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each scenario.', fig.height=8, fig.width=8}
 
 leg_Oct <- get_legend(heatmap_Min_Kfloat_H100_W00_Oct)
 
