@@ -71,8 +71,6 @@ morph_data$total_Ac <- with(morph_data, ((2*frond_length*frond_width) + (2*frond
 
 morph_data$total_mass <- with(morph_data, (frond_mass*6) + (stipe_mass) )
 
-
-
 # Make table based on new entries
 site_surface_area <- morph_data
 site_surface_area <- flextable(data = site_surface_area)
@@ -87,7 +85,7 @@ site_surface_area
 
 ```{r, warning=FALSE, message=FALSE, echo = FALSE}
 
-houtbay <- tidync("OceanParcels/trajectory_data/chapter_4/houtbay.nc") %>%
+houtbay <- tidync("OceanParcels/trajectory_data/chapter_4_output/houtbay.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
@@ -100,7 +98,7 @@ houtbay_mean <- houtbay %>% # calculate mean trajectory
 houtbay$site <- "Hout Bay" 
 houtbay_mean$site <- "Hout Bay" 
 
-kommetjie <- tidync("OceanParcels/trajectory_data/chapter_4/kommetjie.nc") %>%
+kommetjie <- tidync("OceanParcels/trajectory_data/chapter_4_output/kommetjie.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
@@ -113,7 +111,7 @@ kommetjie_mean <- kommetjie %>% # calculate mean trajectory
 kommetjie$site <- "kommetjie" 
 kommetjie_mean$site <- "kommetjie" 
 
-soetwater <- tidync("OceanParcels/trajectory_data/chapter_4/soetwater.nc") %>%
+soetwater <- tidync("OceanParcels/trajectory_data/chapter_4_output/soetwater.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
@@ -127,7 +125,7 @@ soetwater$site <- "Soetwater"
 soetwater_mean$site <- "Soetwater" 
 
 
-millers <- tidync("OceanParcels/trajectory_data/chapter_4/millers.nc") %>%
+millers <- tidync("OceanParcels/trajectory_data/chapter_4_output/millers.nc") %>%
   hyper_tibble() %>%
   dplyr::select(trajectory, lon, lat, time, distance, age) %>%
   dplyr::rename(t = time) %>%
@@ -179,12 +177,10 @@ mean_traj_site
 load("map/south_africa_coast_hi_res.Rdata")
 
 heatmap_houtbay <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
   geom_hex(data = houtbay, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
-  geom_path(data = houtbay_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
+  geom_path(data = houtbay_mean,aes(x = lon, y = lat, color = 'red'),             show.legend = FALSE) +
   #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -194,12 +190,10 @@ heatmap_houtbay <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 heatmap_komm <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kommetjie, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
-  geom_path(data = kommetjie_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_hex(data = kommetjie, bins = 80, aes(x = lon, y = lat), legend = FALSE) +   scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
+  geom_path(data = kommetjie_mean,aes(x = lon, y = lat, color = 'red'),           show.legend = FALSE) +
   #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -209,12 +203,11 @@ heatmap_komm <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 heatmap_soetwater <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
-  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
+  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'),           show.legend = FALSE) +
   #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -224,12 +217,11 @@ heatmap_soetwater <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 heatmap_soetwater <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
-  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
+  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'),           show.legend = FALSE) +
   #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -239,12 +231,11 @@ heatmap_soetwater <- ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 heatmap_millers <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = millers, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 130000)) +
-  geom_path(data = millers_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
+  geom_path(data = millers_mean,aes(x = lon, y = lat, color = 'red'),             show.legend = FALSE) +
   #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -253,13 +244,31 @@ heatmap_millers <- ggplot() +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
-
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-ggarrange(heatmap_houtbay, heatmap_komm, heatmap_soetwater, heatmap_millers, labels = "AUTO", common.legend = TRUE)
-
+ggarrange(heatmap_houtbay, heatmap_soetwater, heatmap_millers, ncol = 1, nrow = 3, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = "AUTO", align = "hv")
 ```
 
+```{r total heatmap, echo=FALSE, message=FALSE, warning=FALSE}
+
+heatmap_total <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size =    1.0, colour = "black", fill = NA) +
+  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
+  geom_hex(data = total_data, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
+  scale_fill_continuous(type = "gradient", limits = c(1, 19000000)) +
+  geom_path(data = total_data_mean,aes(x = lon, y = lat, color = 'red'),show.legend = FALSE) +
+  geom_rect(data = south_africa_coast_hi_res,aes(xmin=10, xmax=18.4, ymin=-33, ymax=-33.5),           inherit.aes = FALSE, fill = NA, colour =    "red", size = 1.5) +
+  geom_rect(data = south_africa_coast_hi_res,aes(xmin=10, xmax=18.4, ymin=-33.5, ymax=-34.0),           inherit.aes = FALSE, fill = NA, colour =    "green", size = 1.5) +
+  geom_rect(data = south_africa_coast_hi_res,aes(xmin=10, xmax=18.4, ymin=-34.0, ymax=-34.5),           inherit.aes = FALSE, fill = NA, colour =    "black", size = 1.5) +
+  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  xlab("Longtitude") + 
+  ylab("Latitude") + 
+  ggtitle("Millers") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+heatmap_total
+```
 
