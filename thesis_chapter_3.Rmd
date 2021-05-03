@@ -84,25 +84,9 @@ where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydr
 
 Virtual particles were released with no drag or wind effects from the study site to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. The time period used in all simulations were January (summer), April (Autumn), July (winter), and October (Spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity while in winter the Benguela jet begins to stabilize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. 
 
-To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model (see below) used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1. To determine if vortices and eddys play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations, these simulations released a particle every hour over the same time periods. 
+To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1, Appendix). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model (see below) used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1. To determine if vortices and eddys play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations, these simulations released a particle every hour over the same time periods. 
 
 In order to determine if the shape coefficient used plays a role in model used and to validate the use of a spherical shape coefficient, simulations of kelps with the maximum surface area and hydrodynamic drag exposure was run using the shape coefficient for a cylinder to compare to a simulations using a sphere. Simulations were run for 30 days using a fourth order Runge-Kutte advection scheme with Brownian motion and a particle set of size 1000 for the same seasons as per previous simulations. 
-
-```{r sim table, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
-
-set_flextable_defaults(fonts_ignore=TRUE)
-
-sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
-
-sim_table <- flextable(data = sim_table)
-sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
-sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Drag.Exposure = "Drag Exposure level")
-sim_table <- align(x= sim_table, align = "center", part = "all")
-sim_table <- set_table_properties(sim_table, width = 1, layout = "autofit")
-sim_table <- set_caption(sim_table, "Details for each simulation run for the study. Type refers to either a passive particle with no drag behavior or a kelp particle that has been advected with any drag exposure. The drag exposure column refers to the parameterizations regarding the level of water and wind drag simulated. All simulations were run with a Runge-Kutte (4th) advection scheme, Brownian motion, 30 days, and included 1000 particles for a 2018 hindcast.")
-sim_table
-
-```
 
 ## Model inputs
 ### Ocean and wind model
@@ -169,6 +153,8 @@ area_table <- align(x= area_table, align = "center", part = "all")
 area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
 area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
 area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
+area_table <- fontsize(area_table, size = 8, part = "body")
+area_table <- fontsize(area_table, size = 8, part = "header")
 area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulations. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
 area_table
 ```
@@ -896,6 +882,7 @@ waterdrag_plot <- ggplot()+
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -907,6 +894,7 @@ wwdrag_plot <- ggplot()+
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -925,6 +913,7 @@ waterdrag_plot_April <- ggplot()+
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -936,6 +925,7 @@ wwdrag_plot_April <- ggplot()+
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -953,7 +943,8 @@ waterdrag_plot_July <- ggplot()+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
-  scale_colour_discrete("Type") +  
+  scale_colour_discrete("Type") + 
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -965,6 +956,7 @@ wwdrag_plot_July <- ggplot()+
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -984,6 +976,7 @@ waterdrag_plot_Oct <- ggplot()+
   ggtitle("") +
   scale_colour_discrete("Type") +  
   theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() 
 
 wwdrag_plot_Oct <- ggplot() +
@@ -996,6 +989,7 @@ wwdrag_plot_Oct <- ggplot() +
   scale_colour_discrete("Type") +  
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() 
 
 ```
@@ -2141,6 +2135,7 @@ heatmap_RK4_acc <- ggplot() +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2155,6 +2150,7 @@ heatmap_kelp_acc <- ggplot() +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2168,6 +2164,7 @@ point_RK4_acc <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2182,6 +2179,7 @@ point_kelp_acc <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2198,6 +2196,7 @@ heatmap_RK4_acc_April <- ggplot() +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2212,6 +2211,7 @@ heatmap_kelp_acc_April <- ggplot() +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2225,6 +2225,7 @@ point_RK4_acc_April <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2239,6 +2240,7 @@ point_kelp_acc_April <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2255,6 +2257,7 @@ heatmap_RK4_acc_July <- ggplot() +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2269,6 +2272,7 @@ heatmap_kelp_acc_July <- ggplot() +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2282,6 +2286,7 @@ point_RK4_acc_July <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2296,6 +2301,7 @@ point_kelp_acc_July <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2312,6 +2318,7 @@ heatmap_RK4_acc_Oct <- ggplot() +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2326,6 +2333,7 @@ heatmap_kelp_acc_Oct <- ggplot() +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2339,6 +2347,7 @@ point_RK4_acc_Oct <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2353,6 +2362,7 @@ point_kelp_acc_Oct <- ggplot() +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2423,6 +2433,24 @@ Most of the past research has focused on large macroalgae rafts which can vary g
 
 # Appendix
 
+```{r sim table, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
+
+set_flextable_defaults(fonts_ignore=TRUE)
+
+sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
+
+sim_table <- flextable(data = sim_table)
+sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
+sim_table <- fontsize(sim_table, size = 8, part = "body")
+sim_table <- fontsize(sim_table, size = 8, part = "header")
+sim_table <- set_header_labels(sim_table, Cross.sectional.area = "Cross-sectional area", Drag.Exposure = "Drag Exposure level")
+sim_table <- align(x= sim_table, align = "center", part = "all")
+sim_table <- set_table_properties(sim_table, width = 1, layout = "autofit")
+sim_table <- set_caption(sim_table, "Details for each simulation run for the study. Type refers to either a passive particle with no drag behavior or a kelp particle that has been advected with any drag exposure. The drag exposure column refers to the parameterizations regarding the level of water and wind drag simulated. All simulations were run with a Runge-Kutte (4th) advection scheme, Brownian motion, 30 days, and included 1000 particles for a 2018 hindcast.")
+sim_table
+
+```
+
 ```{r shape data, message=FALSE, echo=FALSE, warning=FALSE}
 
 load("map/south_africa_coast_hi_res.Rdata")
@@ -2459,6 +2487,7 @@ cyl_mean$type <- "Cylinder"
 
 # Make mean trajectory plot
 shape_plot <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
   #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = cyl_mean, aes(x = lon, y = lat), color = 'red')+
@@ -2466,8 +2495,11 @@ shape_plot <- ggplot()+
   ylab("Latitude") +
   ggtitle("January") +
   #guides(fill=guide_legend(title="Number of particles")) +
+  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1/1) # fix the aspect ratio of plot
+
 
 # make density map
 heatmap_sphere <- ggplot() +
@@ -2533,6 +2565,7 @@ cyl_mean_April$type <- "Cylinder"
 
 # Make mean trajectory plot
 shape_plot_April <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
   #geom_path(data = p_RK4_mean_April, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean_April, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = cyl_mean_April, aes(x = lon, y = lat), color = 'red')+
@@ -2542,7 +2575,9 @@ shape_plot_April <- ggplot()+
   ggtitle("April") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+
 
 # make density map
 heatmap_sphere_April <- ggplot() +
@@ -2608,6 +2643,7 @@ cyl_mean_July$type <- "Cylinder" # add extra column 'type' to dataframe and assi
 
 # Make mean trajectory plot
 shape_plot_July <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
   #geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean_July, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = cyl_mean_July, aes(x = lon, y = lat), color = 'red')+
@@ -2617,7 +2653,8 @@ shape_plot_July <- ggplot()+
   ggtitle("July") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
 
 # make density map
 heatmap_sphere_July <- ggplot() +
@@ -2683,6 +2720,7 @@ cyl_mean_Oct$type <- "Cylinder"
 
 # Make mean trajectory plot
 shape_plot_Oct <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
   #geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean_Oct, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = cyl_mean_Oct, aes(x = lon, y = lat), color = 'red')+
@@ -2692,7 +2730,8 @@ shape_plot_Oct <- ggplot()+
   ggtitle("October") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
 
 # make density map
 heatmap_sphere_Oct <- ggplot() +
