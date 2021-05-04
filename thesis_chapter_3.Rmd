@@ -1,16 +1,16 @@
 ---
 title: 'Numerical experiment investigating the influence of drag on trajectory patterns of floating macroalgae'
 author: 
-- R Coppin^[University of the Western Cape], C Rautenbach^[National Institute of Water and Atmospheric Research], AJ Smit^[University of the Western Cape South African Observation Network]
+- R Coppin^[Department of Biodiversity and Conservation Biology, University of the Western Cape, Private Bag X17, Bellville 7535, South Africa], C Rautenbach^[National Institute of Water and Atmospheric Research, 41 Market Place Viaduct Harbour, 1010 Auckland, Private Bag 99940, Newmarket, Auckland 1149, New Zealand], AJ Smit^[South African Environmental Observation Network, Elwandle Coastal Node, Port Elizabeth, South Africa]
 output:
   word_document:
-    reference_docx: markdown/template.docx
+    reference_docx: markdown/wiley_template.docx
   pdf_document:
     fig_caption: yes
     latex_engine: xelatex
   html_document:
 bibliography: references.bib
-csl: markdown/frontiers.csl.txt
+csl: markdown/apa.csl.txt
 abstract: "**Abstract**: Ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalgae are one of the most important natural dispersal vectors and are regarded as the 'tumble-weed' of the ocean. Despite many studies that exist on the topic, the relative role of wind and surface currents in influencing the trajectory of macroalgal dispersal is still unknown. Past studies focus on kelp-rafts, which can vary greatly in size, making it difficult to form a consenses as to the relative role of wind versus surface currents. In addition, past studies have not considered surface-area in relation to drag characteristics of floating macroalgae, both of which have been shown to play a role in the trajectory and accumulation of other flotsam. Advances in Lagrangian trajectory modeling have been rapid in recent years and allow the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagal trajectory and accumulation. We focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp 'particles' which incorporate drag with that of purely Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddys within the study domain. The results also point to the importance of sub-mesoscale features, such as eddys, as important surface accumulation zones for solitary floating macroalage."
 ---
 
@@ -876,25 +876,25 @@ total_mean_ww$type <- factor(total_mean_ww$type, levels=c("1", "3", "4", "5", "7
 
 waterdrag_plot <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_water, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_ww, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -907,25 +907,25 @@ total_mean_ww_April$type <- factor(total_mean_ww_April$type, levels=c("14", "16"
 
 waterdrag_plot_April <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_water_April, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot_April <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill ="grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_ww_April, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -938,25 +938,25 @@ total_mean_ww_July$type <- factor(total_mean_ww_July$type, levels=c("27", "29", 
 
 waterdrag_plot_July <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_water_July, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") + 
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot_July <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_ww_July, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -969,19 +969,19 @@ total_mean_ww_Oct$type <- factor(total_mean_ww_Oct$type, levels=c("40", "42", "4
 
 waterdrag_plot_Oct <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_water_Oct, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
   ggtitle("") +
   scale_colour_discrete("Type") +  
   theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() 
 
 wwdrag_plot_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(8, 28), ylim = c(-38, -26)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   geom_path(data = total_mean_ww_Oct, aes(x = lon, y = lat, colour = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
@@ -989,12 +989,12 @@ wwdrag_plot_Oct <- ggplot() +
   scale_colour_discrete("Type") +  
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1, clip = "on") + # fix the aspect ratio of plot
   theme_bw() 
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=7.5, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively. In all panels the passive simulations are represented by black lines."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=12, fig.width=7, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively. In all panels the passive simulations are represented by black lines."}
 
 ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, ncol = 2, nrow = 4, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = "AUTO", align = "hv")
 
@@ -2130,12 +2130,12 @@ heatmap_RK4_acc <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2145,12 +2145,12 @@ heatmap_kelp_acc <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2159,12 +2159,12 @@ point_RK4_acc <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = pass_acc, aes(x = lon, y = lat, colour = distance)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2174,12 +2174,12 @@ point_kelp_acc <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = kelp_acc, aes(x = lon, y = lat, colour = age)) +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2191,12 +2191,12 @@ heatmap_RK4_acc_April <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = pass_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2206,12 +2206,12 @@ heatmap_kelp_acc_April <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = kelp_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2220,12 +2220,12 @@ point_RK4_acc_April <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = pass_acc_April, aes(x = lon, y = lat, colour = distance)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2235,12 +2235,12 @@ point_kelp_acc_April <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = kelp_acc_April, aes(x = lon, y = lat, colour = age)) +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2252,12 +2252,12 @@ heatmap_RK4_acc_July <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = pass_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2267,12 +2267,12 @@ heatmap_kelp_acc_July <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = kelp_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2281,12 +2281,12 @@ point_RK4_acc_July <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = pass_acc_July, aes(x = lon, y = lat, colour = distance)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2296,12 +2296,12 @@ point_kelp_acc_July <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = kelp_acc_July, aes(x = lon, y = lat, colour = age)) +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2313,12 +2313,12 @@ heatmap_RK4_acc_Oct <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = pass_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = pass_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2328,12 +2328,12 @@ heatmap_kelp_acc_Oct <- ggplot() +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = kelp_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
   geom_path(data = kelp_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2342,12 +2342,12 @@ point_RK4_acc_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = pass_acc_Oct, aes(x = lon, y = lat, colour = distance)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2357,12 +2357,12 @@ point_kelp_acc_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = NA) +
   geom_point(data = kelp_acc_Oct, aes(x = lon, y = lat, colour = age)) +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
   ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
+  #coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -2413,7 +2413,7 @@ The comparison of mean trajectories between the sphere and cylindrical shape coe
 
 # Discussion
 
-The treatment of drifting macroalgae as purely Lagrangian does not accurately determine patterns of passive dispersal, such as entrainment in eddys or vortices [@fossette2012; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], past research has focused on large macroalgal-rafts which can vary greatly in size and surface area. None of the past research has taken advantage of the advancement in numerical ocean models and Lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag. The mean virtual kelp trajectory deviated from the mean passive trajectory when including varying levels of hydrodynamic and wind drag scenarios. The results from this study show the inclusion of hydrodynamic and wind drag results in observable entrainment patterns and broadens our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case that of *E. maxima*.
+The findings from this study broaden our understanding of macroalgal trajectory patterns and behavior in the ocean. In particular, the results show that consideration of drag and surface area are important when investigating macroalgal trajectory patterns. The treatment of drifting macroalgae as purely Lagrangian does not accurately determine patterns of passive dispersal, such as entrainment in eddys or vortices [@fossette2012; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], past research has focused on large macroalgal-rafts which can vary greatly in size and surface area. None of the extant research has taken advantage of the advancement in numerical ocean models and Lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag. The mean virtual kelp trajectory deviated from the mean passive trajectory when including varying levels of hydrodynamic and wind drag scenarios. The results from this study show the inclusion of hydrodynamic and wind drag results in observable entrainment patterns and broadens our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case that of *E. maxima*.
 
 Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when *ad hoc* wind drag (windage) is considered in combination with hydrodynamic drag the end locations differ greatly when compared to purely Lagrangian particle trajectories. The inclusion of wind drag causes the kelp particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object [@hackett2006; @putman2020]. This causes the kelp particles to travel further as well as become exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used *ad hoc* windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic *Sargassum sp*. The results showed that including ad-hoc windage factors improved virtual trajectories compared to tracked *Sargassum sp* mats, which was partly due to the inclusion of momentum energy transfer from wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag simulations. Similar patterns are seen in the simulations run for April (Austral autumn), July (Austral winter), and October (Austral spring); however unlike in January (Austral summer) where only kelp particles with combined drag (hydrodynamic and wind) flowed further, even kelp particles with only hydrodynamic drag flow further compared to passive particles in these times of the year. This may be a result of the kelp particles exposed to different time-varying flows, which results in the kelp particles following a different surface current vector compared to passive particles. This also results in different end-points and therefore these results further confirm that drag is an important factor to account for when investigating macroalgal drift patterns. The different trajectory patterns between seasons reflects the underlying seasonal variation in regional oceanography. Transport in the study region is driven by a combination d variation of alongshore jets and wind induced Ekman transport of surface water [@rubio2009; @veitch2018; @ragoasha2019]. A study by @ragoasha2019 investigated the success of Lagrangian particles reaching St. Helena Bay from Cape point using Lagrangian trajectory modelling and inclusion of regional oceanographic processes. The authors showed that transport success is higher in spring due to the single coherent Benguela Jet, which concentrates over the 300m isobath [@ragoasha2019]. During upwelling season (December - March) transport success is less efficient as particles tend to flow offshore. The move offshore is a result of the bifurification of the Benguela Jet, which splits because of shoaling and causes particles to be exposed to higher amounts of mesoscale activity. In the winter months, the Benguela Jet is still split but the flow weakens which results in lower transport success [@ragoasha2019]. Similar patterns were found in this study, suggesting that the difference in seasonal patterns reflects the regional oceanographic features, particularly the Benguela Jet.        
 
@@ -2488,6 +2488,7 @@ cyl_mean$type <- "Cylinder"
 # Make mean trajectory plot
 shape_plot <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
   geom_path(data = sphere_mean, aes(x = lon, y = lat), color = 'blue')+
   geom_path(data = cyl_mean, aes(x = lon, y = lat), color = 'red')+
@@ -2495,10 +2496,9 @@ shape_plot <- ggplot()+
   ylab("Latitude") +
   ggtitle("January") +
   #guides(fill=guide_legend(title="Number of particles")) +
-  coord_fixed(ratio=1/1) + # fix the aspect ratio of plot
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1/1) # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) 
+  #coord_fixed(ratio=1/1) # fix the aspect ratio of plot
 
 
 # make density map
@@ -2575,8 +2575,8 @@ shape_plot_April <- ggplot()+
   ggtitle("April") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) 
+  #coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
 
 
 # make density map
@@ -2653,8 +2653,8 @@ shape_plot_July <- ggplot()+
   ggtitle("July") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) 
+  #coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
 
 # make density map
 heatmap_sphere_July <- ggplot() +
@@ -2730,8 +2730,8 @@ shape_plot_Oct <- ggplot()+
   ggtitle("October") +
   #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) 
+  #coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
 
 # make density map
 heatmap_sphere_Oct <- ggplot() +
