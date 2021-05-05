@@ -59,7 +59,7 @@ Scenario;Type;Month;Parameters;Cross-sectional area;Drag Exposure
 58;Kelp;July;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
 59;Passive;October;Accumulation simulation;N/A;N/A
 60;Kelp;October;Accumulation simulation;Maximum;Hydrodynamic drag 85%, wind drag 15%
-61;Kelp;January;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
-62;Kelp;April;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
-63;Kelp;July;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
-64;Kelp;October;Shape coefficent comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+61;Kelp;January;Shape coefficient comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+62;Kelp;April;Shape coefficient comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+63;Kelp;July;Shape coefficient comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient
+64;Kelp;October;Shape coefficient comparison;Maximum;Hydrodynamic drag only, cylinder shape coefficient

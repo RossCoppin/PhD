@@ -10,7 +10,7 @@ output:
     latex_engine: xelatex
   html_document:
 bibliography: references.bib
-csl: markdown/apa.csl.txt
+csl: markdown/limnologyandoceanography.csl
 abstract: "**Abstract**: Ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalgae are one of the most important natural dispersal vectors  of marine organisms and are regarded as the 'tumble-weed of the ocean'. Despite many studies that exist on the topic, the relative role of wind and surface currents in influencing the trajectory of macroalgal dispersal is still unknown. Past studies focus on kelp-rafts, which can vary greatly in size, making it difficult to form a consenses as to the relative role of wind versus surface currents. In addition, these studies have not considered surface-area in relation to drag characteristics of the macroalgae, both of which have been shown to play a role in the trajectory and accumulation of other flotsam. Advances in Lagrangian trajectory modeling have been rapid in recent years and allow the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagal trajectory and accumulation. We focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp 'particles' which incorporate drag with that of purely Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddys within the study domain. The results also point to the importance of sub-mesoscale features, such as eddys, as important surface accumulation zones for solitary floating macroalage."
 ---
 
@@ -52,9 +52,9 @@ In this study, a numerical approach is used to shed light on the role of hydrody
 # Methods
 ## Study site
 
-The region of interest for this study was the Cape Peninsula in the Western Cape (Figure 1A). Kommetjie, located on the Atlantic side of the Cape Peninsula (Figure 2B), was chosen as a release site. The hydrodynamics in the study region are characterized by a complex interaction of wind, sea waves and ocean swell, and are also influenced by larger-scale regional oceanic processes. In South Africa, the larger processes can be attributed to the Agulhas Current (AC) and the Benguela Current (BC) [@lutjeharms2000;@lutjeharms2007;@garzoli1996;@hutchings2009;@rubio2009]. The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly south-westward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean [@lutjeharms2000;@lutjeharms2007]. 
+The region of interest for this study was the Cape Peninsula in the Western Cape (Figure 1A). Kommetjie, located on the Atlantic side of the Cape Peninsula (Figure 2B), was chosen as a release site. The hydrodynamics in the study region are characterized by a complex interaction of wind, sea waves and ocean swell, and are also influenced by larger-scale regional oceanic processes. The larger processes in the region can be attributed to the Agulhas Current (AC) and the Benguela Current (BC) [@lutjeharms2000;@lutjeharms2007;@garzoli1996;@hutchings2009;@rubio2009]. The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly south-westward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean [@lutjeharms2000;@lutjeharms2007]. 
 
-The region where the retroflection occurs is known as the Agulhas Retroflection and consists of high levels of mesoscale variability [@garzoli1996]. The variability results in shedding of rings and filaments known as the Agulhas Rings and have an average diameter of ~324 km [@lutjeharms1988;@lutjeharms2006; @lutjeharms2007]. Agulhas Rings are the main contributors to the Agulhas leakage which is the transport of warm water from the Indian Ocean to the South Atlantic Ocean [@garzoli1996; @lutjeharms2006; @beal2015]. The Agulhas leakage is also a source of meso-scale variability within the Benguela region as anticyclonic rings are shed and drift northwestward along the southern Benguela slope region [@rubio2009]. The Benguela region is characterized by strong coastal upwelling which is primarily driven by equatorward winds [@shannon1996;@hardman2003;@veitch2018; @veitch2017]. It is known as the Benguela Upwelling System (BUS). The BUS starts at 27$^\circ$S and extends southward to 35$^\circ$S [@shannon1996]. The region is also characterized by large amounts of mesoscale variability in the form of eddys and filaments [@blanke2002; @blanke2005; @rubio2009]. The Benguela inshore region is dominated by a northwestward flow because of topographical steering, wind stress and interactions with passing Agulhas Rings and eddys, and is known as the Benguela Jet [@stramma1989; @veitch2010; @veitch2017; @veitch2018; @hutchings2009]. The stability of the jet varies seasonally with more stable flows in winter; in January, the jet begins to split between Cape Point and Cape Columbine [@veitch2018; @blanke2005; @blanke2002] which results in a weak narrow inshore branch that flows along the shelf edge and a strong flowing north-westwards offshore branch. The area is also characterized by high upwelling activity driven by strong westerly winds [@hutchings2009]. These winds are most intense during summer (December-March) which favors upwelling conditions in the region, and also act to reinforce the flow of the Benguela Jet which occurs due to cold upwelling waters contributing to the across-shore density gradient [@ragoasha2019]. In winter the wind direction is reversed which decreases upwelling favorable conditions, but the core of the Benguela Jet is maintained by the intrusion of warm Agulhas waters into the Benguela region over the shelf edge [@veitch2018; @hutchings2009; @ragoasha2019]. 
+The region where the retroflection occurs is known as the Agulhas Retroflection and consists of high levels of mesoscale variability [@garzoli1996]. The variability results in shedding of rings and filaments known as the Agulhas Rings and have an average diameter of ~324 km [@lutjeharms1988;@lutjeharms2006; @lutjeharms2007]. Agulhas Rings are the main contributors to the Agulhas leakage which is the transport of warm water from the Indian Ocean to the South Atlantic Ocean [@garzoli1996; @lutjeharms2006; @beal2015]. The Agulhas leakage is also a source of meso-scale variability within the Benguela region as anticyclonic rings are shed and drift northwestward along the southern Benguela slope region [@rubio2009]. The Benguela region ---known as the Benguela Upwelling System (BUS)--- is characterized by strong coastal upwelling which is primarily driven by equatorward winds [@shannon1996;@hardman2003;@veitch2018; @veitch2017]. The BUS starts at 27$^\circ$S and extends southward to 35$^\circ$S [@shannon1996]. The region is also characterized by large amounts of mesoscale variability in the form of eddys and filaments [@blanke2002; @blanke2005; @rubio2009]. Inshore, the BUS is dominated by a northwestward flow, known as the Benguela Jet, because of topographical steering, wind stress and interactions with passing Agulhas Rings and eddys [@stramma1989; @veitch2010; @veitch2017; @veitch2018; @hutchings2009]. The stability of the jet varies seasonally with more stable flows in winter; in January, the jet begins to split between Cape Point and Cape Columbine [@veitch2018; @blanke2005; @blanke2002] which results in a weak narrow inshore branch that flows along the shelf edge and a strong flowing north-westwards offshore branch. The area is also characterized by high upwelling activity driven by strong westerly winds [@hutchings2009]. These winds are most intense during Austral summer (December-March) which favors upwelling conditions in the region, and also act to reinforce the flow of the Benguela Jet which occurs due to cold upwelling waters contributing to the across-shore density gradient [@ragoasha2019]. In winter the wind direction is reversed which decreases upwelling favorable conditions, but the core of the Benguela Jet is maintained by the intrusion of warm Agulhas waters into the Benguela region over the shelf edge [@veitch2018; @hutchings2009; @ragoasha2019]. 
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE, strip.white=TRUE, fig.cap="Figure 1: Map of the study domain and the main features pertaining to transport in the region. In panel A, the map of the western portion of South African coastline and the main currents is presented. The resulting eddys and filaments froming from the Agulhas retroflection are indicated, and the position of the study area is drawn in as a black rectangle. Detail of the study area is in panel B. Here the splitting of the Benguela Jet, eddy features, and the general flow within the study domain are presented. The release site of simulated kelp ‘particles’ is represented by a blue star."}
 
@@ -65,24 +65,24 @@ library(gridExtra)
 #map_chp3A <- rasterGrob(as.raster(readPNG("map/chp3_mapA.png")))
 #map_chp3B <- rasterGrob(as.raster(readPNG("map/chp3_mapB.png")))
 #ggarrange(map_chp3A, map_chp3B, ncol = 2, nrow = 1, labels = "AUTO", align = c("h"))
-map_chp3_combined <- rasterGrob(as.raster(readPNG("map/ch3_map_final.png")))
+map_chp3_combined <- rasterGrob(as.raster(readPNG("map/chp3_map_final.png")))
 ggarrange(map_chp3_combined)
 
 ```
 
 ## Particle tracking model
 
-The model is based on parameterizations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgae trajectory have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a rugby field. Some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. Large kelp rafts are not a feature around the coast of the Cape Peninsula; rather, solitary kelp is (pers. obs). Therefore, the trajectory of only solitary *E. maxima* individuals will be considered. We performed numerical calculations of particle trajectory with a Lagrangian method [@delandmeter2019], which can be described by the equation:
+The model is based on parameterizations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgal trajectories have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. Large kelp rafts are not a feature around the coast of the Cape Peninsula; rather, solitary kelp is (pers. obs). Therefore, the trajectory of only solitary *E. maxima* individuals will be considered. We performed numerical calculations of particle trajectory with a Lagrangian method [@delandmeter2019], which can be described by the equation:
 
 $$X(t+\Delta t) = X(t) + \int_{t}^{t+\Delta t} v(x, \tau)d \tau + \Delta X_b(t)$$
 Here, $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model at particle point in time, $t$ is time $X_b(t)$ is a change in position due to 'behavior' of the particle at a particular point in time. To investigate the effects of drag components of trajectory of floating macroalgae, this study incorporated drag as the custom behavior. 
 
-This study simulated two scenarios; one where the plant is fully submerged and only exposed to hydrodynamic drag; and the other where parts of the plants are partially exposed resulting in a combination of hydrodynamic and air form drag. Drag based on shape-based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was, $$m({d_u/d_t})=F_d + F_a + F_f$$
+This study simulated two scenarios: one where the plant is fully submerged and only exposed to hydrodynamic drag, and the other where parts of the plants are partially exposed resulting in a combination of hydrodynamic and air form drag. Drag based on shape-based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was $$m({d_u/d_t})=F_d + F_a + F_f$$
 where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, $F_f$ the surface-current flow, and $d_t$ is the time step. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag, and surface current-flow are two-dimensional vector quantities and were calculated for each time step for each simulation. 
 
 ## Simulations
 
-Virtual particles were released with no drag or wind effects from the study site to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. The time period used in all simulations were January (summer), April (Autumn), July (winter), and October (Spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity while in winter the Benguela jet begins to stabilize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. 
+Virtual particles were released with no drag or wind effects from the study site to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @VanSebille2018]. Brownian motion was also incorporated to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019; @VanSebille2018]. The time period used in all simulations were January (Austral summer), April (Austral autumn), July (Austral winter), and October (Austral spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity while in winter the Benguela Jet begins to stabilize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. 
 
 To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1, Appendix). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model (see below) used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1. To determine if vortices and eddys play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations, these simulations released a particle every hour over the same time periods. 
 
@@ -108,7 +108,7 @@ ggarrange(kelp_shape_figure)
 
 ```
 
-The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum s-sectional areas (Ac, see table 2) were calculated for each morphological characteristic, which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations (see table 2). The trajectory of the different cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
+The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum cross-sectional areas (Ac, table 2) were calculated for each morphological characteristic, which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations (table 2). The trajectory of the different cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
 ```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 # Investigate morphology data to assist in estimating surface area
@@ -155,7 +155,7 @@ area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean =
 area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
 area_table <- fontsize(area_table, size = 8, part = "body")
 area_table <- fontsize(area_table, size = 8, part = "header")
-area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulations. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
+area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulations. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. Ac refers to the cross-sectional area calculated. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
 area_table
 ```
 ## Analysis
@@ -861,7 +861,7 @@ total_data_Oct <- rbind(Min_Kfloat_H100_W00_Oct, Min_Kfloat_H095_W05_Oct, Min_Kf
 
 The mean trajectories of the virtual kelps with different cross-sectional areas are similar to those of the passive particles during the month of January (Austral summer; Figure 3A). When comparing mean trajectories between virtual kelp with different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen; rather, there is only a slight variation in the overall trajectory. The results from the simulations including different hydrodynamic and wind drag exposures and kelp cross-sectional areas show differences in mean trajectory when compared to the passive simulation (Figure 3B). The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well the final location of the kelp particles being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations, particles flowed in a north-westward direction.
 
-The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (Austral autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag traveled further northward compared to the passive particles (see Figure 3C-D). The mean trajectories of virtual kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag flowed further north-westward compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles traveled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles were also evident in the July (Austral winter) simulations (see Figure 3E-F). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially flowed in a southerly direction and then flowed westward offshore, resulting in entrainment within an eddy. Similar behavior is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles traveled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Austral spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (see Figure 3F-G). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag stop a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles, with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy.  
+The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (Austral autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag traveled further northward compared to the passive particles (Figure 3C-D). The mean trajectories of virtual kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag flowed further north-westward compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles traveled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles were also evident in the July (Austral winter) simulations (see Figure 3E-F). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially flowed in a southerly direction and then flowed westward offshore, resulting in entrainment within an eddy. Similar behavior is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles traveled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Austral spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (Figure 3F-G). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag stop a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles, with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy.  
 
 ```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
 
@@ -876,23 +876,21 @@ total_mean_ww$type <- factor(total_mean_ww$type, levels=c("1", "3", "4", "5", "7
 
 waterdrag_plot <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_water, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_water, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  guides(linetype=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_ww, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_ww, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  guides(linetype=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -905,23 +903,21 @@ total_mean_ww_April$type <- factor(total_mean_ww_April$type, levels=c("14", "16"
 
 waterdrag_plot_April <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_water_April, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_water_April, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  guides(linetype=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot_April <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill ="grey") +
-  geom_path(data = total_mean_ww_April, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_ww_April, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  guides(linetype=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -934,23 +930,21 @@ total_mean_ww_July$type <- factor(total_mean_ww_July$type, levels=c("27", "29", 
 
 waterdrag_plot_July <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_water_July, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_water_July, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") + 
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  guides(linetype=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
 wwdrag_plot_July <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0, colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_ww_July, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_ww_July, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  guides(linetype=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() 
 
@@ -963,30 +957,27 @@ total_mean_ww_Oct$type <- factor(total_mean_ww_Oct$type, levels=c("40", "42", "4
 
 waterdrag_plot_Oct <- ggplot()+
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_water_Oct, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_water_Oct, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
+  guides(linetype=guide_legend(title="Simulation")) +
   theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme_bw() 
 
 wwdrag_plot_Oct <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  geom_path(data = total_mean_ww_Oct, aes(x = lon, y = lat, colour = type))+
+  geom_path(data = total_mean_ww_Oct, aes(x = lon, y = lat, linetype = type))+
   xlab("Longtitude") + 
   ylab("Latitude") + 
-  ggtitle("") +
-  scale_colour_discrete("Type") +  
-  guides(fill=guide_legend(title="Number of particles")) +
+  guides(linetype=guide_legend(title="Simulation")) +
   theme(plot.title = element_text(hjust = 0.5)) +
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -26)) + # fix the aspect ratio of plot
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
   theme_bw() 
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=12, fig.width=7, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively. In all panels the passive simulations are represented by black lines."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=12, fig.width=7, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively."}
 
 ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, ncol = 2, nrow = 4, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = "AUTO", align = "hv")
 ```
@@ -995,7 +986,7 @@ ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, 
 
 Across all simulations, particles flowed in a north-westward direction. The density plots for simulations that considered any form of drag showed a higher density of particles along the mean trajectory path compared to the passive simulation which has an almost even density of particles across grids. In addition, the density plots show that the particles in simulations that considered any form of drag got entrained in a vorticity while particles in the passive simulation deflected away (Figure 4). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. 
 
-In April and across all simulations, particles flowed in a north-westward direction (see Figure 4). The density plots that considered any form of drag showed narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulations that considered any form of drag got entrained within an eddy further north-westward from the end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. Simulations for July showed that the flow was also north-westward, but all kelp particles across cross-sectional areas and drag scenarios show high density of particles entrained in an eddy located westward of the release site compared to passive particles (see Figure 5). Variation in density along the mean trajectory and eddy for all kelp particles is evident. Kelp particles with only hydrodynamic drag across cross-sectional areas showed lower density of particles along the mean trajectory compared to kelp particles with both wind and hydrodynamic drag. Simulations run for October show no difference in density of particles along the mean trajectory when comparing passive and kelp particles. Only slight variations in density and trajectory can be seen with no entrainment (see Figure 6). Kelp particles with any cross-sectional area and drag exposure scenario flowed further offshore when compared to passive particles. 
+In April and across all simulations, particles flowed in a north-westward direction (Figure 4). The density plots that considered any form of drag showed narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulations that considered any form of drag got entrained within an eddy further north-westward from the end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. Simulations for July showed that the flow was also north-westward, but all kelp particles across cross-sectional areas and drag scenarios show high density of particles entrained in an eddy located westward of the release site compared to passive particles (Figure 5). Variation in density along the mean trajectory and eddy for all kelp particles is evident. Kelp particles with only hydrodynamic drag across cross-sectional areas showed lower density of particles along the mean trajectory compared to kelp particles with both wind and hydrodynamic drag. Simulations run for October show no difference in density of particles along the mean trajectory when comparing passive and kelp particles. Only slight variations in density and trajectory can be seen with no entrainment (Figure 6). Kelp particles with any cross-sectional area and drag exposure scenario flowed further offshore when compared to passive particles. 
 
 ```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
 
