@@ -2034,9 +2034,9 @@ ggsave(filename = "figure_7.jpg", plot = last_plot(), path = "figures/chapter_3/
 
 ## Comparison of distances 
 
-There were significant differences among the median distances traveled for all particles in each simulation (Figure 4; *p* < 0.05). The simulations that considered for 100% hydrodynamic drag traveled a shorter distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations among simulations. When comparing distances between passive and kelp particles for April, significant differences are evident. (Figure 11, simulations 17-29; *p* < 0.05). Kelp particles with only 90% hydrodynamic and 10% wind drag across cross-sectional areas traveled shorter distance across compared to other kelp particles. The shortest distance traveled was the scenario with the maximum cross-sectional area and drag exposure scenarios. No significant differences are evident for the July simulations, with only slight variation across simulations (see Figure 11, simulations 30-42; *p* > 0.05). In October, the plot shows significant differences when comparing both passive and kelp particles (see Figure 11, simulations 43-55; *p* < 0.05). Kelp particles with only 90% hydrodynamic drag across cross-sectional areas traveled shorter distance compared to all other particles. As seen in the April simulations, the kelp particles with the maximum cross-sectional area and drag exposure traveled the shortest distance compared to all other particles.
+There were significant differences among the median distances traveled for all particles in each simulation (Figure 8; *p* < 0.05). The simulations that considered for 100% hydrodynamic drag traveled a shorter distance than particles for simulations which considered a combination of hydrodynamic and wind drag scenarios. Comparison between simulations that considered hydrodynamic and wind drag show no significant differences with only slight variations among simulations. When comparing distances between passive and kelp particles for April, significant differences are evident. (Figure 8, simulations 17-29; *p* < 0.05). Kelp particles with only 90% hydrodynamic and 10% wind drag across cross-sectional areas traveled shorter distance across compared to other kelp particles. The shortest distance traveled was the scenario with the maximum cross-sectional area and drag exposure scenarios. No significant differences are evident for the July simulations, with only slight variation across simulations (Figure 8, simulations 30-42; *p* > 0.05). In October, the plot shows significant differences when comparing both passive and kelp particles (Figure 8, simulations 43-55; *p* < 0.05). Kelp particles with only 90% hydrodynamic drag across cross-sectional areas traveled shorter distance compared to all other particles. As seen in the April simulations, the kelp particles with the maximum cross-sectional area and drag exposure traveled the shortest distance compared to all other particles.
 
-```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE}
+```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 
 data_dis <- total_data %>% 
   select(!(kelpvelU)) %>%
@@ -2171,8 +2171,8 @@ dis_plot_Oct <- dis_plot_Oct +
 
 ```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 8: Boxplots of total distance travelled by all particles from the release site over the course of the simulations for scenarios 1 - 52. The *x*-axis represents the scenario number, and the *y*-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=7, fig.width=5}
 
-ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "auto", ncol = 1, nrow = 4)
-
+ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 4)
+ggsave(filename = "figure_8.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
 ```
 
 ## Accumulation
@@ -2338,7 +2338,6 @@ heatmap_RK4_acc <- ggplot() +
   geom_path(data = pass_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2354,7 +2353,6 @@ heatmap_kelp_acc <- ggplot() +
   geom_path(data = kelp_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2369,7 +2367,6 @@ point_RK4_acc <- ggplot() +
                size = 1.0, colour = "black", fill = "grey") +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2385,7 +2382,6 @@ point_kelp_acc <- ggplot() +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2403,7 +2399,6 @@ heatmap_RK4_acc_April <- ggplot() +
   geom_path(data = pass_acc_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2419,7 +2414,6 @@ heatmap_kelp_acc_April <- ggplot() +
   geom_path(data = kelp_acc_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2434,7 +2428,6 @@ point_RK4_acc_April <- ggplot() +
                size = 1.0, colour = "black", fill = "grey") +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2450,7 +2443,6 @@ point_kelp_acc_April <- ggplot() +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2468,7 +2460,6 @@ heatmap_RK4_acc_July <- ggplot() +
   geom_path(data = pass_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2484,7 +2475,6 @@ heatmap_kelp_acc_July <- ggplot() +
   geom_path(data = kelp_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2499,7 +2489,6 @@ point_RK4_acc_July <- ggplot() +
                size = 1.0, colour = "black", fill = "grey") +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2515,7 +2504,6 @@ point_kelp_acc_July <- ggplot() +
   coord_cartesian(xlim = c(11, 20), ylim = c(-36, -26)) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2533,7 +2521,6 @@ heatmap_RK4_acc_Oct <- ggplot() +
   geom_path(data = pass_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Passive particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2549,7 +2536,6 @@ heatmap_kelp_acc_Oct <- ggplot() +
   geom_path(data = kelp_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("Kelp particles") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2564,7 +2550,6 @@ point_RK4_acc_Oct <- ggplot() +
                size = 1.0, colour = "black", fill = "grey") +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2580,7 +2565,6 @@ point_kelp_acc_Oct <- ggplot() +
   #scale_fill_continuous(type = "viridis", limits = c(0, 30)) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   guides(fill=guide_legend(title="Age")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
@@ -2594,41 +2578,25 @@ mean_traj_acc <- ggplot() +
   geom_path(data = total_acc_mean, aes(x = lon, y = lat, colour = type)) +
   xlab("Longtitude") +
   ylab("Latitude") +
-  ggtitle("") +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw()+
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12)) 
-
-
-# Distance
-
-#dis_plot_acc <- ggplot(data = total_acc_data, aes(x = type, y = distance, show.legend = FALSE)) +
-#  geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
-  #scale_x_discrete(limits = pos)+
-#  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = "right") +
-#  theme_bw() +
-#  ylab("Distance (km)") +
-#  xlab("Scenario") +
-  #coord_flip() +
-#  theme_bw()
-  #theme(plot.title = element_text(hjust = 1))
-
 ```
 
-```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation for scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=9, fig.width=7}
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of density between passive and kelp accumulation for scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=9, fig.width=7}
 
 ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 12, face = "bold"), align = "hv")
-
+ggsave(filename = "figure_9.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
 ```
 
-```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of particle age between passive and kelp accumulation scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=9, fig.width=7}
+```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 10: Comparison of particle age between passive and kelp accumulation scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=9, fig.width=7}
 
 ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 12, face = "bold"), align = "hv")
-
+ggsave(filename = "figure_10.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
 ```
 
-The role of eddys that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (see Figure 8). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (see Figure 8). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 9, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
+The role of eddys that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (Figure 9). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (Figure 9). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 10, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
 
 ## Comparison of coefficients
 
