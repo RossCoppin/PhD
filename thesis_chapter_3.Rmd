@@ -92,11 +92,11 @@ To test the different magnitudes that hydrodynamic and wind drag might play in t
 In order to determine if the shape coefficient used plays a role in model used and to validate the use of a spherical shape coefficient, simulations of kelps with the maximum surface area and hydrodynamic drag exposure was run using the shape coefficient for a cylinder to compare to a simulations using a sphere. Simulations were run for 30 days using a fourth order Runge-Kutte advection scheme with Brownian motion and a particle set of size 1000 for the same seasons as per previous simulations. 
 
 ## Model inputs
-## Ocean and wind model
+### Ocean and wind model
 
 Both passive and kelp particles were simulated around the South African coastline within hindcast outputs from the Copernicus Marine Environment Monitoring Service (Copernicus, http://marine.copernicus.com). The Copernicus model is based on the modelling framework known as Nucleus for European Modelling of the ocean. The Copernicus outputs used in this study contain 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 0.08$^\circ$ and is interpolated on an Arakawa C native grid. To incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (Global Ocean Wind L4_NRT_012_004). The outputs from the model are composed of 6-hourly averaged fields of surface 10 m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Averaged ocean current and wind data are stored as meridional and zonal velocity vectors. 
 
-## Hydrodynamic and wind drag
+### Hydrodynamic and wind drag
 
 The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The drag equation used was: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to hydrodynamic or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. Hydrodynamic and wind drag components were calculated separately for both the meridional and zonal velocity vectors, as per @furnans2008. Since drag force is dependent on the velocity vectors which vary with time, the meridional and zonal velocities were interpolated and used in the drag force calculation for each time-step. The same approach was used for the wind drag force. The equation that was used to calculate hydrodynamic drag, was also used to calculate wind drag. 
 
@@ -161,6 +161,7 @@ area_table <- fontsize(area_table, size = 8, part = "header")
 area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulations. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. Ac refers to the cross-sectional area calculated. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
 area_table
 ```
+
 ## Analysis
 
 To compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated, and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@vanSebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particles [@vanSebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity because of momentum energy transfer [@putman2020; @putman2018; @vanSebille2018]. 
@@ -2331,7 +2332,7 @@ load("map/south_africa_coast_hi_res.Rdata")
 heatmap_RK4_acc <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
+  geom_hex(data = pass_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000)) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = pass_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2341,14 +2342,15 @@ heatmap_RK4_acc <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        plot.title = element_text(hjust = 0.5),
+        element_blank()) 
 
 heatmap_kelp_acc <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720)) +
+  geom_hex(data = kelp_acc, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000)) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = kelp_acc_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2358,9 +2360,10 @@ heatmap_kelp_acc <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        plot.title = element_text(hjust = 0.5),
+        element_blank()) 
 
 
 point_RK4_acc <- ggplot() +
@@ -2374,7 +2377,8 @@ point_RK4_acc <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 
 point_kelp_acc <- ggplot() +
@@ -2389,14 +2393,15 @@ point_kelp_acc <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 # April
 
 heatmap_RK4_acc_April <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720))  +
+  geom_hex(data = pass_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000))  +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = pass_acc_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2406,12 +2411,13 @@ heatmap_RK4_acc_April <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 heatmap_kelp_acc_April <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720))  +
+  geom_hex(data = kelp_acc_April, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000))  +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = kelp_acc_mean_April,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2421,7 +2427,8 @@ heatmap_kelp_acc_April <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 
 point_RK4_acc_April <- ggplot() +
@@ -2435,7 +2442,8 @@ point_RK4_acc_April <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 
 point_kelp_acc_April <- ggplot() +
@@ -2450,14 +2458,15 @@ point_kelp_acc_April <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 # July
 
 heatmap_RK4_acc_July <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720))  +
+  geom_hex(data = pass_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000))  +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = pass_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2467,12 +2476,13 @@ heatmap_RK4_acc_July <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 heatmap_kelp_acc_July <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720))  +
+  geom_hex(data = kelp_acc_July, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000))  +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = kelp_acc_mean_July,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2482,7 +2492,8 @@ heatmap_kelp_acc_July <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 
 point_RK4_acc_July <- ggplot() +
@@ -2496,7 +2507,8 @@ point_RK4_acc_July <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 
 point_kelp_acc_July <- ggplot() +
@@ -2511,14 +2523,15 @@ point_kelp_acc_July <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 # October
 
 heatmap_RK4_acc_Oct <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = pass_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720))  +
+  geom_hex(data = pass_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000))  +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = pass_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2528,12 +2541,13 @@ heatmap_RK4_acc_Oct <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 heatmap_kelp_acc_Oct <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
   #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kelp_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 720))  +
+  geom_hex(data = kelp_acc_Oct, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  scale_fill_continuous(type = "viridis", limits = c(1, 3000))  +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
                size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = kelp_acc_mean_Oct, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
@@ -2543,7 +2557,8 @@ heatmap_kelp_acc_Oct <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 point_RK4_acc_Oct <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
@@ -2556,7 +2571,8 @@ point_RK4_acc_Oct <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 point_kelp_acc_Oct <- ggplot() +
   geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey") +
@@ -2570,7 +2586,8 @@ point_kelp_acc_Oct <- ggplot() +
   coord_fixed(ratio=1/1, xlim = c(11, 20), ylim = c(-36, -27)) + # fix the aspect ratio of plot
   theme_bw() +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12)) 
+        axis.title=element_text(size=12),
+        element_blank()) 
 
 total_acc_data <- rbind(pass_acc, kelp_acc, pass_acc_April, kelp_acc_April,pass_acc_July, kelp_acc_July,pass_acc_Oct, kelp_acc_Oct)
 total_acc_mean <- rbind(pass_acc_mean, kelp_acc_mean, pass_acc_mean_April, kelp_acc_mean_April, pass_acc_mean_July, kelp_acc_mean_July, pass_acc_mean_Oct, kelp_acc_mean_Oct)
@@ -2587,15 +2604,15 @@ mean_traj_acc <- ggplot() +
 
 ```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 9: Comparison of density between passive and kelp accumulation for scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=8, fig.width=8}
 
-ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January","", "April","","July","","October"), font.label = list(size = 12, face = "bold"), align = "hv")
+ggarrange(heatmap_RK4_acc, heatmap_kelp_acc,heatmap_RK4_acc_April, heatmap_kelp_acc_April, heatmap_RK4_acc_July, heatmap_kelp_acc_July, heatmap_RK4_acc_Oct, heatmap_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January","", "April","","July","","October"), font.label = list(size = 12, face = "bold"), align = "hv", label.x = 0.2)
 
-ggsave(filename = "figure_9.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
+ggsave(filename = "figure_9.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 2, dpi = 300)
 ```
 
-```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 10: Comparison of particle age between passive and kelp accumulation scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=10, fig.width=10}
+```{r age data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 10: Comparison of particle age between passive and kelp accumulation scenarios 53-60. Age is represented in hours since release. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=8, fig.width=8}
 
-ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 12, face = "bold"), align = "hv", heights = c(0.5,0.5, 0.5,0.5, 0.5,0.5, 0.5,0.5))
-ggsave(filename = "figure_10.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
+ggarrange(point_RK4_acc, point_kelp_acc, point_RK4_acc_April, point_kelp_acc_April, point_RK4_acc_July, point_kelp_acc_July, point_RK4_acc_Oct, point_kelp_acc_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 2, nrow = 4, labels = c("January", "", "April", "","July", "", "October"), font.label = list(size = 12, face = "bold"), align = "hv", label.x = 0.2)
+ggsave(filename = "figure_10.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 2, dpi = 300)
 ```
 
 The role of eddys that exist within the study domain over the time period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and then are expelled on the other side and continue to follow the ocean current (Figure 9). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (Figure 9). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 10, younger particles are near the release site and older particles further away from shore, while older kelp particles are retained in the eddy. 
@@ -2663,7 +2680,7 @@ sphere_mean <- sphere %>% #calculate mean trajectory
 
 sphere$type <- "Sphere" 
 sphere$Month <- "January" 
-sphere_mean$type <- "Sphere" 
+sphere_mean$Type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00.nc") %>%
@@ -2677,32 +2694,33 @@ cyl_mean <- cyl %>% #calculate mean trajectory
 
 cyl$type <- "Cylinder" 
 cyl$Month <- "January" 
-cyl_mean$type <- "Cylinder" 
+cyl_mean$Type <- "Cylinder" 
 
+shape_data_jan <- rbind(sphere_mean, cyl_mean)
 
 # Make mean trajectory plot
 shape_plot <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  coord_fixed(ratio=1, xlim = c(14, 20), ylim = c(-35, -30)) + 
   #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = sphere_mean, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean, aes(x = lon, y = lat), color = 'red')+
+  geom_path(data = shape_data_jan, aes(x = lon, y = lat, linetype = Type)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
   ggtitle("January") +
-  #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) 
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank()) 
   #coord_fixed(ratio=1/1) # fix the aspect ratio of plot
 
 
 # make density map
 heatmap_sphere <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = sphere, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = sphere_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   labs(x = expression(Longitude*degree*S)) +
@@ -2710,14 +2728,15 @@ heatmap_sphere <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("") + 
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5), 
+        element_blank())
 
 heatmap_cyl <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = cyl, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = cyl_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   labs(x = expression(Longitude*degree*S)) +
@@ -2726,7 +2745,8 @@ heatmap_cyl <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5), 
+        element_blank())
 
 # April
 
@@ -2741,7 +2761,7 @@ sphere_mean_April <- sphere_April %>% #calculate mean trajectory
 
 sphere_April$type <- "Sphere" 
 sphere_April$Month <- "April" 
-sphere_mean_April$type <- "Sphere" 
+sphere_mean_April$Type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl_April <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_April.nc") %>%
@@ -2755,32 +2775,32 @@ cyl_mean_April <- cyl_April %>% #calculate mean trajectory
 
 cyl_April$type <- "Cylinder" 
 cyl_April$Month <- "April" 
-cyl_mean_April$type <- "Cylinder" 
+cyl_mean_April$Type <- "Cylinder" 
 
+shape_data_apr <- rbind(sphere_mean_April, cyl_mean_April)
 
 # Make mean trajectory plot
 shape_plot_April <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  #geom_path(data = p_RK4_mean_April, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = sphere_mean_April, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean_April, aes(x = lon, y = lat), color = 'red')+
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  coord_fixed(ratio=1, xlim = c(14, 20), ylim = c(-35, -30)) + 
+  #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = shape_data_apr, aes(x = lon, y = lat, linetype = Type)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
   ggtitle("April") +
-  #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) 
-  #coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5), 
+        element_blank()) 
 
 
 # make density map
 heatmap_sphere_April <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = sphere_April, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = sphere_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   labs(x = expression(Longitude*degree*S)) +
@@ -2788,14 +2808,15 @@ heatmap_sphere_April <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("") + 
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 heatmap_cyl_April <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = cyl_April, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = cyl_mean_April, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   labs(x = expression(Longitude*degree*S)) +
@@ -2804,7 +2825,8 @@ heatmap_cyl_April <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 # July
 
@@ -2819,7 +2841,7 @@ sphere_mean_July <- sphere_July %>% #calculate mean trajectory
 
 sphere_July$type <- "Sphere" 
 sphere_July$Month <- "July" 
-sphere_mean_July$type <- "Sphere" 
+sphere_mean_July$Type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl_July <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_July.nc") %>%
@@ -2833,30 +2855,32 @@ cyl_mean_July <- cyl_July %>% #calculate mean trajectory
 
 cyl_July$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
 cyl_July$Month <- "July" # add extra column 'type' to dataframe and assigned 'kelp' label
-cyl_mean_July$type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
+cyl_mean_July$Type <- "Cylinder" # add extra column 'type' to dataframe and assigned 'kelp' label
 
+
+shape_data_july <- rbind(sphere_mean_July, cyl_mean_July)
 
 # Make mean trajectory plot
 shape_plot_July <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  #geom_path(data = p_RK4_mean_July, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = sphere_mean_July, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean_July, aes(x = lon, y = lat), color = 'red')+
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  coord_fixed(ratio=1, xlim = c(14, 20), ylim = c(-35, -30)) + 
+  #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  geom_path(data = shape_data_apr, aes(x = lon, y = lat, linetype = Type)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
   ggtitle("July") +
-  #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) 
-  #coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank()) 
+  #coord_fixed(ratio=1/1) # fix the aspect ratio of plot
 
 # make density map
 heatmap_sphere_July <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = sphere_July, bins = 80, aes(x = lon, y = lat)) +
+    geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   geom_path(data = sphere_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -2865,14 +2889,15 @@ heatmap_sphere_July <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("") + 
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 heatmap_cyl_July <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = cyl_July, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = cyl_mean_July, aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   labs(x = expression(Longitude*degree*S)) +
@@ -2881,7 +2906,8 @@ heatmap_cyl_July <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 # October
 
@@ -2896,7 +2922,7 @@ sphere_mean_Oct <- sphere_Oct %>% #calculate mean trajectory
 
 sphere_Oct$type <- "Sphere" 
 sphere_Oct$Month <- "October" 
-sphere_mean_Oct$type <- "Sphere" 
+sphere_mean_Oct$Type <- "Sphere" 
 
 # read in data again for one max simulation, as cannot sort issue out with rename df...
 cyl_Oct <- tidync("OceanParcels/trajectory_data/Max_ShapeFloat_H100_W00_Oct.nc") %>%
@@ -2910,31 +2936,33 @@ cyl_mean_Oct <- cyl_Oct %>% #calculate mean trajectory
 
 cyl_Oct$type <- "Cylinder" 
 cyl_Oct$Month <- "October"
-cyl_mean_Oct$type <- "Cylinder" 
+cyl_mean_Oct$Type <- "Cylinder" 
 
+
+shape_data_oct <- rbind(sphere_mean_Oct, cyl_mean_Oct)
 
 # Make mean trajectory plot
 shape_plot_Oct <- ggplot()+
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 1.0,     colour = "black",     fill = "grey") +
-  #geom_path(data = p_RK4_mean_Oct, aes(x = lon, y = lat), color = 'black')+
-  geom_path(data = sphere_mean_Oct, aes(x = lon, y = lat), color = 'blue')+
-  geom_path(data = cyl_mean_Oct, aes(x = lon, y = lat), color = 'red')+
-  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  coord_fixed(ratio=1, xlim = c(14, 20), ylim = c(-35, -30)) + 
+  #geom_path(data = p_RK4_mean, aes(x = lon, y = lat), color = 'black')+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
+  geom_path(data = shape_data_oct, aes(x = lon, y = lat, linetype = Type)) +
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
   ggtitle("October") +
-  #guides(fill=guide_legend(title="Number of particles")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5)) 
-  #coord_fixed(ratio=1/1)  # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank()) 
+  #coord_fixed(ratio=1/1) # fix the aspect ratio of plot
 
 # make density map
 heatmap_sphere_Oct <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = sphere_Oct, bins = 80, aes(x = lon, y = lat)) +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   geom_path(data = sphere_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
   labs(x = expression(Longitude*degree*S)) +
@@ -2942,13 +2970,14 @@ heatmap_sphere_Oct <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   ggtitle("") + 
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 heatmap_cyl_Oct <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
   #geom_bin2d(data = k_app2, bins = 80, aes(x = lon, y = lat)) +
   geom_hex(data = cyl_Oct, bins = 80, aes(x = lon, y = lat)) +
+    geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "grey") +
   scale_fill_continuous(type = "viridis", limits = c(1, 13000)) +
   geom_path(data = cyl_mean_Oct,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
   coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
@@ -2958,7 +2987,8 @@ heatmap_cyl_Oct <- ggplot() +
   guides(fill=guide_legend(title="Number of particles")) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 # Distance plot
 
@@ -2967,23 +2997,26 @@ shape_pos <- c("January", "April", "July", "October")
 shape_dis_plot <- ggplot(data = shape_data_total, aes(x = Month, y = distance, show.legend = TRUE, fill = type))+
   geom_boxplot(notch = TRUE, notchwidth = 1, show.legend = TRUE, stat = "boxplot") +
   scale_x_discrete(limits = shape_pos)+
-  stat_compare_means(method = "kruskal.test", label = "p.signif")+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", aes(group=Month), hide.ns = FALSE)+
   ylab("Distance (km)")+
   xlab("Month") + 
   ggtitle("Comparison of distance travelled") +
   guides(fill=guide_legend(title="Coefficient")) +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+        element_blank())
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 11: Comparison of trajectory data between sphere and cylinder shape coefficients for scenarios 61-64.The mean trajectory comparison between passive and kelp. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=6}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 11: Comparison of trajectory data between sphere and cylinder shape coefficients for scenarios 61-64. Row A represents the mean trajectory comparison for each of the respective months (seasons) simulated. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=6}
 
-shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, heatmap_sphere, heatmap_sphere_April,heatmap_sphere_July, heatmap_sphere_Oct, heatmap_cyl, heatmap_cyl_April, heatmap_cyl_July, heatmap_cyl_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 3, align = "hv", labels = c("A", "", "", "", "B", "", "", "", "C"), font.label = list(size = 11, face = "bold"))
+shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 1, labels = c("A", "", "", ""), font.label = list(size = 12, face = "bold"), align = "hv") 
+                          
+shape_plot_B <- ggarrange(heatmap_sphere, heatmap_sphere_April,heatmap_sphere_July, heatmap_sphere_Oct, heatmap_cyl, heatmap_cyl_April, heatmap_cyl_July, heatmap_cyl_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 2, align = "hv", labels = c("B", "", "", "", "C", "", "", ""), font.label = list(size = 12, face = "bold"))
 
-ggarrange(shape_plot_A, shape_dis_plot, ncol = 1, nrow = 2, legend = c("right"), labels = c("", "D") , font.label = list(size = 11, face = "bold"), heights = c(2, 1))
+ggarrange(shape_plot_A, shape_plot_B, shape_dis_plot, ncol = 1, nrow = 3, legend = c("right"), labels = c("", "D") , font.label = list(size = 11, face = "bold"), heights = c(2, 2, 1))
 
-ggsave(filename = "figure_11.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
+#ggsave(filename = "figure_11.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 10, scale = 1, dpi = 300)
 
 ```
 
