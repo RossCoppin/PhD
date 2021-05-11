@@ -228,10 +228,10 @@ wind_plot_july <- ggplot() +
 
 wind_plot_oct <- ggplot() +
   geom_tile(data = wind_oct_summary, aes(fill = velocity, x = lon, y = lat)) +
-  #geom_raster(data = wind_vector, aes(x = lon, y = lat, fill = velocity))+
+  geom_raster(data = wind_vector, aes(x = lon, y = lat, fill = velocity))+
   geom_segment(data = wind_oct_summary,
-               aes(x = lon, xend = lon+eastward_wind/30, y = lat,
-                   yend = lat+northward_wind/30), arrow = arrow(length = unit(0.25, "cm"))) +
+              aes(x = lon, xend = lon+eastward_wind/60, y = lat,
+              yend = lat+northward_wind/60), arrow = arrow(length = unit(0.30, "cm"))) +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4, colour = "black",fill = "grey") +
   scale_fill_continuous(type = "viridis", limits = c(0, 11)) +
   coord_fixed(ratio=1, xlim = c(15, 20), ylim = c(-35, -30)) +
@@ -249,26 +249,36 @@ ocean <- ggarrange(ocean_plot_jan, ocean_plot_apr, ocean_plot_july, ocean_plot_o
                    font.label = list(size = 12, face = "bold"), labels = c("A", "B", "C","D"),
                    ncol = 2, nrow = 2, common.legend = TRUE, legend = c("bottom"))
 
-ocean_lng <- ggarrange(ocean_plot_jan, ocean_plot_apr, ocean_plot_july, ocean_plot_oct,
-                   font.label = list(size = 12, face = "bold"), labels = c("A", "C", "E","G"),
-                   ncol = 1, nrow = 4, common.legend = TRUE, legend = c("bottom"))
-
 wind <- ggarrange(wind_plot_jan, wind_plot_apr, wind_plot_july, wind_plot_oct,
                   font.label = list(size = 12, face = "bold"),labels = c("B", "D", "F","H"),
                   ncol = 2, nrow = 2, common.legend = TRUE, legend = c("bottom"))
 
+ocean_lng <- ggarrange(ocean_plot_jan, ocean_plot_apr, ocean_plot_july, ocean_plot_oct,
+                   font.label = list(size = 11, face = "bold"), labels = c("January","April","July","October"),
+                   ncol = 1, nrow = 4, common.legend = TRUE, legend = c("bottom"))
+
 wind_lng <- ggarrange(wind_plot_jan, wind_plot_apr, wind_plot_july, wind_plot_oct,
-                  font.label = list(size = 12, face = "bold"),labels = c("B", "D", "F","H"),
-                  ncol = 1, nrow = 4, common.legend = TRUE, legend = c("bottom"))
+                      font.label = list(size = 11, face = "bold"),labels = c("","","",""),
+                      ncol = 1, nrow = 4, common.legend = TRUE, legend = c("bottom"))
 
 combined <- ggarrange(ocean, wind, align = c("h"), ncol = 1, nrow = 2)
 combined_lng <- ggarrange(ocean_lng, wind_lng, align = c("hv"), ncol = 2, nrow = 1)
 
-
-ggsave("vector_combined.jpeg", dpi = 320, width = 8, height = 8, path = "figures/chapter_3/", units = "in" , scale = 1.2)
-
+ggsave("vector_combined.jpeg", dpi = 320, width = 7, height = 10, path = "figures/chapter_3/", units = "in" , scale = 2.5)
 
 # Plotting option 2 ------------------------------------------------------------
+
+leg_vector_oce <- get_legend(ocean_plot_jan)
+leg_vector_wnd <- get_legend(wind_plot_jan)
+
+combined_v2 <- ggarrange(ocean_plot_jan, wind_plot_jan,ocean_plot_apr, wind_plot_apr,
+               ocean_plot_july, wind_plot_july, ocean_plot_oct, wind_plot_oct,
+               as_ggplot(leg_vector_oce), as_ggplot(leg_vector_wnd),
+               ncol = 2, nrow = 6, align = c("hv"), common.legend = TRUE, legend = c("none"))
+
+
+
+# Plotting option 3 ------------------------------------------------------------
 jan_maps <- ggarrange(ocean_plot_jan, wind_plot_jan, ncol = 2, legend = c("bottom"),
                       labels = c("January"))
 
