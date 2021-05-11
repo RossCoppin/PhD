@@ -1001,7 +1001,7 @@ wwdrag_plot_Oct <- ggplot() +
         axis.title=element_text(size=12)) 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=12, fig.width=7, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=8, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively."}
 
 ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, ncol = 2, nrow = 4, font.label = list(size = 12, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = c("A","B","C","D","E","F","G", "H"), align = "hv")
 
@@ -3008,7 +3008,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = Month, y = distance, s
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 11: Comparison of trajectory data between sphere and cylinder shape coefficients for scenarios 61-64. Row A represents the mean trajectory comparison for each of the respective months (seasons) simulated. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=6}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 11: Comparison of trajectory data between sphere and cylinder shape coefficients for scenarios 61-64. Row A represents the mean trajectory comparison, row B-C are density comparison plots, and row D is comparison of total distance travelled from the release site for each of the respective months (seasons) simulated.  The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=6}
 
 shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 1, labels = c("A", "", "", ""), font.label = list(size = 12, face = "bold"), align = "hv") 
                           
