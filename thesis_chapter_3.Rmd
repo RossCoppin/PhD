@@ -102,7 +102,7 @@ The drag coefficient for a spherical particle was used in the calculation of hyd
 
 ### Cross-sectional area
 
-To incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant. For details refer to figure 2. The dimensional data needed were estimated in cases where data was not available for that morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent; the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
+To incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant. For details refer to Figure 2. The dimensional data needed were estimated in cases where data was not available for that morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent; the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
 
 ```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Diagram of the *E. maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic."}
 
@@ -111,7 +111,7 @@ ggarrange(kelp_shape_figure)
 
 ```
 
-The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum cross-sectional areas (Ac, table 2) were calculated for each morphological characteristic, which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations (table 2). The trajectory of the different cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
+The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum cross-sectional areas (Ac, Table 2) were calculated for each morphological characteristic, which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations (Table 2). The trajectory of the different cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
 
 ```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 # Investigate morphology data to assist in estimating surface area
@@ -1001,7 +1001,7 @@ wwdrag_plot_Oct <- ggplot() +
         axis.title=element_text(size=12)) 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=6, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively."}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=6, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively. Significant amounts of overplotting prevents the different line types to be discernable."}
 
 ggarrange(waterdrag_plot, wwdrag_plot, waterdrag_plot_April, wwdrag_plot_April, waterdrag_plot_July, wwdrag_plot_July, waterdrag_plot_Oct, wwdrag_plot_Oct, ncol = 2, nrow = 4, font.label = list(size = 12, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = c("A","B","C","D","E","F","G", "H"), align = "hv")
 
@@ -1010,7 +1010,7 @@ ggsave(filename = "figure_3.jpg", plot = last_plot(), path = "figures/chapter_3/
 
 ## Comparison of density distributions
 
-Density distributions summarizing the conclusion of sumlating Scenarios 1-13 (Table 1) are presented in Figures 3-6. Across all simulations for January (Austral summer), particles flow in a north-westward direction. The density plots for simulations that consider any form of drag show a higher density of particles along the mean trajectory path compared to the passive simulation which has an almost even density of particles across grids (Figure 4). In addition, the density plots show that the particles in simulations that considered any form of drag become entrained in a vorticity while particles in the passive simulation deflected away (Figure 4). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. In April (Figure 5) across all simulations, particles flow in a north-westward direction. The density plots that consider any form of drag show a narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulations that consider any form of drag got entrained within an eddy further north-westward from the end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. 
+Density distributions summarizing the conclusion of sumlating scenarios 1-13 (Table 1) are presented in Figures 3-6. Across all simulations for January (Austral summer), particles flow in a north-westward direction. The density plots for simulations that consider any form of drag show a higher density of particles along the mean trajectory path compared to the passive simulation which has an almost even density of particles across grids (Figure 4). In addition, the density plots show that the particles in simulations that considered any form of drag become entrained in a vorticity while particles in the passive simulation deflected away (Figure 4). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. In April (Figure 5) across all simulations, particles flow in a north-westward direction. The density plots that consider any form of drag show a narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulations that consider any form of drag got entrained within an eddy further north-westward from the end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. 
 
 Simulations for July (Figure 6) show that the flow is also north-westward, but all kelp particles across cross-sectional areas and drag scenarios show a high density of particles entrained in an eddy located westward of the release site compared to passive particles. Variation in density along the mean trajectory and eddy for all kelp particles is evident. Kelp particles with only hydrodynamic drag across cross-sectional areas showed lower density of particles along the mean trajectory compared to kelp particles with both wind and hydrodynamic drag. Simulations run for October (Figure 7) show no difference in density of particles along the mean trajectory when comparing passive and kelp particles. Only slight variations in density and trajectory can be seen with no entrainment. Kelp particles with any cross-sectional area and drag exposure scenario flowed further offshore when compared to passive particles. 
 
@@ -1996,7 +1996,7 @@ heatmap_Max_KFloat_H085_W15_Oct <- ggplot() +
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for simulations 1 - 13, for January 2018 (summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each simulation are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each simulation', fig.height=8, fig.width=6}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for simulations 1 - 13, for January 2018 (Austral summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each simulation are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each simulation', fig.height=8, fig.width=6}
 
 leg_Jan <- get_legend(heatmap_RK4)
 
@@ -2005,7 +2005,7 @@ ggarrange(heatmap_RK4, heatmap_Min_Kfloat_H100_W00, heatmap_Min_Kfloat_H095_W05,
 ggsave(filename = "figure_4.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 9, width = 8, scale = 1, dpi = 300)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end of the run for simulations 14 - 26, for April 2018 (autumn). See Figure 4 for further details.', fig.height=8, fig.width=6}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end of the run for simulations 14 - 26, for April 2018 (Austral autumn). See Figure 4 for further details.', fig.height=8, fig.width=6}
 
 leg_April <- get_legend(heatmap_RK4_April)
 
@@ -2014,7 +2014,7 @@ ggarrange(heatmap_RK4_April,heatmap_Min_Kfloat_H100_W00_April, heatmap_Min_Kfloa
 ggsave(filename = "figure_5.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 9, width = 8, scale = 1, dpi = 300)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end of the run for simulations 27 - 39, for July 2018 (winter). See Figure 4 for further details.', fig.height=8, fig.width=6}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 6: Comparison of density plots at the end of the run for simulations 27 - 39, for July 2018 (Austral winter). See Figure 4 for further details.', fig.height=8, fig.width=6}
 
 leg_July <- get_legend(heatmap_RK4_July)
 
@@ -2023,7 +2023,7 @@ ggarrange(heatmap_RK4_July,heatmap_Min_Kfloat_H100_W00_July, heatmap_Min_Kfloat_
 ggsave(filename = "figure_6.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 9, width = 8, scale = 1, dpi = 300)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 7: Comparison of density plots at the end of the run for simulations 40 - 52, for October 2018 (spring). See Figure 4 for further details.', fig.height=8, fig.width=6}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 7: Comparison of density plots at the end of the run for simulations 40 - 52, for October 2018 (Austral spring). See Figure 4 for further details.', fig.height=8, fig.width=6}
 
 leg_Oct <- get_legend(heatmap_Min_Kfloat_H100_W00_Oct)
 
@@ -2169,7 +2169,7 @@ dis_plot_Oct <- dis_plot_Oct +
   scale_x_discrete(labels= custom_labs_Oct)
 ```
 
-```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 8: Boxplots of total distance travelled by all particles from the release site over the course of the simulations for scenarios 1 - 52. The *x*-axis represents the scenario number, and the *y*-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=6}
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figure 8: Boxplots of total distance travelled by all particles from the release site over the course of the simulations for scenarios 1 - 52. The *x*-axis represents the scenario number, and the *y*-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to Tables 1 and 2 for details pertaining to each scenario.", fig.height=8, fig.width=6}
 
 ggarrange(dis_plot, dis_plot_April, dis_plot_July,dis_plot_Oct, label = "AUTO", ncol = 1, nrow = 4)
 ggsave(filename = "figure_8.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 9, width = 7, scale = 1, dpi = 300)
@@ -3021,7 +3021,7 @@ shape_dis_plot <- ggplot(data = shape_data_total, aes(x = Month, y = distance, s
 
 ```
 
-```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 11: Comparison of trajectory data between sphere and cylinder shape coefficients for scenarios 61-64. Row A represents the mean trajectory comparison, row B-C are density comparison plots, and row D is comparison of total distance travelled from the release site for each of the respective months (seasons) simulated. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=6}
+```{r shape data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 11: Comparison of trajectory data between sphere and cylinder shape coefficients for scenarios 61-64. Row A represents the mean trajectory comparison, row B-C are density comparison plots, and the bottom boxplot is comparison of shape coefficients total distance travelled from the release site for each of the respective months (seasons) simulated. The reader is referred to tables 1 and 2 for details pertaining to each scenario.", fig.height=10, fig.width=6}
 
 shape_plot_A <- ggarrange(shape_plot, shape_plot_April, shape_plot_July, shape_plot_Oct, common.legend = TRUE, legend = c("bottom"), ncol = 4, nrow = 1, font.label = list(size = 12, face = "bold"), align = "hv", labels = c("A","","","")) 
                           
