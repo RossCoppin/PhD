@@ -2,7 +2,9 @@
 title: "Chapter 4"
 author: "Ross Coppin"
 date: "11/12/2020"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -24,8 +26,7 @@ The raft-time is the amount of time macroalgae floats at the surface before beco
 # Methods
 
 ## Raft-time
-
-Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 25 days, winter was 38 days, and autumn was 41 days respectively. 
+Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 22 days, autumn was 41 days, winter was 38 days, and spring was 33 days. 
 
 ```{r morphology surface area table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="TBD."}
 
@@ -71,6 +72,10 @@ morph_data$total_Ac <- with(morph_data, ((2*frond_length*frond_width) + (2*frond
 
 morph_data$total_mass <- with(morph_data, (frond_mass*6) + (stipe_mass) )
 
+# Calculate the volume fro each site for all morphological characteristics (meters^3)
+
+morph_data$total_volume <- with(morph_data, (frond_thickness*frond_length*frond_width) + (primary_length * primary_width * frond_thickness) + (pi*(stipe_radius*stipe_radius)*stipe_length) + (pi*height*0.3333*((top_radius*top_radius) + (top_radius * bottom_radius) + (bottom_radius*bottom_radius))))
+
 # Make table based on new entries
 site_surface_area <- morph_data
 site_surface_area <- flextable(data = site_surface_area)
@@ -83,7 +88,15 @@ site_surface_area <- set_table_properties(site_surface_area, width = 1, layout =
 site_surface_area
 ```
 
-```{r, warning=FALSE, message=FALSE, echo = FALSE}
+## Simulations
+
+Simulations used daily outputs of velocity vectors (meridonal and zonal) and salinity (psu) for varying depths for the study region. To account for the role of morphological characteristics in influencing drift trajectory in terms of hydrodynamic and wind drag [@coppin2021] simulations were run separately for each site per season. Morphological characteristics of macroalgae has been shown to be based on the local wave and temperature environment, hence the need for site specific parameters with regards to morphological characteristics. Running simulations per season allowed incorporation of seasonal raft-times identified in pervious work [@graiff2016 and @graiff2013]. The outputs from each simulation (site) was pooled based on season. 
+
+Simulations were run using the OceanParcels software (available from https://oceanparcels.org/). All simulations were run using a Runge-Kutte fourth order advection scheme, while custom kernels simulated the effects of hydrodynamic and wind drag on overall trajectory, seasonal raft-times, sinking and settling on seafloor of virtual kelp particles; all important processes in the determination of surface and bottom sinks. The simulations were run for 2019, which was divided into various seasons (see table??). For incorporating drag, the 'maximum exposure scenario' proposed by @coppin2021 was used for all simulations (85% hydrodynamic and 15% wind drag) while virtual kelp particles were on the surface and then would convert to full hydrodynamic drag exposure (100%) once the virtual kelp started sinking; as wind would no longer act as a direct influencer of trajectory once below the ocean surface. 
+
+## Analysis
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 houtbay <- tidync("OceanParcels/trajectory_data/chapter_4_output/houtbay.nc") %>%
   hyper_tibble() %>%
@@ -144,7 +157,7 @@ total_data_mean <- rbind(houtbay_mean, soetwater_mean,kommetjie_mean, millers_me
 
 ## Mean trajectory 
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval = FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 
 library(ggplot2)
 
@@ -163,7 +176,7 @@ mean_traj_site <- ggplot() +
   
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 
 mean_traj_site
 
@@ -171,7 +184,7 @@ mean_traj_site
 
 ## Density comparisons
 
-```{r, message=FALSE, echo=FALSE, warning=FALSE}
+```{r eval = FALSE, message=FALSE, echo=FALSE, warning=FALSE}
 
 ## Coastline of Southern Africa
 load("map/south_africa_coast_hi_res.Rdata")
@@ -246,12 +259,12 @@ heatmap_millers <- ggplot() +
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r , eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 
 ggarrange(heatmap_houtbay, heatmap_soetwater, heatmap_millers, ncol = 1, nrow = 3, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = "AUTO", align = "hv")
 ```
 
-```{r total heatmap, echo=FALSE, message=FALSE, warning=FALSE}
+```{r total heatmap, eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 
 heatmap_total <- ggplot() +
   geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size =    1.0, colour = "black", fill = NA) +
