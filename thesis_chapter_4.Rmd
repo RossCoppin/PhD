@@ -98,190 +98,216 @@ Simulations were run using the OceanParcels software (available from https://oce
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
-houtbay <- tidync("OceanParcels/trajectory_data/chapter_4_output/houtbay.nc") %>%
+houtbay_summer <- tidync("OceanParcels/chapter_4_output/hb_summer.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+houtbay_summer$season <- "Summer" 
+houtbay_summer$site <- "Hout Bay" 
+houtbay_summer_mean <- houtbay_summer %>% # calculate mean trajectory
+ group_by(t) %>% 
+ summarise(across(lon:bathy, mean, na.rm= TRUE))
+houtbay_summer_mean$season <- "Summer" 
+houtbay_summer_mean$site <- "Hout Bay" 
 
-houtbay_mean <- houtbay %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-houtbay$site <- "Hout Bay" 
-houtbay_mean$site <- "Hout Bay" 
-
-kommetjie <- tidync("OceanParcels/trajectory_data/chapter_4_output/kommetjie.nc") %>%
+houtbay_autumn <- tidync("OceanParcels/chapter_4_output/hb_autumn.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+houtbay_autumn$season <- "Autumn" 
+houtbay_autumn$site <- "Hout Bay" 
+houtbay_autumn_mean <- houtbay_autumn %>% # calculate mean trajectory
+ group_by(t) %>% 
+ summarise(across(lon:bathy, mean, na.rm= TRUE))
+houtbay_autumn_mean$season <- "Autumn" 
+houtbay_autumn_mean$site <- "Hout Bay" 
 
-kommetjie_mean <- kommetjie %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-kommetjie$site <- "kommetjie" 
-kommetjie_mean$site <- "kommetjie" 
-
-soetwater <- tidync("OceanParcels/trajectory_data/chapter_4_output/soetwater.nc") %>%
+houtbay_winter <- tidync("OceanParcels/chapter_4_output/hb_winter.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+houtbay_winter$season <- "Winter" 
+houtbay_winter$site <- "Hout Bay" 
+houtbay_winter_mean <- houtbay_winter %>% # calculate mean trajectory
+ group_by(t) %>% 
+ summarise(across(lon:bathy, mean, na.rm= TRUE))
+houtbay_winter_mean$season <- "Winter" 
+houtbay_winter_mean$site <- "Hout Bay" 
 
-soetwater_mean <- soetwater %>% # calculate mean trajectory
-  group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
-
-soetwater$site <- "Soetwater" 
-soetwater_mean$site <- "Soetwater" 
-
-
-millers <- tidync("OceanParcels/trajectory_data/chapter_4_output/millers.nc") %>%
+houtbay_spring <- tidync("OceanParcels/chapter_4_output/hb_spring.nc") %>%
   hyper_tibble() %>%
-  dplyr::select(trajectory, lon, lat, time, distance, age) %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
   dplyr::rename(t = time) %>%
-  mutate(t = as.POSIXct(t, origin = "2020-01-01 00:00:00"))
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+houtbay_spring$season <- "Spring" 
+houtbay_spring$site <- "Hout Bay" 
+houtbay_spring_mean <- houtbay_spring %>% # calculate mean trajectory
+ group_by(t) %>% 
+ summarise(across(lon:bathy, mean, na.rm= TRUE))
+houtbay_spring_mean$season <- "Spring" 
+houtbay_spring_mean$site <- "Hout Bay" 
 
-millers_mean <- millers %>% # calculate mean trajectory
+kom_summer <- tidync("OceanParcels/chapter_4_output/kom_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kom_summer$season <- "Summer" 
+kom_summer$site <- "Kommetjie" 
+kom_summer_mean <- kom_summer %>% # calculate mean trajectory
   group_by(t) %>% 
-  summarise(across(lon:lat, mean, na.rm= TRUE))
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kom_summer_mean$season <- "Summer" 
+kom_summer_mean$site <- "Kommetjie" 
 
-millers$site <- "millers" 
-millers_mean$site <- "millers" 
+kom_autumn <- tidync("OceanParcels/chapter_4_output/kom_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kom_autumn$season <- "Autumn" 
+kom_autumn$site <- "Kommetjie" 
+kom_autumn_mean <- kom_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kom_autumn_mean$season <- "Autumn" 
+kom_autumn_mean$site <- "Kommetjie" 
 
-total_data <- rbind(houtbay, soetwater, kommetjie, millers)
-total_data_mean <- rbind(houtbay_mean, soetwater_mean,kommetjie_mean, millers_mean)
+kom_winter <- tidync("OceanParcels/chapter_4_output/kom_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kom_winter$season <- "Winter" 
+kom_winter$site <- "Kommetjie" 
+kom_winter_mean <- kom_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kom_winter_mean$season <- "Winter" 
+kom_winter_mean$site <- "Kommetjie" 
+
+kom_spring <- tidync("OceanParcels/chapter_4_output/kom_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kom_spring$season <- "Spring" 
+kom_spring$site <- "Kommetjie" 
+kom_spring_mean <- kom_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kom_spring_mean$season <- "Spring" 
+kom_spring_mean$site <- "Kommetjie" 
+
+scar_summer <- tidync("OceanParcels/chapter_4_output/scar_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+scar_summer$season <- "Summer" 
+scar_summer$site <- "Scarborough" 
+scar_summer_mean <- scar_summer %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+scar_summer_mean$season <- "Summer" 
+scar_summer_mean$site <- "Scarborough" 
+
+scar_autumn <- tidync("OceanParcels/chapter_4_output/scar_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+scar_autumn$season <- "Autumn" 
+scar_autumn$site <- "Scarborough" 
+scar_autumn_mean <- scar_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+scar_autumn_mean$season <- "Autumn" 
+scar_autumn_mean$site <- "Scarborough" 
+
+scar_winter <- tidync("OceanParcels/chapter_4_output/scar_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+scar_winter$season <- "Winter" 
+scar_winter$site <- "Scarborough" 
+scar_winter_mean <- scar_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+scar_winter_mean$season <- "Winter" 
+scar_winter_mean$site <- "Scarborough" 
+
+scar_spring <- tidync("OceanParcels/chapter_4_output/scar_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+scar_spring$season <- "Spring" 
+scar_spring$site <- "Scarborough" 
+scar_spring_mean <- scar_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+scar_spring_mean$season <- "Spring" 
+scar_spring_mean$site <- "Scarborough" 
+
+oude_summer <- tidync("OceanParcels/chapter_4_output/oudekraal_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+oude_summer$season <- "Summer" 
+oude_summer$site <- "Oudekraal" 
+oude_summer_mean <- oude_summer %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+oude_summer_mean$season <- "Summer" 
+oude_summer_mean$site <- "Oudekraal" 
+
+oude_autumn <- tidync("OceanParcels/chapter_4_output/oudekraal_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+oude_autumn$season <- "Autumn" 
+oude_autumn$site <- "Oudekraal" 
+oude_autumn_mean <- oude_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+oude_autumn_mean$season <- "Autumn" 
+oude_autumn_mean$site <- "Oudekraal" 
+
+oude_winter <- tidync("OceanParcels/chapter_4_output/oudekraal_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+oude_winter$season <- "Winter" 
+oude_winter$site <- "Oudekraal" 
+oude_wintermean <- oude_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+oude_winter_mean$season <- "Winter" 
+oude_winter_mean$site <- "Oudekraal" 
+
+oude_spring <- tidync("OceanParcels/chapter_4_output/oudekraal_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+oude_spring$season <- "Spring" 
+oude_spring$site <- "Oudekraal" 
+oude_spring <- scar_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+oude_spring_mean$season <- "Spring" 
+oude_spring_mean$site <- "Oudekraal" 
+
+
 ```
 
 ## Mean trajectory 
-
-```{r eval = FALSE, message=FALSE, warning=FALSE, echo=FALSE}
-
-library(ggplot2)
-
-## Coastline of Southern Africa
-load("map/south_africa_coast_hi_res.Rdata")
-
-mean_traj_site <- ggplot() + 
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
-               size = 1.0, colour = "black", fill = NA) +
-  geom_path(data = total_data_mean, aes(x = lon, y = lat, colour = site)) +
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  theme_bw() 
-  
-```
-
-```{r eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
-
-mean_traj_site
-
-```
-
-## Density comparisons
-
-```{r eval = FALSE, message=FALSE, echo=FALSE, warning=FALSE}
-
-## Coastline of Southern Africa
-load("map/south_africa_coast_hi_res.Rdata")
-
-heatmap_houtbay <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
-  geom_hex(data = houtbay, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
-  geom_path(data = houtbay_mean,aes(x = lon, y = lat, color = 'red'),             show.legend = FALSE) +
-  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("HoutBay") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-heatmap_komm <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
-  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = kommetjie, bins = 80, aes(x = lon, y = lat), legend = FALSE) +   scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
-  geom_path(data = kommetjie_mean,aes(x = lon, y = lat, color = 'red'),           show.legend = FALSE) +
-  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Kommetjie") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-heatmap_soetwater <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
-  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
-  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'),           show.legend = FALSE) +
-  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Soetwater") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-heatmap_soetwater <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
-  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = soetwater, bins = 80, aes(x = lon, y = lat), legend = FALSE) +
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
-  geom_path(data = soetwater_mean,aes(x = lon, y = lat, color = 'red'),           show.legend = FALSE) +
-  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Kommetjie") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-heatmap_millers <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size = 1.0, colour = "black", fill = NA) +
-  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = millers, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 1000000)) +
-  geom_path(data = millers_mean,aes(x = lon, y = lat, color = 'red'),             show.legend = FALSE) +
-  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Millers") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-```
-
-```{r , eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
-
-ggarrange(heatmap_houtbay, heatmap_soetwater, heatmap_millers, ncol = 1, nrow = 3, font.label = list(size = 11, face = "bold"), common.legend = FALSE, legend = c("bottom"), labels = "AUTO", align = "hv")
-```
-
-```{r total heatmap, eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
-
-heatmap_total <- ggplot() +
-  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group =    PID), size =    1.0, colour = "black", fill = NA) +
-  #geom_bin2d(data = p_RK4, bins = 80, aes(x = lon, y = lat)) +
-  geom_hex(data = total_data, bins = 80, aes(x = lon, y = lat), legend = FALSE) +  
-  scale_fill_continuous(type = "gradient", limits = c(1, 19000000)) +
-  geom_path(data = total_data_mean,aes(x = lon, y = lat, color = 'red'),show.legend = FALSE) +
-  geom_rect(data = south_africa_coast_hi_res,aes(xmin=10, xmax=18.4, ymin=-33, ymax=-33.5),           inherit.aes = FALSE, fill = NA, colour =    "red", size = 1.5) +
-  geom_rect(data = south_africa_coast_hi_res,aes(xmin=10, xmax=18.4, ymin=-33.5, ymax=-34.0),           inherit.aes = FALSE, fill = NA, colour =    "green", size = 1.5) +
-  geom_rect(data = south_africa_coast_hi_res,aes(xmin=10, xmax=18.4, ymin=-34.0, ymax=-34.5),           inherit.aes = FALSE, fill = NA, colour =    "black", size = 1.5) +
-  #coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
-  xlab("Longtitude") + 
-  ylab("Latitude") + 
-  ggtitle("Millers") +
-  guides(fill=guide_legend(title="Number of particles")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
-heatmap_total
-```
 
