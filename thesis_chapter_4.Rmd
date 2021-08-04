@@ -97,6 +97,38 @@ Simulations were run using the OceanParcels software (available from https://oce
 
 ## Analysis
 
+# Results
+
+## Ocean analysis
+
+```{r eval=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+
+ocean_vector_chp4 <- tidync("OceanParcels/chapter_4_oceanmodel/copernicus_phy001_030/global-reanalysis-phy-001-030-daily_1625758460342.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, longitude, latitude, uo, vo) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.Date(as.POSIXct(t * 3600, origin = "2019-01-01 00:00:00"),
+                     "GMT",
+                     "%Y-%m-%d-%h"))
+
+ocean_summer <-  ocean_vector_chp4 %>%
+  filter(t >= ("2086-01-01 00:00:00") & t <= ("2086-02-28 00:00:00"))
+ocean_autumn <-  ocean_vector_chp4 %>%
+  filter(t >= ("2086-03-01 00:00:00") & t <= ("2086-05-31 00:00:00"))
+ocean_winter <-  ocean_vector_chp4 %>%
+  filter(t >= ("2086-06-01 00:00:00") & t <= ("2086-08-30 00:00:00"))
+ocean_spring <-  ocean_vector_chp4 %>%
+  filter(t >= ("2086-09-01 00:00:00") & t <= ("2086-11-30 00:00:00"))
+
+ocean_summer$velocity <- with(ocean_jan, sqrt(uo^2 + vo^2))
+ocean_autumn$velocity <- with(ocean_apr, sqrt(uo^2 + vo^2))
+ocean_winter$velocity <- with(ocean_july, sqrt(uo^2 + vo^2))
+ocean_spring$velocity <- with(ocean_oct, sqrt(uo^2 + vo^2))
+
+
+```
+
+
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 houtbay_summer <- tidync("OceanParcels/chapter_4_output/hb_summer.nc") %>%
@@ -780,6 +812,10 @@ soetwater_spring_mean$site <- "Soetwater"
 ## Mean trajectory 
 
 ```{r message=FALSE, warning=FALSE}
+
+load("map/south_africa_coast_hi_res.Rdata")
+load("map/sa_bathy.RData")
+
 # Summer
 total_summer <- rbind(kom_summer_mean, houtbay_summer_mean, scar_summer_mean, oude_summer_mean, betty_summer_mean, kalk_summer_mean, aframe_summer_mean, sthelena_summer_mean, millers_summer_mean, baboon_summer_mean, basata_summer_mean, buffels_summer_mean, soetwater_summer_mean) 
 
@@ -789,10 +825,11 @@ summer_mean <- ggplot()+
   geom_path(data = total_summer, aes(x = lon, y = lat, linetype = site))+
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Summer") +
   guides(linetype=guide_legend(title="Simulation")) +
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
-  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(15, 20), ylim = c(-35, -31)) + # fix the aspect ratio of plot
   theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12)) 
 
@@ -805,10 +842,11 @@ autumn_mean <- ggplot()+
   geom_path(data = total_autumn, aes(x = lon, y = lat, linetype = site))+
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Autumn") +
   guides(linetype=guide_legend(title="Simulation")) +
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
-  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(15, 20), ylim = c(-35, -31)) + # fix the aspect ratio of plot
   theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12)) 
 
@@ -821,10 +859,11 @@ winter_mean <- ggplot()+
   geom_path(data = total_winter, aes(x = lon, y = lat, linetype = site))+
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Winter") +
   guides(linetype=guide_legend(title="Simulation")) +
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
-  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(15, 20), ylim = c(-35, -31)) + # fix the aspect ratio of plot
   theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12)) 
 # Spring
@@ -836,17 +875,18 @@ spring_mean <- ggplot()+
   geom_path(data = total_spring, aes(x = lon, y = lat, linetype = site))+
   labs(x = expression(Longitude*degree*S)) +
   labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Spring") +
   guides(linetype=guide_legend(title="Simulation")) +
-  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
-  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(15, 20), ylim = c(-35, -31)) + # fix the aspect ratio of plot
   theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12)) 
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-ggarrange(summer_mean, autumn_mean, winter_mean, common.legend = TRUE, font.label = list(size = 12, face = "bold"), legend = c("bottom"))
+ggarrange(summer_mean, autumn_mean, winter_mean, spring_mean,common.legend = TRUE, font.label = list(size = 12, face = "bold"), legend = c("bottom"), ncol = 2, nrow = 2)
 
 ```
 
