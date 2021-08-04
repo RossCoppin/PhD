@@ -287,7 +287,7 @@ oude_winter <- tidync("OceanParcels/chapter_4_output/oudekraal_winter.nc") %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
 oude_winter$season <- "Winter" 
 oude_winter$site <- "Oudekraal" 
-oude_wintermean <- oude_winter %>% # calculate mean trajectory
+oude_winter_mean <- oude_winter %>% # calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:bathy, mean, na.rm= TRUE))
 oude_winter_mean$season <- "Winter" 
@@ -300,12 +300,219 @@ oude_spring <- tidync("OceanParcels/chapter_4_output/oudekraal_spring.nc") %>%
   mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
 oude_spring$season <- "Spring" 
 oude_spring$site <- "Oudekraal" 
-oude_spring <- scar_spring %>% # calculate mean trajectory
+oude_spring <- oude_spring %>% # calculate mean trajectory
   group_by(t) %>% 
   summarise(across(lon:bathy, mean, na.rm= TRUE))
 oude_spring_mean$season <- "Spring" 
 oude_spring_mean$site <- "Oudekraal" 
 
+betty_summer <- tidync("OceanParcels/chapter_4_output/betty_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+betty_summer$season <- "Summer" 
+betty_summer$site <- "Betty's Bay" 
+betty_summer_mean <- betty_summer %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+betty_summer_mean$season <- "Summer" 
+betty_summer_mean$site <- "Betty's Bay" 
+
+betty_autumn <- tidync("OceanParcels/chapter_4_output/betty_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+betty_autumn$season <- "Autumn" 
+betty_autumn$site <- "Betty's Bay" 
+betty_autumn_mean <- betty_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+betty_autumn_mean$season <- "Autumn" 
+betty_autumn_mean$site <- "Betty's Bay" 
+
+betty_winter <- tidync("OceanParcels/chapter_4_output/betty_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+betty_winter$season <- "Winter" 
+betty_winter$site <- "Betty's Bay" 
+betty_winter_mean <- betty_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+betty_winter_mean$season <- "Winter" 
+betty_winter_mean$site <- "Betty's Bay" 
+
+betty_spring <- tidync("OceanParcels/chapter_4_output/betty_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+betty_spring$season <- "Spring" 
+betty_spring$site <- "Betty's Bay" 
+betty_spring_mean <- betty_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+betty_spring_mean$season <- "Spring" 
+betty_spring_mean$site <- "Betty's Bay" 
+
+kalk_summer <- tidync("OceanParcels/chapter_4_output/kalk_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kalk_summer$season <- "Summer" 
+kalk_summer$site <- "Kalk Bay" 
+kalk_summer_mean <- kalk_summer %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kalk_summer_mean$season <- "Summer" 
+kalk_summer_mean$site <- "Kalk Bay" 
+
+kalk_autumn <- tidync("OceanParcels/chapter_4_output/kalk_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kalk_autumn$season <- "Autumn" 
+kalk_autumn$site <- "Kalk Bay" 
+kalk_autumn_mean <- kalk_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kalk_autumn_mean$season <- "Autumn" 
+kalk_autumn_mean$site <- "Kalk Bay" 
+
+kalk_winter <- tidync("OceanParcels/chapter_4_output/kalk_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kalk_winter$season <- "Winter" 
+kalk_winter$site <- "Kalk Bay" 
+kalk_winter_mean <- kalk_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kalk_winter_mean$season <- "Winter" 
+kalk_winter_mean$site <- "Kalk Bay" 
+
+kalk_spring <- tidync("OceanParcels/chapter_4_output/kalk_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+kalk_spring$season <- "Spring" 
+kalk_spring$site <- "Kalk Bay" 
+kalk_spring_mean <- kalk_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+kalk_spring_mean$season <- "Spring" 
+kalk_spring_mean$site <- "Kalk Bay" 
+
+aframe_summer <- tidync("OceanParcels/chapter_4_output/aframe_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+aframe_summer$season <- "Summer" 
+aframe_summer$site <- "A-Frame" 
+aframe_summer_mean <- aframe_summer %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+aframe_summer_mean$season <- "Summer" 
+aframe_summer_mean$site <- "A-Frame" 
+
+aframe_autumn <- tidync("OceanParcels/chapter_4_output/aframe_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+aframe_autumn$season <- "Autumn" 
+aframe_autumn$site <- "A-Frame" 
+aframe_autumn_mean <- aframe_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+aframe_autumn_mean$season <- "Autumn" 
+aframe_autumn_mean$site <- "A-Frame" 
+
+aframe_winter <- tidync("OceanParcels/chapter_4_output/aframe_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+aframe_winter$season <- "Winter" 
+aframe_winter$site <- "A-Frame" 
+aframe_winter_mean <- aframe_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+aframe_winter_mean$season <- "Winter" 
+aframe_winter_mean$site <- "A-Frame" 
+
+aframe_spring <- tidync("OceanParcels/chapter_4_output/aframe_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+aframe_spring$season <- "Spring" 
+aframe_spring$site <- "A-Frame" 
+aframe_spring_mean <- aframe_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+aframe_spring_mean$season <- "Spring" 
+aframe_spring_mean$site <- "A-Frame" 
+
+sthelena_summer <- tidync("OceanParcels/chapter_4_output/sthelena_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+sthelena_summer$season <- "Summer" 
+sthelena_summer$site <- "St. Helena Bay" 
+sthelena_summer_mean <- sthelena_summer %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+sthelena_summer_mean$season <- "Summer" 
+sthelena_summer_mean$site <- "St. Helena Bay" 
+
+sthelena_autumn <- tidync("OceanParcels/chapter_4_output/sthelena_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+sthelena_autumn$season <- "Autumn" 
+sthelena_autumn$site <- "St. Helena Bay" 
+sthelena_autumn_mean <- sthelena_autumn %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+sthelena_autumn_mean$season <- "Autumn" 
+sthelena_autumn_mean$site <- "St. Helena Bay" 
+
+sthelena_winter <- tidync("OceanParcels/chapter_4_output/sthelena_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+sthelena_winter$season <- "Winter" 
+sthelena_winter$site <- "St. Helena Bay" 
+sthelena_winter_mean <- sthelena_winter %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+sthelena_winter_mean$season <- "Winter" 
+sthelena_winter_mean$site <- "St. Helena Bay" 
+
+sthelena_spring <- tidync("OceanParcels/chapter_4_output/sthelena_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00")) 
+sthelena_spring$season <- "Spring" 
+sthelena_spring$site <- "St. Helena Bay" 
+sthelena_spring_mean <- sthelena_spring %>% # calculate mean trajectory
+  group_by(t) %>% 
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+sthelena_spring_mean$season <- "Spring" 
+sthelena_spring_mean$site <- "St. Helena Bay" 
 
 ```
 
