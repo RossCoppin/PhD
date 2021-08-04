@@ -3,8 +3,9 @@ title: "Chapter 4"
 author: "Ross Coppin"
 date: "11/12/2020"
 output:
-  html_document: default
+  word_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
