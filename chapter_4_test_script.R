@@ -54,3 +54,65 @@ bathy_output <- nc_open(bathy_filepath)
 
 wind_filepath <- paste0("OceanParcels/copernicus/CERSAT-GLO-BLENDED_WIND_L4-V6-OBS_FULL_TIME_SERIE_1624029428851.nc")
 wind_output <- nc_open(wind_filepath)
+
+
+##################################################
+
+soetwater_summer <- tidync("OceanParcels/chapter_4_output/soetwater_summer.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+soetwater_summer$season <- "Summer"
+soetwater_summer$site <- "Soetwater"
+soetwater_summer_mean <- soetwater_summer %>% # calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+soetwater_summer_mean$season <- "Summer"
+soetwater_summer_mean$site <- "Soetwater"
+
+soetwater_autumn <- tidync("OceanParcels/chapter_4_output/soetwater_autumn.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+soetwater_autumn$season <- "Autumn"
+soetwater_autumn$site <- "Soetwater"
+soetwater_autumn_mean <- soetwater_autumn %>% # calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+soetwater_autumn_mean$season <- "Autumn"
+soetwater_autumn_mean$site <- "Soetwater"
+
+soetwater_winter <- tidync("OceanParcels/chapter_4_output/soetwater_winter.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+soetwater_winter$season <- "Winter"
+soetwater_winter$site <- "Soetwater"
+soetwater_winter_mean <- soetwater_winter %>% # calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+soetwater_winter_mean$season <- "Winter"
+soetwater_winter_mean$site <- "Soetwater"
+
+soetwater_spring <- tidync("OceanParcels/chapter_4_output/soetwater_spring.nc") %>%
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, Salinity, age, KelpDepth, SinkSpeed,       KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, bathy) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+soetwater_spring$season <- "Spring"
+soetwater_spring$site <- "Soetwater"
+soetwater_spring_mean <- soetwater_spring %>% # calculate mean trajectory
+  group_by(t) %>%
+  summarise(across(lon:bathy, mean, na.rm= TRUE))
+soetwater_spring_mean$season <- "Spring"
+soetwater_spring_mean$site <- "Soetwater"
+
+
+
+
+
+
+
