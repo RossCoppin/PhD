@@ -24,7 +24,7 @@ options(scipen = 999)
 deVoss_filepath <- paste0("OceanParcels/coppin_extract_01.nc")
 deVoss_output <- nc_open(deVoss_filepath)
 
-coper_filepath <- paste0("OceanParcels/global-analysis-forecast-phy-001-024_1623936804092.nc")
+coper_filepath <- paste0("OceanParcels/chapter_4_oceanmodel/copernicus_phy001_030/global-reanalysis-phy-001-030-daily_1625764682025.nc")
 coper_output <- nc_open(coper_filepath)
 
 test <- tidync("OceanParcels/test.nc") %>%
@@ -110,9 +110,8 @@ soetwater_spring_mean <- soetwater_spring %>% # calculate mean trajectory
 soetwater_spring_mean$season <- "Spring"
 soetwater_spring_mean$site <- "Soetwater"
 
-
-
-
+total_summer_end <- total_summer %>%
+  filter(t =="2019-02-28 00:00:00")
 
 
 
