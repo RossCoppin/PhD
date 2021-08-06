@@ -102,18 +102,6 @@ Simulations were run using the OceanParcels software (available from https://oce
 
 ```{r eval=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 
-ocean_summer <- tidync("OceanParcels/chapter_4_oceanmodel/copernicus_phy001_030/global-reanalysis-phy-001-030-daily_1625758460342.nc") %>%
-  hyper_tibble() %>%
-  dplyr::select(time, longitude, latitude, uo, vo) %>%
-  dplyr::rename(t = time) %>%
-  mutate(t = as.Date(as.POSIXct(t * 3600, origin = "2019-01-01 00:00:00"),
-                     "GMT",
-                     "%Y-%m-%d-%h"))
-
-ocean_summer$velocity <- with(ocean_jan, sqrt(uo^2 + vo^2))
-ocean_autumn$velocity <- with(ocean_apr, sqrt(uo^2 + vo^2))
-ocean_winter$velocity <- with(ocean_july, sqrt(uo^2 + vo^2))
-ocean_spring$velocity <- with(ocean_oct, sqrt(uo^2 + vo^2))
 
 ```
 
