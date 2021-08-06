@@ -98,27 +98,17 @@ Simulations were run using the OceanParcels software (available from https://oce
 ## Analysis
 
 # Results
-
 ## Ocean analysis
 
 ```{r eval=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 
-ocean_vector_chp4 <- tidync("OceanParcels/chapter_4_oceanmodel/copernicus_phy001_030/global-reanalysis-phy-001-030-daily_1625758460342.nc") %>%
+ocean_summer <- tidync("OceanParcels/chapter_4_oceanmodel/copernicus_phy001_030/global-reanalysis-phy-001-030-daily_1625758460342.nc") %>%
   hyper_tibble() %>%
   dplyr::select(time, longitude, latitude, uo, vo) %>%
   dplyr::rename(t = time) %>%
   mutate(t = as.Date(as.POSIXct(t * 3600, origin = "2019-01-01 00:00:00"),
                      "GMT",
                      "%Y-%m-%d-%h"))
-
-ocean_summer <-  ocean_vector_chp4 %>%
-  filter(t >= ("2086-01-01 00:00:00") & t <= ("2086-02-28 00:00:00"))
-ocean_autumn <-  ocean_vector_chp4 %>%
-  filter(t >= ("2086-03-01 00:00:00") & t <= ("2086-05-31 00:00:00"))
-ocean_winter <-  ocean_vector_chp4 %>%
-  filter(t >= ("2086-06-01 00:00:00") & t <= ("2086-08-30 00:00:00"))
-ocean_spring <-  ocean_vector_chp4 %>%
-  filter(t >= ("2086-09-01 00:00:00") & t <= ("2086-11-30 00:00:00"))
 
 ocean_summer$velocity <- with(ocean_jan, sqrt(uo^2 + vo^2))
 ocean_autumn$velocity <- with(ocean_apr, sqrt(uo^2 + vo^2))
