@@ -17,6 +17,8 @@ library(ncdf4)
 library(lubridate)
 library(gridExtra)
 library(ggpubr)
+library(jpeg)
+library(gridExtra)
 
 ```
 
@@ -102,6 +104,12 @@ Simulations were run using the OceanParcels software (available from https://oce
 
 ```{r eval=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 
+map_chp4A <- rasterGrob(as.raster(readJPEG("figures/chapter_4/chapter_4_vectormap_summer.jpeg")))
+map_chp4B <- rasterGrob(as.raster(readJPEG("figures/chapter_4/chapter_4_vectormap_autumn.jpeg")))
+map_chp4C <- rasterGrob(as.raster(readJPEG("figures/chapter_4/chapter_4_vectormap_winter.jpeg")))
+map_chp4D <- rasterGrob(as.raster(readJPEG("figures/chapter_4/chapter_4_vectormap_spring.jpeg")))
+
+ggarrange(map_chp4A, map_chp4B, map_chp4C, map_chp4D)
 
 ```
 
