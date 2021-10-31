@@ -1,0 +1,2025 @@
+---
+title: "Individual-based numerical experiment to describe the distribution of floating kelp within the Southern Benguela Upwelling System."
+author: 
+- R Coppin^[Department of Biodiversity and Conservation Biology, University of the Western Cape, Private Bag X17, Bellville 7535, South Africa], C Rautenbach^[National Institute of Water and Atmospheric Research, Hamilton: Gate 10 Silverdale Road Hillcrest, 3216], AJ Smit^[South African Environmental Observation Network, Elwandle Coastal Node, Port Elizabeth, South Africa]
+output:
+  word_document: 
+    reference_docx: markdown/wiley_template.docx
+  html_document: default
+  pdf_document: default
+bibliography: references.bib
+csl: markdown/limnologyandoceanography.csl
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(flextable)
+library(tidync)
+library(ncdf4)
+library(lubridate)
+library(gridExtra)
+library(ggpubr)
+library(jpeg)
+library(gridExtra)
+library(grid)
+```
+
+# Introduction
+
+The inter- to sub-tidal habitats of temperate shorelines are usually dominated by species of macroalgae, specifically brown seaweeds of the order Laminariales; commonly referred to as kelp [@Steneck2002;@Schiel2015-vr]. Kelps are highly productive organisms [@Mann1973;@Miller2011-pm; @Dayton1998-xw;@Krumhansl2012;@Pedersen2012-vr] which provide a 3-dimensional habitat for various fauna and flora [@anderson1997;@Leliaert2000a;@Steneck2002; @Norderhaug2012-ks; @Krumhansl2016]. Kelp are also capable of altering the local wave and light environment by wave dampening [@Mork1996-md; @Mia2013] and shading of the understorey habitat [@duggins1990; @watanabe1992; @clark2004], as well as providing important organic subsidy through erosion of fronds and fragmentation of plant structures [@Krumhansl2012; @Filbee-Dexter2018-wp; @DeBettignies2013; @Simonson2015; @ramirez2021]. Due to kelps’ ecological role in the nearshore, they are regarded as ecological engineers as well as important influencer of biodiversity along temperate shorelines [@FowlerWalker2005;@graham2004;@Harley2012;@Smale2017; @Wing2007-tv;@Wernberg2008]. Kelps are also important from a socio-economic perspective, as they provide habitats for economically important species such as abalone and rock lobster [@vasquez2014; @blamey2018], and are harvested for uses ranging from feed for the aquaculture sector [@troell2006] to pharmaceuticals [@smit2004].
+
+Kelps’ ecological and socio-economic contributions are not limited to their local environment. During times of high wave energy kelps can become dislodged from the substrate  [@seymour1989; @Thomsen2004] and are transported via ocean currents, eventually deposited on beaches or offshore areas [@hobday2000a]. The kelp deposited on beaches provides important organic subsidies for coastal invertebrate communities, as well as a resource which can be harvested for economic purposes [@kirkman1997;@troell2006; @holden2018]. Along with the organic input are 'hitchhikers', which are organisms that remain attached during offshore transport once dislodged [@highsmith1985; @holmquist1994; @macaya2016; @thiel2005]. The transport of other organisms attached to kelp is regarded as an important processes in invasive species intrusion [@lewis2005; @McCormick2008; @nikula2010; @batista2018] and marine connectivity [@norton1992, @ingolfsson1995; @hobday2000a; @fraser2011]. The formation of kelp-rafts can also occur, providing habitat complexity in the pelagic environment for various fish species [@kingsford1992; @kingsford1995], Kelps which are transported offshore can become entangled to form a kelp-raft, but there is no clear mechanism for kelp-raft formation. The structural integrity of individual kelp or rafts will degrade over time through a combination of biotic and abiotic factors which ultimately results in sinking. Once settled on the seafloor, the kelp will degrade further over time resulting in organic input into offshore areas; which may be transported back towards the coast through upwelling processes [@Krumhansl2012; @Filbee-Dexter2018-wp; @ramirez2021]. 
+
+Understanding the distribution patterns of macroalgae in the ocean and the underlying oceanographic processes influencing trajectory has received much attention in the literature. Approaches such as radio-tagged kelp rafts [@harrold1989], geological forms in holdfasts [@waters2018], genetic approaches [@craw2018; @waters2018; @nikula2013], the presence of region-specific epibionts on beach-cast kelp [@fraser2011], and Lagrangian approaches [@putman2018; @brooks2019; @putman2020] have helped to shed light on the processes involved in macroalgae transport.  Ocean currents are the main influencer of trajectory as well as drag and windage, which is the direct effect of wind on a floating object [@onink2019; @shen2019; @dasaro2018; @gates2018; @beron2016; @trinanes2016; @furnans2008]. More recent work by @coppin2021 has highlighted the importance of both hydrodynamic and wind drag in entrainment patterns within oceanographic mesoscale processes, more specifically eddies.
+
+Although the past research concerning the transport of kelp has greatly improved our understanding of such processes, limitations and gaps still exist. For example, kelps are highly morphologically diverse which may influence buoyancy and overall drag characteristics. Morphological characteristics, sea surface temperatures, and light also influence the time which kelps remain afloat at the surface; known as raft-times. Macroalgae rafts also vary greatly in size, therefore studies investigating a specific raft size limits our understanding of that particular scenario as the findings cannot be inferred for other sizes of kelp rafts. Finally, it has been well established that morphological characteristics of macroalgae are influenced by local abiotic factors, which can vary greatly along coastlines. Although factors such as light, turbidity, and nutrients have been shown to influence macroalgae morphology; temperature and waves are regarded as the main influencers [@Hurd2000;@Denny2002a;@Thomsen2004;@FowlerWalker2005;@Wernberg2005c;@mabin2013;@bekkby2014; @coppin2021]. How the variable response in morphological characteristics influences sink rates, buoyancy, and drag is also yet to be established. There is also no current work where rafts may form on the surface and the role of eddies in this regard. It is most likely that eddies might play a role in this regard as they have shown to cause collection of other flotsam at the surface via entrainment @onink2019; @dasaro2018; @brach2018. For example, a study by @beron2019 showed that the inclusion of inertia in numerical experiments resulted in entrainment patterns of flotsam in eddies which more closely reflected observational data.
+
+A better understanding of the distribution of floating kelp and ocean processes involved will aid in understanding the broader ecological role that kelp plays in the marine environment but will also be useful for coastal management and harvesting activities. The current work aims to shed light on the distribution patterns of floating kelp by a series of Lagrangian individual-particle tracking numerical experiments. This approach will allow for the morphological characteristics that vary with the local temperature and wave environment to be accounted for. In addition, since individual kelp has a higher probability of dislodgement compared to kelps in which holdfasts are clustered together, an individual-based approach will reflect real-world scenarios [@Thomsen2004]. The novel approach of including hydrodynamic and wind drag based on site-specific morphological characteristics by @coppin2021 will be used and the current work will build on this approach by the inclusion of morphological specific buoyancy and sinking rates.
+
+# Methods
+
+## Morphological Characteristics
+
+Morphological characteristics of kelps are influenced by local wave and temperature conditions, which in turn will influence buoyancy, drag, and sinking parameters. Kelp morphological data was garnered from a previous study by @coppin2020. The assumption made is that the largest kelps (largest surface area) are the most likely to be dislodged from the substrate, therefore only maximum surface areas were garnered from the data.  In instances where the morphological data needed were not available, reasonable estimates were used based on previous studies and experience. To calculate the surface area and volume for kelps from each site, geometric shapes were used which most closely matched the shape of the relevant kelp morphological characteristics as per @coppin2021. The shapes assigned to each of the morphological features were used in the calculation of buoyancy, drag, and sinking rate. 
+
+## Buoyancy
+
+To effectively model the trajectory of a floating object, buoyancy needs to be calculated. The buoyancy will determine the amount of exposure to, and ultimately magnitude, of hydrodynamic and wind drag which in turn influences the trajectory of the object to the variable current and wind fields. The portion of an object above and below the surface of the water is determined by the net effect of forces acting on the object, namely buoyancy force (BF) and the weight of the object. The BF is the force pushing the object out of the water and the weight is the force pulling the object down. In order to calculate the buoyancy force (BF) the density and volume of the object must be known, such that: $$BF = p_fV_sg$$
+
+where $p_f$ is the density of the liquid, $V_s$ is the volume of the object submerged, and $g$ is the gravitational acceleration (m/s). 
+
+The force resulting from the weight of an object can be calculated by $W_f = p_oV_og$. Substitution of mass for density and volume alters the equation to: $$W_f = p_oV_og$$
+where $p_o$ is the density of the object, $V_o$ is the total volume of the object and $g$ is gravitational acceleration. An object will only float if the forces acting on it ($BF$ and $W_f$) are equal to one another, such that:  
+$$BF = W_f$$
+then substituting  density and volume results in:
+$$p_fV_sg = p_oV_og$$
+which can also be further expressed as:
+$$V_s/V_o = p_o/p_f$$
+
+The solution of equation (3) results in a unitless fraction that can be expressed as a percentage of the relevant portion submerged. This in turn can be used to calculate the percentage of the object above the surface of the water (exposed to wind). The percentage of the object below and above the water surface was used in the calculation of hydrodynamic and wind drag when the virtual kelp is at the surface. Since morphological characteristics are influenced by the local wave and temperature environment, the buoyancy of virtual kelp particles may vary from site to site. 
+
+## Sink Rate
+
+Kelp floating on the surface of the ocean will begin to sink once the structural integrity of air-filled structures of the plants fails and becomes flooded. It is also possible for sinking to begin due to an increase in epibiont biomass which overwhelms the buoyancy of kelp, however, this is beyond the scope of this study. The target species of this study, *E. maxima*, contains a hollow stipe and a single air-filled pneumatocyst which serve to keep the plant upright in the water column, allowing the light-saturated surface waters to be reached. These structures also cause the plant to float if dislodged and therefore was taken into account when calculating the overall volume of the plant; which in turn was used to calculate other important parameters (buoyancy, drag, and sink rate). 
+
+## Vertical Velocity
+
+The force responsible for the kelp to begin to sink once the structural integrity has been compromised is the weight of the overall plant. The calculation of the force resulting from the weight was based on previous work by @dietrich1982, @lobelle2021 and @kooi2017, such that
+
+$$F_w = (p_s - p_l)gV$$
+
+Where $p_s$ is the density of the particle, $p__l$ the density of the medium, $g$ is the gravitational acceleration constant, and $V$ is the total volume of the particle. In order to accurately calculate the density of the kelp based on volume and mass, the volume of the hollow section of the stipe was subtracted from the overall volume. The target species used for this experiment (*E. maxima*) has an air-filled stipe and therefore the hollowness needs to be accounted for when calculating the overall volume of the stipe. The volume of the kelp is:
+$$Volume = V_t - V_h$$
+where $V_t$ is the total volume of the stipe if now hollowness is taken into account and $V_h$ is the hollowness volume of the stipe.
+The other component of the vertical velocity is the drag force in the opposite direction to the downward force of the weight. The vertical drag component is calculated by the same equation for drag in the horizontal, such that:
+
+$$F_d = 1/2pv^2C_DA_c$$
+where $p$ is the density of the medium, $v$ is the velocity at a particular time-step, $C_d$ is the shape drag-coefficient, and $A_c$ is the cross-sectional area of the object. However, unlike surface drag where the velocity is interpolated from the underlying ocean model, the velocity component for the vertical drag force is calculated from the same equation used for hydrodynamic and wind drag. The approach for modeling the 'behavior' of kelp was used in this paper allows for the incorporation of site-specific morphological characteristics. 
+
+## Simulations
+
+Simulations used daily outputs of velocity vectors (meridonal and zonal) and salinity (psu) for varying depths for the study region. To account for the role of morphological characteristics in influencing drift trajectory in terms of hydrodynamic and wind drag [@coppin2021] simulations were run separately for each site per season. Morphological characteristics of macroalgae has been shown to be based on the local wave and temperature environment, hence the need for site specific parameters with regards to morphological characteristics. Running simulations per season allowed incorporation of seasonal raft-times identified in pervious work [@graiff2016 and @graiff2013]. The outputs from each simulation (site) was pooled based on season. 
+
+Simulations were run using the OceanParcels software (available from https://oceanparcels.org/). All simulations were run using a Runge-Kutte fourth order advection scheme, while custom kernels simulated the effects of hydrodynamic and wind drag on overall trajectory, seasonal raft-times, sinking and settling on seafloor of virtual kelp particles; all important processes in the determination of surface and bottom sinks. The simulations were run for 2019, which was divided into various seasons (see table 2). For incorporating drag, the site specific buoyancy calculations were used to determine the magnitude of hydrodynamic (portion below surface) and wind (portion above the surface) while virtual kelp particles were on the surface and then converted to full hydrodynamic drag exposure (100%) once the virtual kelp started sinking; as wind would no longer act as a direct influencer of trajectory once below the ocean surface.
+
+## Raft-time
+
+Raft-time or sometimes referred to as raft-longevity is the time a macroalgae raft remains afloat at the surface of the ocean after detachment before sinking. Raft-time, also referred to as raft longevity, is determined by epibiont load, macroalgal growth rate and the loss of kelp biomass over time through fragmentation. Epibiont load consists of epiphytic and bryozoan species which tend to grow more rapidly in higher light and temperature environments, such as the ocean surface [@thiel2005; @thiel2005; @graiff2016]. The increase in epibiont load reduces the buoyancy of floating macroalgal rafts over time eventually causing them to sink to the seafloor, while also potentially increasing drag [@hobday2000; @tala2013; @craw2018]. Fragmentation of kelp biomass over time may also reduce raft times further, while growth may counteract the effects of epibiont load and fragmentation provided the environmental conditions are favorable [@graiff2016; @macaya2016]. For instance a study by @rothausler2011 investigated the abiotic and biotic factors influencing raft time and dispersal potential of the giant kelp *M. pyrifera* by a combination of tethering experiments and field surveys. The results showed the physiological performance of kelp declined with increasing epiphyte biomass and that higher temperatures increased growth rate of epibionts and fragmentation of kelp. The authors concluded from the results of both the experiments and field surveys that *M. pyrifera* dispersal is dependent on low temperature and moderate irradiance conditions, with high temperatures and higher irradiance reducing overall raft-time and hence dispersal potential [@rothausler2011]. Raft-time was estimated from the results of past studies by @graiff2016 and @graiff2013 for each season. For summer the raft time was 22 days, autumn was 41 days, winter was 38 days, and spring was 33 days. 
+
+```{r fieldworkdata and table wrangle, message = FALSE, echo=FALSE, warning=FALSE, include=FALSE}
+### data for stipe hollowness
+hollow_df <- read.csv(file = "data/chapter_4/hollowness_data.csv", sep = ";")
+hollow_df$inner_radius <- with(hollow_df, (outer_diameter/2)) # addinmg difference between measurements
+hollow_df$outer_radius <- with(hollow_df, (inner_diameter/2)) # addinmg difference between measurements
+hollow_df$difference <- with(hollow_df, (outer_diameter - inner_diameter)) # addinmg difference between measurements
+hollow_df$percentage <- with(hollow_df, (inner_diameter/outer_diameter)) # inner as percentage of outer
+hollow_df_mean <- hollow_df %>% # calculate mean trajectory
+  group_by(site) %>%
+  summarise(across(outer_diameter:percentage, mean, na.rm= TRUE))
+
+ggplot(data = hollow_df, aes(x = outer_diameter, y = inner_diameter)) +
+  geom_point() +
+  stat_smooth(method=lm)
+
+ggplot(data = hollow_df, aes(x = no, y = percentage)) +
+  geom_point() +
+  geom_smooth()
+
+ggplot(data = hollow_df, aes(x = no, y = difference)) +
+  geom_point() +
+  geom_smooth()
+
+# testing for correlation
+outer_df <- hollow_df$outer_diameter
+inner_df <- hollow_df$inner_diameter
+
+outer_rad <- hollow_df$outer_radius
+inner_rad <- hollow_df$inner_radius
+
+cor(outer_df, inner_df, method = c("pearson"))
+cor.test(outer_df, inner_df, method = c("pearson"))
+cor(outer_rad, inner_rad, method = c("pearson"))
+cor.test(outer_rad, inner_rad, method = c("pearson"))
+
+cor(outer_df, inner_df, method = c("spearman"))
+cor.test(outer_df, inner_df, method = c("spearman"))
+cor(outer_rad, inner_rad, method = c("spearman"))
+cor.test(outer_rad, inner_rad, method = c("spearman"))
+
+# Read in morphology data
+
+eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
+  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
+  filter(site!= "De Hoop") 
+eck_df$site <- as.character(eck_df$site)
+eck_df <- eck_df %>% 
+  filter(population == "Deep") 
+eck_long_df <- gather(eck_df, Morphology, measurement, frond_mass:total_length, factor_key=TRUE)
+
+# Summary stats to make it easier to refer to later, these will not be used any analysis.
+#site_list <- c("Kommetjie")
+
+morph_data <- eck_long_df %>% 
+  group_by(site, Morphology) %>% 
+  summarise(maximum = max(measurement, na.rm = T)) %>% 
+  ungroup() %>% 
+  rename(Site = site) %>% 
+  rename(Maximum = maximum) %>% 
+  spread(Morphology, Maximum)
+
+# Add in and/calculate estimates
+morph_data$stipe_radius <- with(morph_data, stipe_circ/(pi*2))
+morph_data$frond_width <- with(morph_data, 5)
+morph_data$frond_thickness <- with(morph_data, 0.2)
+morph_data$bulb_length <- with(morph_data, 10)
+morph_data$bulb_base_radius <- with(morph_data, 5)
+morph_data$top_radius <- with(morph_data, 3)
+morph_data$bottom_radius <- with(morph_data, 10)
+morph_data$stipe_radius <- with(morph_data, ((stipe_circ/pi)/2))
+morph_data$hollow_radius <- with(morph_data, (0.61*stipe_radius))
+morph_data$hollow_length <- with(morph_data, (0.90*stipe_length))
+morph_data$height <- with(morph_data, 5)
+morph_data$hollow_volume <- with(morph_data, pi*(hollow_radius*hollow_radius)*hollow_length)
+
+# Define the value of pi 
+pi <- 3.14
+
+# Calculate the total cross-sectional areas for each site from all morphological characteristics
+morph_data$total_Ac <- with(morph_data, ((2*frond_length*frond_width) + (2*frond_length*frond_thickness) + (2*frond_width*frond_thickness) + (primary_length * primary_width)/2 + (4*pi*bulb_base_radius*2) + (2*pi*bulb_base_radius*bulb_length) + 2*pi*stipe_radius*(stipe_radius*stipe_length) +  (pi*(2*top_radius + 2*bottom_radius) + pi*(top_radius + bottom_radius)*pi*(top_radius - bottom_radius)*2 + height*2))/1000)
+
+# Calculate the total mass of kelp individual based on site morphological characteristics
+
+morph_data$total_mass <- with(morph_data, (frond_mass*6) + (stipe_mass) )
+
+# Calculate the volume fro each site for all morphological characteristics (meters^3)
+
+morph_data$total_volume <- with(morph_data, (frond_thickness*frond_length*frond_width) + (primary_length * primary_width * frond_thickness) + (pi*(stipe_radius*stipe_radius)*stipe_length) + (pi*height*0.3333*((top_radius*top_radius) + (top_radius * bottom_radius) + (bottom_radius*bottom_radius))))
+
+# Calculate actual (True) kelp volume (hollowness taken into account)
+
+morph_data$kelp_volume <- with(morph_data, (total_volume - hollow_volume))
+
+# Calculate the density of each kelp
+
+morph_data$kelp_density <- with(morph_data, total_mass/kelp_volume)
+
+# Make table based on new entries
+site_surface_area <- morph_data
+site_surface_area <- flextable(data = site_surface_area)
+site_surface_area <- theme_zebra(site_surface_area, odd_header = "transparent", even_header = "transparent")
+site_surface_area <- align(x= site_surface_area, align = "center", part = "all")
+site_surface_area <- theme_vanilla(site_surface_area)
+site_surface_area <- fontsize(site_surface_area, size = 8, part = "body")
+site_surface_area <- fontsize(site_surface_area, size = 8, part = "header")
+site_surface_area <- colformat_num(site_surface_area,digits = 1)
+site_surface_area <- set_header_labels(site_surface_area, frond_mass = "Frond mass", primary_length = "Primary blade length", primary_width = "Primary blade width", frond_length = "Frond length", stipe_mass = "Stipe mass", stipe_length = "Stipe length", stipe_circ = "Stipe circumference", tufts = "No. of Tufts", epi_length = "Epiphyte length", total_length = "Total length", stipe_radius = "Stipe radius", frond_width = "Frond width", frond_thickness = "Frond thickness", bulb_length = "Bulb length", bulb_base_radius = "Bulb base radius", top_radius = "Top radius", bottom_radius = "Bottom radius", hollow_radius = "Hollow radius", hollow_length = "Hollow length", height = "Height", hollow_volume = "Hollow Volume", total_Ac = "Total Ac", total_mass = "Total mass", total_volume = "Total volume", kelp_volume = "Kelp Volume", kelp_density = "Kelp density")
+site_surface_area <- set_table_properties(site_surface_area, layout = "fixed")
+```
+
+```{r morphology surface area table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
+site_surface_area <- set_caption(site_surface_area, "Table 1:Summary of the attributes and estimates used to calculate the overall site-specific surface area of kelp individuals used in the various simulations.") 
+#site_surface_area <- set_table_properties(site_surface_area, layout = "autofit")
+site_surface_area
+
+```
+
+## Simulations
+
+Simulations used daily outputs of velocity vectors (meridonal and zonal) and salinity (psu) for varying depths for the study region. To account for the role of morphological characteristics in influencing drift trajectory in terms of hydrodynamic and wind drag [@coppin2021] simulations were run separately for each site per season. Morphological characteristics of macroalgae has been shown to be based on the local wave and temperature environment, hence the need for site specific parameters with regards to morphological characteristics. Running simulations per season allowed incorporation of seasonal raft-times identified in pervious work [@graiff2016 and @graiff2013]. The outputs from each simulation (site) was pooled based on season. 
+
+Simulations were run using the OceanParcels software (available from https://oceanparcels.org/). All simulations were run using a Runge-Kutte fourth order advection scheme, while custom kernels simulated the effects of hydrodynamic and wind drag on overall trajectory, seasonal raft-times, sinking and settling on seafloor of virtual kelp particles; all important processes in the determination of surface and bottom sinks. The simulations were run for two years, which were divided into the relevant seasons seasons (see table 2). 
+
+```{r simulation table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.cap="TBD."}
+
+chapter4_table2 <- read_csv2(file = "tables/chapter_4/simulation_table.csv")
+chapter4_table2 <- flextable(data = chapter4_table2)
+chapter4_table2 <- theme_zebra(chapter4_table2, odd_header = "transparent", even_header = "transparent")
+chapter4_table2 <- align(x= chapter4_table2, align = "center", part = "all")
+chapter4_table2 <- theme_vanilla(chapter4_table2)
+chapter4_table2 <- fontsize(chapter4_table2, size = 8, part = "body")
+chapter4_table2 <- fontsize(chapter4_table2, size = 8, part = "header")
+chapter4_table2 <- colformat_num(chapter4_table2,digits = 1)
+chapter4_table2 <- set_table_properties(chapter4_table2, layout = "autofit")
+chapter4_table2 <- set_caption(chapter4_table2, "Table 2: Summary of the simulations run for the study. Simulations were run for each site over the course of 2 years and then pooled based on season for each year. The details pertaining are provided in the below. The start of each year was the beginning of Austral summer.") 
+chapter4_table2
+```
+
+## Analysis
+
+To compare virtual kelp trajectories between sites the mean trajectories were calculated, and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@vanSebille2018]. The distance particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particles [@vanSebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity because of momentum energy transfer [@putman2020; @putman2018; @vanSebille2018]. To aid in seasonal comparison of trajectories, proportions of each kelp phase at the end of each simulation run was calculated and compared. The different phases were surface, subsurface, beached, sunk and out of bounds. 
+
+# Results
+
+```{r data, message=FALSE, warning=FALSE, include=FALSE}
+
+load("map/south_africa_coast_hi_res.Rdata")
+load("map/sa_bathy.RData")
+
+total_summer <- read.csv(file = "OceanParcels/chapter_4_data/df_total_summer.csv") 
+total_summer2 <- read.csv(file = "OceanParcels/chapter_4_data/df_total_summer2.csv")
+total_autumn <- read.csv(file = "OceanParcels/chapter_4_data/df_total_autumn.csv") 
+total_autumn2 <- read.csv(file = "OceanParcels/chapter_4_data/df_total_autumn2.csv")
+total_winter <- read.csv(file = "OceanParcels/chapter_4_data/df_total_winter.csv") 
+total_winter2 <- read.csv(file = "OceanParcels/chapter_4_data/df_total_winter2.csv")
+total_spring <- read.csv(file = "OceanParcels/chapter_4_data/df_total_spring.csv") 
+total_spring2 <- read.csv(file = "OceanParcels/chapter_4_data/df_total_spring2.csv") 
+
+# calculate and add overall velocity vector of ocean current sampled at virtual kelp location
+total_summer$velocity <- with(total_summer, sqrt(VelU^2 + VelV^2))
+total_summer2$velocity <- with(total_summer2, sqrt(VelU^2 + VelV^2))
+total_autumn$velocity <- with(total_autumn, sqrt(VelU^2 + VelV^2))
+total_autumn2$velocity <- with(total_autumn2, sqrt(VelU^2 + VelV^2))
+total_winter$velocity <- with(total_winter, sqrt(VelU^2 + VelV^2))
+total_winter2$velocity <- with(total_winter2, sqrt(VelU^2 + VelV^2))
+total_spring$velocity <- with(total_spring, sqrt(VelU^2 + VelV^2))
+total_spring2$velocity <- with(total_spring2, sqrt(VelU^2 + VelV^2))
+# calculate and add overall kelp velocity vector sampled at virtual kelp location
+total_summer$kelpvelocity <- with(total_summer, sqrt(KelpVelU^2 + KelpVelV^2))
+total_summer2$kelpvelocity <- with(total_summer2, sqrt(KelpVelU^2 + KelpVelV^2))
+total_autumn$kelpvelocity <- with(total_autumn, sqrt(KelpVelU^2 + KelpVelV^2))
+total_autumn2$kelpvelocity <- with(total_autumn2, sqrt(KelpVelU^2 + KelpVelV^2))
+total_winter$kelpvelocity <- with(total_winter, sqrt(KelpVelU^2 + KelpVelV^2))
+total_winter2$kelpvelocity <- with(total_winter2, sqrt(KelpVelU^2 + KelpVelV^2))
+total_spring$kelpvelocity <- with(total_spring, sqrt(KelpVelU^2 + KelpVelV^2))
+total_spring2$kelpvelocity <- with(total_spring2, sqrt(KelpVelU^2 + KelpVelV^2))
+
+total_summer_mean <- total_summer %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_summer2_mean <- total_summer2 %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_autumn_mean <- total_autumn %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_autumn2_mean <- total_autumn2 %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_winter_mean <- total_winter %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_winter2_mean <- total_winter2 %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_spring_mean <- total_spring %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_spring2_mean <- total_spring2 %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+#total_summer_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_summer_mean.csv") 
+#total_summer2_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_summer2_mean.csv")
+#total_autumn_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_autumn_mean.csv") 
+#total_autumn2_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_autumn2_mean.csv")
+#total_winter_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_winter_mean.csv") 
+#total_winter2_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_winter2_mean.csv")
+#total_spring_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_spring_mean.csv") 
+#total_spring2_mean <- read.csv(file = "OceanParcels/chapter_4_data/df_total_spring2_mean.csv") 
+
+total_summer_surface <- total_summer %>% 
+filter(Phase == 1)
+total_summer_subsurface <- total_summer %>% 
+filter(Phase == 2)
+total_summer_sink <- total_summer %>% 
+filter(Phase == 3)
+total_summer_beached <- total_summer %>% 
+filter(Phase == 4)
+total_summer_boundry <- total_summer %>% 
+filter(Phase == 5)
+total_autumn_surface <- total_autumn %>% 
+filter(Phase == 1)
+total_autumn_subsurface <- total_autumn %>% 
+filter(Phase == 2)
+total_autumn_sink <- total_autumn %>% 
+filter(Phase == 3)
+total_autumn_beached <- total_autumn %>% 
+filter(Phase == 4)
+total_autumn_boundry <- total_autumn %>% 
+filter(Phase == 5)
+total_winter_surface <- total_winter %>% 
+filter(Phase == 1)
+total_winter_subsurface <- total_winter %>% 
+filter(Phase == 2)
+total_winter_sink <- total_winter %>% 
+filter(Phase == 3)
+total_winter_beached <- total_winter %>% 
+filter(Phase == 4)
+total_winter_boundry <- total_winter %>% 
+filter(Phase == 5)
+total_spring_surface <- total_spring %>% 
+filter(Phase == 1)
+total_spring_subsurface <- total_spring %>% 
+filter(Phase == 2)
+total_spring_sink <- total_spring %>% 
+filter(Phase == 3)
+total_spring_beached <- total_spring %>% 
+filter(Phase == 4)
+total_spring_boundry <- total_spring %>% 
+filter(Phase == 5)
+
+total_summer2_surface <- total_summer2 %>% 
+filter(Phase == 1)
+total_summer2_subsurface <- total_summer2 %>% 
+filter(Phase == 2)
+total_summer2_sink <- total_summer2 %>% 
+filter(Phase == 3)
+total_summer2_beached <- total_summer2 %>% 
+filter(Phase == 4)
+total_summer2_boundry <- total_summer2 %>% 
+filter(Phase == 5)
+total_autumn2_surface <- total_autumn2 %>% 
+filter(Phase == 1)
+total_autumn2_subsurface <- total_autumn2 %>% 
+filter(Phase == 2)
+total_autumn2_sink <- total_autumn2 %>% 
+filter(Phase == 3)
+total_autumn2_beached <- total_autumn2 %>% 
+filter(Phase == 4)
+total_autumn2_boundry <- total_autumn2 %>% 
+filter(Phase == 5)
+total_winter2_surface <- total_winter2 %>% 
+filter(Phase == 1)
+total_winter2_subsurface <- total_winter2 %>% 
+filter(Phase == 2)
+total_winter2_sink <- total_winter2 %>% 
+filter(Phase == 3)
+total_winter2_beached <- total_winter2 %>% 
+filter(Phase == 4)
+total_winter2_boundry <- total_winter2 %>% 
+filter(Phase == 5)
+total_spring2_surface <- total_spring2 %>% 
+filter(Phase == 1)
+total_spring2_subsurface <- total_spring2 %>% 
+filter(Phase == 2)
+total_spring2_sink <- total_spring2 %>% 
+filter(Phase == 3)
+total_spring2_beached <- total_spring2 %>% 
+filter(Phase == 4)
+total_spring2_boundry <- total_spring2 %>% 
+filter(Phase == 5)
+
+total_summer_surface_mean <- total_summer_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_summer_subsurface_mean <- total_summer_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_summer2_surface_mean <- total_summer2_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_summer2_subsurface_mean <- total_summer2_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_autumn_surface_mean <- total_autumn_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_autumn_subsurface_mean <- total_autumn_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_autumn2_surface_mean <- total_autumn2_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_autumn2_subsurface_mean <- total_autumn2_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_winter_surface_mean <- total_winter_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_winter_subsurface_mean <- total_winter_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_winter2_surface_mean <- total_winter2_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_winter2_subsurface_mean <- total_winter2_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_spring_surface_mean <- total_spring_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_spring_subsurface_mean <- total_spring_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+total_spring2_surface_mean <- total_spring2_surface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+total_spring2_subsurface_mean <- total_spring2_subsurface %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:kelpvelocity, mean, na.rm= TRUE))
+
+# eddy experiments
+
+total_kelp_eddy <- read.csv(file = "OceanParcels/chapter_4_data/df_total_kelp_eddy.csv") 
+
+# passive experiments
+
+total_passive1 <- read.csv(file = "OceanParcels/chapter_4_data/df_total_passive_year1.csv") 
+total_passive2 <- read.csv(file = "OceanParcels/chapter_4_data/df_total_passive_year2.csv") 
+
+total_passive1_surface <- total_passive1 %>% 
+filter(Year == 1) %>% 
+filter(Phase == 1)
+total_passive1_subsurface <- total_passive1 %>% 
+filter(Year == 1) %>% 
+filter(Phase == 2)
+total_passive1_sink <- total_passive1 %>%
+filter(Year == 1) %>% 
+filter(Phase == 3)
+total_passive1_beached <- total_passive1 %>% 
+filter(Year == 1) %>% 
+filter(Phase == 4)
+total_passive1_boundry <- total_passive1 %>%
+filter(Year == 1) %>% 
+filter(Phase == 5)
+
+total_passive2_surface <- total_passive2 %>% 
+filter(Year == 2) %>% 
+filter(Phase == 1)
+total_passive2_subsurface <- total_passive2 %>% 
+filter(Year == 2) %>% 
+filter(Phase == 2)
+total_passive2_sink <- total_passive2 %>%
+filter(Year == 2) %>% 
+filter(Phase == 3)
+total_passive2_beached <- total_passive2 %>% 
+filter(Year == 2) %>% 
+filter(Phase == 4)
+total_passive2_boundry <- total_passive2 %>%
+filter(Year == 2) %>% 
+filter(Phase == 5)
+
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# summer
+summer_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer2_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer2_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 2") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer2_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer2_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 2") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer2_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer2_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 2") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# autumn
+autumn_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_autumn_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+autumn2_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn2_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_autumn_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+autumn_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_autumn_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+autumn2_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn2_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_autumn_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+autumn_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_autumn_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+autumn2_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn2_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_autumn_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+# winter
+winter_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_winter_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter2_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter2_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_winter_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_winter_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter2_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter2_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_winter_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_winter_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter2_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter2_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_winter_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# spring
+spring_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_spring_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+spring2_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring2_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_spring_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+spring_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_spring_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+spring2_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring2_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_spring_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+spring_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_spring_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+spring2_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring2_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 25)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_spring_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+```
+
+## Surface distribution
+
+The general direction of particles was north-westward with the exception of winter where direction changed to predominately southward for both years. Entrainment within eddies was evident during times of high mesoscale activity, which was summer and winter. 
+
+The overall particle direction during summer for both years was north-westward. The only visible differences between years 1 and 2 was entrainment of particles in an eddy in year 1, as well as a higher concentration of particles closer to the coast (figure 2). The concentration of particles in the north-westward direction was lower during  year 1 of autumn compared to year 2, as well as no entrainment patterns. During spring of year 1 there was a high concentration of particles flowing in the north-westward direction, and no signs of entrainment. During spring of year 2, the particles were almost evenly spread across the southern portion of the study domain. There were also two visible concentrations of particles flowing in the eastward direction. The first starts at approximately 18$^\circ$S32.8$^\circ$E and the other at 18$^\circ$S34$^\circ$E.  
+
+```{r message=FALSE, echo=FALSE, include=TRUE, warning=FALSE, fig.height=10, fig.width=6, fig.cap="Figure 2: Hexagonal heatmaps for all virtual surface kelp for both years and all seasons. The plane has been divided into regular hexagons and then are filled according to the number of particles within each hexagon."}
+#leg_heatmap_surface <- get_legend(summer_heatmap_surface)
+#leg_heatmap_sink <- get_legend(summer_heatmap_sink)
+
+ggarrange(summer_heatmap_surface, summer2_heatmap_surface, autumn_heatmap_surface, autumn2_heatmap_surface, winter_heatmap_surface, winter2_heatmap_surface, spring_heatmap_surface, spring2_heatmap_surface, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_2.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+
+```
+
+## Subsurface distribution
+
+Differences in concentration patterns for both years and across seasons were evident when comparing subsurface virtual kelp particle distributions. In general, particles were located near the north-western part of the study domain with only slight variation across seasons and between years, with the exception of winter and autumn of year 2; where particles were located in the highest concentrations in the south-western portion of the study domain. 
+
+During the summer of year 1, particles were located between the coast and where the continental shelf edge ends while in year 2 particles were located further east of the shelf edge and closer to the coast. Clear entrainment of particles was visible in year 1, with no entrainment during the summer of year 2. No differences in particle concentrations was evident for Autumn of both years, with only slight variation in the spread of particles. During Autumn of year 1, particles were located close to the coast and spread eastwards with an even distribution. In Autumn of year 2, particles were located further from the coast compared to year 1 and limited to a narrow band of particles. The overall direction of particles and entrainment patterns were different for winter of both years compared to other seasons, with particle direction towards the south-west of the study domain. During winter of year 1, particles were initially concentrated in the north-western and south-western portions of the study domain, the latter with higher concentrations. The high concentration of particles in the south-western portion also reflected eddy entrainment patterns. The concentration of particles which exited the eddy on the northern side spread evenly. For winter of year 2, particles were located south of the peninsula in highly concentrated, limited patches. 
+
+There were clear differences between particle distribution patterns between years for Spring. For Spring of year 1, particles flowed in a north-westward direction evenly and become concentrated in the most north-western portion of the study domain. The even distribution occurred over the wider portion of the underlying bathymetry. In year 2, particles were highly concentrated in the most south-eastern portion of the study domain. 
+
+```{r message=FALSE, echo=FALSE, include=TRUE, warning=FALSE, fig.height=10, fig.width=6,fig.cap="Figure 3: Hexagonal heatmaps for all virtual sub-surface kelp for both years and all seasons. The plane has been divided into regular hexagons and then are filled according to the number of particles within each hexagon."}
+#leg_heatmap_surface <- get_legend(summer_heatmap_surface)
+#leg_heatmap_sink <- get_legend(summer_heatmap_sink)
+
+ggarrange(summer_heatmap_subsurface, summer2_heatmap_subsurface, autumn_heatmap_subsurface, autumn2_heatmap_subsurface, winter_heatmap_subsurface, winter2_heatmap_subsurface, spring_heatmap_subsurface, spring2_heatmap_subsurface, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_3.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+## Sunken distribution
+
+Differences in sink locations and concentration of particles was evident between years and across seasons. For summer of year 1, particles sank along the bathymetry in a north-westward direction, while in year 2 particles were concentrated to a patch of particles in the most northern part of the study domain. During Autumn of year 1, particles sunk close to the coastline with the highest concentration of particles to the north of the study domain. For Autumn of year 2, particles were located further offshore with lower concentrations to the north of the study domain. For winter of year 1, particles sank close to the coast in the northern part of the study domain with a lower concentration of particles extending southwards along the coast. For winter of year 2, particles were concentrated along the eastern part of the coastline and the study domain.  Particles sunk in the most north-western part of the study domain for Spring of year 1. For year 2, particles were spread out to the south-western portion of the study domain, with no clear differences inconcentrations evident. 
+
+```{r message=FALSE, echo=FALSE, include=TRUE, warning=FALSE, fig.height=10, fig.width=6, fig.cap="Figure 4: Hexagonal heatmaps for all virtual sunken kelp for both years and all seasons. The plane has been divided into regular hexagons and then are filled according to the number of particles within each hexagon."}
+#leg_heatmap_surface <- get_legend(summer_heatmap_surface)
+#leg_heatmap_sink <- get_legend(summer_heatmap_sink)
+
+ggarrange(summer_heatmap_sink, summer2_heatmap_sink, autumn_heatmap_sink, autumn2_heatmap_sink, winter_heatmap_sink, winter2_heatmap_sink, spring_heatmap_sink, spring2_heatmap_sink, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_4.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+## Beached distribution
+
+No clear differences, only variation, was evident for beaching locations and concentrations across all seasons and years, with the exception of winter. The slight variation was between the summer of year 1 and year 2, where fewer concentrations of particles located to the north of St. Helena. In year 2 particles, a higher concentration of particles were located north of St. Helena Bay compared to year 1. For winter, no differences were evident in distributions between years, with the highest concentration of particles located around the southern tip of the Cape Peninsula and within False Bay. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, include=FALSE}
+
+# summer
+summer_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Site")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer2_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_summer2_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 2") +
+  guides(fill=guide_legend(title="Site")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# autumn
+autumn_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Site")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+autumn2_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_autumn2_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Site")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# winter
+winter_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter2_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Site")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter2_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_winter2_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Site")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+# spring
+spring_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Site")) +
+  #theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+spring2_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_spring2_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_viridis_c(aesthetics = "fill", option = "B", limits = c(1, 300)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(17, 20), ylim = c(-36, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Site")) +
+  #theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+```
+
+```{r message=FALSE, echo=FALSE, include=TRUE, warning=FALSE, fig.height=10, fig.width=6, fig.cap="Figure 5: Hexagonal heatmaps for all virtual beached kelp for both years and all seasons. The plane has been divided into regular hexagons and then are filled according to the number of particles within each hexagon."}
+
+#leg_heatmap_surface <- get_legend(summer_heatmap_surface)
+#leg_heatmap_sink <- get_legend(summer_heatmap_sink)
+
+ggarrange(summer_heatmap_beached, summer2_heatmap_beached, autumn_heatmap_beached, autumn2_heatmap_beached, winter_heatmap_beached, winter2_heatmap_beached, spring_heatmap_beached, spring2_heatmap_beached, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_5.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+## Surface and sink convergence
+
+In both years and across seasons, site particle trajectories were all directed north-westward with the exception of winter. In winter for both years, the general direction of site trajectories was south-eastwards and closer to the peninsula. For both years and across seasons, the mean trajectory for St. Helena Bay flowed separately and did not overlap with the other site trajectories. With the exception of Buffelsbaai and Batsata Rock, sites within False Bay do not tend to travel outside of False Bay. Instead, these particles generally beached near release locations, except for winter where particles traveled and beached on the eastern side of  False Bay. During summer for both years, particle trajectories were more evenly spread out in the north-western direction, with little overlap between trajectories. In Autumn and Spring for both years, trajectories were concentrated along a narrow band that starts approximately at -34$^\circ$E. The most overlap of particles occurs during winter for both years, where the flow of trajectories was chaotic and directed towards the south-western portion of the study domain and eastwards along the coastline towards Betty’s Bay. 
+
+```{r point distrubtion wrangle, message=FALSE, echo=FALSE, warning=FALSE}
+# summer
+
+summer_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_summer_surface_mean, aes(x = lon, y = lat, linetype = site)) +  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+summer2_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_summer2_surface_mean, aes(x = lon, y = lat, linetype = site)) +  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# autumn
+
+autumn_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_autumn_surface_mean, aes(x = lon, y = lat, linetype = site)) +  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+autumn2_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_autumn2_surface_mean, aes(x = lon, y = lat, linetype = site)) +  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# winter
+
+winter_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_winter_surface_mean, aes(x = lon, y = lat, linetype = site)) +  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+winter2_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_winter2_surface_mean, aes(x = lon, y = lat, linetype = site)) +                   scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# spring
+
+spring_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_spring_surface_mean, aes(x = lon, y = lat, linetype = site)) +  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+spring2_point <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  #geom_point(data = total_spring2_surface_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  geom_path(data = total_spring2_surface_mean, aes(x = lon, y = lat, linetype = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30.5)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+```
+
+```{r message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.height=10,fig.width=6,fig.cap="Figure 6: The mean point distrubtion for depth of all surface virtual kelp for both years and all seasons. The surface kelp distributions are grouped per site and are represented by varying shapes."}
+
+ggarrange(summer_point, summer2_point, autumn_point, autumn2_point, winter_point, winter2_point, spring_point, spring2_point, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_6.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+The distribution and overlap of sites for surface and sunken virtual kelp particles differs across seasons and varies between years. For all seasons and years particles released from the various sites generally sank in the same location, with Autumn of year 2 to the exception as particles were dispersed over the south-western portion of the continental shelf. Some sites from False Bay (Baboon rock, Miller’s point, A-frame and Kalk Bay) were absent from sink locations. 
+
+Comparison of summer between years shows no differences in sink sites mostly located along the north-western part of the study domain, with only variation visible. In summer of year 1, particles sink in a narrow band, east of the continental shelf with more sites converging further north. In year 2, particles were concentrated further northward and not along the continental shelf edge. In both years for summer, Buffelsbaai settles near St. Helena and close to the coast. Variation in sink sites was also evident for autumn between years. In Autumn of year 1, most sites sank in similar locations in a narrow band close to most northern part of the coastline in the study domain. In year 2, particles were still located in the northern domain and were spread to the east of the coastline. In winter of year 1 particles sank towards the north-western part of the study domain. The virtual kelp from St. Helena Bay sank to the north and separated from the other sites. During winter of year 1, more sites were also present at the sink locations. In winter of year 2, the only kelp that sank in the study domain were from St. Helena Bay, with all other sites absent.  In year 1 of spring sites sink further north-westward compared to summer of both years. Kelp from release sites were clustered together in the most north-western part of the study domain. Sites from False Bay such as Baboon rock, Miller’s point, Kalk Bay, and A-frame were absent from sink locations. In Autumn of year 2, kelp from the release sites were spread across the south-western portion of the study domain. The sunken kelp from a particular site also sank in the same location, for example St. Helena Bay towards the most eastern portion of the study domain, and Hout Bay near the continental shelf edge. 
+
+```{r mean sink locations, eval=TRUE, message=FALSE, warning=FALSE, include=FALSE}
+
+total_summer_sink_mean <- total_summer_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_summer2_sink_mean <- total_summer2_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_autumn_sink_mean <- total_autumn_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_autumn2_sink_mean <- total_autumn2_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_winter_sink_mean <- total_winter_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_winter2_sink_mean <- total_winter2_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_spring_sink_mean <- total_spring_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_spring2_sink_mean <- total_spring2_sink %>% # calculate mean trajectory
+  group_by(t, site) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+# summer
+
+summer_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_summer_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 1") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+summer2_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_summer2_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Year 2") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# autumn
+
+autumn_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_autumn_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+autumn2_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_autumn2_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+
+# winter
+
+winter_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_winter_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+winter2_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_winter2_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+# spring
+
+spring_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_spring_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  #theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+spring2_depth_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_point(data = total_spring2_sink_mean, aes(x = lon, y = lat, shape = site), size = 2.5) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  #theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+```
+
+```{r message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.height=10, fig.width=6,fig.cap="Figure 7: Point distrubtion of all sunken virtual kelp for both years and all seasons.The sunken kelp distributions are grouped per site and are represented by varying shapes."}
+
+ggarrange(summer_depth_sink, summer2_depth_sink, autumn_depth_sink, autumn2_depth_sink, winter_depth_sink, winter2_depth_sink, spring_depth_sink, spring2_depth_sink, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_7.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+
+```
+
+There are clear differences between the amount of kelp that eventually sank, beached or traveled outside the study domain, between seasons with variation between years. During summer months, no particles traveled outside the study domain. The highest proportion of particles that traveled outside the domain occurred during spring months and to a lesser magnitude during autumn and winter months. The highest proportion of kelp particles that beached occurred during winter months, in particular year 2, where almost all the particles beached. Kelps released from Buffelsbaai were the only population to travel outside of False Bay during all times of the year, while the remaining sites (Baboon rock, Bachata rock, Miller’s point, and Kalk Bay) only traveled outside the bay during winter of year 2. Kelps released from Betty’s Bay (southern site extreme) usually become beached, while kelps from St. Helena Bay (northern extreme) had similar proportions of beached and sunken kelp across seasons and years. 
+
+```{r message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+
+positions_dotplot <- c("Betty's Bay","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock", "Basata Rock","Buffelsbaai","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","St. Helena Bay")
+
+dot_phase_summer <- ggplot(data = total_summer, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  ggtitle("Year 1") +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_autumn <- ggplot(data = total_autumn, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip()+
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_winter <- ggplot(data = total_winter, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_spring <- ggplot(data = total_spring, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_summer2 <- ggplot(data = total_summer2, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  ggtitle("Year 2") +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_autumn2 <- ggplot(data = total_autumn2, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_winter2 <- ggplot(data = total_winter2, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))+
+  labs(size = "Observations") 
+
+dot_phase_spring2 <- ggplot(data = total_spring2, aes(x = site, y = Phase, size = X)) +
+  #geom_bar(stat = "identity", position = "stack") +
+  #geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(limits = positions_dotplot) +
+  xlab("Site") +
+  ylab("Phase") +
+  coord_flip() +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) +
+  labs(size = "Observations")
+```
+
+```{r message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.height=10, fig.width=8, fig.cap="Figure 8: Porportion of particles for each phase at the end of the simulation run for each respective season and year. The size of the point is related to the amount of particles within that life cycle phase at the end of each simulation run."}
+
+ggarrange(dot_phase_summer, dot_phase_summer2, dot_phase_autumn,dot_phase_autumn2, dot_phase_winter, dot_phase_winter2, dot_phase_spring, dot_phase_spring2, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_8.jpeg", plot = last_plot(), scale = 2, dpi = 300)
+```
+
+# Discussion
+
+The findings from this study deepens our understanding the role mesoscale features play in influencing macroalgal trajectory patterns and distribution. The importance of including drag components in relation to surface area as shown by @coppin2021 was confirmed, however, the study did not find the site-specific morphological characteristics influenced mean trajectory of virtual kelp particles. Instead, the inclusion of site-specific morphological characteristics were important in describing entrainment patterns of virtual kelp particles. In addition, the study provides evidence to support the site-specific approach used, which the authors argue should be incorporated into future studies on the subject. 
+
+Previous work investigating drifting macroalgal trajectory patterns show that macroalgae tend to follow the ocean currents [@hobday2000; @fraser2011, @coppin2021] and drag components are important for characterising entrainment patterns within mesoscale oceanographic features [@coppin2021;@brooks2019; @putman2020; @beron2016; @beron2019]. This was evident from the analysis of surface and subsurface kelp distributions, which show high concentrations of virtual kelp particles within mesoscale features during times of high activity (Austral summer and winter). Eddies have been identified as important surface accumulation zones for other types of flotsam [@brach2018; @dasaro2020; @dasaro2018; @onink2019]. For example, @beron2016 used a Maxey-Riley approach to include the effects on inertia on accumulation patterns. The authors found that the effects of inertia was responsible for accumulation patterns within mesoscale features, and also noted the presence of other flotsam within these features during field validation work. Other work by @brooks2019 investigating distribution of *Sargassum* rafts in relation to radial size and windage. The authors found that eddies were important surface accumulation zones, and that the inclusion of windage based on radial raft size greatly increased accuracy of numerical simulations. 
+
+Virtual kelp particles remain entrained when sinking which was as a result of the incorporated drag components. @coppin2021 found that purely Lagrangian particles remained on the boundary of mesoscale features with very little evidence of entrainment, while virtual kelp exhibited high entrainment patterns and focused towards the centre. This trend has been reported in previous work by @beron2019; @miron2020). For example, a study by @pichel2012 used a combination of satellite and aircraft observations to detect and describe ‘ghost gear’ distribution within the Gulf of Alaska. The authors found that eddies, particularly in the central cores, can collect and retain ghost gear and highlighted the role eddies play in flotsam accumulation on the surface. In addition to acting as accumulation zones, eddies also disperse the kelp particles over the study domain and towards the coastline when ‘leaking’ of virtual kelp from an eddy occured. Some of the entrained virtual kelp particles frequently exit on the eastern side of mesoscale features. This resulted in kelp particles becoming entrained within the Benguela Jet to travel northwest or to become entrained to other passing mesoscale activity, and or eventually beaching. Although the leaking of particles was less common than continued entrainment, particle leakage from mesoscale features was a significant influencer of virtual kelp particle dispersal over the study domain. The leaking of particles is most likely a result of the underlying bathymetry. A study by @rubio2009 which aimed to characterise and validate mesoscale activity in the Southern Benguela Upwelling region found similar trends with regards to volume transport of nutrients. The authors showed that eddies (which extend vertically through the water column) interacted with the underlying bathymetry on the coastal side of the feature which results in weaker dynamics. These weaker dynamics on one side of the mesoscale feature resulted in volumes of seawater particles exiting on the weaker dynamic side. Although the study by @rubio2009 investigated fluid parcels of water and not biological flotsam, the mechanism of weaker dynamics explains the leaking of virtual kelp particles from mesoscale features within the study domain. 
+
+Eddies have also been shown to act as dynamic upwelling and downwelling of volume transport in the open ocean. Downwelling occurs on the periphery of mesoscale features. These dynamic ocean features are regarded as important mechanisms of volume transport. Similar relationships between virtual kelp particles and mesoscale features was evident from the analyses of surface and subsurface patterns and distributions within the study domain. Virtual kelp particles located towards the centre of an eddy continue to remain entrained while sinking. Since eddies are structured vertically through the water column, this aided in the vertical transport and distribution towards the seafloor. Work by @mcgillicuddy2003 using an eddy-resolving model to investigate the role of mesoscale features as sources and sinks of nutrients in the North Atlantic. The authors showed that the mesoscale features has a significant influence of nutrients within the euphotic zone. In fact, the downwelling of mesoscale features is of such high magnitudes that it can counter-balance Ekman driven upwelling in the subpolar gyre. Although virtual kelp particles and nutrients, similar patterns are seen in the results for the sub-surface and sunken kelp particles. High concentrations of kelp particles are located in areas on the seafloor which coincide with subsurface mesoscale entrainment patterns. Generally, kelp particles settle on the seafloor in the northern part of the study domain inshore of the continental shelf; the exception being spring of year 2. The distribution of sunken virtual kelp coincides with area where kelp has been found previously. @woodborne1989 characterised kelp-rafted geological clasts along the West Coast cites previous work by @gentle1987 who described a possible kelp sink location. @ Gentle describes kelp-rafted clasts that were recovered from dredging an area approximately 120km northwest of  Cape Columbine at an approximate depth of 350m deep. The dredged samples consisted of sand and pebbles held together by a loose mat of seaweed. Unfortunately, @gentle1987 did not describe the species of seaweed but simply as kelp, but based on the most common species of kelp in South Africa, the species could be *E. maxima*, *Ecklonia radiata* , *Laminaria pallida* and *Macrocystis Pyrifera*. Mesoscale features within the study domain also influence the proportions of virtual kelp particles which beach by acting as barriers to offshore transport. Eddy-filaments which originated offshore and occasionally travel shorewards entrain nearby kelp particles which trajectoires become largely influenced by the eddy-filament. The trajectory of the kelp particle is therefore determined by the trajectory of the eddy-filament which was either north-westward or shoreward causing higher proportions of beaching during the winter months of both years. Mesoscale and sub-mesoscale features have been shown to act as barriers to offshore transport of other flotsam. 
+
+## Conclusion
+
+Macro-algae are prone to entrainment within mesoscale features, such as eddies and the associated eddy-filaments, if present but otherwise follow the ocean currents. The inclusion of site-specific morphological characteristics allowed for a quantitative approach to estimating windage, hydrodynamic drag, buoyancy and sink rates, all of which are important parameters for accurately characterising the distribution of macroalgae in the ocean. In this experiment, the results verify findings from other studies investigating eddies as convergence zones for flotsam but highlights a possible barrier to macralagal transport that eddy associated filaments and fronts may pose. Furthermore, the current work highlights the role of kelp in the overall carbon/nutrient cycle within the oceans by identifying possible ‘kelp’ sinks’ in the north-western and south-western areas of the Benguela Upwelling region.
+
+# Appendix
+
+```{r chp4 figure 9, message=FALSE, echo=FALSE, warning=FALSE, include=FALSE}
+## Year 1
+vector_summer_surface <- ggplot() +
+  geom_line(data = total_summer_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_summer_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_summer_subsurface <- ggplot() +
+  geom_line(data = total_summer_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_summer_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+vector_autumn_surface <- ggplot() +
+  geom_line(data = total_autumn_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_autumn_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_autumn_subsurface <- ggplot() +
+  geom_line(data = total_autumn_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_autumn_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+vector_winter_surface <- ggplot() +
+  geom_line(data = total_winter_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_winter_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_winter_subsurface <- ggplot() +
+  geom_line(data = total_winter_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_winter_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+vector_spring_surface <- ggplot() +
+  geom_line(data = total_spring_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_spring_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_spring_subsurface <- ggplot() +
+  geom_line(data = total_spring_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_spring_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+## Year 2
+
+vector_summer2_surface <- ggplot() +
+  geom_line(data = total_summer2_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_summer2_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_summer2_subsurface <- ggplot() +
+  geom_line(data = total_summer2_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_summer2_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+vector_autumn2_surface <- ggplot() +
+  geom_line(data = total_autumn2_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_autumn2_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_autumn2_subsurface <- ggplot() +
+  geom_line(data = total_autumn2_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_autumn2_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+vector_winter2_surface <- ggplot() +
+  geom_line(data = total_winter2_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_winter2_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_winter2_subsurface <- ggplot() +
+  geom_line(data = total_winter2_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_winter2_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+vector_spring2_surface <- ggplot() +
+  geom_line(data = total_spring2_surface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_spring2_surface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+vector_spring2_subsurface <- ggplot() +
+  geom_line(data = total_spring2_subsurface_mean, aes(x = t, y = kelpvelocity, group = site))+
+  geom_point(data = total_spring2_subsurface_mean, aes(x = t, y = kelpvelocity, shape = site)) +
+  scale_shape_manual(values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  guides(shape=guide_legend(title="Sites")) +
+  xlab("Date") +
+  ylab("Kelp Velocity (m/s)") 
+
+```
+
+```{r message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.cap="Figure 9: Time-series of the mean velocity of surface kelp particles grouped by site for each season and year.", fig.height=10, fig.width=8}
+
+ggarrange(vector_summer_surface, vector_summer2_surface, vector_autumn_surface, vector_autumn2_surface, vector_winter_surface, vector_winter2_surface, vector_spring_surface, vector_spring2_surface, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("AUTO"))
+
+ggsave(filename = "figures/chapter_4/figure_9.jpeg", plot = last_plot(), scale = 0.8, dpi = 300)
+```
+
+```{r chp4 figure 10 wrangle, message=FALSE, echo=FALSE, warning=FALSE, include=FALSE}
+
+positions_dotplot <- c("Betty's Bay","Kalk Bay", "A-Frame", "Miller's Point", "Baboon Rock", "Basata Rock","Buffelsbaai","Scarborough", "Soetwater", "Kommetjie","Hout Bay","Oudekraal","St. Helena Bay")
+
+dis_plot_summer <- ggplot()+
+  geom_boxplot(data = total_summer, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+dis_plot_summer2 <- ggplot()+
+  geom_boxplot(data = total_summer2, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+dis_plot_autumn <- ggplot()+
+  geom_boxplot(data = total_autumn, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+dis_plot_autumn2 <- ggplot()+
+  geom_boxplot(data = total_autumn2, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+dis_plot_winter <- ggplot()+
+  geom_boxplot(data = total_winter, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+dis_plot_winter2 <- ggplot()+
+  geom_boxplot(data = total_winter2, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+dis_plot_spring <- ggplot()+
+  geom_boxplot(data = total_spring, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+dis_plot_spring2 <- ggplot()+
+  geom_boxplot(data = total_spring2, aes(x = site, y = distance, show.legend = FALSE), notch = TRUE,        notchwidth = 1, stat = "boxplot") +
+  scale_x_discrete(limits = positions_dotplot)+
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Sites")+
+  coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+```
+
+```{r chp4 figure 10, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.cap="Figure 11: Boxplots of the total distance travelled by all particles for both years and all seasons. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers.", fig.height=9, fig.width=8}
+
+ggarrange(dis_plot_summer, dis_plot_summer2, dis_plot_autumn, dis_plot_autumn2, dis_plot_winter, dis_plot_winter2, dis_plot_spring, dis_plot_spring2, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = TRUE, ncol = 2, nrow = 4, labels = c("Summer","","Autumn","","Winter","","Spring",""))
+
+ggsave(filename = "figures/chapter_4/figure_10.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+```{r chp4 figure 11 wrangle, message=FALSE, echo=FALSE, warning=FALSE, include=FALSE}
+
+# year 1
+passive_heatmap_surface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive1_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+passive_heatmap_subsurface <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive1_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+passive_heatmap_sink <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive1_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+passive_heatmap_beached <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive1_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+# year 2
+passive_heatmap_surface2 <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive2_surface, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+passive_heatmap_subsurface2 <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive2_subsurface, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+passive_heatmap_sink2 <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive2_sink, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+passive_heatmap_beached2 <- ggplot() +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2)+
+  geom_hex(data = total_passive2_beached, bins = 80, aes(x = lon, y = lat), legend = TRUE) + 
+  scale_fill_viridis_c(aesthetics = "fill", option = "C") +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = total_summer_mean,aes(x = lon, y = lat, color = 'red'), show.legend =     FALSE) +
+  coord_cartesian(xlim = c(12, 20), ylim = c(-37, -29)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  facet_wrap("Season") +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+```
+
+```{r chp4 figure 11, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.cap="Figure 11: Hexagonal heatmaps for all  passive surface particles for year 1 and all seasons. The plane has been divided into regular hexagons and then are filled according to the number of particles within each hexagon.", fig.height=10, fig.width=8}
+
+ggarrange(passive_heatmap_surface, passive_heatmap_subsurface, passive_heatmap_sink, passive_heatmap_beached, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = FALSE, ncol = 2, nrow = 2, labels = c("Surface","Subsurface","Sunk","Beached"))
+
+ggsave(filename = "figures/chapter_4/figure_11.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+```{r chp4 figure 12, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE, fig.cap="Figure 13: Hexagonal heatmaps for all  phases passive surface particles for year 2 and all seasons. The plane has been divided into regular hexagons and then are filled according to the number of particles within each hexagon.", fig.height=10, fig.width=8}
+
+ggarrange(passive_heatmap_surface2, passive_heatmap_subsurface2, passive_heatmap_sink2, passive_heatmap_beached2, font.label = list(size = 12, face = "bold"), legend = c("bottom"), common.legend = FALSE, ncol = 2, nrow = 2, labels = c("Surface","Subsurface","Sunk","Beached"))
+
+ggsave(filename = "figures/chapter_4/figure_12.jpeg", plot = last_plot(), scale = 1, dpi = 300)
+```
+
+```{r vector maps, eval=FALSE, message=FALSE, echo=FALSE, include=TRUE}
+
+chapter_4_sitemap <- rasterGrob(as.raster(readJPEG("figures/chapter_4/chapter_4_vectormap_v2.jpeg")))
+
+ggarrange(chapter_4_sitemap)
+
+```
