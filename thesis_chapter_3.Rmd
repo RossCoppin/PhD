@@ -1,0 +1,1030 @@
+---
+title: 'Numerical experiment investigating the influence of drag on trajectory patterns of floating macroalgae'
+author: 
+- R Coppin^[Department of Biodiversity and Conservation Biology, University of the Western Cape, Private Bag X17, Bellville 7535, South Africa], C Rautenbach^[National Institute of Water and Atmospheric Research, Hamilton: Gate 10 Silverdale Road Hillcrest, 3216], AJ Smit^[South African Environmental Observation Network, Elwandle Coastal Node, Port Elizabeth, South Africa]
+output:
+  html_document:
+  pdf_document:
+    fig_caption: yes
+    latex_engine: xelatex
+  word_document:
+    reference_docx: markdown/wiley_template.docx
+bibliography: references.bib
+csl: markdown/limnologyandoceanography.csl
+abstract: "**Abstract**: Ocean currents act as an important dispersal mechanism of material on the ocean surface, both natural and anthropogenic. Macroalgae are one of the most important natural dispersal vectors  of marine organisms and are regarded as the 'tumble-weed of the ocean'. Despite many studies that exist on the topic, the relative role of wind and surface currents in influencing the trajectory of macroalgal dispersal is still unknown. Past studies focus on kelp-rafts, which can vary greatly in size, making it difficult to form a consenses as to the relative role of wind versus surface currents. In addition, these studies have not considered surface-area in relation to drag characteristics of the macroalgae, both of which have been shown to play a role in the trajectory and accumulation of other flotsam. Advances in Lagrangian trajectory modeling have been rapid in recent years and allow the use of numerical experiments to investigate trajectories of flotsam in the ocean. This study aimed to shed light on the relative role of wind versus surface currents, and the role of drag in macrolagal trajectory and accumulation. We focused on solitary kelp individuals. This was achieved by comparing simulations of virtual kelp 'particles' which incorporate drag with that of purely Lagrangian particles. The results showed that the virtual kelp particles do follow the ocean currents in general, but that the inclusion of drag into the scenarios causes accumulation in eddys within the study domain. The results also point to the importance of sub-mesoscale features, such as eddys, as important surface accumulation zones for solitary floating macroalage."
+---
+
+```{r software, message=FALSE, warning=FALSE, include=FALSE}
+## Load software need for entire script
+
+load("map/south_africa_coast_hi_res.Rdata")
+load("map/sa_bathy.RData")
+
+library(tidyverse)
+library(flextable)
+library(tidync)
+library(ncdf4)
+library(lubridate)
+library(gridExtra)
+library(ggpubr)
+library(jpeg)
+library(gridExtra)
+library(grid)
+
+```
+
+# Introduction
+
+Passive dispersal mechanisms of marine taxa include a range of natural and anthropogenic objects that float in the ocean, and macroalgae are regarded as one of the most important of these. Floating kelps, sometimes referred to as the ‘tumble-weed of the ocean,’ are very important in this regard [@edgar1987; @bushing1994; @norton1992; @helmuth1994; @holmquist1994; @smith2002; @McCormick2008]. Kelps also function as allochthonous materials to near and distant ecosystems and in this manner support the ecological function in a range of adjacent habitats[@cartraud2021; @colombini2003; @Filbee-Dexter2018-wp; @zuercher2019; @Krumhansl2012; @vanderklift2008; @bustamante1995]. 
+
+Some macroalgal species are negatively buoyant and sink to the seafloor when detached from the substrate, while other species have air-filled pneumatocysts or stipes which allow the plants to reach the surface where light is more abundant. The positively buoyant pneumatocysts cause plants to float to the surface when dislodged from the substratum. The structure and number of pneumatocysts vary among species. For example, species belonging to the genera *Macrocystis*, *Sargassum*, *Ascophyllum*, and *Fucus* have thalli with many small pneumatocysts, while other species such as *Nereocystis luetkeana*, *Pelagophycus porra*, *Ecklonia radiata*, and *Ecklonia maxima* have single, large pneumatocysts[@dayton1985; @smith2002; @thiel2005; @graiff2016; @batista2018]. In some cases, the stipe itself may be air-filled, such as with *E. maxima* and *E. radiata*. Although there have been reports of floating species of Chlorophyta and Rhodophyta, Phaeophyceae species are the most reported forms of floating algae. This is most likely because the green and red species reported to float are not actually positively buoyant, but instead are kept at the surface by gas trapped in-between or in their thalli [@dromgoole1982; @back2000]. The giant kelp *Macrocystis pyrifera* [@hobday2000; @macaya2005; @graiff2016; @batista2018], the bull kelp *Durvillaea antarctica* [@tala2017; @wichmann2012; @batista2018], and pelagic *Sargassum* species [@putman2020; @brooks2019; @brooks2018; @wang2019] have been the focus of much of the research regarding spatial and temporal dispersal patterns, the ecological role of rafting, marine connectivity and raft-time.
+
+Past research points to macroalgal trajectories being largely determined by prevailing wind conditions and surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. Although ocean currents are regarded as the primary influence, the relative importance of wind versus surface current is still unknown, although the role of wind has been recognized as important in several studies. For example, a study by @harrold1989 investigated the seasonal trajectories of radio-transmitter tagged *M. pyrifera* in nearshore Monterey Bay. The results showed that kelp rafts, with little surface area exposed to the wind, were largely driven by a combination of wind and surface currents; however, the relative importance of wind and was not clear. In addition, the trajectories of tagged kelp were more consistent with the formation of eddies during winter. Studies have also identified wind as an important mechanism of dispersal in wind dominated ocean systems. For example, in the sub-Antarctic latitudes the West Wind Drift causes continuous unidirectional surface flow and is regarded as an important mechanism for dispersal of floating bull kelp *Durvillaea antarctica* [@waters2008; @smith2002; @nikula2010]. Other studies have used genetic approaches to determine macroalgae raft trajectory characteristics by inferring source location from genetically similar populations [@nikula2013]. For example, a study by @fraser2011 on the rafting capabilities of *D. antarctica* used a combination of population genetics and relative age estimate of goose barnacles attached to the raft. The presence of goose barnacles suggests a long rafting time as these species have a slow growth rate. Genetic analyses showed these species can raft up to $\sim$ 390 km from their local origin. The authors suggested that wind and water-movement were the primary influences of trajectory; however, this was only inferred from the genetic results and local climatology data [@fraser2011]. Research has shown that buoyancy and drag also play a role in determining the trajectory and rate of transport for surface floating material [@onink2019; @shen2019; @dasaro2018; @gates2018; @beron2016; @trinanes2016; @furnans2008]. The 'sail' area of an object floating at sea is the surface area exposed to the wind which results in air form drag, while the area of the object below the surface of the water is exposed to surface currents which result in hydrodynamic-form drag [@breivik2011; @griffin2017]. Work by the maritime industry has shown that the size and shape of a vessel determine the relative importance of waves or wind as drivers of trajectory, as well as orientation of the object. If the length of the object is longer than the significant wave height then waves will be the primary driver of trajectory while the opposite is true for smaller objects where the effect of waves is regarded as negligible [@breivik2011; @griffin2017]. Drag is ultimately determined by the size and shape of the object which are properties that vary considerably with macroalgae species. 
+
+To accurately determine the trajectory of marine macroalgae, both water and wind drag need to be considered. @allen1999 and @breivik2011 have provided estimates of drag for various objects based on experimental work, which consisted of both direct and indirect methods of the Leeway model. However, this work did not consider biological material such as macroalgae. Although drag estimates do exist, these have been applied for macroalgae not detached from the substratum and are regarded as fixed-point estimates [@Denny1997; @Denny2002a; @Denny2002b; @Gaylord1997-ow; @Gaylord2008-qv]. Although various approaches have been used in the past to investigate floating macroalgal trajectories, very few studies have employed the use of Langrangian trajectory modeling. Furthermore, none of these studies using this modeling approach have considered macroalgal morphology cross-sectional area (*i.e.* shape) as an aspect of drag and ultimately trajectory. @brooks2019, @putman2018, and @putman2020 used Lagrangian approaches to investigate the effects of inertia, raft-size, and windage on macroalgae trajectory. For example, @brooks2019 used a custom growth model to estimate changes in biomass and ultimately radial size, while a customized Hybrid Coordinate Ocean Model (HYCOM) for the trajectory simulations was used. Their results showed that the trajectory of pelagic *Sargussum* was significantly influenced by inertia and the radial size of the rafts. @putman2020 investigated the effect of including windage in macroalgae trajectory simulations and showed that including *ad hoc* windage factors greatly improved accuracy regarding entrainment or expulsion from eddys when compared to tracked *Sargassum* mats in the ocean. Langrangian trajectory modeling is clearly a useful tool; however, the various models available often assume the object to be a spherical particle, which is obviously not the case for both biological and anthropogenic forms of marine debris in nature. The radial size included by @brooks2019 is an improvement but this approach does not consider the complex morphology on an individual level into account.
+
+Studies have focused on kelp-rafts, not solitary floating kelp, and therefore are not able to investigate the role of eddys and vortices in the accumulation of individual kelp plants at the surface. Gyres, eddys, and converging surface currents have been identified as important in the accumulation and dispersal of plastics and other marine debris [@onink2019; @dasaro2018; @brach2018]. Investigations into  the dispersal of marine debris have also included the possible effects of inertia in accumulation of ocean drifter instruments in mesoscale features. For example, @beron2016 used a modeling approach to investigate the role of Eckman transport and inertia to explain the observed behavior of undrogued drifters in the ocean gyres. Undrogued drifter trajectory is affected by wind, unlike the drogue counter parts which makes the effects of wind negligible. The results showed that the combined effect inertia, not Eckman transport, played a significant role in the observed drifter behavior [@beron2016]. These authors also noted that the presence of other flotsam, along with the undrogued drifters in ocean gyres, suggests that aspects of inertia also play a role in accumulation of other marine debris [@beron2016]. The approach by @beron2016 has also been improved upon by @beron2019 but they also highlight the significant role of inertia in flotsam trajectory and accumulation. 
+
+In this study, a numerical approach is used to shed light on the role of hydrodynamic and direct wind drag on macroalgal drift trajectory using Lagrangian based trajectory simulations. We aim to determine the 'behavior' of surface drifting macroalgae from a coastal environment to the open ocean, which will inform future characterization studies. We will achieve this by comparing the trajectory outputs of virtual passive particles (no drag characteristics added) with kelp particles (drag characteristics added) of varying degrees of hydrodynamic and wind drag exposure. The different degrees of wave and wind exposure are meant to reflect the different buoyancy characteristics, as well as identify the role of magnitude of the drag components on overall trajectory. The modeling of single kelp offers the opportunity to study the role of eddys and vortices in accumulation points on the surface. 
+
+# Methods
+## Study site
+
+The region of interest for this study was the Cape Peninsula in the Western Cape (Figure 1A). Kommetjie, located on the Atlantic side of the Cape Peninsula (Figure 2B), was chosen as a release site. The hydrodynamics in the study region are characterized by a complex interaction of wind, sea waves and ocean swell, and are also influenced by larger-scale regional oceanic processes. The larger processes in the region can be attributed to the Agulhas Current (AC) and the Benguela Current (BC) [@lutjeharms2000;@lutjeharms2007;@garzoli1996;@hutchings2009;@rubio2009]. The AC is a component of the South-west Indian Ocean sub-gyre, flowing predominantly south-westward following the continental shelf edge and eventually retroflecting eastward back into the South Indian Ocean [@lutjeharms2000;@lutjeharms2007]. 
+
+The region where the retroflection occurs is known as the Agulhas Retroflection and consists of high levels of mesoscale variability [@garzoli1996]. The variability results in shedding of rings and filaments known as the Agulhas Rings and have an average diameter of ~324 km [@lutjeharms1988;@lutjeharms2006; @lutjeharms2007]. Agulhas Rings are the main contributors to the Agulhas leakage which is the transport of warm water from the Indian Ocean to the South Atlantic Ocean [@garzoli1996; @lutjeharms2006; @beal2015]. The Agulhas leakage is also a source of meso-scale variability within the Benguela region as anticyclonic rings are shed and drift northwestward along the southern Benguela slope region [@rubio2009]. The Benguela region ---known as the Benguela Upwelling System (BUS)--- is characterized by strong coastal upwelling which is primarily driven by equatorward winds [@shannon1996;@hardman2003;@veitch2018; @veitch2017]. The BUS starts at 27$^\circ$S and extends southward to 35$^\circ$S [@shannon1996]. The region is also characterized by large amounts of mesoscale variability in the form of eddys and filaments [@blanke2002; @blanke2005; @rubio2009]. Inshore, the BUS is dominated by a northwestward flow, known as the Benguela Jet, because of topographical steering, wind stress and interactions with passing Agulhas Rings and eddys [@stramma1989; @veitch2010; @veitch2017; @veitch2018; @hutchings2009]. The stability of the jet varies seasonally with more stable flows in winter; in January, the jet begins to split between Cape Point and Cape Columbine [@veitch2018; @blanke2005; @blanke2002] which results in a weak narrow inshore branch that flows along the shelf edge and a strong flowing north-westwards offshore branch. The area is also characterized by high upwelling activity driven by strong westerly winds [@hutchings2009]. These winds are most intense during Austral summer (December-March) which favors upwelling conditions in the region, and also act to reinforce the flow of the Benguela Jet which occurs due to cold upwelling waters contributing to the across-shore density gradient [@ragoasha2019]. In Austral winter the wind direction is reversed which decreases upwelling favorable conditions, but the core of the Benguela Jet is maintained by the intrusion of warm Agulhas waters into the Benguela region over the shelf edge [@veitch2018; @hutchings2009; @ragoasha2019]. 
+
+```{r map, echo=FALSE, message=FALSE, warning=FALSE, strip.white=TRUE, fig.cap="Figure 1: Map of the study domain and the main features pertaining to transport in the region. In panel A, the map of the western portion of South African coastline and the main currents is presented. The resulting eddys and filaments froming from the Agulhas retroflection are indicated, and the position of the study area is drawn in as a black rectangle. Detail of the study area is in panel B. Here the splitting of the Benguela Jet, eddy features, and the general flow within the study domain are presented. The release site of simulated kelp ‘particles’ is represented by a blue star."}
+
+library(png)
+library(grid)
+library(gridExtra)
+
+#map_chp3A <- rasterGrob(as.raster(readPNG("map/chp3_mapA.png")))
+#map_chp3B <- rasterGrob(as.raster(readPNG("map/chp3_mapB.png")))
+#ggarrange(map_chp3A, map_chp3B, ncol = 2, nrow = 1, labels = "AUTO", align = c("h"))
+map_chp3_combined <- rasterGrob(as.raster(readPNG("map/chp3_map_final_v2.png")))
+ggarrange(map_chp3_combined)
+
+```
+
+## Particle tracking model
+
+The model is based on parameterizations that have been used for previous studies investigating iceberg, capsized marine vessels and microplastics. It should be noted that most of the previous studies regarding macroalgal trajectories have investigated rafts and not solitary floating individuals. A kelp raft will vary in size and can range from a few meters across to large dense mats the size of a sports field. Some authors suggest that most macroalgae become entangled through ocean currents and not through the hydrodynamic forces that dislodge them. Large kelp rafts are not a feature around the coast of the Cape Peninsula; rather, solitary kelp is (pers. obs). Therefore, the trajectory of only solitary *E. maxima* individuals will be considered. We performed numerical calculations of particle trajectory with a Lagrangian method [@delandmeter2019], which can be described by the equation:
+
+$$X(t+\Delta t) = X(t) + \int_{t}^{t+\Delta t} v(x, \tau)d \tau + \Delta X_b(t)$$
+Here, $X$ is the three-dimensional position of a particle, $v(x,t)$ is the three-dimensional velocity field at the location in the ocean model at particle point in time, $t$ is time $X_b(t)$ is a change in position due to 'behavior' of the particle at a particular point in time. To investigate the effects of drag components of trajectory of floating macroalgae, this study incorporated drag as the custom behavior. 
+
+This study simulated two scenarios: one where the plant is fully submerged and only exposed to hydrodynamic drag, and the other where parts of the plants are partially exposed resulting in a combination of hydrodynamic and air form drag. Drag based on shape-based coefficients were used in the calculations for determining the overall kelp velocity vectors. A momentum energy equation was used to calculate the drag forces for the relevant simulation. This approach has been employed in modeling iceberg drift trajectory [@andersson2017; @lichey2001; @eik2009] and was adapted to suit this study. The energy momentum equation used to calculate the drag force exerted on the virtual kelp particle was $$m({d_u/d_t})=F_d + F_a + F_f$$
+where $m$ is kelp mass, $d_u$ the virtual kelp particle velocity, $F_d$ the hydrodynamic drag, $F_a$ is the wind drag, $F_f$ the surface-current flow, and $d_t$ is the time step. The assumption made was that the mass of the kelp did not change for each virtual kelp particle over the course of the simulations. Hydrodynamic drag, wind drag, and surface current-flow are two-dimensional vector quantities and were calculated for each time step for each simulation. 
+
+## Simulations
+
+Virtual particles were released with no drag or wind effects from the study site to act as a reference for comparison to simulations with varying degrees of hydrodynamic and wind drag and are referred to hereafter as 'passive particles'. All particles that have any form of drag exposure are hereafter referred to as 'kelp particles'. All simulations have the same release location (Kommetjie) and were run for 30 days with hourly outputs using a fourth order Runge-Kutte advection scheme [@North2009; @vanSebille2018]. Brownian motion was also incorporated to account for any stochasticity not resolved by the model. These are standard practices for Lagrangian trajectory studies [@North2009;@delandmeter2019;@vanSebille2018]. The time period used in all simulations were January (Austral summer), April (Austral autumn), July (Austral winter), and October (Austral spring) of 2018. These time periods were chosen based on variable mesoscale activities and stability of the Bengulea Jet that occurs through the year. For example, splitting of the Benguela Jet occurs in January, which also coincides with a period of higher wind intensity, upwelling along the coast and mesoscale activity while in winter the Benguela Jet begins to stabilize until summer when the begins to split again [@rubio2009; @veitch2018; @ragoasha2019]. 
+
+To test the different magnitudes that hydrodynamic and wind drag might play in the overall trajectory, simulations were run with varying degrees of drag exposure scenarios. These scenarios were meant to act as proxy for buoyancy, which determines the surface area exposed to hydrodynamic and wind drag. These estimates were expressed as percentages which were used to calculate hydrodynamic and wind drag for applicable simulation. For example, if 85% of the plant is submerged and 15% of above water, then the overall hydrodynamic and wind drag forces would be 85% and 15% of the total drag forces respectively. This approach has been used in past research investigating pelagic *Sargassum* rafts [@putman2020;@putman2018]. The exposure scenarios used in this study were 100%, 95%, 90%, and 85% for hydrodynamic drag; 0 %, 5%, 10%, and 15% for wind (see table 1, Appendix). Each scenario consisted of a particle set with a size of 1000 were released from Kommetjie at the start of simulation. Since the aim of this investigation was to investigate the relative surface behavior of virtual kelp particles, only the surface layer was used for simulations. It should also be noted that the Copernicus model (see below) used places velocity vectors over some of the land covering the coastal domain. This was not considered a concern, as once again, the aim was to investigate surface drift behavior. A summary of the parameters for each simulation are provided in table 1. To determine if vortices and eddys play a role in kelp accumulation on the surface, a separate set of simulations were performed. Unlike the previous simulations, these simulations released a particle every hour over the same time periods. 
+
+In order to determine if the shape coefficient used plays a role in model used and to validate the use of a spherical shape coefficient, simulations of kelps with the maximum surface area and hydrodynamic drag exposure was run using the shape coefficient for a cylinder to compare to a simulations using a sphere. Simulations were run for 30 days using a fourth order Runge-Kutte advection scheme with Brownian motion and a particle set of size 1000 for the same seasons as per previous simulations. 
+
+## Model inputs
+### Ocean and wind model
+
+Both passive and kelp particles were simulated around the South African coastline within hindcast outputs from the Copernicus Marine Environment Monitoring Service (Copernicus, http://marine.copernicus.com). The Copernicus model is based on the modelling framework known as Nucleus for European Modelling of the ocean. The Copernicus outputs used in this study contain 3D daily current information from the top layer to the bottom (Global Analysis Forecast PHY_001_024). The model has a spatial resolution of 0.08$^\circ$ and is interpolated on an Arakawa C native grid. To incorporate the effects of direct wind drag within the simulations, the Copernicus Marine Environment Monitoring Service global wind product was used (Global Ocean Wind L4_NRT_012_004). The outputs from the model are composed of 6-hourly averaged fields of surface 10 m wind velocity vectors with a spatial resolution of 0.25$^\circ$. Averaged ocean current and wind data are stored as meridional and zonal velocity vectors. 
+
+### Hydrodynamic and wind drag
+
+The drag coefficient for a spherical particle was used in the calculation of hydrodynamic drag as the trajectory model assumes the particles are spherical. The drag equation used was: $F_d = 0.5 \rho A_c C_d U^2$, where $\rho$ is the density of seawater or air, $A_c$ is the cross-sectional area exposed to hydrodynamic or wind drag, $C_d$ is the drag coefficient for a spherical particle and $U$ is the surface velocity vector of the flow-/wind- field. Hydrodynamic and wind drag components were calculated separately for both the meridional and zonal velocity vectors, as per @furnans2008. Since drag force is dependent on the velocity vectors which vary with time, the meridional and zonal velocities were interpolated and used in the drag force calculation for each time-step. The same approach was used for the wind drag force. The equation that was used to calculate hydrodynamic drag, was also used to calculate wind drag. 
+
+### Cross-sectional area
+
+To incorporate hydrodynamic and wind drag, the cross-sectional area of the kelp was calculated first. Known geometric shapes reflecting the relevant plant sections were used to estimate the surface area for various parts of the plant. For details refer to Figure 2. The dimensional data needed were estimated in cases where data was not available for that morphological characteristic. The bulb/pneumatocyst is a highly variable morphological characteristic and in some cases can appear absent; the same is true for the holdfast. Therefore, a standard cross-sectional area was used for both the bulb and holdfast, for all simulations. 
+
+```{r message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 2: Diagram of the *E. maxima* morphological characteristics considered in this study, along with the associated geometric shapes used to calculate the overall surface area of each morphological characteristic. Schemetaic was adapted from @Dyer2018-rv."}
+
+kelp_shape_figure <- rasterGrob(as.raster(readPNG("figures/chapter_3/figure_2.png")))
+ggarrange(kelp_shape_figure)
+
+```
+
+The cross-sectional area calculated was site specific and the dimensions needed were garnered from morphology data from a previous study [@coppin2020]. The minimum, mean and maximum cross-sectional areas (Ac, Table 2) were calculated for each morphological characteristic, which were used for calculating the overall minimum, mean and maximum cross-sectional areas needed to run the various simulations (Table 2). The trajectory of the different cross-sectional areas (minimum, mean and maximum overall cross-sectional area) were used to determine the influence of drag, both hydrodynamic and wind, on overall trajectory. 
+
+```{r morphology wrangling, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+# Investigate morphology data to assist in estimating surface area
+
+# Read in morphology data
+eck_df <- read.csv("data/morph_data/eck_morph_data.csv", sep = ";") %>%
+  filter(site!= "Rocky Bank") %>%   # Not using Rocky Bank in this study
+  filter(site!= "De Hoop") 
+eck_df$site <- as.character(eck_df$site)
+eck_df <- eck_df %>% 
+  filter(population == "Deep") 
+eck_long_df <- gather(eck_df, Morphology, measurement, frond_mass:total_length, factor_key=TRUE)
+# Summary stats to make it easier to refer to later, these will not be used any analysis.
+site_list <- c("Kommetjie")
+eck_stats <- eck_long_df %>% 
+  group_by(site, Morphology) %>% 
+  summarise(mean = mean(measurement, na.rm = T),
+            minimum = min(measurement, na.rm = T),
+            maximum = max(measurement, na.rm = T)) %>% 
+  ungroup() %>% 
+  filter(site %in% site_list) %>% 
+  rename(Site = site) %>% 
+  rename(Mean = mean) %>% 
+  rename(Minimum = minimum) %>% 
+  rename(Maximum = maximum)
+
+#eck_stats <- flextable(data = eck_stats)
+#eck_stats <- theme_zebra(eck_stats, odd_header = "transparent", even_header = "transparent")
+#eck_stats <- align(x= eck_stats, align = "center", part = "all")
+#eck_stats <- set_table_properties(eck_stats, width = 1, layout = "autofit")
+
+```
+
+```{r morphology table, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE, eval=TRUE}
+
+set_flextable_defaults(fonts_ignore=TRUE)
+
+area_table <- read.csv("tables/chapter_3/area_table.csv", sep = ";")
+area_table <- flextable(data = area_table)
+area_table <- theme_zebra(area_table, odd_header = "transparent", even_header = "transparent")
+area_table <- align(x= area_table, align = "center", part = "all")
+area_table <- set_header_labels(area_table, Plant.characteristic = "Plant characteristic", Approximate.shape = "Approximate shape", Equation.used = "Equation Used", Plant.dimensions = "Plant dimensions")
+area_table <- set_header_labels(area_table, Ac.Minimum = "Ac Minimum", Ac.Mean = "Ac Mean", Ac.Maximum = "Ac Maximum")
+area_table <- set_table_properties(area_table, width = 1, layout = "autofit")
+area_table <- fontsize(area_table, size = 8, part = "body")
+area_table <- fontsize(area_table, size = 8, part = "header")
+area_table <- set_caption(area_table, "Table 2: Table summarising the attributes and estimates used to calculate the overall surface area of Kommetjie kelp individuals used in the various simulations. Approximate shape refers to the dimensions of the geometric shape used to represent a particular morphological characteristic. Equations used are the equations relating to the dimensions used for the geometric shape estimate. Plant dimensions are the measurements used, collected in previous work by @coppin2020, used to calculate the associated surface areas. Ac refers to the cross-sectional area calculated. The total surface areas for each plant characteristic for each surface area type make up the remaining columns.")
+area_table
+```
+
+## Analysis
+
+To compare trajectories between cross-sectional area types and wind exposure scenarios, mean trajectories were calculated, and density distribution maps were produced. Density distribution maps are an effective method for assessing pathways and ocean connectivity [@vanSebille2018]. In addition, mean trajectory was calculated and included in the density distribution maps to further aid in comparing simulation outputs. The distance that particles traveled was also measured and used to produce boxplots. Distance traveled from the release site can help reveal topographic steering and momentum energy transfer from the wind field to kelp particles [@vanSebille2018]. If the wind direction is in the same direction as the current the virtual particles will cover larger distances due to an increase in the velocity because of momentum energy transfer [@putman2020; @putman2018; @vanSebille2018]. 
+
+# Results
+
+```{r data readin, message=FALSE, warning=FALSE, include=FALSE}
+
+total_summer <- read.csv(file = "data/chapter_3/total_summer.csv")
+total_summer_mean <- read.csv(file = "data/chapter_3/total_summer_mean.csv")
+
+total_autumn <- read.csv(file = "data/chapter_3/total_autumn.csv")
+total_autumn_mean <- read.csv(file = "data/chapter_3/total_autumn_mean.csv")
+
+total_winter <- read.csv(file = "data/chapter_3/total_winter.csv")
+total_winter_mean <- read.csv(file = "data/chapter_3/total_winter_mean.csv")
+
+total_spring <- read.csv(file = "data/chapter_3/total_spring.csv")
+total_spring_mean <- read.csv(file = "data/chapter_3/total_spring_mean.csv")
+
+total_passive_summer <- read.csv(file = "data/chapter_3/total_passive_summer.csv")
+total_passive_summer_mean <- total_passive_summer %>% 
+  group_by(t, type) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+total_passive_autumn <- read.csv(file = "data/chapter_3/total_passive_autumn.csv")
+total_passive_autumn_mean <- total_passive_autumn %>% 
+  group_by(t, type) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+total_passive_winter <- read.csv(file = "data/chapter_3/total_passive_winter.csv")
+total_passive_winter_mean <- total_passive_winter %>% 
+  group_by(t, type) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+total_passive_spring <- read.csv(file = "data/chapter_3/total_passive_spring.csv")
+total_passive_spring_mean <- total_passive_spring %>% 
+  group_by(t, type) %>%
+  summarise(across(lon:lat, mean, na.rm= TRUE))
+
+total_eddy_hydro <- read.csv(file = "data/chapter_3/total_eddy_hydro.csv")
+total_eddy_hydrostksdrag <- read.csv(file = "data/chapter_3/total_eddy_hydrostksdrag.csv")
+total_eddy_hydrowinddrag <- read.csv(file = "data/chapter_3/total_eddy_hydrowinddrag.csv")
+total_eddy_hydrowindstksdrag <- read.csv(file = "data/chapter_3/total_eddy_hydrowindstksdrag.csv")
+
+total_eddy_passive_curr <- read.csv(file = "data/chapter_3/total_eddy_passive_curr.csv")
+total_eddy_passive_currstks <- read.csv(file = "data/chapter_3/total_eddy_passive_currstks.csv")
+total_eddy_passive_currwind <- read.csv(file = "data/chapter_3/total_eddy_passive_currwind.csv")
+total_eddy_passive_currwindstks <- read.csv(file = "data/chapter_3/total_eddy_passive_currwindstks.csv")
+
+load("map/south_africa_coast_hi_res.Rdata")
+load("map/sa_bathy.RData")
+
+```
+
+## Trajectory comparison
+
+The mean trajectories of the virtual kelps with different cross-sectional areas are similar to those of the passive particles during the month of January (Austral summer; Figure 3A). When comparing mean trajectories between virtual kelp with different cross-sectional areas for the 100% hydrodynamic drag simulations, no differences can be seen; rather, there is only a slight variation in the overall trajectory. The results from the simulations including different hydrodynamic and wind drag exposures and kelp cross-sectional areas show differences in mean trajectory when compared to the passive simulation (Figure 3B). The end points of the simulations including hydrodynamic and wind drag were different compared to the passive simulations, as well the final location of the kelp particles being further from the release site. When comparing the different hydrodynamic and wind drag simulations to each other, only slight variation in mean trajectories was evident. In all simulations, particles flowed in a north-westward direction.
+
+The mean trajectories of kelp particles were different compared to the mean trajectory of passive particles for April (Austral autumn). Mean trajectories for kelp particles with different cross-sectional areas exposed to only hydrodynamic drag traveled further northward compared to the passive particles (Figure 3C-D). The mean trajectories of virtual kelp particles with different cross-sectional area types and a combination of wind and hydrodynamic drag flowed further north-westward compared to the passive particles. Across all simulations for April, the end locations were different, and hydrodynamic only kelp particles traveled less distance compared to kelp particles with both wind and hydrodynamic drag. Differences in mean trajectories between kelp and passive particles were also evident in the July (Austral winter) simulations (Figure 3E-F). Mean trajectories of passive particles flowed north-westward, while kelp particles across cross-sectional areas and exposed to only hydrodynamic drag initially flowed in a southerly direction and then flowed westward offshore, resulting in entrainment within an eddy. Similar behavior is evident when comparing passive particles with kelp particles exposed to both hydrodynamic and wind drag. In the combined hydrodynamic and water drag scenarios, and across cross-sectional areas; kelp particles traveled initially southward and then westward offshore and also becoming entrained in an eddy. In the October (Austral spring) simulations, differences in end locations were evident between passive and kelp particles across cross-sectional areas and drag scenarios (Figure 3F-G). Mean Trajectory of kelp particles with different cross-sectional areas and exposed to only hydrodynamic drag stop a greater distance from the release site compared to the passive particles. This was also evident when comparing kelp particles with different cross-sectional areas and exposure to wind and hydrodynamic drag with passive particles, with the end location a further from the release location. In both the April and October simulations all particles flowed north-westward, while in winter the mean trajectory resulted in entrainment within an eddy.  
+
+```{r meantraj, message=FALSE, warning=FALSE, include=FALSE, echo = FALSE}
+
+total_traj_summer <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_passive_summer_mean, aes(x = lon, y = lat, colour = type), alpha = 0.4) +
+  geom_path(data = total_summer_mean, aes(x = lon, y = lat, linetype = type))+
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Passive Particles")) +
+  guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_traj_autumn <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_passive_autumn_mean, aes(x = lon, y = lat, colour = type), alpha = 0.4) +
+  geom_path(data = total_autumn_mean, aes(x = lon, y = lat, linetype = type))+
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Passive Particles")) +
+  guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_traj_winter <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_passive_winter_mean, aes(x = lon, y = lat, colour = type), alpha = 0.4) +
+  geom_path(data = total_winter_mean, aes(x = lon, y = lat, linetype = type))+
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Passive Particles")) +
+  guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_traj_spring <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_passive_spring_mean, aes(x = lon, y = lat, colour = type), alpha = 0.4) +
+  geom_path(data = total_spring_mean, aes(x = lon, y = lat, linetype = type))+
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Passive Particles")) +
+  guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=6, fig.cap="Figure 3: Comparison of mean trajectories. Simulations of hydrodynamic drag are presented in Panels A, C, E, G for January, April, July, and October, respectively. Results of simulations including both hydrodynamic drag and wind are in Panels B, D, F, H for January, April, July, and October, respectively. Significant amounts of overplotting prevents the different line types to be discernable."}
+
+ggarrange(total_traj_summer, total_traj_autumn, total_traj_winter, total_traj_spring ,ncol = 2, nrow = 2, font.label = list(size = 12, face = "bold"), common.legend = TRUE, legend = c("bottom"), labels = c("A","B","C","D"), align = "hv")
+
+ggsave(filename = "figure_3.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 9, width = 10, dpi = 300, scale = 1.5)
+```
+
+## Comparison of density distributions
+
+Density distributions summarizing the conclusion of sumlating scenarios 1-13 (Table 1) are presented in Figures 3-6. Across all simulations for January (Austral summer), particles flow in a north-westward direction. The density plots for simulations that consider any form of drag show a higher density of particles along the mean trajectory path compared to the passive simulation which has an almost even density of particles across grids (Figure 4). In addition, the density plots show that the particles in simulations that considered any form of drag become entrained in a vorticity while particles in the passive simulation deflected away (Figure 4). Comparison of cross-sectional areas and different drag exposure scenarios show no differences in mean trajectory and spatial patterns in density, with only slight variations across types. In April (Figure 5) across all simulations, particles flow in a north-westward direction. The density plots that consider any form of drag show a narrow, higher density along the mean trajectory compared to passive simulation. In addition, simulations that consider any form of drag got entrained within an eddy further north-westward from the end location of passive particles. Only slight variations across cross-sectional areas and drag exposure scenarios are evident. 
+
+Simulations for July (Figure 6) show that the flow is also north-westward, but all kelp particles across cross-sectional areas and drag scenarios show a high density of particles entrained in an eddy located westward of the release site compared to passive particles. Variation in density along the mean trajectory and eddy for all kelp particles is evident. Kelp particles with only hydrodynamic drag across cross-sectional areas showed lower density of particles along the mean trajectory compared to kelp particles with both wind and hydrodynamic drag. Simulations run for October (Figure 7) show no difference in density of particles along the mean trajectory when comparing passive and kelp particles. Only slight variations in density and trajectory can be seen with no entrainment. Kelp particles with any cross-sectional area and drag exposure scenario flowed further offshore when compared to passive particles. 
+
+```{r density plots, message=FALSE, warning=FALSE, echo=FALSE}
+
+## Heatmaps of study domain, use previous data for study site map and histograms
+
+heatmap_summer <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_summer, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Kelp Particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_autumn <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_autumn, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_winter <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_winter, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Kelp Particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_spring <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_spring, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+### Passive passive
+
+heatmap_summer_passive <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_passive_summer, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Passive Particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_autumn_passive <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_passive_autumn, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_winter_passive <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_passive_winter, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("Passive Particles") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_spring_passive <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = total_passive_spring, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis",limits = c(1, 5000))  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  facet_wrap("type") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(11, 20), ylim = c(-35, -28)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 4: Comparison of density plots at the end run time for simulations 1 - 13, for January 2018 (Austral summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each simulation are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each simulation', fig.height=7, fig.width=6}
+
+ggarrange(heatmap_summer, heatmap_summer_passive, heatmap_autumn, heatmap_autumn_passive, labels = c("AUTO"), nrow = 2, ncol = 2, common.legend = TRUE, legend = c("bottom"),font.label = list(size = 12, face = "bold")) 
+
+ggsave(filename = "figure_4.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 9, scale = 1, dpi = 300)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap='Figure 5: Comparison of density plots at the end run time for simulations 1 - 13, for January 2018 (Austral summer). The plots are regular hexagons within the density of particles were calculated. The mean trajectories for each simulation are also plotted for comparison. The reader is referred to tables 1 and 2 for details pertaining to each simulation', fig.height=10, fig.width=9}
+
+ggarrange(heatmap_winter,heatmap_winter_passive, heatmap_spring, heatmap_spring_passive, labels = c("AUTO"), nrow = 2, ncol = 2, common.legend = TRUE, legend = c("bottom"),font.label = list(size = 12, face = "bold")) 
+
+ggsave(filename = "figure_5.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 9, scale = 1, dpi = 300)
+```
+
+## Point distribution
+
+```{r point plots wrangle, message=FALSE, echo=FALSE, warning=FALSE}
+
+total_summer_point <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_summer %>% 
+              #filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_summer, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap("type") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  #ggtitle("Kelp Particles")
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_autumn_point <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_autumn %>% 
+              #filter(!type =='Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_autumn, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap("type") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_winter_point <- ggplot()+
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_winter %>% 
+              #filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_winter, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap("type") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  #ggtitle("Kelp Particles")
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_spring_point <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_spring %>% 
+             # filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_spring, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap('type') +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+# Passive particles
+
+total_summer_point_pass <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_spring %>% 
+             # filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_passive_summer, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap('type') +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  #ggtitle("Passive Particles")
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_autumn_point_pass <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_spring %>% 
+             # filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_passive_autumn, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap('type') +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_winter_point_pass <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_spring %>% 
+             # filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_passive_winter, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap('type') +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  ggtitle("Passive Particles")
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+total_spring_point_pass <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  #geom_path(data = total_spring %>% 
+             # filter(!type == 'Passive'), aes(x = lon, y = lat, linetype = type))+
+  geom_point(data = total_passive_spring, aes(x = lon, y = lat, colour = age), show.legend = FALSE) +
+  facet_wrap('type') +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  guides(colour=guide_legend(title="Simulation")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(11, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+```
+
+```{r point plot, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE, fig.cap="Figure 6: Point plots shoing the age of all passive and kelp particles at the end of each simulation run."}
+
+ggarrange(total_summer_point, total_summer_point_pass, total_autumn_point, total_autumn_point_pass,total_winter_point,total_winter_point_pass, total_spring_point,total_spring_point_pass, labels = c("AUTO"), nrow = 2, ncol = 4, common.legend = TRUE, legend = c("bottom"),font.label = list(size = 12, face = "bold")) 
+
+ggsave(filename = "figure_age.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 6, width = 6, scale = 1, dpi = 300)
+```
+
+## Comparison of distances 
+
+```{r distance plot processing, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+# Kelp particles
+dis_plot_summer <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_summer, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dis_plot_autumn <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_autumn, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dis_plot_winter <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_winter, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dis_plot_spring <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_spring, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+#Passive particles
+
+dis_plot_summer_pass <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_passive_summer, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dis_plot_autumn_pass <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_passive_autumn, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dis_plot_winter_pass <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_passive_winter, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dis_plot_spring_pass <- ggplot()+
+  #geom_boxplot(data = passive_summer, notch = TRUE, notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  geom_boxplot(data = total_passive_spring, aes(x = type, y = distance, show.legend = FALSE), notch = TRUE,   notchwidth = 1, show.legend = FALSE, stat = "boxplot") +
+  #scale_x_discrete(labels= pos_dist_plot) +
+  stat_compare_means(method = "kruskal.test", label = "p.signif", label.x.npc = c("right"))+
+  theme_bw()+
+  ylab("Distance (km)")+
+  xlab("Type")+
+  #coord_flip() +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r distance plot, message=FALSE, warning=FALSE, echo = FALSE, include=TRUE, fig.cap="Figure 6: Boxplots of total distance travelled by all particles from the release site over the course of the simulations for scenarios 1 - 52. The *x*-axis represents the scenario number, and the *y*-axis is the distance travelled in kilometers. The lower and upper hinges correspond to the first and third quartiles. The whiskers represent the range, solid black lines represent the median and black dots are outliers. The reader is referred to Tables 1 and 2 for details pertaining to each scenario.", fig.height=7, fig.width=7}
+
+ggarrange(dis_plot_summer, dis_plot_summer_pass, dis_plot_autumn, dis_plot_autumn_pass, dis_plot_winter, dis_plot_winter_pass,dis_plot_spring, dis_plot_spring_pass, label = "AUTO", ncol = 2, nrow = 4, labels = "AUTO")
+ggsave(filename = "figure_7.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 8, scale = 1, dpi = 300)
+```
+
+## Eddy/Line experiment 
+
+```{r message=FALSE, echo=FALSE, warning=FALSE, include=FALSE}
+
+# summer
+
+eddy_hydro_plot <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_hydro, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  ggtitle("Kelp") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+eddy_hydrostksdrag_plot <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_hydrostksdrag, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+eddy_hydrowinddrag_plot <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_hydrowinddrag, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  ggtitle("Kelp")
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+eddy_hydrowindstksdrag_plot <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_hydrowindstksdrag, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+# Passive particles
+
+eddy_passive_plot_curr <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_passive_curr, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  ggtitle("Passive") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+eddy_passive_plot_currstks <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_passive_currstks, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+eddy_passive_plot_currwind <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_passive_currwind, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme_bw() +
+  ggtitle("Passive")
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+eddy_passive_plot_currwindstks <- ggplot() +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID), size = 0.4,     colour = "black",     fill = "grey") +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_point(data = total_eddy_passive_currwindstks, aes(x = lon, y = lat, colour = trajectory), show.legend = FALSE) +
+  scale_colour_continuous(type = "viridis",limits = c(0, 9))  +
+  facet_wrap("Season") +
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  #guides(colour=guide_legend(title="Passive Particles")) +
+  #guides(linetype=guide_legend(title="Kelp Particles")) +
+  coord_fixed(ratio=1, clip = "on", xlim = c(7, 20), ylim = c(-36, -28)) + # fix the aspect ratio of plot
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+```
+
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation for scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=6, fig.width=8}
+
+ggarrange(eddy_hydro_plot, eddy_passive_plot_curr, eddy_hydrostksdrag_plot,eddy_passive_plot_currstks, common.legend = TRUE, legend = c("none"), ncol = 2, nrow = 2, labels = c("AUTO"), font.label = list(size = 12, face = "bold"), align = "hv")
+
+ggsave(filename = "figure_8.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 6, width = 8, scale = 2, dpi = 300)
+```
+
+```{r accumulation data outputs, warning=FALSE, echo=FALSE, message=FALSE, fig.cap="Figure 8: Comparison of density between passive and kelp accumulation for scenarios 53-60. For each season, passive particles are plotted on the left column and kelp particles in the right.", fig.height=6, fig.width=8}
+
+ggarrange(eddy_hydro_plot, eddy_passive_plot_curr, eddy_hydrostksdrag_plot,eddy_passive_plot_currstks, common.legend = TRUE, legend = c("none"), ncol = 2, nrow = 2, labels = c("AUTO"), font.label = list(size = 12, face = "bold"), align = "hv")
+
+ggsave(filename = "figure_8.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 6, width = 8, scale = 2, dpi = 300)
+```
+The role of eddys that exist within the study domain during the study period play a clear role in the accumulation and dispersal of kelp particles. Passive particles tend to remain on the outer edge of the eddy and are then expelled on the other side and continue to follow the ocean current (Figure 9). The opposite is true for kelp particles which have the highest exposure level of hydrodynamic and wind drag. The kelp particles are entrained in the eddy (Figure 9). This is also reflected when comparing the age of particles at the end of the simulation. In Figure 10, younger particles are near the release site and older particles further away from the shore, while older kelp particles are retained within the eddy. 
+
+## Comparison of coefficients
+
+The comparison of mean trajectories between the sphere and cylindrical shape coefficients revealed no difference (appendix). This was also seen when comparing distance traveled by particles and particle density plots (appendix). The simulation employing a cylindrical shape coefficient showed higher density in an eddy compared to the simulation which used a sphere for the shape coefficient (appendix). 
+
+# Discussion
+
+The findings from this study broaden our understanding of macroalgal trajectory patterns and behavior in the ocean. In particular, the results show that consideration of drag and surface area are important when investigating macroalgal trajectory patterns. The treatment of drifting macroalgae as purely Lagrangian does not accurately determine patterns of passive dispersal, such as entrainment in eddys or vortices [@fossette2012; @miron2020]. Although past research has shown the inclusion of inertia and windage greatly increase observed macroalgae trajectory and entrainment characteristics [@putman2018; @brooks2018;@brooks2019; @putman2020], past research has focused on large macroalgal-rafts which can vary greatly in size and surface area. None of the extant research has taken advantage of the advancement in numerical ocean models and Lagrangian trajectory modeling to investigate how aspects of drag (hydrodynamic and wind) affect the trajectory patterns of solitary drifting macroalgae. This study compared particles trajectories with simulations that included no forms of drag with simulations that included various forms of both hydrodynamic and wind drag. The mean virtual kelp trajectory deviated from the mean passive trajectory when including varying levels of hydrodynamic and wind drag scenarios. The results from this study show the inclusion of hydrodynamic and wind drag results in observable entrainment patterns and broadens our understanding of how surface area plays a role in solitary drifting macroalgae trajectory, in this case that of *E. maxima*.
+
+Past research has inferred from direct and indirect techniques that drifting macroalgae tend to follow the prevailing surface currents [@thiel2005; @hobday2000; @fraser2011; @rothausler2011; @rothausler2011]. The results from this numerical experiment confirm that drifting macroalgae do follow the surface current in the study region when considering only hydrodynamic drag. In addition, not only are the trajectories similar but so are the end points at the end of simulation. However, when *ad hoc* wind drag (windage) is considered in combination with hydrodynamic drag the end locations differ greatly when compared to purely Lagrangian particle trajectories. The inclusion of wind drag causes the kelp particles to flow further away from the coast and with a greater distance travelled from the release location. The difference in trajectory and distance covered can be attributed to the inclusion of wind drag. Wind drag adds to the effects of hydrodynamic drag when the wind direction and current direction are opposite to each other. However, when the wind direction is in the same or similar direction to that of the current, momentum energy from the wind is transferred to the object [@hackett2006; @putman2020]. This causes the kelp particles to travel further as well as become exposed to different time varying flows. Past studies have shown this when including windage as a function of inertia [@putman2018;@brooks2019; @putman2020]. A study by @putman2020 used *ad hoc* windage factors that was based on the surface current velocity to assess the approach for improving transport predictions of pelagic *Sargassum sp*. The results showed that including ad-hoc windage factors improved virtual trajectories compared to tracked *Sargassum sp* mats, which was partly due to the inclusion of momentum energy transfer from wind. This is also reflected in the analysis comparing distances travelled by all the particles in each simulation. The particles in the simulations that included wind drag traveled significantly greater distances compared to the passive or hydrodynamic only drag simulations. Similar patterns are seen in the simulations run for April (Austral autumn), July (Austral winter), and October (Austral spring); however unlike in January (Austral summer) where only kelp particles with combined drag (hydrodynamic and wind) flowed further, even kelp particles with only hydrodynamic drag flow further compared to passive particles in these times of the year. This may be a result of the kelp particles exposed to different time-varying flows, which results in the kelp particles following a different surface current vector compared to passive particles. This also results in different end-points and therefore these results further confirm that drag is an important factor to account for when investigating macroalgal drift patterns. The different trajectory patterns between seasons reflects the underlying seasonal variation in regional oceanography. Transport in the study region is driven by a combination of variation of alongshore jets and wind induced Ekman transport of surface water [@rubio2009; @veitch2018; @ragoasha2019]. @ragoasha2019 investigated the success of Lagrangian particles reaching St. Helena Bay from Cape Point using Lagrangian trajectory modelling and inclusion of regional oceanographic processes. The authors showed that transport success was higher in spring due to the single coherent Benguela Jet, which is most intense over the 300m isobath [@ragoasha2019]. During upwelling season (December - March) transport success was less efficient as particles tend to flow offshore. The move offshore was a result of the bifurification of the Benguela Jet, which splits because of shoaling and causes particles to be exposed to higher amounts of mesoscale activity. In the winter months, the Benguela Jet was still split but the flow weakens which resulted in lower transport success [@ragoasha2019]. Similar patterns were found in this study, suggesting that the difference in seasonal patterns reflects the regional oceanographic features, particularly the Benguela Jet.        
+
+The addition of drag forces caused the kelp particles to cluster together along the mean trajectory compared to that of the passive particles which were more evenly dispersed. This was most likely due to the shared drag characteristics among the kelp particles which included the plants' mass and surface area into the calculation. Other studies investigating flotsam trajectory characteristics have found similar results [@breivik2011; @olascoaga2020; @miron2020]. A study by @miron2020 conducted field experiments using a range of objects such as spheres, cubes, and cuboids to compare to investigate the effect of inertia on particles dynamics. The results from the study showed that objects tended to cluster according to the shape of the object which the authors attributed to shared characteristics of inertia. Although drag force and not inertia was used in this study, the same conclusion applies---drag is therefore an important characteristic to consider when investigating or predicting solitary drifting macroalgal trajectories. 
+
+The ocean is comprised of time-varying flows and changes in an objects velocity that can cause the object to be exposed to different flow patterns over time. The lack of dissimilarity in trajectory between different cross-sectional area types (minimum, mean and maximum) suggests that reduction in velocity in relation to cross-sectional area was negligible. A similar result was found by @gouvello2020 who investigated the effects of swimming behavior on sea turtle hatchling dispersal in the Agulhas region. The results suggested that the hatchling trajectories were mostly influenced by the ocean currents in the first year of hatching due as juveniles do not swim fast enough to alter their overall trajectory. Therefore, the differences in cross-sectional area types may not be significant enough to influence the relevant zonal and meridional velocity vectors. Another possible reason was the resolution of the ocean model used. The resolution of the underlying ocean model is an important aspect of Lagrangian ocean modeling and must be able to resolve sub-grid scale ocean processes for finer scale applications. A study by @hart2018 assessed the inclusion of stochastic motion, wind, and currents into forecasting for search and rescue using the same model ocean model used in this study. The authors found that the inclusion of Brownian motion greatly increased the accuracy in representing sub-grid scale processes and that the inclusion of wind, currents, and stochastic motion greatly improved forecasting applications. Therefore, the authors argue that the lack of dissimilarity between simulations of different cross-sectional area and drag exposure scenarios is not because of the resolution of the model. 
+
+The same is true when comparing different hydrodynamic and wind drag exposure scenarios. These scenarios reflected different buoyancy situations which resulted in different amounts of surface area exposed to hydrodynamic and/or wind drag. The similarities between the different combined drag scenarios suggest that higher magnitudes of wind exposure did not significantly alter trajectories. Instead, the results from this study suggest that the inclusion of drag forces in simulating macroalgal trajectory may result in improving accuracy of modeling entrainment patterns. All the simulations that included any form of drag resulted in a high density of particles entrained in an eddy. The entrainment and expulsion from eddys and vortices are an important characteristic of floating macroalgae. Accuracy in predicting entrainment and expulsion of macroalgae-rafts from eddys has been investigated previously by @putman2018 and @putman2020, who showed that including windage greatly improved entrainment patterns when comparing virtual and real *Sargassum* rafts. However, these studies investigated large rafts and not floating individuals. Inertia was based on the size/mass of the raft, while hydrodynamic and wind drag are based on current velocity and surface area. Therefore, the role of inertia may be negligible for a solitary individual and rather other forms of drag, such as in this study, should be considered. The results from this study suggest that the inclusion of hydrodynamic and/or wind drag was an important component when simulating virtual kelp particles and greatly increased the accuracy of entrainment and expulsion from sub-grid mesoscale oceanographic features, such as eddys and vortices.
+
+The role of eddys and vortices in the entrainment of kelp is further supported by the accumulation simulations. These results clearly show that the inclusion of drag greatly increases the number of particles entrained in the eddy within the study domain. eddys and vortices may act as accumulation zones for kelp where the formation of rafts may occur, or the kelp is entrained for long enough to eventually sink in area below the eddy. A study by @woodborne1989 references a site offshore approximately 120 km from Cape Columbine where dredged kelp was found. The area coincides with the region where virtual kelp was entrained by an eddy. The use of a cylindrical shape coefficient instead of a sphere in the calculation of drag force also had no effect on the mean trajectory. Instead, the inclusion of a different shape coefficient increased to the density of particles entrained in an eddy field. Therefore, more accurately parameterizing shape will therefore allow for further improvements in models of macroalgal dispersal patterns. 
+
+# Conclusion
+
+Most of the past research has focused on large macroalgae rafts which can vary greatly in size and shape; however, prior to our study, no research existed to clarify the drifting characteristics of solitary macroalgae. Understanding how to accurately model the distribution of solitary kelp will lead to better understanding of accumulation zones and sinks, and ultimately the ecological links pertaining to those processes. The ecological links characterized will highlight ecosystems that are tightly dependent on kelp for proper ecological functioning, and these areas might also have a unique biodiversity compared to surrounding areas where less detrital input is present. The findings from this study indicated that solitary floating virtual *E. maxima* particles tended to follow the prevailing surface currents and the inclusion of wind caused the trajectories to differ greatly from that of a purely Lagrangian particle. Furthermore, the inclusion of both hydrodynamic and wind drag caused clustering of particles along the trajectory as well caused particles to become entrained in eddys. Different cross-sectional areas exposed to hydrodynamic and wind drag had no effect on overall trajectory suggesting that those differences are negligible when investigating dispersal patterns of drifting *E. maxima*. In addition, the use of a cylindrical shape coefficient had no effect on mean trajectory, but did cause higher density of particles to become entrained in an eddy. Overall, the inclusion of drag forces is an important aspect to consider when investigating the dispersal patterns of solitary macroalgae, while differences in cross-sectional areas are not. This study also provided an approach which can be adapted to model any floating solitary macroalgae, provided the surface area can be estimated accurately. Our results further highlight the importance of regional oceanographic processes to better understand how kelp flotsam is dispersed in the ocean. In particular, we highlight the role of the Benguela Jet and mesoscale processes, which ultimately determine the transport success around the coast. Gaps in the research exist when considering what oceanographic processes play a role in solitary macroalgal dispersal. The identification of biological and physical factors that play a role in accumulation zones is also needed, as well as better estimates for sinking rates. 
+
+# References
+
+<div id="refs"></div>
+
+# Appendix
+
+```{r sim table, eval=TRUE, message=FALSE, warning=FALSE, include=TRUE, echo=FALSE}
+
+set_flextable_defaults(fonts_ignore=TRUE)
+
+sim_table <- read.csv("tables/chapter_3/simulation_table.csv", sep = ";")
+
+sim_table <- flextable(data = sim_table)
+sim_table <- theme_zebra(sim_table, odd_header = "transparent", even_header = "transparent")
+sim_table <- fontsize(sim_table, size = 8, part = "body")
+sim_table <- fontsize(sim_table, size = 8, part = "header")
+sim_table <- set_header_labels(sim_table, Scenario = "Simulation", Cross.sectional.area = "Cross-sectional area", Drag.Exposure = "Drag Exposure level")
+sim_table <- align(x= sim_table, align = "center", part = "all")
+sim_table <- set_table_properties(sim_table, width = 1, layout = "autofit")
+sim_table <- set_caption(sim_table, "Table 1: Details for each simulation run for the study. Type refers to either a passive particle with no drag behavior or a kelp particle that has been advected with any drag exposure. The drag exposure column refers to the parameterizations regarding the level of water and wind drag simulated. All simulations were run with a Runge-Kutte (4th) advection scheme, Brownian motion, 30 days, and included 1000 particles for a 2018 hindcast.")
+sim_table
+
+```
+
+```{r test data wrangle, warning = FALSE, echo=FALSE, message=FALSE, eval=FALSE}
+
+kelp_hydro_A <- tidync("OceanParcels/chapter_3_output/kelp_hydro_testA.nc") %>% #1hr
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, age, Phase, KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, waterdragU, waterdragV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+
+kelp_hydro_B <- tidync("OceanParcels/chapter_3_output/kelp_hydro_testB.nc") %>% #3hr
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, age, Phase, KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, waterdragU, waterdragV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+
+kelp_hydro_C <- tidync("OceanParcels/chapter_3_output/kelp_hydro_testC.nc") %>% #6hr
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, age, Phase, KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, waterdragU, waterdragV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+
+kelp_hydro_D <- tidync("OceanParcels/chapter_3_output/kelp_hydro_testD.nc") %>% #12hr
+  hyper_tibble() %>%
+  dplyr::select(time, trajectory, lon, lat, distance, age, Phase, KelpVelU, KelpVelV, VelU, VelV, WindU, WindV, waterdragU, waterdragV) %>%
+  dplyr::rename(t = time) %>%
+  mutate(t = as.POSIXct(t, origin = "2018-01-01 00:00:00"))
+
+heatmap_1hr <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = kelp_hydro_A, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis")  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("1 Hr release") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_3hr <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = kelp_hydro_B, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis")  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("3 Hr release") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_6hr <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = kelp_hydro_C, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis")  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("6 Hr release") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+heatmap_12hr <- ggplot() +
+  #geom_bin2d(data = p_EE, bins = 80, aes(x = lon, y = lat)) +
+  geom_contour(data = sa_bathy, aes(x = lon, y = lat, z = depth), colour = "grey", size = 0.2) +
+  geom_hex(data = kelp_hydro_D, bins = 80, aes(x = lon, y = lat), legend = TRUE) +  
+  scale_fill_continuous(type = "viridis")  +
+  geom_polygon(data = south_africa_coast_hi_res, aes(x = lon, y = lat, group = PID),
+               size = 0.4, colour = "black", fill = "gray") +
+  #geom_path(data = Min_Kfloat_H100_W00_mean,aes(x = lon, y = lat, color = 'red'), show.legend = FALSE) +
+  coord_cartesian(xlim = c(14, 20), ylim = c(-35, -30)) + 
+  labs(x = expression(Longitude*degree*S)) +
+  labs(y = expression(Latitude*degree*E)) +
+  ggtitle("12 Hr release") +
+  guides(fill=guide_legend(title="Number of particles")) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12)) 
+
+```
+
+```{r test data outputs, warning=FALSE, echo=FALSE, message=FALSE,eval=FALSE, fig.cap="Heatmaps comparing densities and patterns across time-release options.", fig.height=6, fig.width=5}
+
+ggarrange(heatmap_1hr, heatmap_3hr, heatmap_6hr, heatmap_12hr,common.legend = TRUE, legend = c("none"), ncol = 2, nrow = 2, labels = c("AUTO"), font.label = list(size = 12, face = "bold"), align = "hv")
+
+#ggsave(filename = "figure_9.jpg", plot = last_plot(), path = "figures/chapter_3/", height = 10, width = 6, scale = 1, dpi = 300)
+```
